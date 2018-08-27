@@ -18,12 +18,16 @@
         </activity>
         <activity android:name=".RegistroGeneral" />
         <activity android:name=".GuiaPrincipal" />
+<<<<<<< HEAD
         <activity android:name=".GuiaHistorialServicios" />
         <activity android:name=".GuiaCrearAnuncio" />
         <activity android:name=".GuiaEditarAnuncio" />
         <activity android:name=".GuiaSolicitudesServicios" />
         <activity android:name=".GuiaVerHuesped" />
         <activity android:name=".GuiaCalificarHuesped"></activity>
+=======
+        <activity android:name=".MenuAnfitrion"></activity>
+>>>>>>> 7a72352f71c786bc179a1da0c94148ca7cecc2fc
     </application>
 
 </manifest>
