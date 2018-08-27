@@ -17,7 +17,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistroGeneral" />
-        <activity android:name=".GuiaPrincipal"></activity>
+        <activity android:name=".GuiaPrincipal" />
+        <activity android:name=".GuiaHistorialServicios" />
+        <activity android:name=".GuiaCrearAnuncio" />
+        <activity android:name=".GuiaEditarAnuncio" />
+        <activity android:name=".GuiaSolicitudesServicios" />
+        <activity android:name=".GuiaVerHuesped" />
+        <activity android:name=".GuiaCalificarHuesped"></activity>
     </application>
 
 </manifest>
