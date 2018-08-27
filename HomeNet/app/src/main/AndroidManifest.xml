@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistroGeneral" />
-        <activity android:name=".GuiaPrincipal"></activity>
+        <activity android:name=".GuiaPrincipal" />
+        <activity android:name=".MenuAnfitrion"></activity>
     </application>
 
 </manifest>
