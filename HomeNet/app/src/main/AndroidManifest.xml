@@ -26,7 +26,14 @@
         <activity android:name=".GuiaCalificarHuesped" />
         <activity android:name=".MenuAnfitrion" />
         <activity android:name=".CrearPerfilGuiaAnf" />
-        <activity android:name=".CrearPerfilHuesped"></activity>
+        <activity android:name=".CrearPerfilHuesped" />
+        <activity android:name=".GuiasDisponibles" />
+        <activity android:name=".VerInfoGuia" />
+        <activity android:name=".VerMasTour" />
+        <activity android:name=".SolicitudesAceptadasDelGuia" />
+        <activity android:name=".CalificarGuia" />
+        <activity android:name=".PublicarAlojamiento"></activity>
+        <activity android:name=".VerRuta"></activity>
     </application>
 
 </manifest>
