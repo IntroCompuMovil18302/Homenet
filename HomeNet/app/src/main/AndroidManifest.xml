@@ -23,8 +23,10 @@
         <activity android:name=".GuiaEditarAnuncio" />
         <activity android:name=".GuiaSolicitudesServicios" />
         <activity android:name=".GuiaVerHuesped" />
-        <activity android:name=".GuiaCalificarHuesped"></activity>
-        <activity android:name=".MenuAnfitrion"></activity>
+        <activity android:name=".GuiaCalificarHuesped" />
+        <activity android:name=".MenuAnfitrion" />
+        <activity android:name=".CrearPerfilGuiaAnf" />
+        <activity android:name=".CrearPerfilHuesped"></activity>
     </application>
 
 </manifest>

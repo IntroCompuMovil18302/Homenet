@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">HomeNet</string>
+    <string-array name="tipoUsuario">
+        <item>Huésped</item>
+        <item>Anfitrión</item>
+        <item>Guía</item>
+    </string-array>
+    <string-array name="genero">
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>Otro</item>
+    </string-array>
 </resources>
