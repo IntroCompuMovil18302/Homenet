@@ -9,6 +9,7 @@ public class MenuAnfitrion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_anfitrion);
-        // prueba modificar archivo 
+        // prueba modificar archivo
+        // prueba dos
     }
 }
