@@ -17,21 +17,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistroGeneral" />
-        <activity android:name=".GuiaPrincipal" />
-        <activity android:name=".GuiaHistorialServicios" />
-        <activity android:name=".GuiaCrearAnuncio" />
-        <activity android:name=".GuiaEditarAnuncio" />
-        <activity android:name=".GuiaSolicitudesServicios" />
-        <activity android:name=".GuiaVerHuesped" />
-        <activity android:name=".GuiaCalificarHuesped" />
+        <activity android:name=".GuiaPrincipalActivity" />
+        <activity android:name=".GuiaHistorialServiciosActivity" />
+        <activity android:name=".GuiaCrearAnuncioActivity" />
+        <activity android:name=".GuiaEditarAnuncioActivity" />
+        <activity android:name=".GuiaSolicitudesServiciosActivity" />
+        <activity android:name=".GuiaVerHuespedActivity" />
+        <activity android:name=".GuiaCalificarHuespedActivity" />
         <activity android:name=".MenuAnfitrion" />
         <activity android:name=".CrearPerfilGuiaAnf" />
         <activity android:name=".CrearPerfilHuesped" />
-        <activity android:name=".GuiasDisponibles" />
+        <activity android:name=".GuiasDisponiblesActivity" />
         <activity android:name=".VerInfoGuia" />
         <activity android:name=".VerMasTour" />
         <activity android:name=".SolicitudesAceptadasDelGuia" />
-        <activity android:name=".CalificarGuia" />
+        <activity android:name=".CalificarGuiaActivity" />
         <activity android:name=".PublicarAlojamiento"></activity>
         <activity android:name=".VerRuta"></activity>
     </application>
