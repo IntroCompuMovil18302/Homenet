@@ -38,9 +38,10 @@
         <activity android:name=".InformacionAlojamiento" />
         <activity android:name=".VerComentarios" />
         <activity android:name=".HistorialReservaActivity" />
-        <activity android:name=".DetallesHistorialReservaActivity"></activity>
+        <activity android:name=".DetallesHistorialReservaActivity" />
         <activity android:name=".CalificarGuiaActivity" />
-        <activity android:name=".PublicarAlojamiento"></activity>
+        <activity android:name=".PublicarAlojamiento" />
+        <activity android:name=".ReservarAlojamientoActivity"></activity>
     </application>
 
 </manifest>
