@@ -20,7 +20,7 @@ public class GuiasDisponiblesActivity extends AppCompatActivity {
         solAceptadas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),SolicitudesAceptadasDelGuia.class);
+                Intent intent = new Intent(v.getContext(),SolicitudesAceptadasDelGuiaActivity.class);
                 startActivity(intent);
             }
         });
