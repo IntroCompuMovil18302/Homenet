@@ -33,6 +33,7 @@
         <activity android:name=".SolicitudesAceptadasDelGuia" />
         <activity android:name=".CalificarGuia" />
         <activity android:name=".PublicarAlojamiento"></activity>
+        <activity android:name=".VerRuta"></activity>
     </application>
 
 </manifest>
