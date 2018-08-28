@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class GuiasDisponibles extends AppCompatActivity {
+public class GuiasDisponiblesActivity extends AppCompatActivity {
 
     Button solAceptadas;
 
