@@ -18,7 +18,7 @@ public class ReservarAlojamientoActivity extends AppCompatActivity {
         ver_ruta.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(ReservarAlojamientoActivity.this,CalificarUsuario.class);
+                Intent intent = new Intent(ReservarAlojamientoActivity.this,CalificarUsuarioActivity.class);
                 startActivity(intent);
             }
         });

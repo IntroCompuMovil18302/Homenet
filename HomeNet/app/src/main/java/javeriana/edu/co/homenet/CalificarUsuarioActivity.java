@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class CalificarUsuario extends AppCompatActivity {
+public class CalificarUsuarioActivity extends AppCompatActivity {
     Button publicar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class CalificarUsuario extends AppCompatActivity {
         publicar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(CalificarUsuario.this,HistorialReservaActivity.class);
+                Intent intent = new Intent(CalificarUsuarioActivity.this,HistorialReservaActivity.class);
                 startActivity(intent);
             }
         });

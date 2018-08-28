@@ -3,7 +3,7 @@ package javeriana.edu.co.homenet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class VerRuta extends AppCompatActivity {
+public class VerRutaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class InformacionAlojamiento extends AppCompatActivity {
+public class InformacionAlojamientoActivity extends AppCompatActivity {
     Button ver_comentarios;
     Button disponibilidad;
     Button ver_ruta;
@@ -20,14 +20,14 @@ public class InformacionAlojamiento extends AppCompatActivity {
         ver_comentarios.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(InformacionAlojamiento.this,VerComentarios.class);
+                Intent intent = new Intent(InformacionAlojamientoActivity.this,VerComentariosActivity.class);
                 startActivity(intent);
             }
         });
         disponibilidad.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(InformacionAlojamiento.this,ConsultarDisponibilidad.class);
+                Intent intent = new Intent(InformacionAlojamientoActivity.this,ConsultarDisponibilidadActivity.class);
                 startActivity(intent);
             }
         });
