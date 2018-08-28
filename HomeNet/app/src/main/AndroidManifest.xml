@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistroGeneral" />
+        <activity android:name=".RegistroGeneralActivity" />
         <activity android:name=".GuiaPrincipalActivity" />
         <activity android:name=".GuiaHistorialServiciosActivity" />
         <activity android:name=".GuiaCrearAnuncioActivity" />
@@ -28,9 +28,9 @@
         <activity android:name=".CrearPerfilGuiaAnf" />
         <activity android:name=".CrearPerfilHuesped" />
         <activity android:name=".GuiasDisponiblesActivity" />
-        <activity android:name=".VerInfoGuia" />
-        <activity android:name=".VerMasTour" />
-        <activity android:name=".SolicitudesAceptadasDelGuia" />
+        <activity android:name=".VerInfoGuiaActivity" />
+        <activity android:name=".VerMasTourActivity" />
+        <activity android:name=".SolicitudesAceptadasDelGuiaActivity" />
         <activity android:name=".VerRutaActivity" />
         <activity android:name=".CalificarUsuarioActivity" />
         <activity android:name=".ConsultarAlojamientoActivity" />
