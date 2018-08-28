@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class ConsultarAlojamiento extends AppCompatActivity {
+public class ConsultarAlojamientoActivity extends AppCompatActivity {
     ImageButton image1;
     ImageButton image4;
     @Override
@@ -18,14 +18,14 @@ public class ConsultarAlojamiento extends AppCompatActivity {
         image1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(ConsultarAlojamiento.this,InformacionAlojamiento.class);
+                Intent intent = new Intent(ConsultarAlojamientoActivity.this,InformacionAlojamientoActivity.class);
                 startActivity(intent);
             }
         });
         image4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(ConsultarAlojamiento.this,InformacionAlojamiento.class);
+                Intent intent = new Intent(ConsultarAlojamientoActivity.this,InformacionAlojamientoActivity.class);
                 startActivity(intent);
             }
         });
