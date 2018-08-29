@@ -42,7 +42,8 @@
         <activity android:name=".CalificarGuiaActivity" />
         <activity android:name=".PublicarAlojamientoAnfActivity" />
         <activity android:name=".ReservarAlojamientoActivity" />
-        <activity android:name=".VerTourActivity"></activity>
+        <activity android:name=".VerTourActivity" />
+        <activity android:name=".MenuHuesped"></activity>
     </application>
 
 </manifest>
