@@ -3,11 +3,11 @@ package javeriana.edu.co.homenet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PublicarAlojamientoAnfActivity extends AppCompatActivity {
+public class ListaAlojamientosAnfActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_publicar_alojamiento_anf);
+        setContentView(R.layout.activity_lista_alojamientos_anf);
     }
 }
