@@ -52,11 +52,8 @@
     <string name="label_final">Fecha de ida</string>
     <string name="label_precio">Precio</string>
     <string name="label_estado">Estado de la reserva</string>
-<<<<<<< HEAD
     <string name="direccion_origen">Dirección de origen</string>
     <string name="direccion_destino">Dirección de destino</string>
-
-=======
     <string name="title_activity_login2">Sign in</string>
 
     <!-- Strings related to login -->
@@ -71,5 +68,4 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
->>>>>>> d951ae4d02cd6f1ec3b310557dbebdfda55552f4
 </resources>
