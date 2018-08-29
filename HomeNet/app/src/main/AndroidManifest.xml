@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="javeriana.edu.co.homenet">
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,9 +29,9 @@
         <activity android:name=".GuiaSolicitudesServiciosActivity" />
         <activity android:name=".GuiaVerHuespedActivity" />
         <activity android:name=".GuiaCalificarHuespedActivity" />
-        <activity android:name=".MenuAnfitrion" />
-        <activity android:name=".CrearPerfilGuiaAnf" />
-        <activity android:name=".CrearPerfilHuesped" />
+        <activity android:name=".MenuAnfitrionActivity" />
+        <activity android:name=".CrearPerfilGuiaAnfActivity" />
+        <activity android:name=".CrearPerfilHuespedActivity" />
         <activity android:name=".GuiasDisponiblesActivity" />
         <activity android:name=".VerInfoGuiaActivity" />
         <activity android:name=".VerMasTourActivity" />
@@ -40,8 +45,11 @@
         <activity android:name=".HistorialReservaActivity" />
         <activity android:name=".DetallesHistorialReservaActivity" />
         <activity android:name=".CalificarGuiaActivity" />
-        <activity android:name=".PublicarAlojamiento" />
-        <activity android:name=".ReservarAlojamientoActivity"></activity>
+        <activity android:name=".PublicarAlojamientoAnfActivity" />
+        <activity android:name=".ReservarAlojamientoActivity" />
+        <activity android:name=".DetalleAlojamientoAnfActivity" />
+        <activity android:name=".ListaAlojamientosAnfActivity" />
+        <activity android:name=".HistorialReservasAnfActivity"></activity>
     </application>
 
 </manifest>
