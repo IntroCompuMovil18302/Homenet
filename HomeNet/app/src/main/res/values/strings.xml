@@ -52,4 +52,7 @@
     <string name="label_final">Fecha de ida</string>
     <string name="label_precio">Precio</string>
     <string name="label_estado">Estado de la reserva</string>
+    <string name="direccion_origen">Dirección de origen</string>
+    <string name="direccion_destino">Dirección de destino</string>
+
 </resources>
