@@ -43,6 +43,7 @@
         <activity android:name=".PublicarAlojamientoAnfActivity" />
         <activity android:name=".ReservarAlojamientoActivity" />
         <activity android:name=".VerTourActivity" />
+        <activity android:name=".DetalleAlojamientoAnfActivity" />
         <activity android:name=".MenuHuesped"></activity>
     </application>
 
