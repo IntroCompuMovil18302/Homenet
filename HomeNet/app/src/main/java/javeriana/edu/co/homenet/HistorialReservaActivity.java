@@ -22,5 +22,12 @@ public class HistorialReservaActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        detalles2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(HistorialReservaActivity.this,DetallesHistorialReservaActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
