@@ -10,6 +10,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Button registrarse;
     Button buttonTestGuias;
+    Button buttonTestHuesped;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(),GuiaPrincipalActivity.class));
+            }
+        });
+
+        buttonTestHuesped = (Button)findViewById(R.id.test_huesped);
+        buttonTestHuesped.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(),MenuHuesped.class));
             }
         });
 
