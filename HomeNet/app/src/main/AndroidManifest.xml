@@ -32,7 +32,7 @@
         <activity android:name=".VerMasTourActivity" />
         <activity android:name=".SolicitudesAceptadasDelGuiaActivity" />
         <activity android:name=".VerRutaActivity" />
-        <activity android:name=".CalificarUsuarioActivity" />
+        <activity android:name=".CalificarAlojamientoActivity" />
         <activity android:name=".ConsultarAlojamientoActivity" />
         <activity android:name=".ConsultarDisponibilidadActivity" />
         <activity android:name=".InformacionAlojamientoActivity" />
