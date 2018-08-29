@@ -30,9 +30,6 @@
         <activity android:name=".GuiaVerHuespedActivity" />
         <activity android:name=".GuiaCalificarHuespedActivity" />
         <activity android:name=".MenuAnfitrionActivity" />
-        <activity android:name=".CrearPerfilGuiaAnf" />
-        <activity android:name=".CrearPerfilHuesped" />
-        <activity android:name=".MenuAnfitrion" />
         <activity android:name=".CrearPerfilGuiaAnfActivity" />
         <activity android:name=".CrearPerfilHuespedActivity" />
         <activity android:name=".GuiasDisponiblesActivity" />
