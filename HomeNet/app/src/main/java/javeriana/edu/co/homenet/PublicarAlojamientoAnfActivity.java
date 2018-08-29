@@ -3,7 +3,7 @@ package javeriana.edu.co.homenet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PublicarAlojamiento extends AppCompatActivity {
+public class PublicarAlojamientoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
