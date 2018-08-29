@@ -11,17 +11,21 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:layout_width="181dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="4dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:hint="@string/direccion_origen"
         android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@+id/editText5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/editText5"
         android:layout_width="181dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
