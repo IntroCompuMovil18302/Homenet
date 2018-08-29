@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class RegistroGeneral extends AppCompatActivity {
+public class RegistroGeneralActivity extends AppCompatActivity {
 
     Spinner selectUsuario;
     Button siguienteRegistro;
@@ -38,10 +38,10 @@ public class RegistroGeneral extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!tipoUsuario.equals("Huésped")){
-                    Intent intent = new Intent(v.getContext(),CrearPerfilGuiaAnf.class);
+                    Intent intent = new Intent(v.getContext(),CrearPerfilGuiaAnfActivity.class);
                     startActivity(intent);
                 }else{
-                    Intent intent = new Intent(v.getContext(),CrearPerfilHuesped.class);
+                    Intent intent = new Intent(v.getContext(),CrearPerfilHuespedActivity.class);
                     startActivity(intent);
                 }
 

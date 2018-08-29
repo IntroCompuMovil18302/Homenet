@@ -9,6 +9,7 @@ import android.widget.Button;
 public class GuiasDisponiblesActivity extends AppCompatActivity {
 
     Button solAceptadas;
+    Button verMasGuia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +17,20 @@ public class GuiasDisponiblesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guias_disponibles);
 
         solAceptadas = findViewById(R.id.solAceptadas);
+        verMasGuia = findViewById(R.id.verMasGuia);
 
         solAceptadas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),SolicitudesAceptadasDelGuia.class);
+                Intent intent = new Intent(v.getContext(),SolicitudesAceptadasDelGuiaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        verMasGuia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),VerInfoGuiaActivity.class);
                 startActivity(intent);
             }
         });
