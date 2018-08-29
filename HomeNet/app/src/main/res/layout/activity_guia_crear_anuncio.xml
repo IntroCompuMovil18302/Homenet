@@ -14,14 +14,14 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/editNombreAnuncio"
+            android:id="@+id/editNombreAnuncioGuia"
             android:layout_width="267dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:ems="10"
             android:hint="Ingrese el nombre se su anuncio"
@@ -29,18 +29,19 @@
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloCrearAnuncioGuia" />
 
         <EditText
-            android:id="@+id/editDescrpAnuncio"
+            android:id="@+id/editDescrpAnuncioGuia"
             android:layout_width="match_parent"
             android:layout_height="87dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:backgroundTint="@color/colorTrasparente"
             android:contentDescription="Describa su anuncio."
             android:ems="10"
@@ -49,8 +50,9 @@
             android:textColorHint="@color/colorAccent"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editNombreAnuncio" />
+            app:layout_constraintTop_toBottomOf="@+id/editNombreAnuncioGuia" />
 
         <TextView
             android:id="@+id/textRecorrido"
@@ -58,50 +60,50 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="26dp"
             android:text="Recorrido: "
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textTarifa" />
+            app:layout_constraintTop_toBottomOf="@+id/textTarifaAnuncioGuia" />
 
         <TextView
-            android:id="@+id/textTarifa"
+            android:id="@+id/textTarifaAnuncioGuia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="26dp"
             android:text="Tarifa: "
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editDescrpAnuncio" />
+            app:layout_constraintTop_toBottomOf="@+id/editDescrpAnuncioGuia" />
 
         <EditText
-            android:id="@+id/editTarifa"
+            android:id="@+id/editTarifaRecorrido"
             android:layout_width="144dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="18dp"
             android:ems="10"
             android:hint="Digite el precio."
             android:inputType="number"
             android:textColorHint="@color/colorAccent"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/textTarifa"
-            app:layout_constraintTop_toBottomOf="@+id/editDescrpAnuncio" />
+            app:layout_constraintStart_toEndOf="@+id/textTarifaAnuncioGuia"
+            app:layout_constraintTop_toBottomOf="@+id/editDescrpAnuncioGuia" />
 
         <ListView
-            android:id="@+id/listRecorridos"
+            android:id="@+id/listRecorridosGuia"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="127dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -110,26 +112,23 @@
         </ListView>
 
         <Button
-            android:id="@+id/buttonGuardar"
+            android:id="@+id/buttonGuardarRecorrido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:background="@color/colorPrimaryDark"
             android:text="Guardar"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listRecorridos"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/listRecorridosGuia" />
 
         <Button
-            android:id="@+id/buttonAdd"
+            android:id="@+id/buttonAddParada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -142,7 +141,7 @@
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.305"
-            app:layout_constraintStart_toEndOf="@+id/buttonMap"
+            app:layout_constraintStart_toEndOf="@+id/buttonMapRecorrido"
             app:layout_constraintTop_toBottomOf="@+id/textRecorrido" />
 
         <EditText
@@ -157,13 +156,13 @@
             android:ems="10"
             android:hint="Nueva parada"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/buttonMap"
+            app:layout_constraintEnd_toStartOf="@+id/buttonMapRecorrido"
             app:layout_constraintHorizontal_bias="0.846"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textRecorrido" />
 
         <Button
-            android:id="@+id/buttonMap"
+            android:id="@+id/buttonMapRecorrido"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
@@ -171,11 +170,28 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/logomaps"
+            android:background="@drawable/mapsicon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.535"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textRecorrido" />
+
+        <TextView
+            android:id="@+id/tituloCrearAnuncioGuia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Crear Anuncio"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
