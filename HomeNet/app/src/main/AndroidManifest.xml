@@ -29,15 +29,21 @@
         <activity android:name=".GuiaSolicitudesServiciosActivity" />
         <activity android:name=".GuiaVerHuespedActivity" />
         <activity android:name=".GuiaCalificarHuespedActivity" />
+<<<<<<< HEAD
         <activity android:name=".MenuAnfitrionActivity" />
         <activity android:name=".CrearPerfilGuiaAnf" />
         <activity android:name=".CrearPerfilHuesped" />
+=======
+        <activity android:name=".MenuAnfitrion" />
+        <activity android:name=".CrearPerfilGuiaAnfActivity" />
+        <activity android:name=".CrearPerfilHuespedActivity" />
+>>>>>>> 4d02435ab6e602d02e6253aa1e26a41f5d6676e0
         <activity android:name=".GuiasDisponiblesActivity" />
         <activity android:name=".VerInfoGuiaActivity" />
         <activity android:name=".VerMasTourActivity" />
         <activity android:name=".SolicitudesAceptadasDelGuiaActivity" />
         <activity android:name=".VerRutaActivity" />
-        <activity android:name=".CalificarUsuarioActivity" />
+        <activity android:name=".CalificarAlojamientoActivity" />
         <activity android:name=".ConsultarAlojamientoActivity" />
         <activity android:name=".ConsultarDisponibilidadActivity" />
         <activity android:name=".InformacionAlojamientoActivity" />
