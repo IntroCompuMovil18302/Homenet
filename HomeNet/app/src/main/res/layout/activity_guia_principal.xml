@@ -50,46 +50,35 @@
             android:id="@+id/textNombreTour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="37dp"
             android:text="Tour 1"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/space"
+            app:layout_constraintEnd_toStartOf="@+id/buttonHistServiciosGuia"
             app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia" />
 
         <Button
             android:id="@+id/buttonEditTour"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/editicon"
-            app:layout_constraintEnd_toStartOf="@+id/buttonDelTour"
+            app:layout_constraintStart_toEndOf="@+id/buttonHistServiciosGuia"
             app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia" />
 
         <Button
             android:id="@+id/buttonDelTour"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="90dp"
-            android:layout_marginStart="90dp"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/deleteicon"
-            app:layout_constraintStart_toEndOf="@+id/space"
-            app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia" />
-
-        <Space
-            android:id="@+id/space"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/deleteicon"
+            app:layout_constraintStart_toEndOf="@+id/buttonEditTour"
             app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia" />
 
         <ListView
@@ -150,10 +139,28 @@
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toStartOf="@+id/textNombreTour"
             app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia"
             app:srcCompat="@drawable/tourlogo" />
+
+        <Button
+            android:id="@+id/buttonHistServiciosGuia"
+            android:layout_width="80dp"
+            android:layout_height="37dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="35dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Historial Servicios"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia" />
 
 
     </android.support.constraint.ConstraintLayout>
