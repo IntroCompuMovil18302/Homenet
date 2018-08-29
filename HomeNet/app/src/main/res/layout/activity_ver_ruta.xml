@@ -17,6 +17,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:hint="@string/direccion_origen"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,6 +30,20 @@
         android:hint="@string/direccion_destino"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_mapa"
+        android:layout_width="352dp"
+        android:layout_height="468dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/google_maps_seattle" />
 
 </android.support.constraint.ConstraintLayout>
 </ScrollView>
