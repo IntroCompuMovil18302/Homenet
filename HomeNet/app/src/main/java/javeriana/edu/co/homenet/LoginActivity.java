@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonTestHuesped.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),ConsultarAlojamientoActivity.class));
+                startActivity(new Intent(view.getContext(),MenuHuesped.class));
             }
         });
 
