@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonTestGuias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),GuiaCrearAnuncioActivity.class));
+                startActivity(new Intent(view.getContext(),GuiaPrincipalActivity.class));
             }
         });
 
