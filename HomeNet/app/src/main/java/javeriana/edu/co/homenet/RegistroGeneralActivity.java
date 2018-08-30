@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 public class RegistroGeneralActivity extends AppCompatActivity {
@@ -13,6 +14,7 @@ public class RegistroGeneralActivity extends AppCompatActivity {
     Spinner selectUsuario;
     Button siguienteRegistro;
     String tipoUsuario;
+    ImageButton cancelarReg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,7 @@ public class RegistroGeneralActivity extends AppCompatActivity {
 
         selectUsuario = findViewById(R.id.selectUsuario);
         siguienteRegistro = findViewById(R.id.siguienteRegistro);
+        cancelarReg = findViewById(R.id.cancelarReg);
 
         selectUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -45,6 +48,14 @@ public class RegistroGeneralActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+            }
+        });
+
+        cancelarReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

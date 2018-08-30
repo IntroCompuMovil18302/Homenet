@@ -36,7 +36,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="#d33838"
-            android:text="Solicitar"
+            android:text="@string/Solicitar"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,6 +162,15 @@
             app:layout_constraintHorizontal_bias="0.202"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="49dp"
+            android:layout_height="37dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
 
     </android.support.constraint.ConstraintLayout>
 
