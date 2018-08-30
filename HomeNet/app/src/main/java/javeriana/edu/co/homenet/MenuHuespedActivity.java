@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MenuHuesped extends AppCompatActivity {
+public class MenuHuespedActivity extends AppCompatActivity {
 
     Button consultarAlojamientos;
     Button verHistorialReservas;
@@ -50,7 +50,7 @@ public class MenuHuesped extends AppCompatActivity {
         verHistorialRecorridos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),SolicitudesAceptadasDelGuiaActivity.class);
+                Intent intent = new Intent(v.getContext(),HistorialRecorridosActivity.class);
                 startActivity(intent);
             }
         });
