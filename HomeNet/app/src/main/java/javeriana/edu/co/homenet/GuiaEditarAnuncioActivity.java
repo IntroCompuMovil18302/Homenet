@@ -20,7 +20,7 @@ public class GuiaEditarAnuncioActivity extends AppCompatActivity {
         buttonGuardarRecorridoEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), GuiaPrincipalActivity.class));
+                startActivity(new Intent(view.getContext(), GuiaDetalleTourActivity.class));
             }
         });
     }

@@ -8,7 +8,9 @@ import android.widget.Button;
 
 public class GuiaPrincipalActivity extends AppCompatActivity {
 
+    Button buttonTourSample;
     Button buttonAddAnuncioGuia;
+    Button buttonSolServGuia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,22 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), GuiaCrearAnuncioActivity.class));
+            }
+        });
+
+        buttonTourSample = (Button) findViewById(R.id.buttonTourSample);
+        buttonTourSample.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(),GuiaDetalleTourActivity.class));
+            }
+        });
+
+        buttonSolServGuia = (Button) findViewById(R.id.buttonSolServGuia);
+        buttonSolServGuia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(),GuiaSolicitudesServiciosActivity.class));
             }
         });
     }
