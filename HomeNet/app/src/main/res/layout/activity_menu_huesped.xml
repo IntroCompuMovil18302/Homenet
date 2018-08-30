@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuHuesped">
+    tools:context=".MenuHuespedActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="64dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Consultar Alojamientos"
+            android:text="@string/ConsultarAloj"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="36dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Ver historial reservas"
+            android:text="@string/VerHistReserv"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="116dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Ver guías cercanos"
+            android:text="@string/VerGuiasCerc"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="200dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Ver historial recorridos"
+            android:text="@string/VerHistRec"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

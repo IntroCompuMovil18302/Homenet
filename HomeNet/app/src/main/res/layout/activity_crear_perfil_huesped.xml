@@ -218,10 +218,19 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="444dp"
         android:background="#D33838"
-        android:text="Crear Perfil"
+        android:text="@string/CrearPerfil"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/volver"
+        android:layout_width="49dp"
+        android:layout_height="37dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
 </android.support.constraint.ConstraintLayout>

@@ -7,28 +7,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class SolicitudesAceptadasDelGuiaActivity extends AppCompatActivity {
+public class HistorialRecorridosActivity extends AppCompatActivity {
 
-    Button verTour;
-    ImageButton volverHome;
+    Button calGuia;
+    ImageButton home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_solicitudes_aceptadas_del_guia);
+        setContentView(R.layout.activity_historial_recorridos);
 
-        verTour = findViewById(R.id.verMasTour);
-        volverHome = findViewById(R.id.volverHome);
+        calGuia = findViewById(R.id.calGuia);
+        home = findViewById(R.id.volverHome);
 
-        verTour.setOnClickListener(new View.OnClickListener() {
+        calGuia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),VerTourActivity.class);
+                Intent intent = new Intent(v.getContext(),CalificarGuiaActivity.class);
                 startActivity(intent);
             }
         });
 
-        volverHome.setOnClickListener(new View.OnClickListener() {
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),MenuHuespedActivity.class);
