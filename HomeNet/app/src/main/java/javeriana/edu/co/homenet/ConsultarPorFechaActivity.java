@@ -6,17 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class VerComentariosActivity extends AppCompatActivity {
-    Button home ;
+public class ConsultarPorFechaActivity extends AppCompatActivity {
+    Button seleccionar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ver_comentarios);
-        home =(Button)findViewById(R.id.home_icon2);
-        home.setOnClickListener(new View.OnClickListener(){
+        setContentView(R.layout.activity_consultar_por_fecha);
+        seleccionar=(Button)findViewById(R.id.button_seleccionar);
+        seleccionar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(VerComentariosActivity.this,MenuHuespedActivity.class);
+                Intent intent = new Intent(ConsultarPorFechaActivity.this,ConsultarAlojamientoActivity.class);
                 startActivity(intent);
             }
         });

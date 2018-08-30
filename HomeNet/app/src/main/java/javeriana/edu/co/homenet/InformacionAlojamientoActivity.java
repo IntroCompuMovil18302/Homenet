@@ -10,6 +10,7 @@ public class InformacionAlojamientoActivity extends AppCompatActivity {
     Button ver_comentarios;
     Button disponibilidad;
     Button ver_ruta;
+    Button home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +18,7 @@ public class InformacionAlojamientoActivity extends AppCompatActivity {
         ver_comentarios =(Button)findViewById(R.id.ver_comentarios);
         disponibilidad=(Button)findViewById(R.id.consultar_dispo);
         ver_ruta=(Button)findViewById(R.id.ver_ruta3);
+        home =(Button)findViewById(R.id.home_icon1);
         ver_comentarios.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -35,6 +37,13 @@ public class InformacionAlojamientoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(InformacionAlojamientoActivity.this,VerRutaActivity.class);
+                startActivity(intent);
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(InformacionAlojamientoActivity.this,MenuHuespedActivity.class);
                 startActivity(intent);
             }
         });
