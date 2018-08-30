@@ -20,7 +20,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="416dp"
             android:background="#D33838"
-            android:text="siguiente"
+            android:text="@string/Siguiente"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -213,6 +213,16 @@
             app:layout_constraintHorizontal_bias="0.039"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+        <ImageButton
+            android:id="@+id/cancelarReg"
+            android:layout_width="49dp"
+            android:layout_height="37dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
+
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
