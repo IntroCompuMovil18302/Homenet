@@ -96,6 +96,8 @@
     <string name="VerHistReserv">Ver historial reservas</string>
     <string name="VerGuiasCerc">Ver guías cercanos</string>
     <string name="VerHistRec">Ver historial recorridos</string>
+    <string name="selecc">Seleccionar</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
