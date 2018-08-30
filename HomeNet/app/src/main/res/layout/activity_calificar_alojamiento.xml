@@ -64,6 +64,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="492dp"
         android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:text="Publicar"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"

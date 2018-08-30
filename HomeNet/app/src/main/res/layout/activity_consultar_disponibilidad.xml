@@ -47,6 +47,7 @@
         android:layout_marginStart="16dp"
         android:text="@string/desde"
         android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -59,6 +60,7 @@
         android:layout_marginRight="16dp"
         android:text="@string/hasta"
         android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -98,6 +100,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="112dp"
         android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:text="@string/listo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
