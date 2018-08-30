@@ -45,7 +45,10 @@
         <activity android:name=".VerTourActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".DetalleAlojamientoAnfActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".MenuHuesped"  android:screenOrientation="portrait"/>
-        <activity android:name=".GuiaDetalleTourActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".DetalleReservaAnfActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".GuiaDetalleTourActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".HistorialReservasAnfActivity" android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
