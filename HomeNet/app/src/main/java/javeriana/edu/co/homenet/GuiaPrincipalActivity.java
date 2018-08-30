@@ -9,7 +9,6 @@ import android.widget.Button;
 public class GuiaPrincipalActivity extends AppCompatActivity {
 
     Button buttonAddAnuncioGuia;
-    Button buttonEditTour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +22,5 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
                 startActivity(new Intent(view.getContext(), GuiaCrearAnuncioActivity.class));
             }
         });
-
-        buttonEditTour = (Button) findViewById(R.id.buttonEditTour);
-        buttonEditTour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), GuiaEditarAnuncioActivity.class));
-            }
-        });
-
     }
 }
