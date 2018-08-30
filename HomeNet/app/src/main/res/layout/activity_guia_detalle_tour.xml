@@ -56,9 +56,10 @@
         android:layout_height="60dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/editicon"
         app:layout_constraintEnd_toStartOf="@+id/space"
-        tools:layout_editor_absoluteY="219dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView68" />
 
     <Button
         android:id="@+id/buttonDelDetalle"
@@ -66,9 +67,10 @@
         android:layout_height="60dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/deleteicon"
         app:layout_constraintStart_toEndOf="@+id/space"
-        tools:layout_editor_absoluteY="219dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView68" />
 
     <Space
         android:id="@+id/space"
