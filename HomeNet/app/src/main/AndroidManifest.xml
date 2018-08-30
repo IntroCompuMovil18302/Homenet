@@ -44,7 +44,8 @@
         <activity android:name=".ReservarAlojamientoActivity" />
         <activity android:name=".VerTourActivity" />
         <activity android:name=".DetalleAlojamientoAnfActivity" />
-        <activity android:name=".MenuHuesped"></activity>
+        <activity android:name=".MenuHuesped" />
+        <activity android:name=".GuiaDetalleTourActivity"></activity>
     </application>
 
 </manifest>

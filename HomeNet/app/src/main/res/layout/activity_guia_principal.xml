@@ -46,41 +46,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textTituloMainGuia" />
 
-        <TextView
-            android:id="@+id/textNombreTour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="37dp"
-            android:text="Tour 1"
-            android:textColor="@color/colorAccent"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/buttonHistServiciosGuia"
-            app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia" />
-
-        <Button
-            android:id="@+id/buttonEditTour"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/editicon"
-            app:layout_constraintStart_toEndOf="@+id/buttonHistServiciosGuia"
-            app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia" />
-
-        <Button
-            android:id="@+id/buttonDelTour"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/deleteicon"
-            app:layout_constraintStart_toEndOf="@+id/buttonEditTour"
-            app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia" />
-
         <ListView
             android:id="@+id/listAnunciosMainGuia"
             android:layout_width="0dp"
@@ -93,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textNombreTour" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonTourSample" />
 
         <Button
             android:id="@+id/buttonSolServGuia"
@@ -133,34 +98,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listAnunciosMainGuia" />
 
-        <ImageView
-            android:id="@+id/imageView19"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintEnd_toStartOf="@+id/textNombreTour"
-            app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia"
-            app:srcCompat="@drawable/tourlogo" />
-
         <Button
-            android:id="@+id/buttonHistServiciosGuia"
-            android:layout_width="80dp"
-            android:layout_height="37dp"
+            android:id="@+id/buttonTourSample"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="35dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="Historial Servicios"
-            android:textColor="@color/colorPrimary"
-            android:textSize="10sp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorTrasparente"
+            android:text="Tour 1"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia" />
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonTourSample"
+            app:layout_constraintEnd_toStartOf="@+id/buttonTourSample"
+            app:layout_constraintTop_toBottomOf="@+id/subtituloAnunciosGuia"
+            app:srcCompat="@drawable/tourlogo" />
 
 
     </android.support.constraint.ConstraintLayout>
