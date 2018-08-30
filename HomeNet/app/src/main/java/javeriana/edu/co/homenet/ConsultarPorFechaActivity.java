@@ -12,7 +12,7 @@ public class ConsultarPorFechaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_por_fecha);
-        seleccionar=(Button)findViewById(R.id.button_seleccionar);
+        seleccionar=(Button)findViewById(R.id.button_seleccionar1);
         seleccionar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

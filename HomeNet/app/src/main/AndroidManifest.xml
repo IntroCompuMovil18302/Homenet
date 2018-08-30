@@ -49,6 +49,7 @@
         <activity android:name=".HistorialReservasAnfActivity" android:screenOrientation="portrait"/>
         <activity android:name=".MenuHuespedActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".HistorialRecorridosActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ConsultarPorFechaActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
