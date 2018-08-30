@@ -10,13 +10,14 @@ import android.widget.ImageButton;
 public class ConsultarAlojamientoActivity extends AppCompatActivity {
     ImageButton image1;
     ImageButton image4;
-    Button por_fecha;
+    Button porFecha;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_alojamiento);
         image1=(ImageButton) findViewById(R.id.imageButton);
         image4=(ImageButton)findViewById(R.id.imageButton4);
+        porFecha=(Button)findViewById(R.id.consultar_por_fecha1);
         image1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -31,7 +32,7 @@ public class ConsultarAlojamientoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        por_fecha.setOnClickListener(new View.OnClickListener(){
+        porFecha.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(ConsultarAlojamientoActivity.this,ConsultarPorFechaActivity.class);
