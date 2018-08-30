@@ -80,6 +80,7 @@
         android:layout_marginTop="496dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/reservar"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,6 +92,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="496dp"
         android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:text="@string/ver_ruta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

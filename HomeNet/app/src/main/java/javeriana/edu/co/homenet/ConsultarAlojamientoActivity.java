@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class ConsultarAlojamientoActivity extends AppCompatActivity {
     ImageButton image1;
     ImageButton image4;
+    Button por_fecha;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,13 @@ public class ConsultarAlojamientoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(ConsultarAlojamientoActivity.this,InformacionAlojamientoActivity.class);
+                startActivity(intent);
+            }
+        });
+        por_fecha.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(ConsultarAlojamientoActivity.this,ConsultarPorFechaActivity.class);
                 startActivity(intent);
             }
         });

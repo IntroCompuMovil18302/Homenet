@@ -33,6 +33,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="384dp"
         android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:text="@string/selecc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
