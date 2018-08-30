@@ -153,7 +153,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="28dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Ver tour"
+            android:text="@string/VerTour"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toEndOf="@+id/textView48"
             app:layout_constraintTop_toBottomOf="@+id/verMasTour" />
@@ -166,10 +166,19 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Ver tour"
+            android:text="@string/VerTour"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toEndOf="@+id/textView52"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="49dp"
+            android:layout_height="37dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
