@@ -10,6 +10,35 @@
         <item>Femenino</item>
         <item>Otro</item>
     </string-array>
+
+    <string name="usersample">Usuario 1</string>
+    <string name="hintresenah">Ingrese una reseña del usuario.</string>
+    <string name="guardar">Guardar</string>
+    <string name="crearanuncio">Crear Anuncio</string>
+    <string name="hintnombreanuncio">Ingrese el nombre de su anuncio.</string>
+    <string name="hintdescrpanuncio">Describa su anuncio.</string>
+    <string name="tarifa">Tarifa: </string>
+    <string name="hintprecio">Digite el precio.</string>
+    <string name="recorrido">Recorrido: </string>
+    <string name="hintnuevaparada">Nueva parada</string>
+    <string name="agregar">Agregar</string>
+    <string name="sampletour">Tour 1</string>
+    <string name="sampledescrptour">Descripción del tour</string>
+    <string name="histserv">Historial Servicios</string>
+    <string name="volver">Volver</string>
+    <string name="editaranuncio">Editar Anuncio</string>
+    <string name="hintsampleanuncio">El nombre de su anuncio</string>
+    <string name="hintsampleanundescrp">La descripción de su anuncio.</string>
+    <string name="sampleprecio">$$$$</string>
+    <string name="nombreparada">Nombre parada</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="sampleresena">Usuario que merece cinco estrellas.</string>
+    <string name="historial">Historial</string>
+    <string name="samplefecha">30/08/2018</string>
+    <string name="calificar">Calificar</string>
+    <string name="solserv">Solicitudes Servicios</string>
+    <string name="principal">Menú Principal</string>
+    <string name="anuncios">Mis Anuncios</string>
     <string name="comentario">Comentario...</string>
     <string name="hotel_budapest">Hotel Budapest</string>
     <string name="comentario_1">Fue una experiencia agradable</string>
