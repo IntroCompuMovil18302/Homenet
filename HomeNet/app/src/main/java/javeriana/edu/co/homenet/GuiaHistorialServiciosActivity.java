@@ -10,6 +10,7 @@ public class GuiaHistorialServiciosActivity extends AppCompatActivity {
 
     Button buttonCalificarUsuarioHistServGuia;
     Button buttonVolverHistServGuia;
+    Button buttonHomeHistServGuia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,14 @@ public class GuiaHistorialServiciosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), GuiaDetalleTourActivity.class));
+            }
+        });
+
+        buttonHomeHistServGuia = (Button) findViewById(R.id.buttonHomeHistServGuia);
+        buttonHomeHistServGuia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), GuiaPrincipalActivity.class));
             }
         });
 
