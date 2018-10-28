@@ -9,47 +9,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"  android:screenOrientation="portrait">
+        <activity android:name=".activities.LoginActivity"  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistroGeneralActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".GuiaPrincipalActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".GuiaHistorialServiciosActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".GuiaCrearAnuncioActivity" android:screenOrientation="portrait" />
-        <activity android:name=".GuiaEditarAnuncioActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".GuiaSolicitudesServiciosActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".GuiaVerHuespedActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".GuiaCalificarHuespedActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".MenuAnfitrionActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".CrearPerfilGuiaAnfActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".CrearPerfilHuespedActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".GuiasDisponiblesActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".VerInfoGuiaActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".VerMasTourActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".SolicitudesAceptadasDelGuiaActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".VerRutaActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".CalificarAlojamientoActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".ConsultarAlojamientoActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".ConsultarDisponibilidadActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".InformacionAlojamientoActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".VerComentariosActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".HistorialReservaActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".DetallesHistorialReservaActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".CalificarGuiaActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".PublicarAlojamientoAnfActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".ReservarAlojamientoActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".VerTourActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".DetalleAlojamientoAnfActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".DetalleReservaAnfActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".GuiaDetalleTourActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".HistorialReservasAnfActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".MenuHuespedActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".HistorialRecorridosActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".ConsultarPorFechaActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.RegisterActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.guia.GuiaPrincipalActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.guia.GuiaHistorialServiciosActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.guia.GuiaCrearAnuncioActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activities.guia.GuiaEditarAnuncioActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.guia.GuiaSolicitudesServiciosActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.guia.GuiaVerHuespedActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.guia.GuiaCalificarHuespedActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.anfitrion.AnfitrionMenuActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.CrearPerfilGuiaAnfActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.CrearPerfilHuespedActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.guia.GuiasDisponiblesActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.guias.HuespedVerInfoGuiaActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.guias.HuespedVerMasTourActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.guias.HuespedSolicitudesAceptadasTourActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.alojamientos.HuespedVerRutaActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.alojamientos.HuespedCalificarAlojamientoActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.alojamientos.HuespedConsultarAlojamientoActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.alojamientos.HuespedConsultarDisponibilidadActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.alojamientos.HuespedInformacionAlojamientoActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.alojamientos.HuespedVerComentariosActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.alojamientos.HuespedHistorialReservaActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.alojamientos.HuespedDetallesHistorialReservaActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.guias.HuespedCalificarGuiaActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.anfitrion.AnfitrionPublicarAlojamientoActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.alojamientos.HuespedReservarAlojamientoActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.guias.HuespedVerTourActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.anfitrion.AnfitrionDetalleAlojamientoActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.anfitrion.AnfitrionDetalleReservaActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.guia.GuiaDetalleTourActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.anfitrion.AnfitrionHistorialReservasActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.MenuHuespedActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activities.huesped.guias.HuespedHistorialRecorridosActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.huesped.alojamientos.HuespedConsultarPorFechaActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
