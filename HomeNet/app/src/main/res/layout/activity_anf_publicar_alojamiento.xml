@@ -72,20 +72,20 @@
             app:layout_constraintTop_toBottomOf="@+id/textView51" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spTipoAPA"
             android:layout_width="164dp"
             android:layout_height="27dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             app:layout_constraintStart_toEndOf="@+id/tipo"
             app:layout_constraintTop_toTopOf="@+id/tipo" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btUbicacionAPA"
             android:layout_width="116dp"
             android:layout_height="31dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             android:background="@color/colorPrimaryDark"
             android:text="Seleccionar"
@@ -94,11 +94,11 @@
             app:layout_constraintTop_toTopOf="@+id/textView50" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/etValorAPA"
             android:layout_width="202dp"
             android:layout_height="31dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:ems="10"
             android:inputType="numberSigned"
@@ -108,7 +108,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView51" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/etDescripcionAPA"
             android:layout_width="201dp"
             android:layout_height="83dp"
             android:layout_marginLeft="16dp"
@@ -139,7 +139,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btSubirImgAPA"
             android:layout_width="130dp"
             android:layout_height="29dp"
             android:layout_marginLeft="16dp"
@@ -154,17 +154,17 @@
             android:id="@+id/textView55"
             android:layout_width="156dp"
             android:layout_height="23dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="Fechas disponibles"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView35" />
+            app:layout_constraintTop_toBottomOf="@+id/rvImagenesAlojAPA" />
 
         <EditText
             android:id="@+id/editText6"
@@ -243,20 +243,6 @@
             app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
         <ImageView
-            android:id="@+id/imageView35"
-            android:layout_width="212dp"
-            android:layout_height="134dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
-            app:srcCompat="@drawable/imagenes" />
-
-        <ImageView
             android:id="@+id/imageView36"
             android:layout_width="239dp"
             android:layout_height="103dp"
@@ -271,15 +257,28 @@
             app:srcCompat="@drawable/lfechas" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btPublicarAPA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Guardar"
-            app:layout_constraintEnd_toEndOf="@+id/imageView36"
-            app:layout_constraintTop_toBottomOf="@+id/imageView36"
             android:background="@color/colorPrimaryDark"
-            android:textColor="@color/colorPrimary"/>
+            android:text="Guardar"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="@+id/imageView36"
+            app:layout_constraintTop_toBottomOf="@+id/imageView36" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvImagenesAlojAPA"
+            android:layout_width="368dp"
+            android:layout_height="165dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btSubirImgAPA" />
 
     </android.support.constraint.ConstraintLayout>
 
