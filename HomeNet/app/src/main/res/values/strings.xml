@@ -10,6 +10,14 @@
         <item>Femenino</item>
         <item>Otro</item>
     </string-array>
+    <string-array name="tipoAlojamiento">
+        <item>Apartamento</item>
+        <item>Habitación</item>
+        <item>Apartaestudio</item>
+        <item>Cabaña</item>
+        <item>Pent house</item>
+        <item>Atico</item>
+    </string-array>
 
     <string name="usersample">Usuario 1</string>
     <string name="hintresenah">Ingrese una reseña del usuario.</string>
