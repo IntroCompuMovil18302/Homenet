@@ -1,5 +1,6 @@
 package javeriana.edu.co.homenet.activities.anfitrion;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
@@ -18,14 +19,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+
 import java.io.BufferedReader;
 
 import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.models.Alojamiento;
+import javeriana.edu.co.homenet.models.Ubicacion;
 
 public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final int RESULT_LOAD_IMAGE = 1;
-
+    private final static int PLACE_PICKER_REQUEST = 999;
+    Alojamiento alojamiento;
     Spinner spinner;
 
     String tipoAlojamiento;
@@ -43,6 +52,8 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_publicar_alojamiento);
+
+        alojamiento = new Alojamiento();
 
         // inflar variables
         spinner = findViewById(R.id.spTipoAPA);
@@ -69,22 +80,53 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     // Seccion spinner -----------------------------------------------
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        tipoAlojamiento = adapterView.getItemAtPosition(i).toString();
+       alojamiento.setTipo( tipoAlojamiento = adapterView.getItemAtPosition(i).toString());
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
+        alojamiento.setTipo("indeterminado");
     }
     // FIN Seccion spinner -----------------------------------------------
 
 
-    // seccion recycler view --------------------------------------------
+    // seccion recycler view imagenes--------------------------------------------
 
 
-    // FIN seccion recycler view --------------------------------------------
+    // FIN seccion recycler view imagenes--------------------------------------------
+
+    // seccion recycler view fechas--------------------------------------------
 
 
+    // FIN seccion recycler view fechas--------------------------------------------
+
+
+    // seccion place picker ----------------------------------------------------------
+    public void onActivityResult(int requestCode, int ResultCode, Intent data){
+
+        if (requestCode == PLACE_PICKER_REQUEST)
+        {
+            if(ResultCode == RESULT_OK){
+                Place place = PlacePicker.getPlace(data,this);
+                String direccion = String.format("%s",place.getAddress());
+                String nombre = String.format("%s",place.getName());
+                System.out.println("---------------------Name:"+ nombre);
+                System.out.println("---------------------Ess:"+ direccion);
+                double latitud = place.getLatLng().latitude;
+                double longitud = place.getLatLng().longitude;
+                //Ubicacion u = new Ubicacion(latitud,longitud);
+                //listDatos.add(u);
+                System.out.println("---------------------AAAAAA:"+ latitud);
+                //adapter.addItem(u);
+
+            }
+        }
+    }
+
+    // FIN seccion place picker ----------------------------------------------------------
+
+
+    // seccion botones ---------------------------------------------------------
     public void accionBotones() {
         agregarImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,5 +140,31 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
                 startActivityForResult(intent,RESULT_LOAD_IMAGE);
             }
         });
+
+        publicar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                alojamiento.setDescripcion(descripcion.getText().toString());
+                alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
+
+            }
+        });
+
+        ubicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                try {
+                    Intent intent = builder.build(AnfitrionPublicarAlojamientoActivity.this);
+                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
+    // FIN seccion botones ---------------------------------------------------------
 }

@@ -50,6 +50,10 @@
         <activity android:name=".activities.huesped.MenuHuespedActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".activities.huesped.guias.HuespedHistorialRecorridosActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".activities.huesped.alojamientos.HuespedConsultarPorFechaActivity" android:screenOrientation="portrait"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDsUNpD2CYDbU8zHPd-zcHjzrg7pE5MW94"/>
     </application>
 
 </manifest>
