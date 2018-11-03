@@ -1,10 +1,12 @@
 package javeriana.edu.co.homenet.activities.anfitrion;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,12 +28,19 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import java.io.BufferedReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.fragment.AnfitrionDatePickerFragment;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Ubicacion;
 
-public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
+        implements AdapterView.OnItemSelectedListener,
+        DatePickerDialog.OnDateSetListener {
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private final static int PLACE_PICKER_REQUEST = 999;
@@ -39,14 +49,16 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
 
     String tipoAlojamiento;
 
-    Button agregarImg;
     Button ubicacion;
     Button publicar;
+    Button fechaIni;
+    Button fechaFin;
 
     EditText valor;
     EditText descripcion;
+    EditText fInicio;
 
-    RecyclerView rvImagenes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +69,15 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
 
         // inflar variables
         spinner = findViewById(R.id.spTipoAPA);
-        agregarImg = findViewById(R.id.btSubirImgAPA);
+
         ubicacion = findViewById(R.id.btUbicacionAPA);
         publicar = findViewById(R.id.btPublicarAPA);
         valor = findViewById(R.id.etValorAPA);
         descripcion = findViewById(R.id.etDescripcionAPA);
-        rvImagenes = findViewById(R.id.rvImagenesAlojAPA);
+        fechaIni = findViewById(R.id.btFechaIniAPA);
+        fechaFin = findViewById(R.id.btFechaFinAPA);
+        fInicio = findViewById(R.id.etFechaIniAPA);
+
 
         // spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipoAlojamiento, android.R.layout.simple_spinner_item);
@@ -70,8 +85,6 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
         spinner.setAdapter(adapter);
 
         // recyclerView
-        rvImagenes.setHasFixedSize(true);
-        rvImagenes.setLayoutManager(new LinearLayoutManager(getBaseContext()));
 
         accionBotones();
     }
@@ -131,18 +144,6 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
 
     // seccion botones ---------------------------------------------------------
     public void accionBotones() {
-        agregarImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("ENTRO acccion boton");
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Seleccionar imagenes"), RESULT_LOAD_IMAGE);
-                startActivityForResult(intent,RESULT_LOAD_IMAGE);
-            }
-        });
 
         publicar.setOnClickListener(new View.OnClickListener() {
 
@@ -168,6 +169,28 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
                 }
             }
         });
+
+        fechaIni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment datePickerIni = new AnfitrionDatePickerFragment();
+                datePickerIni.show(getSupportFragmentManager(), "date picker");
+            }
+        });
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+        Calendar  c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, day);
+        SimpleDateFormat firstDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+
+        String currentDate = firstDateFormat.format(c.getTime());
+        //String currentDate = DateFormat.getDateInstance().format(c.getTime());
+        fInicio.setText(currentDate);
     }
     // FIN seccion botones ---------------------------------------------------------
 }
