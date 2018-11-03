@@ -47,6 +47,10 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
     Alojamiento alojamiento;
     Spinner spinner;
 
+    public static final int FLAG_START_DATE = 0;
+    public static final int FLAG_END_DATE = 1;
+    int flag;
+
     String tipoAlojamiento;
 
     Button ubicacion;
@@ -57,13 +61,17 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
     EditText valor;
     EditText descripcion;
     EditText fInicio;
+    EditText fFin;
 
+    RecyclerView rv;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_publicar_alojamiento);
+
+
 
         alojamiento = new Alojamiento();
 
@@ -77,6 +85,8 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
         fechaIni = findViewById(R.id.btFechaIniAPA);
         fechaFin = findViewById(R.id.btFechaFinAPA);
         fInicio = findViewById(R.id.etFechaIniAPA);
+        fFin = findViewById(R.id.etFechaFinAPA);
+        rv = findViewById(R.id.rvDispFechasAPA);
 
 
         // spinner
@@ -173,6 +183,16 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
         fechaIni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flag = FLAG_START_DATE;
+                DialogFragment datePickerIni = new AnfitrionDatePickerFragment();
+                datePickerIni.show(getSupportFragmentManager(), "date picker");
+            }
+        });
+
+        fechaFin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flag = FLAG_END_DATE;
                 DialogFragment datePickerIni = new AnfitrionDatePickerFragment();
                 datePickerIni.show(getSupportFragmentManager(), "date picker");
             }
@@ -188,9 +208,19 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
         SimpleDateFormat firstDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 
-        String currentDate = firstDateFormat.format(c.getTime());
-        //String currentDate = DateFormat.getDateInstance().format(c.getTime());
-        fInicio.setText(currentDate);
+        if(flag == FLAG_END_DATE)
+        {
+            String currentDate = firstDateFormat.format(c.getTime());
+            //String currentDate = DateFormat.getDateInstance().format(c.getTime());
+            fFin.setText(currentDate);
+        }
+        else {
+            String currentDate = firstDateFormat.format(c.getTime());
+            //String currentDate = DateFormat.getDateInstance().format(c.getTime());
+            fInicio.setText(currentDate);
+        }
+
+
     }
     // FIN seccion botones ---------------------------------------------------------
 }
