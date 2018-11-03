@@ -11,11 +11,19 @@ public class Usuario {
     private String tipoUsuario;
     private String correo;
     private String nacionalidad;
-    private char sexo;
+    private String sexo;
 
-    public Usuario()
-    {
+    public Usuario() {}
 
+    public Usuario(String nombre, String urlImg, int edad, String tipoUsuario, String correo,
+                   String nacionalidad, String sexo) {
+        this.nombre = nombre;
+        this.urlImg = urlImg;
+        this.edad = edad;
+        this.tipoUsuario = tipoUsuario;
+        this.correo = correo;
+        this.nacionalidad = nacionalidad;
+        this.sexo = sexo;
     }
 
     public String getId() {
@@ -74,11 +82,11 @@ public class Usuario {
         this.nacionalidad = nacionalidad;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 }
