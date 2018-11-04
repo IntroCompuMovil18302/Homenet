@@ -129,6 +129,7 @@
             android:value="AIzaSyDsUNpD2CYDbU8zHPd-zcHjzrg7pE5MW94" />
 
         <activity android:name=".activities.anfitrion.AnfitrionPublicarAlojamientoImgActivity"></activity>
+        <activity android:name=".activities.anfitrion.AnfPubDisponibilidadActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package javeriana.edu.co.homenet.activities.anfitrion;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,7 +34,19 @@ import java.util.List;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.adapters.ImagenAnfitrionAdapter;
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.adapters.AnfPubAlojamientoAdapter;
+import javeriana.edu.co.homenet.fragment.AnfitrionDatePickerFragment;
 import javeriana.edu.co.homenet.models.Alojamiento;
+import javeriana.edu.co.homenet.models.Disponibilidad;
 import javeriana.edu.co.homenet.models.Ubicacion;
 
 import me.relex.circleindicator.CircleIndicator;
@@ -40,34 +54,63 @@ import me.relex.circleindicator.CircleIndicator;
 public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private final static int PLACE_PICKER_REQUEST = 999;
+    ArrayList<Disponibilidad> disponibilidads;
+    AnfPubAlojamientoAdapter adapterDispo;
+
     Alojamiento alojamiento;
     Spinner spinner;
+
+    public static final int FLAG_START_DATE = 0;
+    public static final int FLAG_END_DATE = 1;
+    int flag;
 
     String tipoAlojamiento;
 
 
     Button ubicacion;
-    Button publicar;
+    Button siguiente;
+    Button fechaIni;
+    Button fechaFin;
+    Button agregarDisp;
 
     EditText valor;
     EditText descripcion;
+    EditText fInicio;
+    EditText fFin;
+    EditText nombre;
+
+    TextView direcciontv;
+
+    RecyclerView rv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_publicar_alojamiento);
 
+
+
         alojamiento = new Alojamiento();
         // inflar variables
         spinner = findViewById(R.id.spTipoAPA);
+
         ubicacion = findViewById(R.id.btUbicacionAPA);
-        publicar = findViewById(R.id.btPublicarAPA);
+        siguiente = findViewById(R.id.btSiguienteAPA);
         valor = findViewById(R.id.etValorAPA);
         descripcion = findViewById(R.id.etDescripcionAPA);
+        fechaIni = findViewById(R.id.btFechaIniAPA);
+        fechaFin = findViewById(R.id.btFechaFinAPA);
+        agregarDisp = findViewById(R.id.btAgregarFechaAPA);
+        fInicio = findViewById(R.id.etFechaIniAPA);
+        fFin = findViewById(R.id.etFechaFinAPA);
+        nombre = findViewById(R.id.etNombreAPA);
+        rv = findViewById(R.id.rvDispFechasAPA);
+        direcciontv = findViewById(R.id.tvDIreccionAPA);
 
         // spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipoAlojamiento, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipoAlojamiento, R.layout.item_anf_spinner);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
 
 
@@ -80,7 +123,9 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     // Seccion spinner -----------------------------------------------
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-       alojamiento.setTipo( tipoAlojamiento = adapterView.getItemAtPosition(i).toString());
+       tipoAlojamiento = adapterView.getItemAtPosition(i).toString();
+       System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+        alojamiento.setTipo(tipoAlojamiento);
     }
 
     @Override
@@ -90,18 +135,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     // FIN Seccion spinner -----------------------------------------------
 
 
-    // seccion pager view imagenes--------------------------------------------
-
-
-    // FIN seccion recycler view imagenes--------------------------------------------
-
-    // seccion recycler view fechas--------------------------------------------
-
-
-    // FIN seccion recycler view fechas--------------------------------------------
-
-
-    // seccion activity result de place picker y result_load_image  ----------------------------------------------------------
+    // seccion place picker ----------------------------------------------------------
     public void onActivityResult(int requestCode, int ResultCode, Intent data){
 
         if (requestCode == PLACE_PICKER_REQUEST)
@@ -117,6 +151,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
                 Ubicacion u = new Ubicacion();
                 u.setLatitude(latitud);
                 u.setLongitude(longitud);
+                direcciontv.setText(direccion);
                 alojamiento.setUbicacion(u);
                 //listDatos.add(u);
                 System.out.println("---------------------AAAAAA:"+ latitud);
@@ -129,17 +164,65 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     // FIN seccion place picker ----------------------------------------------------------
 
 
+
+    public boolean validarCampos(){
+
+        boolean bandera = true;
+        if(nombre.getText().toString().isEmpty())
+        {
+            nombre.setError("Campo requerido");
+            bandera = false;
+        }
+
+        if(descripcion.getText().toString().isEmpty()){
+            descripcion.setError("Campo requerido");
+            bandera = false;
+        }
+
+        if(valor.getText().toString().isEmpty()){
+            valor.setError("Campo requerido");
+            bandera = false;
+        }
+
+        if(alojamiento.getUbicacion() == null)
+        {
+            Toast toast1 =
+                    Toast.makeText(getApplicationContext(),
+                            "Seleccione una ubicacion", Toast.LENGTH_SHORT);
+
+            toast1.show();
+            bandera = false;
+        }
+
+        if(alojamiento.getTipo() == null)
+        {
+            alojamiento.setTipo(spinner.getSelectedItem().toString());
+        }
+
+        return bandera;
+    }
+
     // seccion botones ---------------------------------------------------------
     public void accionBotones() {
 
-        publicar.setOnClickListener(new View.OnClickListener() {
+        siguiente.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AnfitrionPublicarAlojamientoActivity.this,AnfitrionPublicarAlojamientoImgActivity.class);
-                startActivity(intent);
-                //alojamiento.setDescripcion(descripcion.getText().toString());
-                //alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
+                if (validarCampos()) {
+                    alojamiento.setDescripcion(descripcion.getText().toString());
+                    alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
+                    alojamiento.setNombre(nombre.getText().toString());
+
+
+                    Intent intent = new Intent(view.getContext(), AnfPubDisponibilidadActivity.class);
+                    intent.putExtra("Data", alojamiento);
+                    startActivity(intent);
+                }
+                else {
+                    //TODO hacer toast
+                }
+
 
             }
         });
@@ -158,6 +241,8 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
                 }
             }
         });
+
     }
+
     // FIN seccion botones ---------------------------------------------------------
 }
