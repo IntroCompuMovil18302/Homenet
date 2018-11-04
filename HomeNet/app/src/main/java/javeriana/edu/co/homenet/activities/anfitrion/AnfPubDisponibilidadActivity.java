@@ -170,9 +170,9 @@ public class AnfPubDisponibilidadActivity extends AppCompatActivity
                    // Alojamiento a = new Alojamiento();
                     //a.setDisponibilidades(adapterDispo.getDisponibilidads());
                     System.out.println("CONTINUA");
-                    //Intent intent = new Intent(view.getContext(),AnfPubDisponibilidadActivity.class);
-                    //intent.putExtra("Data", alojamiento);
-                    //startActivity(intent);
+                    Intent intent = new Intent(view.getContext(),AnfitrionPublicarAlojamientoImgActivity.class);
+                    intent.putExtra("Data", alojamiento);
+                    startActivity(intent);
                 }
 
 
