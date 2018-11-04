@@ -64,8 +64,8 @@
     <string name="reservar">Reservar</string>
     <string name="desde">Desde</string>
     <string name="hasta">Hasta</string>
-    <string name="consultar_fecha">Consultar por fecha</string>
-    <string name="consultar_ubicacion">Consultar por ubicación</string>
+    <string name="consultar_fecha">Buscar por fecha</string>
+    <string name="consultar_ubicacion">Buscar por ubicación</string>
     <string name="num_huesped">2 huespedes</string>
     <string name="num_dormitorio">1 dormitorio</string>
     <string name="num_camas">2 camas</string>
@@ -97,6 +97,16 @@
     <string name="VerGuiasCerc">Ver guías cercanos</string>
     <string name="VerHistRec">Ver historial recorridos</string>
     <string name="selecc">Seleccionar</string>
+
+    <string name="buscar_alojamientos_titulo">Buscar Alojamientos</string>
+    <string name="hint_keyword_hca">¿Qué buscas?</string>
+    <string name="hint_start_date_hca">¿Desde cuando?</string>
+    <string name="hint_end_date_hca">¿Hasta cuando?</string>
+    <string name="hint_distance_hca">¿Qué tan lejos?</string>
+
+    <string name="per_hight">por noche.</string>
+
+    <string name="search">Buscar</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

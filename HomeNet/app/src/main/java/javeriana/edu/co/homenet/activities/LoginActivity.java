@@ -33,19 +33,14 @@ public class LoginActivity extends AppCompatActivity {
     public static final String PATH_USERS="users/";
 
     Button registrarse;
-    Button buttonTestGuias;
-    Button buttonTestHuesped;
-    Button buttonTestAnfitrion;
     Button iniciarSesion;
     EditText correo;
     EditText clave;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    FirebaseDatabase database;
-    DatabaseReference myRef;
-
-    Usuario usuario;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
     String uid;
 
     @Override
@@ -67,32 +62,28 @@ public class LoginActivity extends AppCompatActivity {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     myRef = database.getReference(PATH_USERS);
-                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    myRef.orderByKey().endAt(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                                 Usuario u = singleSnapshot.getValue(Usuario.class);
                                 uid = singleSnapshot.getKey();
                                 if (uid.equals(user.getUid())){
-                                    usuario = u;
+                                    if (u.getTipoUsuario().equals("Huésped")) {
+                                        startActivity(new Intent(LoginActivity.this, MenuHuespedActivity.class));
+                                    }else if (u.getTipoUsuario().equals("Guía")) {
+                                        startActivity(new Intent(LoginActivity.this,GuiaPrincipalActivity.class));
+                                    }else {
+                                        startActivity(new Intent(LoginActivity.this,AnfitrionMenuActivity.class));
+                                    }
                                 }
                             }
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
                             Log.w("Firebase database", "error en la consulta", databaseError.toException());
                         }
                     });
-                    if (usuario != null){
-                        if (usuario.getTipoUsuario().equals("Huésped")) {
-                            startActivity(new Intent(LoginActivity.this, MenuHuespedActivity.class));
-                        }else if (usuario.getTipoUsuario().equals("Guía")) {
-                            startActivity(new Intent(LoginActivity.this,GuiaPrincipalActivity.class));
-                        }else {
-                            startActivity(new Intent(LoginActivity.this,AnfitrionMenuActivity.class));
-                        }
-                    }
                 } else {
                     // User is signed out
                 }
@@ -111,32 +102,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),RegisterActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        buttonTestGuias = findViewById(R.id.buttonTestGuias);
-
-        buttonTestGuias.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),GuiaPrincipalActivity.class));
-            }
-        });
-
-        buttonTestHuesped = (Button)findViewById(R.id.test_huesped);
-        buttonTestHuesped.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),MenuHuespedActivity.class));
-            }
-        });
-
-        buttonTestAnfitrion = findViewById(R.id.test_anfitrion);
-
-        buttonTestAnfitrion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),AnfitrionMenuActivity.class));
             }
         });
 

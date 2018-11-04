@@ -152,6 +152,7 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
                                 UserProfileChangeRequest.Builder upcrb = new UserProfileChangeRequest.Builder();
                                 upcrb.setDisplayName(nombre.getText().toString());
                                 user.updateProfile(upcrb.build());
+                                saveUser();
                             }
                         }
                         if (!task.isSuccessful()) {
@@ -159,43 +160,44 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             Log.e("HomeNet", task.getException().getMessage());
                         }
-                        else{
-                            final FirebaseUser user = mAuth.getCurrentUser();
-                            final StorageReference sR = storage.getReference(PATH_STORAGE+
-                                    UUID.randomUUID());
-                            Bitmap bitmap = ((BitmapDrawable) fotoPerfil.getDrawable()).getBitmap();
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                            byte[] imageInByte = baos.toByteArray();
-                            subiendoImagen.setVisibility(View.VISIBLE);
-                            tomarFoto.setEnabled(false);
-                            galeria.setEnabled(false);
-                            StorageMetadata sM = new StorageMetadata.Builder()
-                                    .setCustomMetadata("text","Perfil"+nombre.getText().toString())
-                                    .build();
-                            UploadTask uT = sR.putBytes(imageInByte,sM);
-                            uT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                            sR.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
-                                                    urlImage = uri;
-                                                }
-                                            });
-                                        }
-                                    });
-                                Usuario nU = new Usuario(nombre.getText().toString(), urlImage.toString(), Integer.parseInt(edad.getText().toString()),
-                                        "Huésped", correo, nac.getText().toString(),
-                                        sexo.getSelectedItem().toString());
-                                myRef=database.getReference(PATH_USERS+user.getUid());
-                                myRef.setValue(nU);
-                                Intent intent = new Intent(CrearPerfilHuespedActivity.this, MenuHuespedActivity.class);
-                                startActivity(intent);
-                            //}
-                        }
                     }
                 });
+    }
+
+    private void saveUser(){
+        final FirebaseUser user = mAuth.getCurrentUser();
+        final StorageReference sR = storage.getReference(PATH_STORAGE.concat("/")
+                +user.getUid());
+        Bitmap bitmap = ((BitmapDrawable) fotoPerfil.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageInByte = baos.toByteArray();
+        subiendoImagen.setVisibility(View.VISIBLE);
+        tomarFoto.setEnabled(false);
+        galeria.setEnabled(false);
+        StorageMetadata sM = new StorageMetadata.Builder()
+                .setCustomMetadata("text","foto-perfil")
+                .build();
+        UploadTask uT = sR.putBytes(imageInByte,sM);
+        uT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                sR.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        urlImage = uri;
+                        Usuario nU = new Usuario(nombre.getText().toString(), urlImage.toString(),
+                                Integer.parseInt(edad.getText().toString()),
+                                "Huésped", correo, nac.getText().toString(),
+                                sexo.getSelectedItem().toString());
+                        myRef = database.getReference(PATH_USERS+user.getUid());
+                        myRef.setValue(nU);
+                        Intent intent = new Intent(CrearPerfilHuespedActivity.this, MenuHuespedActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
     }
 
     private void loadGalerryImage(){
@@ -220,7 +222,6 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         fotoPerfil.setImageBitmap(selectedImage);
-                        urlImage = imageUri; //PENdiente
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
