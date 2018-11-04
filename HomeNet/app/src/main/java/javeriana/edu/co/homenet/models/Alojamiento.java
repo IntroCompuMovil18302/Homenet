@@ -1,6 +1,10 @@
 package javeriana.edu.co.homenet.models;
 
+import java.util.Date;
 import java.util.List;
+
+import javeriana.edu.co.homenet.utils.DateFormater;
+import javeriana.edu.co.homenet.utils.DistanceFunc;
 
 public class Alojamiento {
     private String id;
@@ -8,6 +12,7 @@ public class Alojamiento {
     private long precio;
     private String tipo;
     private String descripcion;
+    private String nombre;
 
     // relaciones
     private String anfitrion;
@@ -17,6 +22,14 @@ public class Alojamiento {
     public Alojamiento()
     {
 
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getId() {
@@ -67,14 +80,6 @@ public class Alojamiento {
         this.anfitrion = anfitrion;
     }
 
-    public List<String> getUrlImg() {
-        return urlImgs;
-    }
-
-    public void setUrlImg(List<String> urlImg) {
-        this.urlImgs = urlImg;
-    }
-
     public long getPrecio() {
         return precio;
     }
@@ -90,4 +95,68 @@ public class Alojamiento {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public boolean estaDisponible(String fechaInicio, String fechaFin, List<Reserva> reservas){
+        boolean disp = false;
+        Date fi;
+        Date ff;
+        if(fechaInicio==""){
+            fi = DateFormater.stringToDate("01/01/1900");
+        }
+        else{
+            fi = DateFormater.stringToDate(fechaInicio);
+        }
+        if(fechaFin==""){
+            ff = DateFormater.stringToDate("01/01/3000");
+        }
+        else{
+            ff = DateFormater.stringToDate(fechaFin);
+        }
+
+        for (Disponibilidad fechasDisp: disponibilidades) {
+            Date fia = DateFormater.stringToDate(fechasDisp.getFechaInicio());
+            Date ffa = DateFormater.stringToDate(fechasDisp.getFechaFin());
+
+            if((fi.after(fia) && ff.before(ffa)) || (fi.equals(fia) && ff.before(ffa))
+                    || (fi.after(fia) && ff.equals(ffa)) || (fi.equals(fia) && ff.equals(ffa))){
+                disp = true;
+                for (Reserva reserva: reservas) {
+                    Date fir = DateFormater.stringToDate(reserva.getFechaInicio());
+                    Date ffr = DateFormater.stringToDate(reserva.getFechaFin());
+                    if((fi.after(fir) && ff.before(ffr)) || (fi.equals(fir) && ff.before(ffr))
+                            || (fi.after(fir) && ff.equals(ffr)) || (fi.equals(fir) && ff.equals(ffr))){
+                        disp = false;
+                    }
+                }
+            }
+        }
+
+        return disp;
+    }
+
+    public boolean tienePalabra(String palabra){
+        boolean tiene = false;
+        if(nombre.toLowerCase().contains(palabra.toLowerCase())) {
+            tiene = true;
+        }
+        if(tipo.toLowerCase().contains(palabra.toLowerCase())) {
+            tiene = true;
+        }
+        if(descripcion.toLowerCase().contains(palabra.toLowerCase())) {
+            tiene = true;
+        }
+        if(anfitrion.toLowerCase().contains(palabra.toLowerCase())) {
+            tiene = true;
+        }
+        return tiene;
+    }
+
+    public boolean estaCerca(double lat1, double long1, double km){
+        double dist = DistanceFunc.distance(lat1,long1,ubicacion.getLatitude(),ubicacion.getLongitude());
+        if(dist<=km){
+            return true;
+        }
+        return  false;
+    }
+
 }

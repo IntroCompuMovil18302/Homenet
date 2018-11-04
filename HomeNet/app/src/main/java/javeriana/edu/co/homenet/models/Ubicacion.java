@@ -1,15 +1,15 @@
 package javeriana.edu.co.homenet.models;
 
 public class Ubicacion {
-    private long latitude;
-    private long longitude;
+    private double latitude;
+    private double longitude;
 
     public  Ubicacion()
     {
 
     }
 
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -17,7 +17,7 @@ public class Ubicacion {
         this.latitude = latitude;
     }
 
-    public long getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
