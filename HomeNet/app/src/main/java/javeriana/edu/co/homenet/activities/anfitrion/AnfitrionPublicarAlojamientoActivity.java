@@ -28,6 +28,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import java.io.BufferedReader;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -112,7 +113,9 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
     // Seccion spinner -----------------------------------------------
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-       alojamiento.setTipo( tipoAlojamiento = adapterView.getItemAtPosition(i).toString());
+       tipoAlojamiento = adapterView.getItemAtPosition(i).toString();
+       System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+        alojamiento.setTipo(tipoAlojamiento);
     }
 
     @Override
@@ -181,6 +184,11 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
             bandera = false;
         }
 
+        if(alojamiento.getTipo() == null)
+        {
+            alojamiento.setTipo(spinner.getSelectedItem().toString());
+        }
+
         return bandera;
     }
 
@@ -192,10 +200,13 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 if (validarCampos()) {
-                    // alojamiento.setDescripcion(descripcion.getText().toString());
-                    // alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
+                    alojamiento.setDescripcion(descripcion.getText().toString());
+                    alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
+                    alojamiento.setNombre(nombre.getText().toString());
+
 
                     Intent intent = new Intent(view.getContext(), AnfPubDisponibilidadActivity.class);
+                    intent.putExtra("Data", alojamiento);
                     startActivity(intent);
                 }
                 else {

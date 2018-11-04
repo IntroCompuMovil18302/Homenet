@@ -44,6 +44,10 @@ public class AnfPubAlojamientoAdapter
         return disponibilidads.size();
     }
 
+    public ArrayList<Disponibilidad> getDisponibilidads(){
+        return  this.disponibilidads;
+    }
+
     public void addItem(Disponibilidad u) {
         disponibilidads.add(u);
         notifyItemInserted(disponibilidads.size()-1);

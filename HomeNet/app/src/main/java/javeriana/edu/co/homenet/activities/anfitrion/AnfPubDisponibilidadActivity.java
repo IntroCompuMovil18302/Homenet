@@ -53,6 +53,14 @@ public class AnfPubDisponibilidadActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_pub_disponibilidad);
+        alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
+
+        System.out.println("+++++++++"+alojamiento.getNombre());
+        System.out.println("+++++++++"+alojamiento.getTipo());
+        System.out.println("+++++++++"+alojamiento.getPrecio());
+        System.out.println("+++++++++"+alojamiento.getDescripcion());
+
+
 
         fechaIni = findViewById(R.id.btFechaIniAPA);
         fechaFin = findViewById(R.id.btFechaFinAPA);
@@ -158,7 +166,12 @@ public class AnfPubDisponibilidadActivity extends AppCompatActivity
             public void onClick(View view) {
                 if(validarDisp())
                 {
+                    alojamiento.setDisponibilidades(adapterDispo.getDisponibilidads());
+                   // Alojamiento a = new Alojamiento();
+                    //a.setDisponibilidades(adapterDispo.getDisponibilidads());
+                    System.out.println("CONTINUA");
                     //Intent intent = new Intent(view.getContext(),AnfPubDisponibilidadActivity.class);
+                    //intent.putExtra("Data", alojamiento);
                     //startActivity(intent);
                 }
 
