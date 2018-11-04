@@ -5,6 +5,8 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,28 +27,30 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.adapters.ImagenAnfitrionAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Ubicacion;
 
+import me.relex.circleindicator.CircleIndicator;
+
 public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private static final int RESULT_LOAD_IMAGE = 1;
     private final static int PLACE_PICKER_REQUEST = 999;
     Alojamiento alojamiento;
     Spinner spinner;
 
     String tipoAlojamiento;
 
-    Button agregarImg;
+
     Button ubicacion;
     Button publicar;
 
     EditText valor;
     EditText descripcion;
-
-    RecyclerView rvImagenes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,24 +58,20 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
         setContentView(R.layout.activity_anf_publicar_alojamiento);
 
         alojamiento = new Alojamiento();
-
         // inflar variables
         spinner = findViewById(R.id.spTipoAPA);
-        agregarImg = findViewById(R.id.btSubirImgAPA);
         ubicacion = findViewById(R.id.btUbicacionAPA);
         publicar = findViewById(R.id.btPublicarAPA);
         valor = findViewById(R.id.etValorAPA);
         descripcion = findViewById(R.id.etDescripcionAPA);
-        rvImagenes = findViewById(R.id.rvImagenesAlojAPA);
 
         // spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipoAlojamiento, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
 
-        // recyclerView
-        rvImagenes.setHasFixedSize(true);
-        rvImagenes.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+
+        //imgAnfAdapter = new ImagenAnfitrionAdapter(AnfitrionPublicarAlojamientoActivity.this,listaImagenes);
 
         accionBotones();
     }
@@ -90,7 +90,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     // FIN Seccion spinner -----------------------------------------------
 
 
-    // seccion recycler view imagenes--------------------------------------------
+    // seccion pager view imagenes--------------------------------------------
 
 
     // FIN seccion recycler view imagenes--------------------------------------------
@@ -101,7 +101,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     // FIN seccion recycler view fechas--------------------------------------------
 
 
-    // seccion place picker ----------------------------------------------------------
+    // seccion activity result de place picker y result_load_image  ----------------------------------------------------------
     public void onActivityResult(int requestCode, int ResultCode, Intent data){
 
         if (requestCode == PLACE_PICKER_REQUEST)
@@ -124,32 +124,22 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
 
             }
         }
-    }
+            }
 
     // FIN seccion place picker ----------------------------------------------------------
 
 
     // seccion botones ---------------------------------------------------------
     public void accionBotones() {
-        agregarImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("ENTRO acccion boton");
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Seleccionar imagenes"), RESULT_LOAD_IMAGE);
-                startActivityForResult(intent,RESULT_LOAD_IMAGE);
-            }
-        });
 
         publicar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                alojamiento.setDescripcion(descripcion.getText().toString());
-                alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
+                Intent intent = new Intent(AnfitrionPublicarAlojamientoActivity.this,AnfitrionPublicarAlojamientoImgActivity.class);
+                startActivity(intent);
+                //alojamiento.setDescripcion(descripcion.getText().toString());
+                //alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
 
             }
         });
