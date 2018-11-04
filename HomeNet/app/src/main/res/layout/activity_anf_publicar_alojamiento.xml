@@ -14,227 +14,189 @@
             android:id="@+id/tipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="68dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="68dp"
-            android:layout_marginTop="32dp"
-            android:text="Tipo:"
+            android:layout_marginLeft="68dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Tipo"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/spTipoAPA"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+            app:layout_constraintTop_toTopOf="@+id/spTipoAPA" />
 
         <TextView
             android:id="@+id/textView50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Ubicación:"
+            android:text="Ubicación"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/tipo"
-            app:layout_constraintTop_toBottomOf="@+id/spTipoAPA" />
+            app:layout_constraintBottom_toBottomOf="@+id/btUbicacionAPA"
+            app:layout_constraintEnd_toEndOf="@+id/textView51"
+            app:layout_constraintTop_toTopOf="@+id/btUbicacionAPA" />
+
+        <TextView
+            android:id="@+id/textView78"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Direccion"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDIreccionAPA"
+            app:layout_constraintEnd_toEndOf="@+id/textView50"
+            app:layout_constraintTop_toTopOf="@+id/tvDIreccionAPA" />
+
 
         <TextView
             android:id="@+id/textView51"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Valor:"
+            android:text="Valor"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView50"
-            app:layout_constraintTop_toBottomOf="@+id/btUbicacionAPA" />
-
-
+            app:layout_constraintBottom_toBottomOf="@+id/etValorAPA"
+            app:layout_constraintEnd_toEndOf="@+id/textView48"
+            app:layout_constraintTop_toTopOf="@+id/etValorAPA" />
 
         <TextView
             android:id="@+id/textView48"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Descripción:"
+            android:text="Descripción"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView51"
-            app:layout_constraintTop_toBottomOf="@+id/etValorAPA" />
+            app:layout_constraintBottom_toBottomOf="@+id/etDescripcionAPA"
+            app:layout_constraintEnd_toEndOf="@+id/textView75"
+            app:layout_constraintTop_toTopOf="@+id/etDescripcionAPA" />
 
         <Spinner
             android:id="@+id/spTipoAPA"
             android:layout_width="0dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tipo"
-            app:layout_constraintTop_toTopOf="@+id/tipo" />
+            app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
         <Button
             android:id="@+id/btUbicacionAPA"
-            android:layout_width="116dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="Seleccionar"
+            android:layout_width="70dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:background="@mipmap/location1"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintStart_toEndOf="@+id/textView50"
-            app:layout_constraintTop_toTopOf="@+id/textView50" />
+            app:layout_constraintStart_toStartOf="@+id/etValorAPA"
+            app:layout_constraintTop_toBottomOf="@+id/etValorAPA" />
 
         <EditText
             android:id="@+id/etValorAPA"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:ems="10"
             android:inputType="numberSigned"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/place_autocomplete_prediction_primary_text_highlight"
             android:textColorHint="@color/colorPrimaryDark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/btUbicacionAPA"
-            app:layout_constraintTop_toTopOf="@+id/textView51" />
+            app:layout_constraintEnd_toEndOf="@+id/etDescripcionAPA"
+            app:layout_constraintStart_toStartOf="@+id/etDescripcionAPA"
+            app:layout_constraintTop_toBottomOf="@+id/etDescripcionAPA" />
 
         <EditText
             android:id="@+id/etDescripcionAPA"
             android:layout_width="0dp"
-            android:layout_height="83dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:ems="10"
             android:inputType="textMultiLine"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/place_autocomplete_prediction_secondary_text"
             android:textColorHint="@color/colorPrimaryDark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/etValorAPA"
-            app:layout_constraintTop_toTopOf="@+id/textView48" />
+            app:layout_constraintEnd_toEndOf="@+id/etNombreAPA"
+            app:layout_constraintStart_toStartOf="@+id/etNombreAPA"
+            app:layout_constraintTop_toBottomOf="@+id/etNombreAPA" />
 
         <TextView
             android:id="@+id/textView54"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="Publicar alojamiento"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-
         <TextView
-            android:id="@+id/textView55"
-            android:layout_width="156dp"
-            android:layout_height="23dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Fechas disponibles"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView56"
+            android:id="@+id/textView75"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="132dp"
-            android:text="Fecha final"
+            android:text="Nombre"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/editText6" />
+            app:layout_constraintBottom_toBottomOf="@+id/etNombreAPA"
+            app:layout_constraintEnd_toEndOf="@+id/tipo"
+            app:layout_constraintTop_toTopOf="@+id/etNombreAPA" />
 
-        <TextView
-            android:id="@+id/textView57"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/etNombreAPA"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="Fecha incio"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView55" />
-
-        <ImageView
-            android:id="@+id/imageView21"
-            android:layout_width="29dp"
-            android:layout_height="32dp"
-            app:srcCompat="@drawable/add"
-            tools:layout_editor_absoluteX="302dp"
-            tools:layout_editor_absoluteY="573dp" />
-
-        <TextView
-            android:id="@+id/textView53"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="240dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Fechas agregadas"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.468"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarView2" />
-
-        <ImageView
-            android:id="@+id/imageView36"
-            android:layout_width="239dp"
-            android:layout_height="103dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView53"
-            app:srcCompat="@drawable/lfechas" />
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/place_autocomplete_prediction_primary_text_highlight"
+            android:textColorHint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="@+id/spTipoAPA"
+            app:layout_constraintStart_toStartOf="@+id/spTipoAPA"
+            app:layout_constraintTop_toBottomOf="@+id/spTipoAPA" />
 
         <Button
-            android:id="@+id/btPublicarAPA"
-            android:layout_width="wrap_content"
+            android:id="@+id/btSiguienteAPA"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="60dp"
+
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Guardar"
+            android:text="Siguente"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="@+id/imageView36"
-            app:layout_constraintTop_toBottomOf="@+id/imageView36" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDIreccionAPA" />
 
-
-
-        <CalendarView
-            android:id="@+id/calendarView2"
-            android:layout_width="195dp"
-            android:layout_height="124dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView57"
-            tools:layout_editor_absoluteX="8dp" />
+        <TextView
+            android:id="@+id/tvDIreccionAPA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:text="TextView"
+            android:textColor="@color/place_autocomplete_prediction_primary_text_highlight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btUbicacionAPA"
+            app:layout_constraintTop_toBottomOf="@+id/btUbicacionAPA" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -1,13 +1,19 @@
 package javeriana.edu.co.homenet.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Alojamiento {
+public class Alojamiento implements Serializable{
     private String id;
     private List<String> urlImgs;
     private long precio;
     private String tipo;
     private String descripcion;
+    private String nombre;
 
     // relaciones
     private String anfitrion;
@@ -16,7 +22,15 @@ public class Alojamiento {
 
     public Alojamiento()
     {
+        this.disponibilidades = new ArrayList<Disponibilidad>();
+    }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getId() {
@@ -90,4 +104,6 @@ public class Alojamiento {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+
 }
