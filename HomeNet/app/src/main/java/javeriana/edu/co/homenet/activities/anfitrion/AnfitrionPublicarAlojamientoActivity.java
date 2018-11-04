@@ -31,19 +31,25 @@ import java.io.BufferedReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.adapters.AnfPubAlojamientoAdapter;
 import javeriana.edu.co.homenet.fragment.AnfitrionDatePickerFragment;
 import javeriana.edu.co.homenet.models.Alojamiento;
+import javeriana.edu.co.homenet.models.Disponibilidad;
 import javeriana.edu.co.homenet.models.Ubicacion;
 
 public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
-        implements AdapterView.OnItemSelectedListener,
-        DatePickerDialog.OnDateSetListener {
+        implements AdapterView.OnItemSelectedListener{
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private final static int PLACE_PICKER_REQUEST = 999;
+    ArrayList<Disponibilidad> disponibilidads;
+    AnfPubAlojamientoAdapter adapterDispo;
+
     Alojamiento alojamiento;
     Spinner spinner;
 
@@ -54,14 +60,18 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
     String tipoAlojamiento;
 
     Button ubicacion;
-    Button publicar;
+    Button siguiente;
     Button fechaIni;
     Button fechaFin;
+    Button agregarDisp;
 
     EditText valor;
     EditText descripcion;
     EditText fInicio;
     EditText fFin;
+    EditText nombre;
+
+    TextView direcciontv;
 
     RecyclerView rv;
 
@@ -79,23 +89,22 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
         spinner = findViewById(R.id.spTipoAPA);
 
         ubicacion = findViewById(R.id.btUbicacionAPA);
-        publicar = findViewById(R.id.btPublicarAPA);
+        siguiente = findViewById(R.id.btSiguienteAPA);
         valor = findViewById(R.id.etValorAPA);
         descripcion = findViewById(R.id.etDescripcionAPA);
         fechaIni = findViewById(R.id.btFechaIniAPA);
         fechaFin = findViewById(R.id.btFechaFinAPA);
+        agregarDisp = findViewById(R.id.btAgregarFechaAPA);
         fInicio = findViewById(R.id.etFechaIniAPA);
         fFin = findViewById(R.id.etFechaFinAPA);
+        nombre = findViewById(R.id.etNombreAPA);
         rv = findViewById(R.id.rvDispFechasAPA);
-
+        direcciontv = findViewById(R.id.tvDIreccionAPA);
 
         // spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipoAlojamiento, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipoAlojamiento, R.layout.item_anf_spinner);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
-
-        // recyclerView
-
         accionBotones();
     }
 
@@ -111,17 +120,6 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
         alojamiento.setTipo("indeterminado");
     }
     // FIN Seccion spinner -----------------------------------------------
-
-
-    // seccion recycler view imagenes--------------------------------------------
-
-
-    // FIN seccion recycler view imagenes--------------------------------------------
-
-    // seccion recycler view fechas--------------------------------------------
-
-
-    // FIN seccion recycler view fechas--------------------------------------------
 
 
     // seccion place picker ----------------------------------------------------------
@@ -140,6 +138,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
                 Ubicacion u = new Ubicacion();
                 u.setLatitude(latitud);
                 u.setLongitude(longitud);
+                direcciontv.setText(direccion);
                 alojamiento.setUbicacion(u);
                 //listDatos.add(u);
                 System.out.println("---------------------AAAAAA:"+ latitud);
@@ -152,15 +151,57 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
     // FIN seccion place picker ----------------------------------------------------------
 
 
+
+    public boolean validarCampos(){
+
+        boolean bandera = true;
+        if(nombre.getText().toString().isEmpty())
+        {
+            nombre.setError("Campo requerido");
+            bandera = false;
+        }
+
+        if(descripcion.getText().toString().isEmpty()){
+            descripcion.setError("Campo requerido");
+            bandera = false;
+        }
+
+        if(valor.getText().toString().isEmpty()){
+            valor.setError("Campo requerido");
+            bandera = false;
+        }
+
+        if(alojamiento.getUbicacion() == null)
+        {
+            Toast toast1 =
+                    Toast.makeText(getApplicationContext(),
+                            "Seleccione una ubicacion", Toast.LENGTH_SHORT);
+
+            toast1.show();
+            bandera = false;
+        }
+
+        return bandera;
+    }
+
     // seccion botones ---------------------------------------------------------
     public void accionBotones() {
 
-        publicar.setOnClickListener(new View.OnClickListener() {
+        siguiente.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                alojamiento.setDescripcion(descripcion.getText().toString());
-                alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
+                if (validarCampos()) {
+                    // alojamiento.setDescripcion(descripcion.getText().toString());
+                    // alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
+
+                    Intent intent = new Intent(view.getContext(), AnfPubDisponibilidadActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    //TODO hacer toast
+                }
+
 
             }
         });
@@ -180,47 +221,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity
             }
         });
 
-        fechaIni.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                flag = FLAG_START_DATE;
-                DialogFragment datePickerIni = new AnfitrionDatePickerFragment();
-                datePickerIni.show(getSupportFragmentManager(), "date picker");
-            }
-        });
-
-        fechaFin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                flag = FLAG_END_DATE;
-                DialogFragment datePickerIni = new AnfitrionDatePickerFragment();
-                datePickerIni.show(getSupportFragmentManager(), "date picker");
-            }
-        });
     }
 
-    @Override
-    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-        Calendar  c = Calendar.getInstance();
-        c.set(Calendar.YEAR, year);
-        c.set(Calendar.MONTH, month);
-        c.set(Calendar.DAY_OF_MONTH, day);
-        SimpleDateFormat firstDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-
-        if(flag == FLAG_END_DATE)
-        {
-            String currentDate = firstDateFormat.format(c.getTime());
-            //String currentDate = DateFormat.getDateInstance().format(c.getTime());
-            fFin.setText(currentDate);
-        }
-        else {
-            String currentDate = firstDateFormat.format(c.getTime());
-            //String currentDate = DateFormat.getDateInstance().format(c.getTime());
-            fInicio.setText(currentDate);
-        }
-
-
-    }
     // FIN seccion botones ---------------------------------------------------------
 }
