@@ -114,7 +114,10 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
                 System.out.println("---------------------Ess:"+ direccion);
                 double latitud = place.getLatLng().latitude;
                 double longitud = place.getLatLng().longitude;
-                //Ubicacion u = new Ubicacion(latitud,longitud);
+                Ubicacion u = new Ubicacion();
+                u.setLatitude(latitud);
+                u.setLongitude(longitud);
+                alojamiento.setUbicacion(u);
                 //listDatos.add(u);
                 System.out.println("---------------------AAAAAA:"+ latitud);
                 //adapter.addItem(u);
