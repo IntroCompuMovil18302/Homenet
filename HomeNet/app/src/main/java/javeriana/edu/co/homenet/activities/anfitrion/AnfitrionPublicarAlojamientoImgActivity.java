@@ -21,12 +21,15 @@ import java.util.List;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.adapters.ImagenAnfitrionAdapter;
+import javeriana.edu.co.homenet.models.Alojamiento;
 import me.relex.circleindicator.CircleIndicator;
 
 public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
 
     private static final int RESULT_LOAD_IMAGE = 1;
     final static int REQUEST_GALLERY = 2;
+
+    Alojamiento alojamiento;
 
     List<String> listaImagenes = new ArrayList<String>();;
     Button agregarImg;
@@ -36,6 +39,15 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
+
+        System.out.println("************"+alojamiento.getNombre());
+        System.out.println("************"+alojamiento.getTipo());
+        System.out.println("************"+alojamiento.getPrecio());
+        System.out.println("************"+alojamiento.getDescripcion());
+
+
         setContentView(R.layout.activity_anfitrion_publicar_alojamiento_img);
         agregarImg = findViewById(R.id.btSubirImgAPA);
         siguiente = findViewById(R.id.btSiguienteImgAPAI);
