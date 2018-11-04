@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="6dp"
         android:text="Fecha inicio"
-        android:textSize="24sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,47 +23,50 @@
         android:id="@+id/textView74"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
         android:text="Fecha fin"
-        android:textSize="24sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/textView65"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaIniAF" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFechaIniAF" />
 
     <TextView
+        android:id="@+id/tvFechaIniAF"
         android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:ems="10"
-        android:inputType="date"
+        android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView65"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView65" />
 
     <TextView
-        android:id="@+id/etFechaFinAF"
+        android:id="@+id/tvFechaFinAF"
         android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:ems="10"
-        android:inputType="date"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView74"
-        app:layout_constraintEnd_toEndOf="@+id/etFechaIniAF"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etFechaIniAF" />
+        app:layout_constraintEnd_toEndOf="@+id/tvFechaIniAF"
+        app:layout_constraintStart_toStartOf="@+id/tvFechaIniAF" />
 
     <View
         android:id="@+id/divider2"
         android:layout_width="395dp"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaFinAF" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFechaFinAF" />
 </android.support.constraint.ConstraintLayout>

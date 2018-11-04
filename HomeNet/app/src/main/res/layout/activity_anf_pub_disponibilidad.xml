@@ -16,16 +16,125 @@
         android:layout_marginTop="16dp"
         android:text="Disponibilidad del alojamiento"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CalendarView
-        android:id="@+id/calendarView2"
+    <EditText
+        android:id="@+id/etFechaIniAPA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="87dp" />
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="date"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/place_autocomplete_prediction_primary_text_highlight"
+        app:layout_constraintStart_toStartOf="@+id/textView76"
+        app:layout_constraintTop_toBottomOf="@+id/textView76" />
+
+    <EditText
+        android:id="@+id/etFechaFinAPA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="date"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/place_autocomplete_prediction_secondary_text"
+        app:layout_constraintStart_toStartOf="@+id/textView77"
+        app:layout_constraintTop_toBottomOf="@+id/textView77" />
+
+    <Button
+        android:id="@+id/btFechaIniAPA"
+        android:layout_width="57dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@mipmap/date1"
+        app:layout_constraintStart_toEndOf="@+id/etFechaIniAPA"
+        app:layout_constraintTop_toTopOf="@+id/etFechaIniAPA" />
+
+    <Button
+        android:id="@+id/btFechaFinAPA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/date1"
+        app:layout_constraintEnd_toEndOf="@+id/btFechaIniAPA"
+        app:layout_constraintStart_toStartOf="@+id/btFechaIniAPA"
+        app:layout_constraintTop_toTopOf="@+id/etFechaFinAPA" />
+
+    <Button
+        android:id="@+id/btAgregarFechaAPA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="Agregar"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btFechaFinAPA" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvDispFechasAPA"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAgregarFechaAPA" />
+
+    <Button
+        android:id="@+id/btSiguienteAPA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Siguiente"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvDispFechasAPA" />
+
+    <TextView
+        android:id="@+id/textView76"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:text="fecha inicio"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+    <TextView
+        android:id="@+id/textView77"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="fecha fin"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/etFechaIniAPA"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaIniAPA" />
+
 </android.support.constraint.ConstraintLayout>
