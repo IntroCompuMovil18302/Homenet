@@ -105,6 +105,7 @@
     <string name="VerGuiasCerc">Ver guías cercanos</string>
     <string name="VerHistRec">Ver historial recorridos</string>
     <string name="selecc">Seleccionar</string>
+    <string name="publicar">Publicar</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

@@ -2,7 +2,9 @@ package javeriana.edu.co.homenet.activities.anfitrion;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -13,12 +15,26 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.adapters.ImagenAnfitrionAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
@@ -29,7 +45,15 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1;
     final static int REQUEST_GALLERY = 2;
 
+    private FirebaseAuth mAuth;
+    private StorageReference mStorage;
+    private ProgressDialog nProgressDialog;
+    DatabaseReference mDataBase;
+
     Alojamiento alojamiento;
+    String referenciaUrl = "";
+    List<String> imgUri = new ArrayList<String>();
+    int subidos;
 
     List<String> listaImagenes = new ArrayList<String>();;
     Button agregarImg;
@@ -38,8 +62,14 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
     ImagenAnfitrionAdapter imgAnfAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //FirebaseApp.initializeApp(AnfitrionPublicarAlojamientoImgActivity.this);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_anfitrion_publicar_alojamiento_img);
 
+        //mAuth = FirebaseAuth.getInstance();
+        nProgressDialog = new ProgressDialog(AnfitrionPublicarAlojamientoImgActivity.this);
+        mDataBase = FirebaseDatabase.getInstance().getReference("Alojamientos");
+        mStorage =FirebaseStorage.getInstance().getReference("ImagenesAlojamientos");
         alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
 
         System.out.println("************"+alojamiento.getNombre());
@@ -48,7 +78,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
         System.out.println("************"+alojamiento.getDescripcion());
 
 
-        setContentView(R.layout.activity_anfitrion_publicar_alojamiento_img);
+
         agregarImg = findViewById(R.id.btSubirImgAPA);
         siguiente = findViewById(R.id.btSiguienteImgAPAI);
 
@@ -95,6 +125,9 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(validarDatos()){
                     //Bundle bundle = getIntent().getExtras();
+                    nProgressDialog.setMessage("Publicando el alojamiento...");
+                    nProgressDialog.show();
+                    subirImagenesStorage();
                 }
                 else{
                     Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Tiene que seleccionar al menos una imagen de su galeria", Toast.LENGTH_SHORT).show();
@@ -138,5 +171,63 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+    private String extensionImagen(Uri uri){
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(uri));
+    }
+    public void subirImagenesStorage(){
+        Uri uri;
+        subidos=0;
+        for(int i=0;i<listaImagenes.size();i++) {
+            uri = Uri.parse(listaImagenes.get(i));
+            StorageReference fileReference = mStorage.child(System.currentTimeMillis() + "." + extensionImagen(uri));
+            fileReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    referenciaUrl = taskSnapshot.getDownloadUrl().toString();
+                    imgUri.add(referenciaUrl);
+                    subidos++;
+                    if(subidos==listaImagenes.size()){
+                        subirAlojamiento();
+                    }
+
+                    System.out.println("ESTO ES TASK SNAPSHOT DONWLOAD URL ANTESSSSSSSSSSSS-------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + referenciaUrl);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    referenciaUrl = "";
+                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Falló la subida de una imagen", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+    public void subirAlojamiento(){
+        alojamiento.setUrlImgs(imgUri);
+        //FirebaseUser user = mAuth.getCurrentUser();
+        Random random = new Random();
+        int numRandom = random.nextInt(10000)+1;
+        final String idAlojamiento = "Alojamiento "+String.valueOf(numRandom)+String.valueOf(System.currentTimeMillis());
+        alojamiento.setId(idAlojamiento);
+        FirebaseDatabase.getInstance().getReference("Alojamientos").child(idAlojamiento).setValue(alojamiento).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                //progressbar.setVisibility(View.GONE);
+                if(task.isSuccessful()){
+                    nProgressDialog.dismiss();
+                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Se ha publicado el servicio", Toast.LENGTH_SHORT).show();
+                    //infoActualUsuario(idServicio,ususerv);
+
+                }
+                else{
+                    nProgressDialog.dismiss();
+                    Toast.makeText( AnfitrionPublicarAlojamientoImgActivity.this,"Hubo un error al crear un servicio", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+        });
     }
 }
