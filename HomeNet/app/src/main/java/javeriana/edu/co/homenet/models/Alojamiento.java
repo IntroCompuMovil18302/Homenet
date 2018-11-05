@@ -81,13 +81,6 @@ public class Alojamiento implements Serializable{
         this.anfitrion = anfitrion;
     }
 
-    public List<String> getUrlImg() {
-        return urlImgs;
-    }
-
-    public void setUrlImg(List<String> urlImg) {
-        this.urlImgs = urlImg;
-    }
 
     public long getPrecio() {
         return precio;
