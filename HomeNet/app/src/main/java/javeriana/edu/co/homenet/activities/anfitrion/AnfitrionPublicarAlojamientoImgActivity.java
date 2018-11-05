@@ -130,7 +130,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                     subirImagenesStorage();
                 }
                 else{
-                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Tiene que seleccionar al menos una imagen de su galeria", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Tiene que seleccionar al menos cuatro imagenes de su galeria", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -147,9 +147,10 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
         }
     }
     public boolean validarDatos(){
-        if(listaImagenes.size()>0){
+        if(listaImagenes.size()>=4){
             return true;
         }else{
+
             return false;
         }
     }
