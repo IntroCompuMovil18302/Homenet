@@ -144,10 +144,12 @@ public class LoginActivity extends AppCompatActivity {
         valid = isEmailValid(email);
         if (TextUtils.isEmpty(email)) {
             valid = false;
+            correo.setError("Complete el campo");
         }
         String password = clave.getText().toString();
         if (TextUtils.isEmpty(password)) {
             valid = false;
+            clave.setError("Complete el campo");
         }
         return valid;
     }

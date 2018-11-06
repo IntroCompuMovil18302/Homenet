@@ -1,5 +1,6 @@
 package javeriana.edu.co.homenet.activities.guia;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,5 +43,13 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
                 startActivity(new Intent(view.getContext(),GuiaSolicitudesServiciosActivity.class));
             }
         });
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed()
+    {
+
+        // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
     }
 }
