@@ -7,6 +7,7 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -53,11 +54,13 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javeriana.edu.co.homenet.HuespedResultadosMapActivity;
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.adapters.AlojamientoAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Reserva;
+import javeriana.edu.co.homenet.utils.DateFormater;
 
 public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
 
@@ -71,6 +74,7 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
     EditText fechaFin;
     EditText distancia;
     Button buttonBuscar;
+    Button buttonMapa;
     ListView resultadosBusqueda;
 
     private FirebaseAuth mAuth;
@@ -81,6 +85,8 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
     private LocationCallback mLocationCallback;
     private Location location;
 
+    private ArrayList<Alojamiento> listAlojamiento;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +94,7 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        listAlojamiento = new ArrayList<Alojamiento>();
 
         requestPermission(this, Manifest.permission.ACCESS_FINE_LOCATION,
                 "Se necesita acceder a los ubicacion", MY_PERMISSIONS_REQUEST_LOCATION);
@@ -109,6 +116,7 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
         fechaFin = findViewById(R.id.etFechaFinHCA);
         distancia = findViewById(R.id.etDistanciaHCA);
         buttonBuscar = findViewById(R.id.btBuscarHCA);
+        buttonMapa = findViewById(R.id.btMapaHCA);
         resultadosBusqueda = findViewById(R.id.lvResultadosHCA);
 
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
@@ -122,11 +130,9 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                ArrayList<Alojamiento> listAlojamiento = new ArrayList<Alojamiento>();
+                                listAlojamiento.clear();
                                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                                     Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
-                                    //List<Reserva> reservas = new ArrayList<Reserva>();
-                                    Log.d("RESERVAS LIST", ialojamiento.getReservas().toString());
                                     if (matchAlojamiento(ialojamiento)) {
                                         listAlojamiento.add(ialojamiento);
                                     }
@@ -148,6 +154,45 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        buttonMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+
+                if (isValidDate(fechaInicio.getText().toString())){
+                    if (isValidDate(fechaFin.getText().toString())) {
+
+                        myRef = database.getReference(PATH_ALO);
+                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                listAlojamiento.clear();
+                                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                                    Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
+                                    if (location!=null && ialojamiento.estaCerca(location.getLatitude(), location.getLongitude(),
+                                            2)){
+                                        listAlojamiento.add(ialojamiento);
+                                    }
+                                }
+                                Bundle bundle = new Bundle();
+                                bundle.putParcelableArrayList("alojamientos", (ArrayList<? extends Parcelable>) listAlojamiento);
+                                startActivity(new Intent(view.getContext(), HuespedResultadosMapActivity.class));
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+                            }
+                        });
+                    }else{
+                        fechaFin.setError("Fecha inválida");
+                    }
+                }else{
+                    fechaInicio.setError("Fecha inválida");
+                }
+            }
+        });
+
 
 
     }
@@ -298,12 +343,17 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
     }
 
     public static boolean isValidDate(String inDate) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        dateFormat.setLenient(false);
-        try {
-            dateFormat.parse(inDate.trim());
-        } catch (ParseException pe) {
-            return false;
+        if(!inDate.equals("")){
+            Log.d("DATE", inDate.substring(inDate.length()-5,inDate.length()));
+            if(!inDate.substring(inDate.length()-5,inDate.length()-4).equals("/")){
+                return false;
+            }
+            if(DateFormater.stringToDate(inDate)!=null){
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         return true;
     }
