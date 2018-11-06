@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public final class DateFormater {
     public static Date stringToDate(String s){
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         try {
             return format.parse(s);
         } catch (ParseException e) {

@@ -193,7 +193,6 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
                                 Intent intent = new Intent(CrearPerfilGuiaAnfActivity.this, AnfitrionMenuActivity.class);
                                 startActivity(intent);
                             }
-
                             //}
                         }
                     }

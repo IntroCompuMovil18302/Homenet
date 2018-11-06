@@ -34,10 +34,12 @@ public class AlojamientoAdapter  extends ArrayAdapter<Alojamiento> {
         TextView tvNombre = convertView.findViewById(R.id.tvNombreIA);
         TextView tvDescripcion = convertView.findViewById(R.id.tvDescripcionIA);
         TextView tvPrecio = convertView.findViewById(R.id.tvPrecioIA);
+        TextView tvDist = convertView.findViewById(R.id.tvDistIA);
         // Populate the data into the template view using the data object
         tvNombre.setText(alojamiento.getNombre());
         tvDescripcion.setText(alojamiento.getDescripcion());
         tvPrecio.setText(String.valueOf(alojamiento.getPrecio()));
+        tvDist.setText(String.valueOf(alojamiento.getDist()));
         //Image
         if(alojamiento.getUrlImgs()!= null && alojamiento.getUrlImgs().size()>0){
             ImageView imgAlojamiento = convertView.findViewById(R.id.imgAlojamientoIA);
