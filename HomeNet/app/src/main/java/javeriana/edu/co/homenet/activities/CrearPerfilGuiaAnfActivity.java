@@ -64,7 +64,6 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
     final static int REQUEST_CAMERA = 3;
     static final int REQUEST_IMAGE_CAPTURE = 4;
 
-    ImageButton volver;
     Button crearPerfilGuiaAnf;
     EditText nombre;
     EditText edad;
@@ -87,7 +86,6 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
 
-        volver = findViewById(R.id.ibVolverCPGA);
         crearPerfilGuiaAnf = findViewById(R.id.btCrearPerfilGuiaAnfCPGA);
         nombre = findViewById(R.id.etNombreGuiaAnfCPGA);
         edad = findViewById(R.id.etEdadCPGA);
@@ -115,14 +113,6 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
             public void onClick(View v) {
                 requestPermission((Activity) v.getContext(), Manifest.permission.CAMERA, "Se necesita acceder a la camara", REQUEST_CAMERA);
                 takePicture();
-            }
-        });
-
-        volver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),RegisterActivity.class);
-                startActivity(intent);
             }
         });
 

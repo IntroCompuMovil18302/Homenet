@@ -14,12 +14,12 @@
             android:id="@+id/btCrearPerfilGuiaAnfCPGA"
             android:layout_width="146dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
             android:layout_marginTop="432dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="#D33838"
+            android:background="@color/colorPrimaryDark"
             android:text="@string/CrearPerfil"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -159,15 +159,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivFotoGuiaAnfCPGA" />
 
-        <ImageButton
-            android:id="@+id/ibVolverCPGA"
-            android:layout_width="49dp"
-            android:layout_height="37dp"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?android:attr/homeAsUpIndicator" />
-
         <Button
             android:id="@+id/btTomarFotoCPGA"
             android:layout_width="158dp"
@@ -175,7 +166,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="32dp"
-            android:background="#D33838"
+            android:background="@color/colorPrimaryDark"
             android:text="Tomar Foto"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toEndOf="@+id/ivFotoGuiaAnfCPGA"
@@ -188,7 +179,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
-            android:background="#D33838"
+            android:background="@color/colorPrimaryDark"
             android:text="Galería"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toEndOf="@+id/ivFotoGuiaAnfCPGA"

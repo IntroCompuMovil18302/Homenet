@@ -209,15 +209,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/biVolverCPHA"
-        android:layout_width="49dp"
-        android:layout_height="37dp"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
-
     <ImageView
         android:id="@+id/vFotoPerfilCPHA"
         android:layout_width="99dp"
@@ -254,15 +245,5 @@
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btTomarFotoCPHA" />
-
-    <ProgressBar
-        android:id="@+id/pbSubiendoImagenCPHA"
-        android:layout_width="98dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vFotoPerfilCPHA" />
 
 </android.support.constraint.ConstraintLayout>

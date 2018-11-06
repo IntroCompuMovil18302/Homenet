@@ -65,7 +65,6 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
     final static int REQUEST_CAMERA = 3;
     static final int REQUEST_IMAGE_CAPTURE = 4;
 
-    ImageButton volver;
     Button crearPerfilHuesped;
     EditText nombre;
     EditText edad;
@@ -77,7 +76,6 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
     ImageView fotoPerfil;
     Button tomarFoto;
     Button galeria;
-    ProgressBar subiendoImagen;
     Uri urlImage;
 
     @Override
@@ -88,7 +86,6 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
 
-        volver = findViewById(R.id.biVolverCPHA);
         crearPerfilHuesped = findViewById(R.id.btCrearPerfilHuespedCPHA);
         nombre = findViewById(R.id.etNombreHuespedCPHA);
         edad = findViewById(R.id.etEdadHuespedCPHA);
@@ -98,7 +95,6 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
         fotoPerfil = findViewById(R.id.vFotoPerfilCPHA);
         galeria = findViewById(R.id.btGaleriaCPHA);
         tomarFoto = findViewById(R.id.btTomarFotoCPHA);
-        subiendoImagen = findViewById(R.id.pbSubiendoImagenCPHA);
 
         Intent bA = getIntent();
         Bundle b = bA.getExtras();
@@ -121,21 +117,16 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
             }
         });
 
-        volver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
         crearPerfilHuesped.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isETEmpty(nombre) && isETEmpty(edad) && isETEmpty(tel) && isETEmpty(nac)){
                     register(correo,clave);
                 }else{
-                    Toast.makeText(v.getContext(), "Complete los campos", Toast.LENGTH_SHORT).show();
+                    nombre.setError("No puede ir vacío");
+                    edad.setError("No puede ir vacío");
+                    tel.setError("No puede ir vacío");
+                    nac.setError("No puede ir vacío");
                 }
             }
         });
@@ -167,7 +158,6 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                             byte[] imageInByte = baos.toByteArray();
-                            subiendoImagen.setVisibility(View.VISIBLE);
                             tomarFoto.setEnabled(false);
                             galeria.setEnabled(false);
                             StorageMetadata sM = new StorageMetadata.Builder()
