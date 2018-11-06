@@ -35,8 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btBuscarHCA"
-        app:layout_constraintVertical_bias="0.513" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
         android:id="@+id/tvTituloHCA"
@@ -91,22 +90,6 @@
             tools:layout_editor_absoluteY="157dp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btBuscarHCA"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/search"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
@@ -146,6 +129,45 @@
             android:layout_weight="0.3"
             android:text="Km"
             android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <Button
+            android:id="@+id/btBuscarHCA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/search"
+            android:textColor="@color/colorPrimary"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="209dp" />
+
+        <Button
+            android:id="@+id/btMapaHCA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/map"
+            android:textColor="@color/colorPrimary"
+            tools:layout_editor_absoluteX="288dp"
+            tools:layout_editor_absoluteY="209dp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
