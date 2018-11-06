@@ -21,7 +21,6 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner selectUsuario;
     Button siguienteRegistro;
     String tipoUsuario;
-    ImageButton cancelarReg;
     EditText nombreUsuario;
     EditText correo;
     EditText clave;
@@ -34,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         selectUsuario = findViewById(R.id.sTipoUsuarioRA);
         siguienteRegistro = findViewById(R.id.btSiguienteRegistroRA);
-        cancelarReg = findViewById(R.id.btCancelarRegRA);
         nombreUsuario = findViewById(R.id.etUserNameRA);
         correo  = findViewById(R.id.etCorreoRA);
         clave = findViewById(R.id.etContraRA);
@@ -70,28 +68,26 @@ public class RegisterActivity extends AppCompatActivity {
                                 Intent intent = new Intent(v.getContext(), CrearPerfilGuiaAnfActivity.class);
                                 intent.putExtras(b);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 Intent intent = new Intent(v.getContext(), CrearPerfilHuespedActivity.class);
                                 intent.putExtras(b);
                                 startActivity(intent);
+                                finish();
                             }
                         } else {
-                            Toast.makeText(v.getContext(), "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                            confirmarClave.setText("");
+                            confirmarClave.setError("Contraseñas no coinciden");
                         }
                     }else{
-                        Toast.makeText(v.getContext(), "Correo incorrecto", Toast.LENGTH_SHORT).show();
+                        correo.setError("Correo inválido");
                     }
                 }else{
-                    Toast.makeText(v.getContext(), "Complete los campos", Toast.LENGTH_SHORT).show();
+                    correo.setError("Complete el campo");
+                    nombreUsuario.setError("Complete el campo");
+                    clave.setError("Complete el campo");
+                    confirmarClave.setError("Complete el campo");
                 }
-            }
-        });
-
-        cancelarReg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),LoginActivity.class);
-                startActivity(intent);
             }
         });
 

@@ -43,10 +43,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
@@ -110,27 +115,37 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                myRef = database.getReference(PATH_ALO);
-                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        ArrayList<Alojamiento> listAlojamiento = new ArrayList<Alojamiento>();
-                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                            Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
-                            //List<Reserva> reservas = new ArrayList<Reserva>();
-                            Log.d("RESERVAS LIST", ialojamiento.getReservas().toString());
-                            if(matchAlojamiento(ialojamiento)){
-                                listAlojamiento.add(ialojamiento);
+                if (isValidDate(fechaInicio.getText().toString())){
+                    if (isValidDate(fechaFin.getText().toString())) {
+
+                        myRef = database.getReference(PATH_ALO);
+                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                ArrayList<Alojamiento> listAlojamiento = new ArrayList<Alojamiento>();
+                                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                                    Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
+                                    //List<Reserva> reservas = new ArrayList<Reserva>();
+                                    Log.d("RESERVAS LIST", ialojamiento.getReservas().toString());
+                                    if (matchAlojamiento(ialojamiento)) {
+                                        listAlojamiento.add(ialojamiento);
+                                    }
+                                }
+                                AlojamientoAdapter adapter = new AlojamientoAdapter(HuespedConsultarAlojamientoActivity.this, listAlojamiento);
+                                resultadosBusqueda.setAdapter(adapter);
                             }
-                        }
-                        AlojamientoAdapter adapter = new AlojamientoAdapter(HuespedConsultarAlojamientoActivity.this, listAlojamiento);
-                        resultadosBusqueda.setAdapter(adapter);
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+                            }
+                        });
+                    }else{
+                        fechaFin.setError("Fecha inválida");
                     }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.w("Firebase database", "error en la consulta", databaseError.toException());
-                    }
-                });
+                }else{
+                    fechaInicio.setError("Fecha inválida");
+                }
             }
         });
 
@@ -282,5 +297,15 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
         }
     }
 
+    public static boolean isValidDate(String inDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(inDate.trim());
+        } catch (ParseException pe) {
+            return false;
+        }
+        return true;
+    }
 
 }

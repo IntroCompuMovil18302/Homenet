@@ -79,7 +79,7 @@
         android:backgroundTint="@color/colorPrimaryDark"
         android:ems="10"
         android:hint="email"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:textColorHint="@color/common_google_signin_btn_text_light_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
