@@ -44,7 +44,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
@@ -55,6 +57,7 @@ import javeriana.edu.co.homenet.models.Reserva;
 public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
 
     public static final String PATH_ALO="Alojamientos/";
+    public static final String PATH_RESV="Reservas/";
     final static int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     final static int REQUEST_CHECK_SETTINGS = 2;
 
@@ -72,7 +75,6 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
     private Location location;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +109,7 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 myRef = database.getReference(PATH_ALO);
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -114,8 +117,9 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                         ArrayList<Alojamiento> listAlojamiento = new ArrayList<Alojamiento>();
                         for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                             Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
-                            List<Reserva> reservas = new ArrayList<Reserva>();
-                            if(matchAlojamiento(ialojamiento,reservas)){
+                            //List<Reserva> reservas = new ArrayList<Reserva>();
+                            Log.d("RESERVAS LIST", ialojamiento.getReservas().toString());
+                            if(matchAlojamiento(ialojamiento)){
                                 listAlojamiento.add(ialojamiento);
                             }
                         }
@@ -145,7 +149,13 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
         stopLocationUpdates();
     }
 
-    private boolean matchAlojamiento(Alojamiento alojamiento, List<Reserva> reservas){
+    private boolean matchAlojamiento(Alojamiento alojamiento){
+        if(location!=null){
+            alojamiento.initDist(location.getLatitude(),location.getLongitude());
+        }
+        else{
+            alojamiento.initDist(0,0);
+        }
         boolean match = true;
         if(!palabra.getText().toString().equals("")){
             match = alojamiento.tienePalabra(palabra.getText().toString());
@@ -156,7 +166,7 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
         }
         if(!fechaInicio.getText().toString().equals("") && !fechaFin.getText().toString().equals("")){
             match = alojamiento.estaDisponible(fechaInicio.getText().toString(),
-                    fechaFin.getText().toString(),reservas);
+                    fechaFin.getText().toString());
         }
 
         return match;

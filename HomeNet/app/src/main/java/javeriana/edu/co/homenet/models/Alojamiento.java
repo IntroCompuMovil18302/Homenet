@@ -1,5 +1,8 @@
 package javeriana.edu.co.homenet.models;
 
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,14 +17,17 @@ public class Alojamiento {
     private String descripcion;
     private String nombre;
 
+    private double dist;
+
     // relaciones
     private String anfitrion;
     private List<Disponibilidad> disponibilidades;
     private Ubicacion ubicacion;
+    private List<Reserva> reservas;
 
     public Alojamiento()
     {
-
+        this.reservas = new ArrayList<Reserva>();
     }
 
     public String getNombre() {
@@ -96,7 +102,23 @@ public class Alojamiento {
         this.tipo = tipo;
     }
 
-    public boolean estaDisponible(String fechaInicio, String fechaFin, List<Reserva> reservas){
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    public double getDist() {
+        return dist;
+    }
+
+    public void setDist(double dist) {
+        this.dist = dist;
+    }
+
+    public boolean estaDisponible(String fechaInicio, String fechaFin){
         boolean disp = false;
         Date fi;
         Date ff;
@@ -116,7 +138,7 @@ public class Alojamiento {
         for (Disponibilidad fechasDisp: disponibilidades) {
             Date fia = DateFormater.stringToDate(fechasDisp.getFechaInicio());
             Date ffa = DateFormater.stringToDate(fechasDisp.getFechaFin());
-
+            Log.d("Alojamiento", fia.toString());
             if((fi.after(fia) && ff.before(ffa)) || (fi.equals(fia) && ff.before(ffa))
                     || (fi.after(fia) && ff.equals(ffa)) || (fi.equals(fia) && ff.equals(ffa))){
                 disp = true;
@@ -136,27 +158,34 @@ public class Alojamiento {
 
     public boolean tienePalabra(String palabra){
         boolean tiene = false;
-        if(nombre.toLowerCase().contains(palabra.toLowerCase())) {
+        if(nombre != null && nombre.toLowerCase().contains(palabra.toLowerCase())) {
             tiene = true;
         }
-        if(tipo.toLowerCase().contains(palabra.toLowerCase())) {
+        if(tipo != null && tipo.toLowerCase().contains(palabra.toLowerCase())) {
             tiene = true;
         }
-        if(descripcion.toLowerCase().contains(palabra.toLowerCase())) {
+        if(descripcion!=null && descripcion.toLowerCase().contains(palabra.toLowerCase())) {
             tiene = true;
         }
-        if(anfitrion.toLowerCase().contains(palabra.toLowerCase())) {
+        if(anfitrion!=null && anfitrion.toLowerCase().contains(palabra.toLowerCase())) {
             tiene = true;
         }
         return tiene;
     }
 
     public boolean estaCerca(double lat1, double long1, double km){
-        double dist = DistanceFunc.distance(lat1,long1,ubicacion.getLatitude(),ubicacion.getLongitude());
-        if(dist<=km){
-            return true;
+        if(ubicacion!=null){
+            double distance = DistanceFunc.distance(lat1,long1,ubicacion.getLatitude(),ubicacion.getLongitude());
+            if(distance<=km){
+                return true;
+            }
         }
         return  false;
+    }
+
+    public void initDist(double lat1, double long1){
+        if(ubicacion!=null)
+            dist =  DistanceFunc.distance(lat1,long1,ubicacion.getLatitude(),ubicacion.getLongitude());
     }
 
 }

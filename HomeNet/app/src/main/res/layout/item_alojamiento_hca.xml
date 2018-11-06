@@ -35,7 +35,7 @@
             <TextView
                 android:id="@+id/tvDescripcionIA"
                 android:layout_width="0dp"
-                android:layout_height="73dp"
+                android:layout_height="52dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
@@ -94,6 +94,39 @@
                 android:text="@string/per_hight"
                 app:layout_constraintStart_toEndOf="@+id/tvPrecioIA"
                 app:layout_constraintTop_toBottomOf="@+id/tvDescripcionIA" />
+
+            <ImageView
+                android:id="@+id/imgLocIA"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgCashIA"
+                app:srcCompat="@drawable/logomaps" />
+
+            <TextView
+                android:id="@+id/tvDistIA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/imgLocIA"
+                app:layout_constraintTop_toBottomOf="@+id/tvPrecioIA" />
+
+            <TextView
+                android:id="@+id/tvKmIA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/km"
+                app:layout_constraintStart_toEndOf="@+id/tvDistIA"
+                app:layout_constraintTop_toBottomOf="@+id/tvNocheIA" />
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
