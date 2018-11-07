@@ -73,6 +73,7 @@ public class HuespedResultadosMapActivity extends FragmentActivity implements On
 
     private MarkerOptions actualMarkerOptions;
     private Marker actualMarker;
+    private MarkerOptions hotelMarkerOptions;
 
     private Bundle bundle;
     private ArrayList<Alojamiento> listAlojamiento;
@@ -88,6 +89,7 @@ public class HuespedResultadosMapActivity extends FragmentActivity implements On
 
         bundle = getIntent().getBundleExtra("bundle");
         listAlojamiento = new ArrayList<Alojamiento>();
+        hotelMarkerOptions = new MarkerOptions();
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -116,7 +118,6 @@ public class HuespedResultadosMapActivity extends FragmentActivity implements On
                         actualMarker = mMap.addMarker(actualMarkerOptions);
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(actualPosition));
                     }
-                    loadLocations();
                 }
             }
         };
@@ -129,9 +130,26 @@ public class HuespedResultadosMapActivity extends FragmentActivity implements On
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
                     if (matchAlojamiento(ialojamiento)){
+                        LatLng ubi = new LatLng(ialojamiento.getUbicacion().getLatitude(),ialojamiento.getUbicacion().getLongitude());
                         listAlojamiento.add(ialojamiento);
+                        Log.d("ALOJAMIENTO", String.valueOf(ialojamiento.getUbicacion().getLatitude())
+                                + " " + String.valueOf(ialojamiento.getUbicacion().getLongitude()));
+                        Log.d("ALOJAMIENTO", ialojamiento.getNombre());
+
+                        hotelMarkerOptions
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.hotel_marker));
+                        hotelMarkerOptions.title(ialojamiento.getNombre());
+                        hotelMarkerOptions.snippet(
+                                Double.toString(ialojamiento.getUbicacion().getLatitude())
+                        );
+                        hotelMarkerOptions.position(
+                                ubi
+                        );
+                        mMap.addMarker(hotelMarkerOptions);
                     }
                 }
+
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -139,6 +157,20 @@ public class HuespedResultadosMapActivity extends FragmentActivity implements On
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startLocationUpdates();
+        loadLocations();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopLocationUpdates();
+        loadLocations();
     }
 
     private boolean matchAlojamiento(Alojamiento alojamiento){
@@ -177,7 +209,10 @@ public class HuespedResultadosMapActivity extends FragmentActivity implements On
 
     private void loadLocations(){
         for(Alojamiento ialojamiento: listAlojamiento){
-            MarkerOptions hotelMarkerOptions = new MarkerOptions();
+            //Log.d("ALOJAMIENTO", String.valueOf(ialojamiento.getUbicacion().getLatitude())
+             //   + " " + String.valueOf(ialojamiento.getUbicacion().getLongitude()));
+            Log.d("ALOJAMIENTO", ialojamiento.getNombre());
+
             hotelMarkerOptions
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.hotel_marker));
             hotelMarkerOptions.title(ialojamiento.getNombre());
