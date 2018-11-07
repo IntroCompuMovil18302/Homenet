@@ -13,7 +13,6 @@ import javeriana.edu.co.homenet.activities.guia.GuiasDisponiblesActivity;
 public class HuespedVerInfoGuiaActivity extends AppCompatActivity {
 
     Button verMasTour;
-    ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +20,6 @@ public class HuespedVerInfoGuiaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_huesped_ver_info_guia);
 
         verMasTour = findViewById(R.id.verMasTour);
-        back = findViewById(R.id.back);
 
         verMasTour.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,12 +29,5 @@ public class HuespedVerInfoGuiaActivity extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),GuiasDisponiblesActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }
