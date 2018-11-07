@@ -1,15 +1,13 @@
 package javeriana.edu.co.homenet.models;
 
-import android.util.Log;
+import android.os.Parcel;
+import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javeriana.edu.co.homenet.utils.DateFormater;
-import javeriana.edu.co.homenet.utils.DistanceFunc;
-
-public class Alojamiento {
+public class Alojamiento implements Serializable{
     private String id;
     private List<String> urlImgs;
     private long precio;
@@ -28,6 +26,7 @@ public class Alojamiento {
     public Alojamiento()
     {
         this.reservas = new ArrayList<Reserva>();
+        this.disponibilidades = new ArrayList<Disponibilidad>();
     }
 
     public String getNombre() {

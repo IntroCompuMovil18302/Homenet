@@ -1,6 +1,8 @@
 package javeriana.edu.co.homenet.models;
 
-public class Ubicacion {
+import java.io.Serializable;
+
+public class Ubicacion  implements Serializable {
     private double latitude;
     private double longitude;
 
@@ -13,7 +15,7 @@ public class Ubicacion {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
@@ -21,7 +23,7 @@ public class Ubicacion {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 }

@@ -1,6 +1,8 @@
 package javeriana.edu.co.homenet.models;
 
-public class Disponibilidad {
+import java.io.Serializable;
+
+public class Disponibilidad implements Serializable {
     private String fechaInicio;
     private String fechaFin;
 

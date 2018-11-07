@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "73125155257-cm8jurrutstvgnmfnci83qlo9fq0e2lo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "javeriana.edu.co.homenet",
+            "certificate_hash": "efad2a944c3d3decc2f5372d4ee5e8cb435e77ed"
+          }
+        },
+        {
           "client_id": "73125155257-h3uhhiieg0alr5fqph8165bc6etkpqv3.apps.googleusercontent.com",
           "client_type": 3
         }

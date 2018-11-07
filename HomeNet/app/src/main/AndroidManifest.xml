@@ -151,6 +151,9 @@
         <activity
             android:name=".HuespedResultadosMapActivity"
             android:label="@string/title_activity_huesped_resultados_map"></activity>
+
+        <activity android:name=".activities.anfitrion.AnfitrionPublicarAlojamientoImgActivity"></activity>
+        <activity android:name=".activities.anfitrion.AnfPubDisponibilidadActivity"></activity>
     </application>
 
 </manifest>
