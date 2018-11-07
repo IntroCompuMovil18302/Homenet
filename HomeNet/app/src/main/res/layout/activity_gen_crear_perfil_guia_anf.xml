@@ -8,7 +8,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/btCrearPerfilGuiaAnfCPGA"
@@ -16,66 +17,67 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="432dp"
+            android:layout_marginTop="484dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="#D33838"
             android:text="@string/CrearPerfil"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etTelCPGA"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/etNombreGuiaAnfCPGA"
-            android:layout_width="155dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.758"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivFotoGuiaAnfCPGA" />
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <EditText
             android:id="@+id/etEdadCPGA"
-            android:layout_width="155dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.758"
+            app:layout_constraintHorizontal_bias="0.708"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivFotoGuiaAnfCPGA" />
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
         <EditText
             android:id="@+id/etTelCPGA"
-            android:layout_width="155dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="148dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.758"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivFotoGuiaAnfCPGA" />
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <TextView
             android:id="@+id/textView17"
@@ -83,31 +85,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="Edad: "
             android:textColor="#D33838"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.103"
+            app:layout_constraintHorizontal_bias="0.022"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-        <ImageView
-            android:id="@+id/ivFotoGuiaAnfCPGA"
-            android:layout_width="103dp"
-            android:layout_height="102dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.128"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
-            app:srcCompat="@drawable/boy" />
+            app:layout_constraintTop_toBottomOf="@+id/etNombreGuiaAnfCPGA" />
 
         <TextView
             android:id="@+id/textView12"
@@ -115,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="Crea tu perfil"
@@ -131,68 +118,94 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="Teléfono: "
             android:textColor="#D33838"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintHorizontal_bias="0.024"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+            app:layout_constraintTop_toBottomOf="@+id/etEdadCPGA" />
 
         <TextView
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
             android:text="Nombre: "
             android:textColor="#D33838"
             android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivFotoGuiaAnfCPGA" />
+            app:layout_constraintTop_toBottomOf="@+id/textView12">
 
-        <ImageButton
-            android:id="@+id/ibVolverCPGA"
-            android:layout_width="49dp"
-            android:layout_height="37dp"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?android:attr/homeAsUpIndicator" />
+            <ImageView
+                android:id="@+id/ivFotoGuiaAnfCPGA"
+                android:layout_width="247dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.128"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12"
+                app:srcCompat="@drawable/boy" />
 
-        <Button
-            android:id="@+id/btTomarFotoCPGA"
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
-            android:background="#D33838"
-            android:text="Tomar Foto"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toEndOf="@+id/ivFotoGuiaAnfCPGA"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@+id/ivFotoGuiaAnfCPGA"
+                app:layout_constraintTop_toBottomOf="@+id/textView12">
 
-        <Button
-            android:id="@+id/btGaleriaCPGA"
-            android:layout_width="159dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="16dp"
-            android:background="#D33838"
-            android:text="Galería"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toEndOf="@+id/ivFotoGuiaAnfCPGA"
-            app:layout_constraintTop_toBottomOf="@+id/btTomarFotoCPGA" />
+                <Button
+                    android:id="@+id/btTomarFotoCPGA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_weight="0.5"
+                    android:background="#D33838"
+                    android:text="Tomar Foto"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/btGaleriaCPGA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="0.5"
+                    android:background="#D33838"
+                    android:text="Galería"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 
