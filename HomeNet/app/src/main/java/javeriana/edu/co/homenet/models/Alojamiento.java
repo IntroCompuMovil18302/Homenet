@@ -9,7 +9,7 @@ import java.util.List;
 import javeriana.edu.co.homenet.utils.DateFormater;
 import javeriana.edu.co.homenet.utils.DistanceFunc;
 
-public class Alojamiento {
+public class Alojamiento{
     private String id;
     private List<String> urlImgs;
     private long precio;
@@ -187,5 +187,4 @@ public class Alojamiento {
         if(ubicacion!=null)
             dist =  DistanceFunc.distance(lat1,long1,ubicacion.getLatitude(),ubicacion.getLongitude());
     }
-
 }

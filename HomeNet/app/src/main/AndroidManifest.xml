@@ -149,7 +149,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".HuespedResultadosMapActivity"
+            android:name=".activities.huesped.alojamientos.HuespedResultadosMapActivity"
             android:label="@string/title_activity_huesped_resultados_map"></activity>
     </application>
 
