@@ -3,5 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10sp"
-    android:textColor="@color/place_autocomplete_prediction_primary_text_highlight"
+    android:textColor="@android:color/darker_gray"
     android:textSize="18sp" />

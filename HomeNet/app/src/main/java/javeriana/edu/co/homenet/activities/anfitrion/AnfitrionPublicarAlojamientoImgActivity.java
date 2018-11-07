@@ -101,7 +101,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                 imgAnfAdapter = new ImagenAnfitrionAdapter(AnfitrionPublicarAlojamientoImgActivity.this,this.listaImagenes);
                 viewPager.setAdapter(imgAnfAdapter);
                 CircleIndicator indicator = (CircleIndicator)findViewById(R.id.ciImagenesAlojAPA);
-                indicator.setViewPager(viewPager);
+                //indicator.setViewPager(viewPager);
                 //Toast.makeText(this, "Se subieron los archivos", Toast.LENGTH_SHORT).show();
             }else if(data.getData()!=null){
                 Uri uri = data.getData();
@@ -187,7 +187,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
             fileReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    referenciaUrl = taskSnapshot.getDownloadUrl().toString();
+                    referenciaUrl = taskSnapshot.getUploadSessionUri().toString();
                     imgUri.add(referenciaUrl);
                     subidos++;
                     if(subidos==listaImagenes.size()){
