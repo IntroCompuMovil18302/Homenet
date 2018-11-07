@@ -64,7 +64,6 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
     final static int REQUEST_CAMERA = 3;
     static final int REQUEST_IMAGE_CAPTURE = 4;
 
-    ImageButton volver;
     Button crearPerfilGuiaAnf;
     EditText nombre;
     EditText edad;
@@ -87,7 +86,6 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
 
-        volver = findViewById(R.id.ibVolverCPGA);
         crearPerfilGuiaAnf = findViewById(R.id.btCrearPerfilGuiaAnfCPGA);
         nombre = findViewById(R.id.etNombreGuiaAnfCPGA);
         edad = findViewById(R.id.etEdadCPGA);
@@ -118,21 +116,15 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
             }
         });
 
-        volver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
         crearPerfilGuiaAnf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isETEmpty(nombre) && isETEmpty(edad) && isETEmpty(tel) ){
                     register(correo,clave);
                 }else{
-                    Toast.makeText(v.getContext(), "Complete los campos", Toast.LENGTH_SHORT).show();
+                    nombre.setError("Complete el campo");
+                    edad.setError("Complete el campo");
+                    tel.setError("Complete el campo");
                 }
             }
         });
@@ -150,6 +142,7 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
                                 UserProfileChangeRequest.Builder upcrb = new UserProfileChangeRequest.Builder();
                                 upcrb.setDisplayName(nombre.getText().toString());
                                 user.updateProfile(upcrb.build());
+                                saveUser();
                             }
                         }
                         if (!task.isSuccessful()) {
@@ -157,47 +150,49 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             Log.e("HomeNet", task.getException().getMessage());
                         }
-                        else{
-                            final FirebaseUser user = mAuth.getCurrentUser();
-                            final StorageReference sR = storage.getReference(PATH_STORAGE+
-                                    UUID.randomUUID());
-                            Bitmap bitmap = ((BitmapDrawable) fotoPerfil.getDrawable()).getBitmap();
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                            byte[] imageInByte = baos.toByteArray();
-                            tomarFoto.setEnabled(false);
-                            galeria.setEnabled(false);
-                            StorageMetadata sM = new StorageMetadata.Builder()
-                                    .setCustomMetadata("text","Perfil"+nombre.getText().toString())
-                                    .build();
-                            UploadTask uT = sR.putBytes(imageInByte,sM);
-                            uT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    sR.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            urlImage = uri;
-                                        }
-                                    });
-                                }
-                            });
-                            Usuario nU = new Usuario(nombre.getText().toString(), urlImage.toString(), Integer.parseInt(edad.getText().toString()),
-                                    tipoUsuario, correo, "", "");
-                            myRef=database.getReference(PATH_USERS+user.getUid());
-                            myRef.setValue(nU);
-                            if (tipoUsuario.equals("Guía")){
-                                Intent intent = new Intent(CrearPerfilGuiaAnfActivity.this, GuiaPrincipalActivity.class);
-                                startActivity(intent);
-                            }else{
-                                Intent intent = new Intent(CrearPerfilGuiaAnfActivity.this, AnfitrionMenuActivity.class);
-                                startActivity(intent);
-                            }
+                    }
+                });
+    }
 
-                            //}
+    private void saveUser() {
+        final FirebaseUser user = mAuth.getCurrentUser();
+        final StorageReference sR = storage.getReference(PATH_STORAGE+
+                UUID.randomUUID());
+        Bitmap bitmap = ((BitmapDrawable) fotoPerfil.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageInByte = baos.toByteArray();
+        tomarFoto.setEnabled(false);
+        galeria.setEnabled(false);
+        StorageMetadata sM = new StorageMetadata.Builder()
+                .setCustomMetadata("text","Perfil"+nombre.getText().toString())
+                .build();
+        UploadTask uT = sR.putBytes(imageInByte,sM);
+        uT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                sR.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        urlImage = uri;
+                        Usuario nU = new Usuario(nombre.getText().toString(), urlImage.toString(), Integer.parseInt(edad.getText().toString()),
+                                tipoUsuario, correo, "", "");
+                        myRef=database.getReference(PATH_USERS+user.getUid());
+                        myRef.setValue(nU);
+                        if (tipoUsuario.equals("Guía")){
+                            Intent intent = new Intent(CrearPerfilGuiaAnfActivity.this, GuiaPrincipalActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Intent intent = new Intent(CrearPerfilGuiaAnfActivity.this, AnfitrionMenuActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
                 });
+            }
+        });
+
     }
 
     private void loadGalerryImage(){
@@ -222,7 +217,6 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         fotoPerfil.setImageBitmap(selectedImage);
-                        urlImage = imageUri; //PENdiente
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

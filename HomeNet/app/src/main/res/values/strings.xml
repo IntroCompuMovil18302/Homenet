@@ -10,6 +10,14 @@
         <item>Femenino</item>
         <item>Otro</item>
     </string-array>
+    <string-array name="tipoAlojamiento">
+        <item>Apartamento</item>
+        <item>Habitación</item>
+        <item>Apartaestudio</item>
+        <item>Cabaña</item>
+        <item>Pent house</item>
+        <item>Atico</item>
+    </string-array>
 
     <string name="usersample">Usuario 1</string>
     <string name="hintresenah">Ingrese una reseña del usuario.</string>
@@ -64,8 +72,8 @@
     <string name="reservar">Reservar</string>
     <string name="desde">Desde</string>
     <string name="hasta">Hasta</string>
-    <string name="consultar_fecha">Consultar por fecha</string>
-    <string name="consultar_ubicacion">Consultar por ubicación</string>
+    <string name="consultar_fecha">Buscar por fecha</string>
+    <string name="consultar_ubicacion">Buscar por ubicación</string>
     <string name="num_huesped">2 huespedes</string>
     <string name="num_dormitorio">1 dormitorio</string>
     <string name="num_camas">2 camas</string>
@@ -97,6 +105,20 @@
     <string name="VerGuiasCerc">Ver guías cercanos</string>
     <string name="VerHistRec">Ver historial recorridos</string>
     <string name="selecc">Seleccionar</string>
+    <string name="publicar">Publicar</string>
+    <string name="escoger_imagenes">Sube las imagenes de tu servicio</string>
+
+    <string name="buscar_alojamientos_titulo">Buscar Alojamientos</string>
+    <string name="hint_keyword_hca">¿Qué buscas?</string>
+    <string name="hint_start_date_hca">Desde (DD/MM/YYYY)</string>
+    <string name="hint_end_date_hca">Hasta (DD/MM/YYYY)</string>
+    <string name="hint_distance_hca">¿Qué tan lejos?</string>
+
+    <string name="per_hight">por noche.</string>
+    <string name="km">Km.</string>
+
+    <string name="search">Buscar</string>
+    <string name="map">Ver mapa</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -110,4 +132,5 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_huesped_resultados_map">Map</string>
 </resources>
