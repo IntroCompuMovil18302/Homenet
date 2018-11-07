@@ -27,7 +27,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         reservar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(HuespedReservarAlojamientoActivity.this,HuespedHistorialReservaActivity.class);
+                Intent intent = new Intent(HuespedReservarAlojamientoActivity.this,HuespedDetallesHistorialReservaActivity.class);
                 startActivity(intent);
             }
         });
