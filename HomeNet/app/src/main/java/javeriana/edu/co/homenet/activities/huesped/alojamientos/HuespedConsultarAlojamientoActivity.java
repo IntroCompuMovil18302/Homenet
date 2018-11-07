@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -139,6 +140,15 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                                 }
                                 AlojamientoAdapter adapter = new AlojamientoAdapter(HuespedConsultarAlojamientoActivity.this, listAlojamiento);
                                 resultadosBusqueda.setAdapter(adapter);
+                                resultadosBusqueda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Bundle b = new Bundle();
+                                        b.putString("idAloj", listAlojamiento
+                                                .get(position).getId());
+                                        startActivity(new Intent(view.getContext(),HuespedInformacionAlojamientoActivity.class).putExtras(b));
+                                    }
+                                });
                             }
 
                             @Override
@@ -174,9 +184,7 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                                         listAlojamiento.add(ialojamiento);
                                     }
                                 }
-                                Bundle bundle = new Bundle();
-                                bundle.putParcelableArrayList("alojamientos", (ArrayList<? extends Parcelable>) listAlojamiento);
-                                startActivity(new Intent(view.getContext(), HuespedResultadosMapActivity.class));
+
                             }
 
                             @Override
