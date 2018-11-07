@@ -45,19 +45,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.guia.GuiaCrearAnuncioParadaActivity"
-            android:name=".activities.guia.GuiaCrearAnuncioActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.guia.GuiaEditarAnuncioActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.guia.GuiaSolicitudesServiciosActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.guia.GuiaVerHuespedActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.guia.GuiaCalificarHuespedActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.anfitrion.AnfitrionMenuActivity"
