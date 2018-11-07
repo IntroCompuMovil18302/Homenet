@@ -122,6 +122,7 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                                     Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
                                     if (matchAlojamiento(ialojamiento)) {
                                         listAlojamiento.add(ialojamiento);
+
                                     }
                                 }
                                 AlojamientoAdapter adapter = new AlojamientoAdapter(HuespedConsultarAlojamientoActivity.this, listAlojamiento);
