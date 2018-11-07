@@ -106,6 +106,7 @@
     <string name="VerHistRec">Ver historial recorridos</string>
     <string name="selecc">Seleccionar</string>
     <string name="publicar">Publicar</string>
+    <string name="escoger_imagenes">Sube las imagenes de tu servicio</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

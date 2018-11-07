@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/ivImagenAPA"
-        android:layout_width="368dp"
-        android:layout_height="165dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
 
 
