@@ -23,7 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="ExtraText,GoogleAppIndexingWarning">
         <activity
             android:name=".activities.LoginActivity"
             android:screenOrientation="portrait">
@@ -148,14 +148,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".HuespedResultadosMapActivity"
-            android:label="@string/title_activity_huesped_resultados_map"></activity>
-
-        <activity android:name=".activities.anfitrion.AnfitrionPublicarAlojamientoImgActivity"></activity>
-        <activity android:name=".activities.anfitrion.AnfPubDisponibilidadActivity"></activity>
             android:name=".activities.huesped.alojamientos.HuespedResultadosMapActivity"
             android:label="@string/title_activity_huesped_resultados_map" />
-        <activity android:name=".activities.huesped.alojamientos.HuespedResultadosListActivity"></activity>
+
+        <activity android:name=".activities.anfitrion.AnfitrionPublicarAlojamientoImgActivity" />
+        <activity android:name=".activities.anfitrion.AnfPubDisponibilidadActivity" />
+
+        <activity android:name=".activities.huesped.alojamientos.HuespedResultadosListActivity" />
     </application>
 
 </manifest>
