@@ -1,6 +1,8 @@
 package javeriana.edu.co.homenet.models;
 
 import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
     private String id;
@@ -12,6 +14,7 @@ public class Usuario {
     private String correo;
     private String nacionalidad;
     private String sexo;
+    private List<String> servicios=new ArrayList<String>();
 
     public Usuario() {}
 
@@ -88,5 +91,16 @@ public class Usuario {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public List<String> getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(List<String> servicios) {
+        this.servicios = servicios;
+    }
+    public void agregarElemento(String id){
+        this.servicios.add(id);
     }
 }
