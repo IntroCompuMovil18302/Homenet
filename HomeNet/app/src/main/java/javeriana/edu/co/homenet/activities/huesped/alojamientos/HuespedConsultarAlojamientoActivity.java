@@ -84,15 +84,23 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                 if(!fechaInicio.getText().toString().equals("") || !fechaFin.getText().toString().equals("")){
                     if (isValidDate(fechaInicio.getText().toString())){
                         if (isValidDate(fechaFin.getText().toString())){
-                            Intent intent = new Intent(view.getContext(), HuespedResultadosListActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("keyword",palabra.getText().toString());
-                            bundle.putString("fechaInicio",fechaInicio.getText().toString());
-                            bundle.putString("fechaFin",fechaFin.getText().toString());
-                            bundle.putString("distancia",distancia.getText().toString());
-                            bundle.putString("lugar",lugar.getText().toString());
-                            intent.putExtra("bundle", bundle);
-                            startActivity(intent);
+                            if(isValidStartEndDate(fechaInicio.getText().toString(),
+                                    fechaFin.getText().toString())){
+                                Intent intent = new Intent(view.getContext(), HuespedResultadosListActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("keyword",palabra.getText().toString());
+                                bundle.putString("fechaInicio",fechaInicio.getText().toString());
+                                bundle.putString("fechaFin",fechaFin.getText().toString());
+                                bundle.putString("distancia",distancia.getText().toString());
+                                bundle.putString("lugar",lugar.getText().toString());
+                                intent.putExtra("bundle", bundle);
+                                startActivity(intent);
+                            }
+                            else{
+                                fechaFin.setError("Fecha inválida");
+                                fechaInicio.setError("Fecha inválida");
+                            }
+
                         }else{
                             fechaFin.setError("Fecha inválida");
                         }
@@ -120,15 +128,22 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                 if(!fechaInicio.getText().toString().equals("") || !fechaFin.getText().toString().equals("")){
                     if (isValidDate(fechaInicio.getText().toString())){
                         if (isValidDate(fechaFin.getText().toString())){
-                            Intent intent = new Intent(view.getContext(), HuespedResultadosMapActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("keyword",palabra.getText().toString());
-                            bundle.putString("fechaInicio",fechaInicio.getText().toString());
-                            bundle.putString("fechaFin",fechaFin.getText().toString());
-                            bundle.putString("distancia",distancia.getText().toString());
-                            bundle.putString("lugar",lugar.getText().toString());
-                            intent.putExtra("bundle", bundle);
-                            startActivity(intent);
+                            if(isValidStartEndDate(fechaInicio.getText().toString(),
+                                    fechaFin.getText().toString())){
+                                Intent intent = new Intent(view.getContext(), HuespedResultadosListActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("keyword",palabra.getText().toString());
+                                bundle.putString("fechaInicio",fechaInicio.getText().toString());
+                                bundle.putString("fechaFin",fechaFin.getText().toString());
+                                bundle.putString("distancia",distancia.getText().toString());
+                                bundle.putString("lugar",lugar.getText().toString());
+                                intent.putExtra("bundle", bundle);
+                                startActivity(intent);
+                            }
+                            else{
+                                fechaFin.setError("Fecha inválida");
+                                fechaInicio.setError("Fecha inválida");
+                            }
                         }else{
                             fechaFin.setError("Fecha inválida");
                         }
@@ -161,6 +176,25 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                 return true;
             }
             else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isValidStartEndDate(String startDate, String endDate) {
+        if(!startDate.equals("")){
+            if(DateFormater.stringToDate(startDate).before(DateFormater.today())){
+                return false;
+            }
+        }
+        if(!endDate.equals("")){
+            if(DateFormater.stringToDate(endDate).before(DateFormater.today())){
+                return false;
+            }
+        }
+        if(!startDate.equals("") && !endDate.equals("")){
+            if(DateFormater.stringToDate(startDate).after(DateFormater.stringToDate(endDate))){
                 return false;
             }
         }
