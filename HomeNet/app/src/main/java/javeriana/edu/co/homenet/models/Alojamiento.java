@@ -132,7 +132,7 @@ public class Alojamiento implements Serializable{
         Date fi;
         Date ff;
         if(fechaInicio==""){
-            fi = DateFormater.stringToDate("01/01/1900");
+            fi = DateFormater.today();
         }
         else{
             fi = DateFormater.stringToDate(fechaInicio);
@@ -188,6 +188,7 @@ public class Alojamiento implements Serializable{
             if(distance<=km){
                 return true;
             }
+            return false;
         }
         return  false;
     }

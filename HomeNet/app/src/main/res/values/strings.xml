@@ -110,13 +110,16 @@
 
     <string name="buscar_alojamientos_titulo">Buscar Alojamientos</string>
     <string name="hint_keyword_hca">¿Qué buscas?</string>
-    <string name="hint_start_date_hca">Desde (DD/MM/YYYY)</string>
-    <string name="hint_end_date_hca">Hasta (DD/MM/YYYY)</string>
+    <string name="hint_start_date_hca">¿Desde cuándo? (DD/MM/YYYY)</string>
+    <string name="hint_end_date_hca">¿Hasta cuándo? (DD/MM/YYYY)</string>
     <string name="hint_distance_hca">¿Qué tan lejos?</string>
+    <string name="hint_place_hca">¿Dónde?</string>
 
     <string name="per_hight">por noche.</string>
     <string name="km">Km.</string>
 
+    <string name="results_query">Resultados búsqueda</string>
+    <string name="new_search">Nueva búsqueda</string>
     <string name="search">Buscar</string>
     <string name="map">Ver mapa</string>
 
