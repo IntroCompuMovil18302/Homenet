@@ -239,14 +239,18 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
     public void agregarDatosUsuarioServicio(final String idAloja){
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
+        mDataBase = FirebaseDatabase.getInstance().getReference("users");
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot!=null){
                     usr = dataSnapshot.getValue(Usuario.class);
-                    usr.agregarElemento(idAloja);
-                    mDataBase.child(mAuth.getCurrentUser().getUid()).setValue(usr);
+                    Usuario usuario = new Usuario(usr.getNombre(),usr.getUrlImg(),usr.getEdad(),usr.getTipoUsuario(),usr.getCorreo(),usr.getNacionalidad(),usr.getSexo());
+                    if(usr.getAlojamientos().size()>0)
+                        usuario.setAlojamientos(usr.getAlojamientos());
+                    usuario.agregarElemento(idAloja);
+                    mDataBase.child(mAuth.getCurrentUser().getUid()).setValue(usuario);
                     Intent intent = new Intent(AnfitrionPublicarAlojamientoImgActivity.this,AnfitrionMenuActivity.class);
                     startActivity(intent);
                     finish();
