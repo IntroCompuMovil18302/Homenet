@@ -5,21 +5,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
@@ -34,17 +33,8 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -57,15 +47,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
+import javeriana.edu.co.homenet.adapters.AlojamientoAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
-import javeriana.edu.co.homenet.utils.DateFormater;
 
-public class HuespedResultadosMapActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class HuespedResultadosListActivity extends AppCompatActivity {
 
     public static final String PATH_ALO="Alojamientos/";
     final static int MY_PERMISSIONS_REQUEST_LOCATION = 1;
@@ -75,7 +64,7 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
     public static final double upperRightLatitude = 4.763589;
     public static final double upperRigthLongitude = -74.003313;
 
-    Button buttonLocation;
+    ListView resultadosBusqueda;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
@@ -85,40 +74,25 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
     private LocationCallback mLocationCallback;
     private Location location;
     private LatLng qLocation;
-    private GoogleMap mMap;
     private Geocoder mGeocoder;
 
-    private MarkerOptions actualMarkerOptions;
-    private Marker actualMarker;
-    private MarkerOptions placeMarkerOptions;
-    private Marker placeMarker;
-    private MarkerOptions hotelMarkerOptions;
-    private CircleOptions circleOptions;
-    private Circle circle;
-    private Double radius;
-
     private Bundle bundle;
+    private ArrayList<Alojamiento> listAlojamiento;
+    private Double radius;
     private boolean firstTime = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_huesped_resultados_map);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        setContentView(R.layout.activity_huesped_resultados_list);
 
-        mGeocoder = new Geocoder(getBaseContext());
+        resultadosBusqueda = findViewById(R.id.lvResultadosHRL);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        mGeocoder = new Geocoder(getBaseContext());
 
         myRef = database.getReference(PATH_ALO);
-
-        requestPermission(this, Manifest.permission.ACCESS_FINE_LOCATION,
-                "Se necesita acceder a los ubicacion", MY_PERMISSIONS_REQUEST_LOCATION);
-        turnLocation();
 
         bundle = getIntent().getBundleExtra("bundle");
         if(bundle.get("distancia").toString().equals("")){
@@ -127,6 +101,12 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
         else{
             radius = Double.parseDouble(bundle.get("distancia").toString())*1000;
         }
+
+        listAlojamiento = new ArrayList<Alojamiento>();
+
+        requestPermission(this, Manifest.permission.ACCESS_FINE_LOCATION,
+                "Se necesita acceder a los ubicacion", MY_PERMISSIONS_REQUEST_LOCATION);
+        turnLocation();
 
         if (!bundle.get("lugar").toString().equals("")) {
             try {
@@ -140,28 +120,23 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            listAlojamiento.clear();
                             for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                                 Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
                                 if (matchAlojamiento(ialojamiento)){
-                                    hotelMarkerOptions
-                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment_marker));
-                                    hotelMarkerOptions.title(ialojamiento.getNombre());
-                                    hotelMarkerOptions.snippet(
-                                            String.valueOf(ialojamiento.getDist()) + " km."
-                                    );
-                                    hotelMarkerOptions.position(
-                                            new LatLng(ialojamiento.getUbicacion().getLatitude(),ialojamiento.getUbicacion().getLongitude())
-                                    );
-                                    mMap.addMarker(hotelMarkerOptions);
+                                    listAlojamiento.add(ialojamiento);
                                 }
                             }
+                            AlojamientoAdapter adapter = new AlojamientoAdapter(HuespedResultadosListActivity.this, listAlojamiento);
+                            resultadosBusqueda.setAdapter(adapter);
+                            Toast.makeText(HuespedResultadosListActivity.this, "Dirección encontrada", Toast.LENGTH_SHORT).show();
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
                             Log.w("Firebase database", "error en la consulta", databaseError.toException());
                         }
                     });
-                } else {Toast.makeText(HuespedResultadosMapActivity.this, "Dirección no encontrada", Toast.LENGTH_SHORT).show();}
+                } else {Toast.makeText(HuespedResultadosListActivity.this, "Dirección no encontrada", Toast.LENGTH_SHORT).show();}
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -169,24 +144,6 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
         else{
             qLocation = null;
         }
-        hotelMarkerOptions = new MarkerOptions();
-
-        actualMarkerOptions = new MarkerOptions();
-        actualMarkerOptions
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.person_marker))
-                .title("Me");
-
-        placeMarkerOptions = new MarkerOptions();
-        placeMarkerOptions
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.place_marker))
-                .title(bundle.get("lugar").toString());
-
-        circleOptions = new CircleOptions();
-        circleOptions.radius(radius)
-                .strokeWidth(10)
-                .strokeColor(Color.RED)
-                .fillColor(Color.argb(128, 127, 0, 0))
-                .clickable(true);
 
         mLocationRequest = createLocationRequest();
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -194,85 +151,32 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 location = locationResult.getLastLocation();
-                if (mMap != null) {
-                    if(qLocation != null){
-                        if (placeMarker != null){
-                            placeMarker.setPosition(qLocation);
-                        }
-                        else{
-                            placeMarkerOptions.position(qLocation);
-                            placeMarker = mMap.addMarker(placeMarkerOptions);
-                        }
-                        if(circle != null){
-                            circle.setCenter(qLocation);
-                        }
-                        else{
-                            circleOptions.center(qLocation);
-                            circle = mMap.addCircle(circleOptions);
-                        }
-                    }
-                    if(location != null){
-                        LatLng actualPosition = new LatLng(location.getLatitude(), location.getLongitude());
-                        if (actualMarker != null){
-                            actualMarker.setPosition(actualPosition);
-                        }
-                        else{
-                            actualMarkerOptions.position(actualPosition);
-                            actualMarker = mMap.addMarker(actualMarkerOptions);
-                        }
-                        if(qLocation == null){
-                            if(circle != null){
-                                circle.setCenter(actualPosition);
-                            }
-                            else{
-                                circleOptions.center(actualPosition);
-                                circle = mMap.addCircle(circleOptions);
-                            }
-                            if(firstTime == true){
-                                mMap.moveCamera(CameraUpdateFactory.newLatLng(actualPosition));
-                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                                            Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
-                                            if (matchAlojamiento(ialojamiento)){
-                                                hotelMarkerOptions
-                                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment_marker));
-                                                hotelMarkerOptions.title(ialojamiento.getNombre());
-                                                hotelMarkerOptions.snippet(
-                                                        String.valueOf(ialojamiento.getDist()) + " km."
-                                                );
-                                                hotelMarkerOptions.position(
-                                                        new LatLng(ialojamiento.getUbicacion().getLatitude(),ialojamiento.getUbicacion().getLongitude())
-                                                );
-                                                mMap.addMarker(hotelMarkerOptions);
-                                            }
-                                        }
+                if(location != null && qLocation == null){
+                    if(firstTime == true){
+                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                listAlojamiento.clear();
+                                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                                    Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
+                                    if (matchAlojamiento(ialojamiento)){
+                                        listAlojamiento.add(ialojamiento);
                                     }
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                                        Log.w("Firebase database", "error en la consulta", databaseError.toException());
-                                    }
-                                });
-                                firstTime = false;
+                                }
+                                AlojamientoAdapter adapter = new AlojamientoAdapter(HuespedResultadosListActivity.this, listAlojamiento);
+                                resultadosBusqueda.setAdapter(adapter);
                             }
-
-                        }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+                            }
+                        });
+                        firstTime = false;
                     }
                 }
             }
         };
 
-        buttonLocation = findViewById(R.id.btLocationHRM);
-        buttonLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (location != null && mMap != null) {
-                    LatLng actualPosition = new LatLng(location.getLatitude(), location.getLongitude());
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(actualPosition));
-                }
-            }
-        });
     }
 
     @Override
@@ -311,60 +215,6 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
         return match;
     }
 
-    private void changeMap(){
-        mMap.setMapStyle(MapStyleOptions
-                .loadRawResourceStyle(this, R.raw.day_map));
-        /*if(DateFormater.getHourOftheDay() <= 6 || DateFormater.getHourOftheDay() >= 18){
-            mMap.setMapStyle(MapStyleOptions
-                    .loadRawResourceStyle(this, R.raw.night_map));
-        }
-        else{
-
-        }*/
-    }
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        mMap.getUiSettings().setZoomGesturesEnabled(true);
-        mMap.getUiSettings().setScrollGesturesEnabled(true);
-        mMap.getUiSettings().setTiltGesturesEnabled(true);
-        mMap.getUiSettings().setRotateGesturesEnabled(true);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-
-        if(qLocation !=  null){
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(qLocation));
-        }
-        else if (location!=null){
-            LatLng actual = new LatLng(location.getLatitude(),location.getLongitude());
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(actual));
-        }
-        if(radius>60000){
-            mMap.moveCamera(CameraUpdateFactory.zoomTo(7));
-        }
-        if(radius>=30000 && radius <= 60000){
-            mMap.moveCamera(CameraUpdateFactory.zoomTo(9));
-        }
-        if(radius>=10000 && radius <= 29999){
-            mMap.moveCamera(CameraUpdateFactory.zoomTo(11));
-        }
-        if(radius>=2000 && radius <= 9999){
-            mMap.moveCamera(CameraUpdateFactory.zoomTo(13));
-        }
-        if(radius<=1999){
-            mMap.moveCamera(CameraUpdateFactory.zoomTo(14));
-        }
-        changeMap();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -376,7 +226,7 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
         int itemClicked = item.getItemId();
         if(itemClicked == R.id.menuLogOut){
             mAuth.signOut();
-            Intent intent = new Intent(HuespedResultadosMapActivity.this, LoginActivity.class);
+            Intent intent = new Intent(HuespedResultadosListActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }else if (itemClicked == R.id.menuSettings){
@@ -448,7 +298,7 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
                         // Location settings are not satisfied, but this can be fixed by showing the user a dialog.
                         try {// Show the dialog by calling startResolutionForResult(), and check the result in onActivityResult().
                             ResolvableApiException resolvable = (ResolvableApiException) e;
-                            resolvable.startResolutionForResult(HuespedResultadosMapActivity.this, REQUEST_CHECK_SETTINGS);
+                            resolvable.startResolutionForResult(HuespedResultadosListActivity.this, REQUEST_CHECK_SETTINGS);
                         } catch (IntentSender.SendIntentException sendEx) {
                             // Ignore the error.
                         } break;

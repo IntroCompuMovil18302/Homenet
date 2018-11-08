@@ -52,27 +52,15 @@ import javeriana.edu.co.homenet.utils.DateFormater;
 
 public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
 
-    public static final String PATH_ALO="Alojamientos/";
-    final static int MY_PERMISSIONS_REQUEST_LOCATION = 1;
-    final static int REQUEST_CHECK_SETTINGS = 2;
-
     EditText palabra;
     EditText fechaInicio;
     EditText fechaFin;
     EditText distancia;
+    EditText lugar;
     Button buttonBuscar;
     Button buttonMapa;
-    ListView resultadosBusqueda;
 
     private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
-    private FusedLocationProviderClient mFusedLocationClient;
-    private LocationRequest mLocationRequest;
-    private LocationCallback mLocationCallback;
-    private Location location;
-
-    private ArrayList<Alojamiento> listAlojamiento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,65 +68,47 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_huesped_consultar_alojamiento);
 
         mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        listAlojamiento = new ArrayList<Alojamiento>();
-
-        requestPermission(this, Manifest.permission.ACCESS_FINE_LOCATION,
-                "Se necesita acceder a los ubicacion", MY_PERMISSIONS_REQUEST_LOCATION);
-
-        mLocationRequest = createLocationRequest();
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        mLocationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                location = locationResult.getLastLocation();
-                //Log.i(“LOCATION", "Location update in the callback: " + location);
-            }
-        };
-
-        turnLocation();
 
         palabra = findViewById(R.id.etPalabraHCA);
         fechaInicio = findViewById(R.id.etFechaInicioHCA);
         fechaFin = findViewById(R.id.etFechaFinHCA);
         distancia = findViewById(R.id.etDistanciaHCA);
+        lugar = findViewById(R.id.etLugarHCA);
         buttonBuscar = findViewById(R.id.btBuscarHCA);
         buttonMapa = findViewById(R.id.btMapaHCA);
-        resultadosBusqueda = findViewById(R.id.lvResultadosHCA);
 
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (isValidDate(fechaInicio.getText().toString())){
-                    if (isValidDate(fechaFin.getText().toString())){
-
-                        myRef = database.getReference(PATH_ALO);
-                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                listAlojamiento.clear();
-                                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                                    Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
-                                    if (matchAlojamiento(ialojamiento)) {
-                                        listAlojamiento.add(ialojamiento);
-
-                                    }
-                                }
-                                AlojamientoAdapter adapter = new AlojamientoAdapter(HuespedConsultarAlojamientoActivity.this, listAlojamiento);
-                                resultadosBusqueda.setAdapter(adapter);
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.w("Firebase database", "error en la consulta", databaseError.toException());
-                            }
-                        });
+                if(!fechaInicio.getText().toString().equals("") || !fechaFin.getText().toString().equals("")){
+                    if (isValidDate(fechaInicio.getText().toString())){
+                        if (isValidDate(fechaFin.getText().toString())){
+                            Intent intent = new Intent(view.getContext(), HuespedResultadosListActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("keyword",palabra.getText().toString());
+                            bundle.putString("fechaInicio",fechaInicio.getText().toString());
+                            bundle.putString("fechaFin",fechaFin.getText().toString());
+                            bundle.putString("distancia",distancia.getText().toString());
+                            bundle.putString("lugar",lugar.getText().toString());
+                            intent.putExtra("bundle", bundle);
+                            startActivity(intent);
+                        }else{
+                            fechaFin.setError("Fecha inválida");
+                        }
                     }else{
-                        fechaFin.setError("Fecha inválida");
+                        fechaInicio.setError("Fecha inválida");
                     }
-                }else{
-                    fechaInicio.setError("Fecha inválida");
+                }
+                else{
+                    Intent intent = new Intent(view.getContext(), HuespedResultadosListActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("keyword",palabra.getText().toString());
+                    bundle.putString("fechaInicio",fechaInicio.getText().toString());
+                    bundle.putString("fechaFin",fechaFin.getText().toString());
+                    bundle.putString("distancia",distancia.getText().toString());
+                    bundle.putString("lugar",lugar.getText().toString());
+                    intent.putExtra("bundle", bundle);
+                    startActivity(intent);
                 }
             }
         });
@@ -146,61 +116,54 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
         buttonMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                if (isValidDate(fechaInicio.getText().toString())) {
-                    if (isValidDate(fechaFin.getText().toString())) {
-                        Intent intent = new Intent(view.getContext(), HuespedResultadosMapActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("keyword",palabra.getText().toString());
-                        bundle.putString("fechaInicio",fechaInicio.getText().toString());
-                        bundle.putString("fechaFin",fechaFin.getText().toString());
-                        bundle.putString("distancia",distancia.getText().toString());
-                        intent.putExtra("bundle", bundle);
-                        startActivity(intent);
-                    }
-                    else{
-                        fechaFin.setError("Fecha inválida");
+                if(!fechaInicio.getText().toString().equals("") || !fechaFin.getText().toString().equals("")){
+                    if (isValidDate(fechaInicio.getText().toString())){
+                        if (isValidDate(fechaFin.getText().toString())){
+                            Intent intent = new Intent(view.getContext(), HuespedResultadosMapActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("keyword",palabra.getText().toString());
+                            bundle.putString("fechaInicio",fechaInicio.getText().toString());
+                            bundle.putString("fechaFin",fechaFin.getText().toString());
+                            bundle.putString("distancia",distancia.getText().toString());
+                            bundle.putString("lugar",lugar.getText().toString());
+                            intent.putExtra("bundle", bundle);
+                            startActivity(intent);
+                        }else{
+                            fechaFin.setError("Fecha inválida");
+                        }
+                    }else{
+                        fechaInicio.setError("Fecha inválida");
                     }
                 }
                 else{
-                    fechaInicio.setError("Fecha inválida");
+                    Intent intent = new Intent(view.getContext(), HuespedResultadosMapActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("keyword",palabra.getText().toString());
+                    bundle.putString("fechaInicio",fechaInicio.getText().toString());
+                    bundle.putString("fechaFin",fechaFin.getText().toString());
+                    bundle.putString("distancia",distancia.getText().toString());
+                    bundle.putString("lugar",lugar.getText().toString());
+                    intent.putExtra("bundle", bundle);
+                    startActivity(intent);
                 }
             }
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        startLocationUpdates();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        stopLocationUpdates();
-    }
-
-    private boolean matchAlojamiento(Alojamiento alojamiento){
-        if(location!=null){
-            alojamiento.initDist(location.getLatitude(),location.getLongitude());
+    public static boolean isValidDate(String inDate) {
+        if(!inDate.equals("")){
+            Log.d("DATE", inDate.substring(inDate.length()-5,inDate.length()));
+            if(!inDate.substring(inDate.length()-5,inDate.length()-4).equals("/")){
+                return false;
+            }
+            if(DateFormater.stringToDate(inDate)!=null){
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-        else{
-            alojamiento.initDist(0,0);
-        }
-        boolean match = true;
-        if(!palabra.getText().toString().equals("")){
-            match = alojamiento.tienePalabra(palabra.getText().toString());
-        }
-        if(!distancia.getText().toString().equals("") && location!=null){
-            match = alojamiento.estaCerca(location.getLatitude(), location.getLongitude(),
-                    Double.parseDouble(distancia.getText().toString()));
-        }
-        if(!fechaInicio.getText().toString().equals("") && !fechaFin.getText().toString().equals("")){
-            match = alojamiento.estaDisponible(fechaInicio.getText().toString(),
-                    fechaFin.getText().toString());
-        }
-
-        return match;
+        return false;
     }
 
     @Override
@@ -220,113 +183,6 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
             //Abrir actividad para configuración etc
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void requestPermission(Activity context, String permission, String explanation, int requestId ){
-        if (ContextCompat.checkSelfPermission(context,permission)!= PackageManager.PERMISSION_GRANTED) {
-            // Should we show an explanation?   
-            if (ActivityCompat.shouldShowRequestPermissionRationale(context,permission)) {
-                Toast.makeText(context, explanation, Toast.LENGTH_LONG).show();
-            }
-            ActivityCompat.requestPermissions(context, new String[]{permission}, requestId);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch(requestCode){
-            case MY_PERMISSIONS_REQUEST_LOCATION : {
-                //loadLocation();
-                break;
-            }
-        }
-    }
-
-    protected LocationRequest createLocationRequest() {
-        LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000); //tasa de refresco en milisegundos
-        mLocationRequest.setFastestInterval(5000); //máxima tasa de refresco
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        return mLocationRequest;
-    }
-
-    private void startLocationUpdates(){
-        if(ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
-            mFusedLocationClient.requestLocationUpdates(mLocationRequest,
-                    mLocationCallback, null);
-        }
-    }
-
-    private void stopLocationUpdates(){
-        mFusedLocationClient.removeLocationUpdates(mLocationCallback);
-    }
-
-    private void turnLocation(){
-        LocationSettingsRequest.Builder builder = new
-                LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
-        SettingsClient client = LocationServices.getSettingsClient(this);
-        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-
-        task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
-            @Override
-            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                startLocationUpdates(); //Todas las condiciones para recibir localizaciones
-            }
-        });
-
-        task.addOnFailureListener(this, new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                int statusCode = ((ApiException) e).getStatusCode();
-                switch (statusCode) {
-                    case CommonStatusCodes.RESOLUTION_REQUIRED:
-                        // Location settings are not satisfied, but this can be fixed by showing the user a dialog.
-                        try {// Show the dialog by calling startResolutionForResult(), and check the result in onActivityResult().
-                            ResolvableApiException resolvable = (ResolvableApiException) e;
-                            resolvable.startResolutionForResult(HuespedConsultarAlojamientoActivity.this, REQUEST_CHECK_SETTINGS);
-                        } catch (IntentSender.SendIntentException sendEx) {
-                            // Ignore the error.
-                        } break;
-                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                        // Location settings are not satisfied. No way to fix the settings so we won't show the dialog.
-                        break;
-                }
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case REQUEST_CHECK_SETTINGS: {
-                if (resultCode == RESULT_OK) {
-                    startLocationUpdates(); //Se encendió la localización!!!
-                } else {
-                    Toast.makeText(this,
-                            "Sin acceso a localización, hardware deshabilitado!",
-                            Toast.LENGTH_LONG).show();
-                }
-                return;
-            }
-        }
-    }
-
-    public static boolean isValidDate(String inDate) {
-        if(!inDate.equals("")){
-            Log.d("DATE", inDate.substring(inDate.length()-5,inDate.length()));
-            if(!inDate.substring(inDate.length()-5,inDate.length()-4).equals("/")){
-                return false;
-            }
-            if(DateFormater.stringToDate(inDate)!=null){
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        return true;
     }
 
 }
