@@ -3,7 +3,4 @@
     <item
         android:id="@+id/menuLogOut"
         android:title="Cerrar sesión" />
-    <item
-        android:id="@+id/menuSettings"
-        android:title="Configuración" />
 </menu>
