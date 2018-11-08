@@ -144,9 +144,12 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
                                 if (matchAlojamiento(ialojamiento)){
                                     hotelMarkerOptions
                                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment_marker));
-                                    hotelMarkerOptions.title(ialojamiento.getNombre());
+                                    hotelMarkerOptions.title(
+                                            ialojamiento.getNombre() + "\n"+
+                                                    String.valueOf(ialojamiento.getDist()) + " km."
+                                    );
                                     hotelMarkerOptions.snippet(
-                                            String.valueOf(ialojamiento.getDist()) + " km."
+                                            ialojamiento.getId()
                                     );
                                     hotelMarkerOptions.position(
                                             new LatLng(ialojamiento.getUbicacion().getLatitude(),ialojamiento.getUbicacion().getLongitude())
@@ -237,9 +240,12 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
                                             if (matchAlojamiento(ialojamiento)){
                                                 hotelMarkerOptions
                                                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment_marker));
-                                                hotelMarkerOptions.title(ialojamiento.getNombre());
+                                                hotelMarkerOptions.title(
+                                                        ialojamiento.getNombre() + "\n"+
+                                                                String.valueOf(ialojamiento.getDist()) + " km."
+                                                );
                                                 hotelMarkerOptions.snippet(
-                                                        String.valueOf(ialojamiento.getDist()) + " km."
+                                                        ialojamiento.getId()
                                                 );
                                                 hotelMarkerOptions.position(
                                                         new LatLng(ialojamiento.getUbicacion().getLatitude(),ialojamiento.getUbicacion().getLongitude())
@@ -366,6 +372,19 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
             mMap.moveCamera(CameraUpdateFactory.zoomTo(14));
         }
         changeMap();
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker m) {
+                String uid = m.getSnippet();
+                if(uid!=null){
+                    //m.setSnippet("");
+                    Bundle b = new Bundle();
+                    b.putString("idAloj", uid);
+                    startActivity(new Intent(getApplicationContext(),HuespedInformacionAlojamientoActivity.class).putExtras(b));
+                }
+                return false;
+            }
+        });
     }
 
     @Override
