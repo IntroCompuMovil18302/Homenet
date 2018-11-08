@@ -14,10 +14,8 @@
             android:id="@+id/tipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
-            android:layout_marginLeft="68dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:text="Tipo"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
@@ -25,7 +23,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/spTipoAPA" />
+            app:layout_constraintTop_toTopOf="@+id/spTipoAPA"
+            app:layout_constraintVertical_bias="0.437" />
 
         <TextView
             android:id="@+id/textView50"
@@ -35,7 +34,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/btUbicacionAPA"
-            app:layout_constraintEnd_toEndOf="@+id/textView51"
+            app:layout_constraintStart_toStartOf="@+id/textView51"
             app:layout_constraintTop_toTopOf="@+id/btUbicacionAPA" />
 
         <TextView
@@ -46,7 +45,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/tvDIreccionAPA"
-            app:layout_constraintEnd_toEndOf="@+id/textView50"
+            app:layout_constraintStart_toStartOf="@+id/textView50"
             app:layout_constraintTop_toTopOf="@+id/tvDIreccionAPA" />
 
 
@@ -58,7 +57,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/etValorAPA"
-            app:layout_constraintEnd_toEndOf="@+id/textView48"
+            app:layout_constraintStart_toStartOf="@+id/textView48"
             app:layout_constraintTop_toTopOf="@+id/etValorAPA" />
 
         <TextView
@@ -69,18 +68,16 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/etDescripcionAPA"
-            app:layout_constraintEnd_toEndOf="@+id/textView75"
+            app:layout_constraintStart_toStartOf="@+id/textView75"
             app:layout_constraintTop_toTopOf="@+id/etDescripcionAPA" />
 
         <Spinner
             android:id="@+id/spTipoAPA"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="65dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tipo"
             app:layout_constraintTop_toBottomOf="@+id/textView54" />
@@ -90,7 +87,7 @@
             android:layout_width="70dp"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
-            android:background="@mipmap/location1"
+            android:background="@drawable/map"
             android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="@+id/etValorAPA"
             app:layout_constraintTop_toBottomOf="@+id/etValorAPA" />
@@ -148,8 +145,9 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/etNombreAPA"
-            app:layout_constraintEnd_toEndOf="@+id/tipo"
-            app:layout_constraintTop_toTopOf="@+id/etNombreAPA" />
+            app:layout_constraintStart_toStartOf="@+id/tipo"
+            app:layout_constraintTop_toTopOf="@+id/etNombreAPA"
+            app:layout_constraintVertical_bias="0.476" />
 
         <EditText
             android:id="@+id/etNombreAPA"
