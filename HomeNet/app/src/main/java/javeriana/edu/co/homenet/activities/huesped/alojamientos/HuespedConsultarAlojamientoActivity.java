@@ -163,7 +163,7 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                 return false;
             }
         }
-        return false;
+        return true;
     }
 
     @Override

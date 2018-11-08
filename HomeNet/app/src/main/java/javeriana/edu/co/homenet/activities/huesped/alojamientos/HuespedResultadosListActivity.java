@@ -106,7 +106,6 @@ public class HuespedResultadosListActivity extends AppCompatActivity {
 
         requestPermission(this, Manifest.permission.ACCESS_FINE_LOCATION,
                 "Se necesita acceder a los ubicacion", MY_PERMISSIONS_REQUEST_LOCATION);
-        turnLocation();
 
         if (!bundle.get("lugar").toString().equals("")) {
             try {
@@ -176,6 +175,8 @@ public class HuespedResultadosListActivity extends AppCompatActivity {
                 }
             }
         };
+
+        turnLocation();
 
     }
 

@@ -123,7 +123,7 @@ public class Alojamiento{
         Date fi;
         Date ff;
         if(fechaInicio==""){
-            fi = DateFormater.stringToDate("01/01/1900");
+            fi = DateFormater.today();
         }
         else{
             fi = DateFormater.stringToDate(fechaInicio);

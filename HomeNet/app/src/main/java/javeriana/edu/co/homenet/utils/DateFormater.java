@@ -24,4 +24,9 @@ public final class DateFormater {
         calendar.setTime(date);   // assigns calendar to given date
         return calendar.get(Calendar.HOUR_OF_DAY); // 24 hour format
     }
+
+    public static Date today(){
+        Date date = new Date();
+        return date; //2016/11/16 12:08:43
+    }
 }
