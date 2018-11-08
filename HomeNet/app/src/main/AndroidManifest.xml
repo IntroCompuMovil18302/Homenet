@@ -44,13 +44,13 @@
             android:name=".activities.guia.GuiaHistorialServiciosActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.guia.GuiaCrearAnuncioActivity"
+            android:name=".activities.guia.GuiaCrearAnuncioParadaActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.guia.GuiaEditarAnuncioActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.guia.GuiaSolicitudesServiciosActivity"
+            android:name=".activities.guia.GuiaEditarAnuncioDetalleActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.guia.GuiaVerHuespedActivity"
@@ -116,6 +116,9 @@
             android:name=".activities.huesped.guias.HuespedVerTourActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.huesped.guias.HuespedVerRecorridoDetalleActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.anfitrion.AnfitrionDetalleAlojamientoActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -136,6 +139,8 @@
         <activity
             android:name=".activities.huesped.alojamientos.HuespedConsultarPorFechaActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activities.guia.GuiaCrearAnuncioBasicInfoActivity" />
+        <activity android:name=".activities.guia.GuiaCrearAnuncioDetalleActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -149,11 +154,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".HuespedResultadosMapActivity"
-            android:label="@string/title_activity_huesped_resultados_map"></activity>
+            android:name=".activities.huesped.alojamientos.HuespedResultadosMapActivity"
+            android:label="@string/title_activity_huesped_resultados_map" />
 
-        <activity android:name=".activities.anfitrion.AnfitrionPublicarAlojamientoImgActivity"></activity>
-        <activity android:name=".activities.anfitrion.AnfitrionPublicarDisponibilidadActivity"></activity>
+        <activity android:name=".activities.anfitrion.AnfitrionPublicarAlojamientoImgActivity" />
+        <activity android:name=".activities.anfitrion.AnfPubDisponibilidadActivity" />
+
+        <activity android:name=".activities.huesped.alojamientos.HuespedResultadosListActivity" />
     </application>
 
 </manifest>

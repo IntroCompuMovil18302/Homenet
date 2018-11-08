@@ -35,7 +35,7 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
         buttonAddAnuncioGuia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), GuiaCrearAnuncioActivity.class));
+                startActivity(new Intent(view.getContext(), GuiaCrearAnuncioParadaActivity.class));
             }
         });
 
@@ -69,8 +69,6 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
             Intent intent = new Intent(GuiaPrincipalActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-        }else if (itemClicked == R.id.menuSettings){
-            //Abrir actividad para configuración etc
         }
         return super.onOptionsItemSelected(item);
     }
