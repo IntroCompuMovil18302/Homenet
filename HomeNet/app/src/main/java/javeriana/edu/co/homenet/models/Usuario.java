@@ -14,7 +14,7 @@ public class Usuario {
     private String correo;
     private String nacionalidad;
     private String sexo;
-    private List<String> servicios=new ArrayList<String>();
+    private List<String> alojamientos=new ArrayList<String>();
 
     public Usuario() {}
 
@@ -27,6 +27,7 @@ public class Usuario {
         this.correo = correo;
         this.nacionalidad = nacionalidad;
         this.sexo = sexo;
+        this.alojamientos= new ArrayList<String>();
     }
 
     public String getId() {
@@ -93,14 +94,14 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public List<String> getServicios() {
-        return servicios;
+    public List<String> getAlojamientos() {
+        return alojamientos;
     }
 
-    public void setServicios(List<String> servicios) {
-        this.servicios = servicios;
+    public void setAlojamientos(List<String> alojamientos) {
+        this.alojamientos = alojamientos;
     }
     public void agregarElemento(String id){
-        this.servicios.add(id);
+        this.alojamientos.add(id);
     }
 }
