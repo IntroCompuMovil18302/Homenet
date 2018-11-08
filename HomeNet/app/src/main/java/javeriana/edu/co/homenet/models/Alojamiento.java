@@ -16,7 +16,7 @@ public class Alojamiento implements Serializable{
     private String tipo;
     private String descripcion;
     private String nombre;
-
+    private String idUsuario;
     private double dist;
 
     // relaciones
@@ -117,6 +117,14 @@ public class Alojamiento implements Serializable{
 
     public void setDist(double dist) {
         this.dist = dist;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public boolean estaDisponible(String fechaInicio, String fechaFin){

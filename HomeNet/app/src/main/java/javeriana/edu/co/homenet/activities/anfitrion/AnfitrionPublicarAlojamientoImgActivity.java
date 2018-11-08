@@ -26,8 +26,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -38,7 +41,7 @@ import java.util.Random;
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.adapters.ImagenAnfitrionAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
-import me.relex.circleindicator.CircleIndicator;
+import javeriana.edu.co.homenet.models.Usuario;
 
 public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
 
@@ -54,7 +57,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
     String referenciaUrl = "";
     List<String> imgUri = new ArrayList<String>();
     int subidos;
-
+    Usuario usr;
     List<String> listaImagenes = new ArrayList<String>();;
     Button agregarImg;
     Button siguiente;
@@ -66,7 +69,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anfitrion_publicar_alojamiento_img);
 
-        //mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         nProgressDialog = new ProgressDialog(AnfitrionPublicarAlojamientoImgActivity.this);
         mDataBase = FirebaseDatabase.getInstance().getReference("Alojamientos");
         mStorage =FirebaseStorage.getInstance().getReference("ImagenesAlojamientos");
@@ -100,8 +103,6 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                 }
                 imgAnfAdapter = new ImagenAnfitrionAdapter(AnfitrionPublicarAlojamientoImgActivity.this,this.listaImagenes);
                 viewPager.setAdapter(imgAnfAdapter);
-                CircleIndicator indicator = (CircleIndicator)findViewById(R.id.ciImagenesAlojAPA);
-                //indicator.setViewPager(viewPager);
                 //Toast.makeText(this, "Se subieron los archivos", Toast.LENGTH_SHORT).show();
             }else if(data.getData()!=null){
                 Uri uri = data.getData();
@@ -206,6 +207,9 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
         }
     }
     public void subirAlojamiento(){
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+        alojamiento.setIdUsuario(uid);
         alojamiento.setUrlImgs(imgUri);
         //FirebaseUser user = mAuth.getCurrentUser();
         Random random = new Random();
@@ -220,6 +224,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                     nProgressDialog.dismiss();
                     Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Se ha publicado el servicio", Toast.LENGTH_SHORT).show();
                     //infoActualUsuario(idServicio,ususerv);
+                    agregarDatosUsuarioServicio(alojamiento.getId());
 
                 }
                 else{
@@ -229,6 +234,33 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
 
             }
 
+        });
+    }
+    public void agregarDatosUsuarioServicio(final String idAloja){
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null){
+                    usr = dataSnapshot.getValue(Usuario.class);
+                    usr.agregarElemento(idAloja);
+                    mDataBase.child(mAuth.getCurrentUser().getUid()).setValue(usr);
+                    Intent intent = new Intent(AnfitrionPublicarAlojamientoImgActivity.this,AnfitrionMenuActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+                else{
+                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "No se encontro un usuario para asociar el alojamiento", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
         });
     }
 }
