@@ -10,7 +10,6 @@ import javeriana.edu.co.homenet.R;
 
 public class GuiaHistorialServiciosActivity extends AppCompatActivity {
 
-    Button buttonCalificarUsuarioHistServGuia;
     Button buttonVolverHistServGuia;
     Button buttonHomeHistServGuia;
 
@@ -19,13 +18,6 @@ public class GuiaHistorialServiciosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guia_historial_servicios);
 
-        buttonCalificarUsuarioHistServGuia = (Button) findViewById(R.id.buttonCalificarUsuarioHistServGuia);
-        buttonCalificarUsuarioHistServGuia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), GuiaCalificarHuespedActivity.class));
-            }
-        });
 
         buttonVolverHistServGuia = (Button) findViewById(R.id.buttonVolverHistServGuia);
         buttonVolverHistServGuia.setOnClickListener(new View.OnClickListener() {

@@ -43,19 +43,16 @@
             android:name=".activities.guia.GuiaHistorialServiciosActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.guia.GuiaCrearAnuncioActivity"
+            android:name=".activities.guia.GuiaCrearAnuncioParadaActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.guia.GuiaEditarAnuncioActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.guia.GuiaEditarAnuncioParadaActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.guia.GuiaSolicitudesServiciosActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.guia.GuiaVerHuespedActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.guia.GuiaCalificarHuespedActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.anfitrion.AnfitrionMenuActivity"
@@ -135,6 +132,8 @@
         <activity
             android:name=".activities.huesped.alojamientos.HuespedConsultarPorFechaActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activities.guia.GuiaCrearAnuncioBasicInfoActivity" />
+        <activity android:name=".activities.guia.GuiaCrearAnuncioDetalleActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

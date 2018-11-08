@@ -8,21 +8,21 @@ import android.widget.Button;
 
 import javeriana.edu.co.homenet.R;
 
-public class GuiaEditarAnuncioActivity extends AppCompatActivity {
+public class GuiaCrearAnuncioBasicInfoActivity extends AppCompatActivity {
 
     Button siguiente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guia_editar_anuncio_basic_info);
+        setContentView(R.layout.activity_guia_crear_anuncio_basic_info);
 
-        siguiente = (Button) findViewById(R.id.btSiguienteGEABA);
+        siguiente = findViewById(R.id.btSiguienteGCABA);
 
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), GuiaEditarAnuncioParadaActivity.class));
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(),GuiaCrearAnuncioParadaActivity.class));
             }
         });
     }
