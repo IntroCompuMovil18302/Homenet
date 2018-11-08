@@ -86,6 +86,7 @@ public class HuespedInformacionAlojamientoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(HuespedInformacionAlojamientoActivity.this,HuespedConsultarDisponibilidadActivity.class);
+                intent.putExtra("idAloj",idAloj);
                 startActivity(intent);
             }
         });
