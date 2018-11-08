@@ -116,8 +116,10 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
+                                correo.setError("Correo incorrecto");
                                 correo.setText("");
                                 clave.setText("");
+                                clave.setError("Contraseña incorrecta");
                             }
                         }
                     });
