@@ -53,12 +53,6 @@
             android:name=".activities.guia.GuiaEditarAnuncioDetalleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.guia.GuiaVerHuespedActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.guia.GuiaCalificarHuespedActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.anfitrion.AnfitrionMenuActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -158,7 +152,7 @@
             android:label="@string/title_activity_huesped_resultados_map" />
 
         <activity android:name=".activities.anfitrion.AnfitrionPublicarAlojamientoImgActivity" />
-        <activity android:name=".activities.anfitrion.AnfPubDisponibilidadActivity" />
+        <activity android:name=".activities.anfitrion.AnfitrionPublicarDisponibilidadActivity" />
 
         <activity android:name=".activities.huesped.alojamientos.HuespedResultadosListActivity" />
     </application>
