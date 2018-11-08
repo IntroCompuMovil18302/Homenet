@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -128,6 +129,15 @@ public class HuespedResultadosListActivity extends AppCompatActivity {
                             }
                             AlojamientoAdapter adapter = new AlojamientoAdapter(HuespedResultadosListActivity.this, listAlojamiento);
                             resultadosBusqueda.setAdapter(adapter);
+                            resultadosBusqueda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    Bundle b = new Bundle();
+                                    b.putString("idAloj", listAlojamiento
+                                            .get(position).getId());
+                                    startActivity(new Intent(view.getContext(),HuespedInformacionAlojamientoActivity.class).putExtras(b));
+                                }
+                            });
                             Toast.makeText(HuespedResultadosListActivity.this, "Dirección encontrada", Toast.LENGTH_SHORT).show();
                         }
                         @Override
@@ -164,6 +174,15 @@ public class HuespedResultadosListActivity extends AppCompatActivity {
                                 }
                                 AlojamientoAdapter adapter = new AlojamientoAdapter(HuespedResultadosListActivity.this, listAlojamiento);
                                 resultadosBusqueda.setAdapter(adapter);
+                                resultadosBusqueda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Bundle b = new Bundle();
+                                        b.putString("idAloj", listAlojamiento
+                                                .get(position).getId());
+                                        startActivity(new Intent(view.getContext(),HuespedInformacionAlojamientoActivity.class).putExtras(b));
+                                    }
+                                });
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
