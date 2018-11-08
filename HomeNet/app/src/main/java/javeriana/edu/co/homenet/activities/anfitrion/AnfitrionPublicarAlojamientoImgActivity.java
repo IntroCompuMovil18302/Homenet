@@ -14,6 +14,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -39,6 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.adapters.ImagenAnfitrionAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Usuario;
@@ -266,5 +269,22 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(AnfitrionPublicarAlojamientoImgActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

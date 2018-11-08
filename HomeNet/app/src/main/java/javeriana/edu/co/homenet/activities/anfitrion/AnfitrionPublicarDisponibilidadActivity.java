@@ -7,32 +7,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.adapters.AnfPubAlojamientoAdapter;
 import javeriana.edu.co.homenet.fragment.AnfitrionDatePickerFragment;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Disponibilidad;
 
-public class AnfPubDisponibilidadActivity extends AppCompatActivity
+public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
     implements DatePickerDialog.OnDateSetListener{
 
     public static final int FLAG_START_DATE = 0;
     public static final int FLAG_END_DATE = 1;
     int flag;
+
+    private FirebaseAuth mAuth;
 
     ArrayList<Disponibilidad> disponibilidads;
     AnfPubAlojamientoAdapter adapterDispo;
@@ -54,6 +57,8 @@ public class AnfPubDisponibilidadActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_pub_disponibilidad);
         alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
+
+        mAuth = FirebaseAuth.getInstance();
 
         System.out.println("+++++++++"+alojamiento.getNombre());
         System.out.println("+++++++++"+alojamiento.getTipo());
@@ -204,5 +209,22 @@ public class AnfPubDisponibilidadActivity extends AppCompatActivity
         }
 
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(AnfitrionPublicarDisponibilidadActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
