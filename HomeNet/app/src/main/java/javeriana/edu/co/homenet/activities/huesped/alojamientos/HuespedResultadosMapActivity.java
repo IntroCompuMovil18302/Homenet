@@ -65,7 +65,7 @@ import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.utils.DateFormater;
 
-public class HuespedResultadosMapActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class HuespedResultadosMapActivity extends AppCompatActivity implements OnMapReadyCallback  {
 
     public static final String PATH_ALO="Alojamientos/";
     final static int MY_PERMISSIONS_REQUEST_LOCATION = 1;
@@ -118,7 +118,6 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
 
         requestPermission(this, Manifest.permission.ACCESS_FINE_LOCATION,
                 "Se necesita acceder a los ubicacion", MY_PERMISSIONS_REQUEST_LOCATION);
-        turnLocation();
 
         bundle = getIntent().getBundleExtra("bundle");
         if(bundle.get("distancia").toString().equals("")){
@@ -262,6 +261,9 @@ public class HuespedResultadosMapActivity extends AppCompatActivity implements O
                 }
             }
         };
+
+        turnLocation();
+
 
         buttonLocation = findViewById(R.id.btLocationHRM);
         buttonLocation.setOnClickListener(new View.OnClickListener() {
