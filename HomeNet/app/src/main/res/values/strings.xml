@@ -106,7 +106,7 @@
     <string name="VerHistRec">Ver historial recorridos</string>
     <string name="selecc">Seleccionar</string>
     <string name="publicar">Publicar</string>
-    <string name="escoger_imagenes">Sube las imagenes de tu servicio</string>
+    <string name="escoger_imagenes">Sube las imagenes de tu alojamiento</string>
 
     <string name="buscar_alojamientos_titulo">Buscar Alojamientos</string>
     <string name="hint_keyword_hca">¿Qué buscas?</string>
