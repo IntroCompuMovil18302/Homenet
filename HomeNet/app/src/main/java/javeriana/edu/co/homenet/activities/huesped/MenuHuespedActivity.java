@@ -16,6 +16,7 @@ import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.activities.guia.GuiasDisponiblesActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedConsultarAlojamientoActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedDetallesHistorialReservaActivity;
+import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedHistorialReservaActivity;
 import javeriana.edu.co.homenet.activities.huesped.guias.HuespedHistorialRecorridosActivity;
 
 public class MenuHuespedActivity extends AppCompatActivity {
@@ -50,7 +51,7 @@ public class MenuHuespedActivity extends AppCompatActivity {
         verHistorialReservas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),HuespedDetallesHistorialReservaActivity.class);
+                Intent intent = new Intent(v.getContext(),HuespedHistorialReservaActivity.class);
                 startActivity(intent);
             }
         });
