@@ -15,26 +15,31 @@
             android:id="@+id/textView52"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="164dp"
-            android:layout_marginTop="32dp"
-            android:text="Imagenes:"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:text="Imagenes"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btSubirImgAPA"
-            android:layout_width="130dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="152dp"
-            android:layout_marginTop="124dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="50dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Subir imagen"
             android:gravity="center"
+            android:text="Subir imagen"
             android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView52" />
+            app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -58,15 +63,17 @@
 
         <Button
             android:id="@+id/btSiguienteImgAPAI"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="536dp"
-            android:layout_marginEnd="148dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="50dp"
             android:background="@color/colorPrimaryDark"
             android:text="@string/publicar"
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
         <View
             android:id="@+id/divider3"

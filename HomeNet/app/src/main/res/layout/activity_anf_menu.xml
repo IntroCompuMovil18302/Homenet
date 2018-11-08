@@ -85,7 +85,7 @@
         android:layout_marginTop="28dp"
         android:text="Alojamientos publicados"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.348"
         app:layout_constraintStart_toStartOf="parent"
