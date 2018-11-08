@@ -26,12 +26,5 @@ public class GuiaSolicitudesServiciosActivity extends AppCompatActivity {
             }
         });
 
-        buttonImageUsuarioGuia = (Button) findViewById(R.id.buttonImageUsuarioGuia);
-        buttonImageUsuarioGuia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), GuiaVerHuespedActivity.class));
-            }
-        });
     }
 }
