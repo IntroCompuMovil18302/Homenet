@@ -1,5 +1,6 @@
 package javeriana.edu.co.homenet.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText correo;
     EditText clave;
 
+    private ProgressDialog nProgressDialog;
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase database;
@@ -55,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         iniciarSesion = findViewById(R.id.btLogInLA);
         correo = findViewById(R.id.etCorreoLA);
         clave = findViewById(R.id.etContrasenaLA);
+
+        nProgressDialog = new ProgressDialog(LoginActivity.this);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -93,6 +98,8 @@ public class LoginActivity extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nProgressDialog.setMessage("Iniciando sesión...");
+                nProgressDialog.show();
                 signInUser();
             }
         });
@@ -116,11 +123,15 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
+                                nProgressDialog.dismiss();
                                 correo.setError("Correo incorrecto");
                                 correo.setText("");
                                 clave.setText("");
                                 clave.setError("Contraseña incorrecta");
+                            }else{
+                                nProgressDialog.dismiss();
                             }
+
                         }
                     });
         }
