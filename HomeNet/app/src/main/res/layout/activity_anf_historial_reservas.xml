@@ -74,7 +74,7 @@
         android:layout_marginTop="28dp"
         android:text="Lista de reservas del alojamiento"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
