@@ -2,6 +2,7 @@ package javeriana.edu.co.homenet.activities.huesped;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -63,6 +64,8 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
     final static int REQUEST_CAMERA = 3;
     static final int REQUEST_IMAGE_CAPTURE = 4;
 
+    private ProgressDialog nProgressDialog;
+
     Button crearPerfilHuesped;
     EditText nombre;
     EditText edad;
@@ -83,6 +86,7 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
+        nProgressDialog = new ProgressDialog(CrearPerfilHuespedActivity.this);
 
         crearPerfilHuesped = findViewById(R.id.btCrearPerfilHuespedCPHA);
         nombre = findViewById(R.id.etNombreHuespedCPHA);
@@ -119,6 +123,8 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isETEmpty(nombre) && isETEmpty(edad) && isETEmpty(tel) && isETEmpty(nac)){
+                    nProgressDialog.setMessage("Creando el usuario...");
+                    nProgressDialog.show();
                     register(correo,clave);
                 }else{
                     nombre.setError("Complete el campo");
@@ -143,8 +149,12 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
                                 user.updateProfile(upcrb.build());
                                 saveUser();
                             }
+                            else{
+                                nProgressDialog.dismiss();
+                            }
                         }
                         if (!task.isSuccessful()) {
+                            nProgressDialog.dismiss();
                             Toast.makeText(CrearPerfilHuespedActivity.this, "Fallo autenticación"+ task.getException().toString(),
                                     Toast.LENGTH_SHORT).show();
                             Log.e("HomeNet", task.getException().getMessage());
@@ -173,6 +183,7 @@ public class CrearPerfilHuespedActivity extends AppCompatActivity {
                 sR.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        nProgressDialog.dismiss();
                         urlImage = uri;
                         Usuario nU = new Usuario(nombre.getText().toString(), urlImage.toString(),
                                 Integer.parseInt(edad.getText().toString()),
