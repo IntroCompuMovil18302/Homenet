@@ -39,7 +39,7 @@
             android:layout_margin="8dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
+            android:background="#D33838"
             android:text="Registrarse"
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"

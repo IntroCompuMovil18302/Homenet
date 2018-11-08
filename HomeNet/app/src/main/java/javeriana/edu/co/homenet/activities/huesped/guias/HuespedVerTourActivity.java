@@ -18,6 +18,7 @@ public class HuespedVerTourActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_huesped_ver_tour);
 
+        verRecorridos = findViewById(R.id.btVerRecorridosHVTA);
 
         verRecorridos.setOnClickListener(new View.OnClickListener() {
             @Override

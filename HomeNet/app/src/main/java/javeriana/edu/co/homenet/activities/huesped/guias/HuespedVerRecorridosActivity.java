@@ -19,6 +19,7 @@ public class HuespedVerRecorridosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_huesped_ver_recorridos);
 
+        detalle = findViewById(R.id.btDetalleParadaGCAPA);
 
         detalle.setOnClickListener(new View.OnClickListener() {
             @Override

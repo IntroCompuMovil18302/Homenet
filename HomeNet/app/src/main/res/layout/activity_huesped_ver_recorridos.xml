@@ -12,7 +12,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_gravity="center_horizontal">
 
         <TextView
             android:id="@+id/textRecorrido"
@@ -49,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
             android:background="@color/colorPrimaryDark"
             android:text="Detalles"
             android:textColor="@android:color/white"
