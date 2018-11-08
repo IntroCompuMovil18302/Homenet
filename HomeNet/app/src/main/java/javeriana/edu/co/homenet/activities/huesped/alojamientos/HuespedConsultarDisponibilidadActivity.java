@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,7 @@ import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Disponibilidad;
+import javeriana.edu.co.homenet.utils.DateFormater;
 import sun.bob.mcalendarview.MCalendarView;
 import sun.bob.mcalendarview.MarkStyle;
 
@@ -94,39 +96,67 @@ public class HuespedConsultarDisponibilidadActivity extends AppCompatActivity {
         for (Disponibilidad disp : ld ) {
             String[] fechaInicio = disp.getFechaInicio().split("/");
             String[] fechaFin = disp.getFechaFin().split("/");
-            marcasDias(fechaInicio, fechaFin);
+            marcasDias(fechaInicio, fechaFin, disp.getFechaInicio());
         }
     }
 
-    private void marcasDias (String[] fInicio, String[] fFin){
+    private void marcasDias (String[] fInicio, String[] fFin, String fI){
         int diaInicio = Integer.parseInt(fInicio[0]);
         int mesInicio = Integer.parseInt(fInicio[1]);
         int anioInicio = Integer.parseInt(fInicio[2]);
         int diaFin = Integer.parseInt(fFin[0]);
         int mesFin = Integer.parseInt(fFin[1]);
         int anioFin = Integer.parseInt(fFin[2]);
-        if (mesFin == mesInicio){
-            int difDias = diaFin - diaInicio;
-            for (int i = 0; i <= difDias ; i++){
-                calendarView.markDate(anioInicio,mesInicio,diaInicio+i);
+        if (DateFormater.stringToDate(fI).after(DateFormater.today())){
+            if (mesFin == mesInicio){
+                int difDias = diaFin - diaInicio;
+                for (int i = 0; i <= difDias ; i++){
+                    calendarView.markDate(anioInicio,mesInicio,diaInicio+i);
+                }
+            } else if (mesFin > mesInicio){
+                if (mesInicio == 1 || mesInicio == 3 || mesInicio == 5 || mesInicio == 7 ||
+                        mesInicio == 8 || mesInicio == 10 || mesInicio == 12) {
+                    for (int i = 0; i <= 31-diaInicio; i++) {
+                        calendarView.markDate(anioInicio, mesInicio, diaInicio+i);
+                    }
+                }else if(mesInicio == 4 || mesInicio == 6 || mesInicio == 9 || mesInicio == 11){
+                    for (int i = 0; i <= 31-diaInicio; i++) {
+                        calendarView.markDate(anioInicio, mesInicio, diaInicio+i);
+                    }
+                }else{
+                    for (int i = 0; i <= 28-diaInicio; i++) {
+                        calendarView.markDate(anioInicio, mesInicio, diaInicio+i);
+                    }
+                }
+                for (int i = 0; i <= diaFin ; i++){
+                    calendarView.markDate(anioInicio,mesFin,1+i);
+                }
             }
-        } else if (mesFin > mesInicio){
-            if (mesInicio == 1 || mesInicio == 3 || mesInicio == 5 || mesInicio == 7 ||
-                    mesInicio == 8 || mesInicio == 10 || mesInicio == 12) {
-                for (int i = 0; i <= 31-diaInicio; i++) {
-                    calendarView.markDate(anioInicio, mesInicio, diaInicio+i);
+        }else{
+            if (mesFin == mesInicio){
+                diaInicio = cal.get(Calendar.DAY_OF_MONTH);
+                int difDias = diaFin - diaInicio;
+                for (int i = 0; i <= difDias ; i++){
+                    calendarView.markDate(anioInicio,mesInicio,diaInicio+i);
                 }
-            }else if(mesInicio == 4 || mesInicio == 6 || mesInicio == 9 || mesInicio == 11){
-                for (int i = 0; i <= 31-diaInicio; i++) {
-                    calendarView.markDate(anioInicio, mesInicio, diaInicio+i);
+            } else if (mesFin > mesInicio){
+                if (mesInicio == 1 || mesInicio == 3 || mesInicio == 5 || mesInicio == 7 ||
+                        mesInicio == 8 || mesInicio == 10 || mesInicio == 12) {
+                    for (int i = 0; i <= 31-diaInicio; i++) {
+                        calendarView.markDate(anioInicio, mesInicio, diaInicio+i);
+                    }
+                }else if(mesInicio == 4 || mesInicio == 6 || mesInicio == 9 || mesInicio == 11){
+                    for (int i = 0; i <= 31-diaInicio; i++) {
+                        calendarView.markDate(anioInicio, mesInicio, diaInicio+i);
+                    }
+                }else{
+                    for (int i = 0; i <= 28-diaInicio; i++) {
+                        calendarView.markDate(anioInicio, mesInicio, diaInicio+i);
+                    }
                 }
-            }else{
-                for (int i = 0; i <= 28-diaInicio; i++) {
-                    calendarView.markDate(anioInicio, mesInicio, diaInicio+i);
+                for (int i = 0; i <= diaFin ; i++){
+                    calendarView.markDate(anioInicio,mesFin,1+i);
                 }
-            }
-            for (int i = 0; i <= diaFin ; i++){
-                calendarView.markDate(anioInicio,mesFin,1+i);
             }
         }
     }
