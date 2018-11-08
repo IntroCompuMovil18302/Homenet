@@ -51,11 +51,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <me.relex.circleindicator.CircleIndicator
-            android:id="@+id/ciImagenesAlojAPA"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
     <Button

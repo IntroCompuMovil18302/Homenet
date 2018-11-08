@@ -100,7 +100,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                 }
                 imgAnfAdapter = new ImagenAnfitrionAdapter(AnfitrionPublicarAlojamientoImgActivity.this,this.listaImagenes);
                 viewPager.setAdapter(imgAnfAdapter);
-                CircleIndicator indicator = (CircleIndicator)findViewById(R.id.ciImagenesAlojAPA);
+                //CircleIndicator indicator = (CircleIndicator)findViewById(R.id.ciImagenesAlojAPA);
                 //indicator.setViewPager(viewPager);
                 //Toast.makeText(this, "Se subieron los archivos", Toast.LENGTH_SHORT).show();
             }else if(data.getData()!=null){
