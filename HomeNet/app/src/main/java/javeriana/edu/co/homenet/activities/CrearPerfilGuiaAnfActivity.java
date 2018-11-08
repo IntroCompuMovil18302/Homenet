@@ -2,6 +2,7 @@ package javeriana.edu.co.homenet.activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -58,6 +59,8 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
     FirebaseStorage storage;
     private FirebaseAuth mAuth;
 
+    private ProgressDialog nProgressDialog;
+
     final static int REQUEST_GALLERY = 1;
     final static int IMAGE_PICKER_REQUEST = 2;
 
@@ -85,6 +88,7 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
+        nProgressDialog = new ProgressDialog(CrearPerfilGuiaAnfActivity.this);
 
         crearPerfilGuiaAnf = findViewById(R.id.btCrearPerfilGuiaAnfCPGA);
         nombre = findViewById(R.id.etNombreGuiaAnfCPGA);
@@ -120,6 +124,8 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isETEmpty(nombre) && isETEmpty(edad) && isETEmpty(tel) ){
+                    nProgressDialog.setMessage("Creando el usuario...");
+                    nProgressDialog.show();
                     register(correo,clave);
                 }else{
                     nombre.setError("Complete el campo");
@@ -146,6 +152,7 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
                             }
                         }
                         if (!task.isSuccessful()) {
+                            nProgressDialog.dismiss();
                             Toast.makeText(CrearPerfilGuiaAnfActivity.this, "Fallo autenticación"+ task.getException().toString(),
                                     Toast.LENGTH_SHORT).show();
                             Log.e("HomeNet", task.getException().getMessage());
@@ -179,6 +186,7 @@ public class CrearPerfilGuiaAnfActivity extends AppCompatActivity {
                                 tipoUsuario, correo, "", "");
                         myRef=database.getReference(PATH_USERS+user.getUid());
                         myRef.setValue(nU);
+                        nProgressDialog.dismiss();
                         if (tipoUsuario.equals("Guía")){
                             Intent intent = new Intent(CrearPerfilGuiaAnfActivity.this, GuiaPrincipalActivity.class);
                             startActivity(intent);
