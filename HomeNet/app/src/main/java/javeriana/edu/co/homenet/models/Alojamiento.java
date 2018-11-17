@@ -25,10 +25,28 @@ public class Alojamiento implements Serializable{
     private Ubicacion ubicacion;
     private List<Reserva> reservas;
 
+    //caracteristicas
+    private boolean aireAcondicionado;
+    private int area;
+    private int banios;
+    private boolean calefaccion;
+    private boolean camas ;
+    private int dormitorios ;
+    private List<String> electrodomesticos ;
+    private int huespedes ;
+    private boolean internet;
+    private boolean mascotas;
+    private String moneda ;
+    private List<String>muebles ;
+    private int parqueaderos;
+    private boolean television;
+
     public Alojamiento()
     {
         this.reservas = new ArrayList<Reserva>();
         this.disponibilidades = new ArrayList<Disponibilidad>();
+        this.electrodomesticos = new ArrayList<>();
+        this.muebles = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -125,6 +143,118 @@ public class Alojamiento implements Serializable{
 
     public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public boolean isAireAcondicionado() {
+        return aireAcondicionado;
+    }
+
+    public void setAireAcondicionado(boolean aireAcondicionado) {
+        this.aireAcondicionado = aireAcondicionado;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
+    }
+
+    public int getBanios() {
+        return banios;
+    }
+
+    public void setBanios(int banios) {
+        this.banios = banios;
+    }
+
+    public boolean isCalefaccion() {
+        return calefaccion;
+    }
+
+    public void setCalefaccion(boolean calefaccion) {
+        this.calefaccion = calefaccion;
+    }
+
+    public boolean isCamas() {
+        return camas;
+    }
+
+    public void setCamas(boolean camas) {
+        this.camas = camas;
+    }
+
+    public int getDormitorios() {
+        return dormitorios;
+    }
+
+    public void setDormitorios(int dormitorios) {
+        this.dormitorios = dormitorios;
+    }
+
+    public List<String> getElectrodomesticos() {
+        return electrodomesticos;
+    }
+
+    public void setElectrodomesticos(List<String> electrodomesticos) {
+        this.electrodomesticos = electrodomesticos;
+    }
+
+    public int getHuespedes() {
+        return huespedes;
+    }
+
+    public void setHuespedes(int huespedes) {
+        this.huespedes = huespedes;
+    }
+
+    public boolean isInternet() {
+        return internet;
+    }
+
+    public void setInternet(boolean internet) {
+        this.internet = internet;
+    }
+
+    public boolean isMascotas() {
+        return mascotas;
+    }
+
+    public void setMascotas(boolean mascotas) {
+        this.mascotas = mascotas;
+    }
+
+    public String getMoneda() {
+        return moneda;
+    }
+
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
+    }
+
+    public List<String> getMuebles() {
+        return muebles;
+    }
+
+    public void setMuebles(List<String> muebles) {
+        this.muebles = muebles;
+    }
+
+    public int getParqueaderos() {
+        return parqueaderos;
+    }
+
+    public void setParqueaderos(int parqueaderos) {
+        this.parqueaderos = parqueaderos;
+    }
+
+    public boolean isTelevision() {
+        return television;
+    }
+
+    public void setTelevision(boolean television) {
+        this.television = television;
     }
 
     public boolean estaDisponible(String fechaInicio, String fechaFin){
