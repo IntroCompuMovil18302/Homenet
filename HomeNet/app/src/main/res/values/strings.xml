@@ -22,7 +22,6 @@
     <string name="usersample">Usuario 1</string>
     <string name="hintresenah">Ingrese una reseña del usuario.</string>
     <string name="guardar">Guardar</string>
-    <string name="crearanuncio">Crear Anuncio</string>
     <string name="hintnombreanuncio">Ingrese el nombre de su anuncio.</string>
     <string name="hintdescrpanuncio">Describa su anuncio.</string>
     <string name="tarifa">Tarifa: </string>
@@ -46,7 +45,7 @@
     <string name="calificar">Calificar</string>
     <string name="solserv">Solicitudes Servicios</string>
     <string name="principal">Menú Principal</string>
-    <string name="anuncios">Mis Anuncios</string>
+
     <string name="comentario">Comentario...</string>
     <string name="hotel_budapest">Hotel Budapest</string>
     <string name="comentario_1">Fue una experiencia agradable</string>
@@ -114,6 +113,9 @@
     <string name="hint_end_date_hca">¿Hasta cuándo? (DD/MM/YYYY)</string>
     <string name="hint_distance_hca">¿Qué tan lejos?</string>
     <string name="hint_place_hca">¿Dónde?</string>
+
+    <string name="tours_title">Mis Toures</string>
+    <string name="new_tour">Nuevo tour</string>
 
     <string name="per_hight">por noche.</string>
     <string name="km">Km.</string>

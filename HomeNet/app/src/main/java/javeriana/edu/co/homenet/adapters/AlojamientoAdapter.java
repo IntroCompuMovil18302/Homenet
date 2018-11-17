@@ -31,9 +31,9 @@ public class AlojamientoAdapter  extends ArrayAdapter<Alojamiento> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_alojamiento_hca, parent, false);
         }
         // Lookup view for data population
-        TextView tvNombre = convertView.findViewById(R.id.tvNombreIA);
-        TextView tvDescripcion = convertView.findViewById(R.id.tvDescripcionIA);
-        TextView tvPrecio = convertView.findViewById(R.id.tvPrecioIA);
+        TextView tvNombre = convertView.findViewById(R.id.tvNombreITGP);
+        TextView tvDescripcion = convertView.findViewById(R.id.tvDescripcionITGP);
+        TextView tvPrecio = convertView.findViewById(R.id.tvPrecioITGP);
         TextView tvDist = convertView.findViewById(R.id.tvDistIA);
         // Populate the data into the template view using the data object
         tvNombre.setText(alojamiento.getNombre());

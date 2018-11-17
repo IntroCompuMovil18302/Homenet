@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
-import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
 
 public class GuiaPrincipalActivity extends AppCompatActivity {
 
@@ -47,7 +46,7 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
             }
         });
 
-        buttonSolServGuia = (Button) findViewById(R.id.buttonSolServGuia);
+        buttonSolServGuia = (Button) findViewById(R.id.btCrearTourGP);
         buttonSolServGuia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
