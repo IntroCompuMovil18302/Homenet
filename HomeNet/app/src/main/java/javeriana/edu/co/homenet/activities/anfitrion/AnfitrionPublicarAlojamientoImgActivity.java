@@ -225,7 +225,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                 //progressbar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
                     nProgressDialog.dismiss();
-                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Se ha publicado el servicio", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Se ha publicado el alojamiento", Toast.LENGTH_SHORT).show();
                     //infoActualUsuario(idServicio,ususerv);
                     agregarDatosUsuarioServicio(alojamiento.getId());
 
