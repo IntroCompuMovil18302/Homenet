@@ -24,6 +24,7 @@ public class Alojamiento implements Serializable{
     private List<Disponibilidad> disponibilidades;
     private Ubicacion ubicacion;
     private List<Reserva> reservas;
+    private List<String>opiniones;
 
     //caracteristicas
     private boolean aireAcondicionado;
@@ -255,6 +256,18 @@ public class Alojamiento implements Serializable{
 
     public void setTelevision(boolean television) {
         this.television = television;
+    }
+
+    public List<String> getOpiniones() {
+        return opiniones;
+    }
+
+    public void setOpiniones(List<String> opiniones) {
+        this.opiniones = opiniones;
+    }
+
+    public void agregarOpinion(String opinion){
+        this.opiniones.add(opinion);
     }
 
     public boolean estaDisponible(String fechaInicio, String fechaFin){
