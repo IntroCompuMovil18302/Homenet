@@ -16,6 +16,11 @@ public class Usuario {
     private String sexo;
     private List<String> alojamientos=new ArrayList<String>();
 
+    //Relaciones
+    private List<String>opinionesAlojamiento;
+    private List<String>opinionesGuia;
+    private List<String>reservas;
+
     public Usuario() {}
 
     public Usuario(String nombre, String urlImg, int edad, String tipoUsuario, String correo,
@@ -101,6 +106,8 @@ public class Usuario {
     public void setAlojamientos(List<String> alojamientos) {
         this.alojamientos = alojamientos;
     }
+    
+
     public void agregarElemento(String id){
         this.alojamientos.add(id);
     }

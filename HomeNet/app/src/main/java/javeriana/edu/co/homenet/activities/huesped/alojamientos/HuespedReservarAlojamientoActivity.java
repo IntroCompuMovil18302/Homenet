@@ -43,6 +43,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
     boolean fechaInicial=false;
     boolean fechaFinal=false;
     DateData fechaDesde ;
+    DateData fechaHasta;
     Bundle bundle;
     List<DateData> disponibles= new ArrayList<>();
     Alojamiento alojamiento;
@@ -97,12 +98,27 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                         fechaFinal=false;
                         desde.setText("");
                         hasta.setText("");
+                        calendario.unMarkDate(fechaDesde);
+                        calendario.unMarkDate(fechaHasta);
+                        calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.BACKGROUND,Color.GREEN));
+                        calendario.markDate(fechaHasta.setMarkStyle(MarkStyle.BACKGROUND,Color.GREEN));
                     }
                     if(!fechaInicial){
                         fechaInicial=true;
                         fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
                         desde.setText(fecha);
+                        calendario.unMarkDate(date);
+                        if(fechaDesde!=null){
+                            calendario.unMarkDate(fechaDesde);
+                            calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.BACKGROUND,Color.GREEN));
+                            if(fechaHasta!=null){
+                                calendario.unMarkDate(fechaHasta);
+                                calendario.markDate(fechaHasta.setMarkStyle(MarkStyle.BACKGROUND,Color.GREEN));
+                            }
+                        }
                         fechaDesde=date;
+                        calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.DOT,Color.GREEN));
+
                     }else if(!fechaFinal){
                         int diaDesde=fechaDesde.getDay();
                         int mesDesde=fechaDesde.getMonth();
@@ -114,9 +130,16 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                             fechaFinal=true;
                             fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
                             hasta.setText(fecha);
+                            fechaHasta=date;
+                            calendario.markDate(fechaHasta.setMarkStyle(MarkStyle.DOT,Color.GREEN));
                         }else{
                             fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
                             desde.setText(fecha);
+                            calendario.unMarkDate(fechaDesde);
+                            calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.BACKGROUND,Color.GREEN));
+                            fechaDesde=date;
+                            calendario.unMarkDate(fechaDesde);
+                            calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.DOT,Color.GREEN));
                         }
                     }
                 }

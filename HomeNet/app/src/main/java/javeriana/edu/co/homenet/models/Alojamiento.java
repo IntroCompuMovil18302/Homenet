@@ -24,6 +24,7 @@ public class Alojamiento implements Serializable{
     private List<Disponibilidad> disponibilidades;
     private Ubicacion ubicacion;
     private List<Reserva> reservas;
+    private List<String> opiniones;
 
     //caracteristicas
     private boolean aireAcondicionado;
@@ -45,8 +46,8 @@ public class Alojamiento implements Serializable{
     {
         this.reservas = new ArrayList<Reserva>();
         this.disponibilidades = new ArrayList<Disponibilidad>();
-        this.electrodomesticos = new ArrayList<>();
-        this.muebles = new ArrayList<>();
+        this.electrodomesticos = new ArrayList<String>();
+        this.muebles = new ArrayList<String>();
     }
 
     public String getNombre() {
