@@ -111,4 +111,38 @@ public class Usuario {
     public void agregarElemento(String id){
         this.alojamientos.add(id);
     }
+
+    public List<String> getOpinionesAlojamiento() {
+        return opinionesAlojamiento;
+    }
+
+    public void setOpinionesAlojamiento(List<String> opinionesAlojamiento) {
+        this.opinionesAlojamiento = opinionesAlojamiento;
+    }
+
+    public List<String> getOpinionesGuia() {
+        return opinionesGuia;
+    }
+
+    public void setOpinionesGuia(List<String> opinionesGuia) {
+        this.opinionesGuia = opinionesGuia;
+    }
+
+    public List<String> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<String> reservas) {
+        this.reservas = reservas;
+    }
+
+    public void agregarOpinionAlojamiento(String opinionAloja){
+        this.opinionesAlojamiento.add(opinionAloja);
+    }
+    public void agregarOpinionGuia(String opinionGuia){
+        this.opinionesGuia.add(opinionGuia);
+    }
+    public void agregarReserva(String reserva){
+        this.reservas.add(reserva);
+    }
 }
