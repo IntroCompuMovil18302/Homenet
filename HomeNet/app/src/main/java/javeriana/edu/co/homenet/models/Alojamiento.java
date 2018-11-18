@@ -130,6 +130,10 @@ public class Alojamiento implements Serializable{
         this.reservas = reservas;
     }
 
+    public void agregarReserva(Reserva reserva){
+        this.reservas.add(reserva);
+    }
+
     public double getDist() {
         return dist;
     }
