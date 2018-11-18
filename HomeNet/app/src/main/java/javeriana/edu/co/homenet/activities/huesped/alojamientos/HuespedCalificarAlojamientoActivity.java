@@ -29,9 +29,11 @@ import java.util.Random;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.anfitrion.AnfitrionPublicarAlojamientoImgActivity;
+import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
 import javeriana.edu.co.homenet.adapters.ImagenAnfitrionAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.OpinionAlojamiento;
+import javeriana.edu.co.homenet.models.Usuario;
 
 public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
     Button publicar;
@@ -84,34 +86,6 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
         imgAnfAdapter = new ImagenAnfitrionAdapter(HuespedCalificarAlojamientoActivity.this,this.listaImagenes);
         viewPager.setAdapter(imgAnfAdapter);
     }
-    public void subirCalificacion(){
-        FirebaseUser user = mAuth.getCurrentUser();
-        Random random = new Random();
-        int numRandom = random.nextInt(1000)+1;
-        final String idOpinionAlojamiento = "OpinionAlojamiento "+String.valueOf(numRandom)+String.valueOf(System.currentTimeMillis());
-        String uid = user.getUid();
-        OpinionAlojamiento opinion;
-        opinion = new OpinionAlojamiento(bundle.getString("idServ"),rating.getNumStars(),comentario.getText().toString(),uid);
-        FirebaseDatabase.getInstance().getReference("OpinionesAlojamiento").child(idOpinionAlojamiento).setValue(opinion).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                //progressbar.setVisibility(View.GONE);
-                if(task.isSuccessful()){
-                    nProgressDialog.dismiss();
-                    Toast.makeText(HuespedCalificarAlojamientoActivity.this, "Se ha publicado el alojamiento", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(HuespedCalificarAlojamientoActivity.this,HuespedHistorialReservaActivity.class);
-                    startActivity(intent);
-                    //infoActualUsuario(idServicio,ususerv);
-                }
-                else{
-                    nProgressDialog.dismiss();
-                    Toast.makeText( HuespedCalificarAlojamientoActivity.this,"Hubo un error al crear un servicio", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-        });
-    }
     private void findAloj (final String idAloj) {
         mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -128,6 +102,87 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.w("Firebase database", "error en la consulta", databaseError.toException());
+            }
+        });
+    }
+    public void subirCalificacion(){
+        FirebaseUser user = mAuth.getCurrentUser();
+        Random random = new Random();
+        int numRandom = random.nextInt(1000)+1;
+        final String idOpinionAlojamiento = "OpinionAlojamiento "+String.valueOf(numRandom)+String.valueOf(System.currentTimeMillis());
+        String uid = user.getUid();
+        OpinionAlojamiento opinion;
+        opinion = new OpinionAlojamiento(bundle.getString("idServ"),rating.getNumStars(),comentario.getText().toString(),uid);
+        FirebaseDatabase.getInstance().getReference("OpinionesAlojamiento").child(idOpinionAlojamiento).setValue(opinion).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                //progressbar.setVisibility(View.GONE);
+                if(task.isSuccessful()){
+                    actualizarUsuario(idOpinionAlojamiento);
+                }
+                else{
+                    nProgressDialog.dismiss();
+                    Toast.makeText( HuespedCalificarAlojamientoActivity.this,"Hubo un error al crear un servicio", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+        });
+    }
+    public void actualizarUsuario(final String idOpinion){
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+        mDataBase = FirebaseDatabase.getInstance().getReference("users");
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null){
+                    Usuario usr = dataSnapshot.getValue(Usuario.class);
+                    usr.agregarOpinionAlojamiento(idOpinion);
+                    mDataBase.child(mAuth.getCurrentUser().getUid()).setValue(usr);
+                    actualizarAlojamiento(idOpinion);
+
+                }
+                else{
+                    nProgressDialog.dismiss();
+                    Toast.makeText(HuespedCalificarAlojamientoActivity.this, "No se encontro un usuario para asociar la opinion", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+    public void actualizarAlojamiento(final String idOpinion){
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+        mDataBase = FirebaseDatabase.getInstance().getReference("Alojamiento");
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Alojamiento").child(alojamiento.getId());
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null){
+                    Alojamiento aloja = dataSnapshot.getValue(Alojamiento.class);
+                    aloja.agregarOpinion(idOpinion);
+                    mDataBase.child(alojamiento.getId()).setValue(aloja);
+                    nProgressDialog.dismiss();
+                    Toast.makeText(HuespedCalificarAlojamientoActivity.this, "Se ha publicado la calificación del alojamiento", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HuespedCalificarAlojamientoActivity.this,MenuHuespedActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+                else{
+                    Toast.makeText(HuespedCalificarAlojamientoActivity.this, "No se encontro un alojamiento para asociar la opinion", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }
