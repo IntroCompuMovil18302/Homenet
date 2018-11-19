@@ -14,7 +14,7 @@ public class Usuario {
     private String correo;
     private String nacionalidad;
     private String sexo;
-    private List<String> alojamientos=new ArrayList<String>();
+    private List<Boolean> alojamientos=new ArrayList<Boolean>();
 
     //Relaciones
     private List<String>opinionesAlojamiento;
@@ -32,7 +32,7 @@ public class Usuario {
         this.correo = correo;
         this.nacionalidad = nacionalidad;
         this.sexo = sexo;
-        this.alojamientos= new ArrayList<String>();
+        this.alojamientos= new ArrayList<Boolean>();
     }
 
     public String getId() {
@@ -99,16 +99,16 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public List<String> getAlojamientos() {
+    public List<Boolean> getAlojamientos() {
         return alojamientos;
     }
 
-    public void setAlojamientos(List<String> alojamientos) {
+    public void setAlojamientos(List<Boolean> alojamientos) {
         this.alojamientos = alojamientos;
     }
     
 
-    public void agregarElemento(String id){
+    public void agregarElemento(Boolean id){
         this.alojamientos.add(id);
     }
 
