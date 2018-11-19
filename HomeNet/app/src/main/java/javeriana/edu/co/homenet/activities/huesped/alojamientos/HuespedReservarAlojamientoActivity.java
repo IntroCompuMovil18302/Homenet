@@ -55,6 +55,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
     DateData fechaHasta;
     Bundle bundle;
     List<DateData> disponibles= new ArrayList<>();
+    List<DateData> resultadosProximosDias = new ArrayList<>();
     Alojamiento alojamiento;
     Reserva reserva;
     private FirebaseAuth mAuth;
@@ -78,6 +79,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
 
 
         bundle= getIntent().getExtras();
+        //findAloj(bundle.getString("idAloj"));
         findAloj(bundle.getString("idAloj"));
         ver_ruta.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -103,8 +105,22 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             @Override
             public void onDateClick(View view, DateData date) {
                 String fecha ="";
-                if(!disponibles.contains(date)){
+                System.out.println("Esto es fechaInicial ------------------------------> "+fechaInicial);
+                System.out.println("Esto es fechaFinal ---------------------------------> "+fechaFinal);
+                /*System.out.println("Tam de disponibles ------------------------------> "+disponibles.size());
+                System.out.println("Cliquee este "+date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear()));
+                for(int i=0;i<disponibles.size();i++){
+                    System.out.println("En la lista estoy en ----------------------------------> "+disponibles.get(i).getDayString()+"/"+disponibles.get(i).getMonthString()+"/"+String.valueOf(disponibles.get(i).getYear()));
+                    if(disponibles.get(i).equals(date)){
+                        System.out.println("Hay uno igual <------------------>");
+                    }
+                }
+                System.out.println("Mirar el contains -------------------> "+disponibles.contains(date));
+                */
+
+                if(disponibles.contains(date)){
                     if(fechaInicial && fechaFinal){
+                        System.out.println("Entro fecha inicial y final son true ------------------------------> ");
                         fechaInicial=false;
                         fechaFinal=false;
                         desde.setText("");
@@ -116,6 +132,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                         precio.setText("");
                     }
                     if(!fechaInicial){
+                        System.out.println("Entro fechaInicial es false------------------------------------> ");
                         fechaInicial=true;
                         fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
                         desde.setText(fecha);
@@ -129,33 +146,87 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                             }
                         }
                         fechaDesde=date;
+                        proximoDiaDisponible(fechaDesde);
                         calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.DOT,Color.GREEN));
                         precio.setText("");
 
                     }else if(!fechaFinal){
+                        System.out.println("Entro fechaFinal es false---------------------------------------->");
                         int diaDesde=fechaDesde.getDay();
                         int mesDesde=fechaDesde.getMonth();
                         int anioDesde=fechaDesde.getYear();
                         int diaSelec=date.getDay();
                         int mesSelec=date.getMonth();
                         int anioSelec=date.getYear();
-                        if((diaDesde<diaSelec) && (mesDesde<mesSelec) && (anioDesde<anioSelec)){
-                            fechaFinal=true;
-                            fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
-                            hasta.setText(fecha);
-                            fechaHasta=date;
-                            calendario.markDate(fechaHasta.setMarkStyle(MarkStyle.DOT,Color.GREEN));
-                            long precioTotal = calcularPrecio(calcularDias(diaDesde,fechaHasta.getDay(),mesDesde,fechaHasta.getMonth(),anioDesde,fechaHasta.getYear()));
-                            precio.setText(String.valueOf(precioTotal));
-                        }else{
-                            fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
-                            desde.setText(fecha);
-                            calendario.unMarkDate(fechaDesde);
-                            calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.BACKGROUND,Color.GREEN));
-                            fechaDesde=date;
-                            calendario.unMarkDate(fechaDesde);
-                            calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.DOT,Color.GREEN));
-                            precio.setText("");
+                        System.out.println("Dia selec--------------> "+date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear()));
+                        System.out.println("Dia desde --------------->  "+diaDesde+"/"+mesDesde+"/"+anioDesde);
+                        if(anioDesde<anioSelec){
+                            if(resultadosProximosDias.contains(date)){
+                                System.out.println("Entro cuando el seleccionado es mayor al anterior  --------------> ");
+                                fechaFinal=true;
+                                fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
+                                hasta.setText(fecha);
+                                fechaHasta=date;
+                                calendario.unMarkDate(fechaHasta);
+                                calendario.markDate(fechaHasta.setMarkStyle(MarkStyle.DOT,Color.GREEN));
+                                long precioTotal = calcularPrecio(calcularDias(diaDesde,fechaHasta.getDay(),mesDesde,fechaHasta.getMonth(),anioDesde,fechaHasta.getYear()));
+                                precio.setText(String.valueOf(precioTotal));
+                            }else{
+                                fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
+                                desde.setText(fecha);
+                                fechaFinal=false;
+                                fechaInicial=true;
+                                calendario.unMarkDate(fechaDesde);
+                                calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.BACKGROUND,Color.GREEN));
+                                fechaDesde=date;
+                                calendario.unMarkDate(fechaDesde);
+                                calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.DOT,Color.GREEN));
+                                proximoDiaDisponible(fechaDesde);
+
+                                //Toast.makeText(HuespedReservarAlojamientoActivity.this, "Seleccione la ultima fecha dentro del rango aceptable", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                        else{
+                            if((diaDesde<diaSelec) && (mesDesde<=mesSelec)){
+                                if(resultadosProximosDias.contains(date)){
+                                    System.out.println("Entro cuando el seleccionado es mayor al anterior  --------------> ");
+                                    fechaFinal=true;
+                                    fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
+                                    hasta.setText(fecha);
+                                    fechaHasta=date;
+                                    calendario.unMarkDate(fechaHasta);
+                                    calendario.markDate(fechaHasta.setMarkStyle(MarkStyle.DOT,Color.GREEN));
+                                    long precioTotal = calcularPrecio(calcularDias(diaDesde,fechaHasta.getDay(),mesDesde,fechaHasta.getMonth(),anioDesde,fechaHasta.getYear()));
+                                    precio.setText(String.valueOf(precioTotal));
+                                }else{
+                                    fechaFinal=false;
+                                    fechaInicial=true;
+                                    fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
+                                    desde.setText(fecha);
+                                    calendario.unMarkDate(fechaDesde);
+                                    calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.BACKGROUND,Color.GREEN));
+                                    fechaDesde=date;
+                                    calendario.unMarkDate(fechaDesde);
+                                    calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.DOT,Color.GREEN));
+                                    proximoDiaDisponible(fechaDesde);
+                                    //Toast.makeText(HuespedReservarAlojamientoActivity.this, "Seleccione la ultima fecha dentro del rango aceptable", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }else{
+                                System.out.println("Entro cuando el dia seleccionado es menor al anterior--------------->");
+                                fecha = date.getDayString()+"/"+date.getMonthString()+"/"+String.valueOf(date.getYear());
+                                desde.setText(fecha);
+                                calendario.unMarkDate(fechaDesde);
+                                calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.BACKGROUND,Color.GREEN));
+                                fechaDesde=date;
+                                calendario.unMarkDate(fechaDesde);
+                                calendario.markDate(fechaDesde.setMarkStyle(MarkStyle.DOT,Color.GREEN));
+                                precio.setText("");
+                                fechaInicial=true;
+                                fechaFinal=false;
+                                proximoDiaDisponible(fechaDesde);
+                            }
                         }
                     }
                 }
@@ -239,15 +310,21 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         int diaFinal = Integer.parseInt(fechaFin[0]);
         int mesFinal = Integer.parseInt(fechaFin[1]);
         int anioFinal = Integer.parseInt(fechaFin[2]);
+        System.out.println("FECHA DE INICIO ----------------------------------> "+fechaInicio[0]+"/"+fechaInicio[1]+"/"+fechaInicio[2]);
+        System.out.println("FECHA DE FIN ----------------------------------> "+fechaFin[0]+"/"+fechaFin[1]+"/"+fechaFin[2]);
         DateData dateData;
         if(mesFinal>mesInicio){ //CASO CUANDO EL MES FINAL ES MAYOR QUE EL INICIAL
+            System.out.println(" MES MAYOR QUE INICIAL----------------------------------> ");
             Calendar mycal = new GregorianCalendar(anioInicio,mesInicio,1);
             int diasMes = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
             int diferenciaMes = mesFinal-mesInicio;
             for(int i=diaInicio;i<=diasMes;i++){ //LLENO PRIMERO LOS DIAS DEL MES INICIAL
                 dateData = new DateData(anioInicio,mesInicio,i);
-                disponibles.add(dateData);
-                calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.GREEN));
+                if(verificarMayorDiaActual(dateData)){
+                    disponibles.add(dateData);
+                    calendario.unMarkDate(dateData);
+                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.GREEN));
+                }
             }
             //LLENO LOS DIAS DE LOS DEMAS MESES
             for(int i=1;i<=diferenciaMes;i++){
@@ -260,13 +337,17 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         }
         else{
             if(anioFinal>anioInicio){ // CASO CUANDO EL ANIO FINAL ES MAYOR QUE EL INICIAL
+                System.out.println(" ANIO FINAL MAYOR QUE INICIAL----------------------------------> ");
                 Calendar mycal = new GregorianCalendar(anioInicio,mesInicio,1);
                 int diasMes = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
                 //Recorro primero los meses desde mesInicio hasta el mes 12
                 for(int i=diaInicio;i<=diasMes;i++){ //LLENO PRIMERO LOS DIAS DE MES INICIAL
                     dateData = new DateData(anioInicio,mesInicio,i);
-                    disponibles.add(dateData);
-                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.GREEN));
+                    if(verificarMayorDiaActual(dateData)){
+                        disponibles.add(dateData);
+                        calendario.unMarkDate(dateData);
+                        calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.GREEN));
+                    }
                 }
                 //LLENO LOS MESES RESTANTES DEL ANIO INICIAL
                 for(int i=mesInicio+1;i<=12;i++){
@@ -282,10 +363,16 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
 
                 }
             }else{ // CASO CUANDO EL MES INICIO Y EL FINAL SON LOS MISMOS
+                System.out.println(" MES INICIO Y FINAL SON LOS MISMOS ----------------------------------> ");
                 for(int i = diaInicio;i<=diaFinal;i++){
+                    System.out.println("Esto es i ------------------------------> "+i);
                     dateData = new DateData(anioInicio,mesInicio,i);
-                    disponibles.add(dateData);
-                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.GREEN));
+                    if(verificarMayorDiaActual(dateData)){
+                        disponibles.add(dateData);
+                        calendario.unMarkDate(dateData);
+                        calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.GREEN));
+                    }
+
                 }
             }
         }
@@ -305,7 +392,13 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             int diferenciaMes = mesFinal-mesInicio;
             for(int i=diaInicio;i<diasMes;i++){
                 dateData = new DateData(anioInicio,mesInicio,i);
-                calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.RED));
+                if(verificarMayorDiaActual(dateData)){
+                    if(disponibles.contains(dateData)){
+                        disponibles.remove(dateData);
+                    }
+                    calendario.unMarkDate(dateData);
+                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.RED));
+                }
             }
             for(int i=1;i<=diferenciaMes;i++){
                 if(i==diferenciaMes){
@@ -322,8 +415,13 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                 //Recorro primero los meses desde mesInicio hasta el mes 12
                 for(int i=diaInicio;i<diasMes;i++){ //LLENO PRIMERO LOS DIAS DE MES INICIAL
                     dateData = new DateData(anioInicio,mesInicio,i);
-                    disponibles.add(dateData);
-                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.RED));
+                    if(verificarMayorDiaActual(dateData)){
+                        if(disponibles.contains(dateData)){
+                            disponibles.remove(dateData);
+                        }
+                        calendario.unMarkDate(dateData);
+                        calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.RED));
+                    }
                 }
                 //LLENO LOS MESES RESTANTES DEL ANIO INICIAL
                 for(int i=mesInicio+1;i<=12;i++){
@@ -341,8 +439,14 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             }else{ // CASO CUANDO EL MES INICIO Y EL FINAL SON LOS MISMOS
                 for(int i = diaInicio;i<=diaFinal;i++){
                     dateData = new DateData(anioInicio,mesInicio,i);
-                    disponibles.add(dateData);
-                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.RED));
+                    if(verificarMayorDiaActual(dateData)){
+                        if(disponibles.contains(dateData)){
+                            disponibles.remove(dateData);
+                        }
+                        calendario.unMarkDate(dateData);
+                        calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.RED));
+                    }
+
                 }
             }
         }
@@ -353,8 +457,11 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         if(esFinal){
             for(int i=1;i<=diaFin;i++){
                 dateData = new DateData(anioFin,mesFin,i);
-                disponibles.add(dateData);
-                calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, color));
+                if(verificarMayorDiaActual(dateData)){
+                    disponibles.add(dateData);
+                    calendario.unMarkDate(dateData);
+                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, color));
+                }
             }
         }
         else{
@@ -362,8 +469,12 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             int diasMes = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
             for(int i=1;i<=diasMes;i++){
                 dateData = new DateData(anioFin,mesFin,i);
-                disponibles.add(dateData);
-                calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, color));
+                if(verificarMayorDiaActual(dateData)){
+                    disponibles.add(dateData);
+                    calendario.unMarkDate(dateData);
+                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, color));
+                }
+
             }
         }
     }
@@ -372,8 +483,14 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         if(esFinal){
             for(int i=1;i<=diaFin;i++){
                 dateData = new DateData(anioFin,mesFin,i);
-                disponibles.remove(dateData);
-                calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, color));
+                if(verificarMayorDiaActual(dateData)){
+                    if(disponibles.contains(dateData)){
+                        disponibles.remove(dateData);
+                    }
+                    calendario.unMarkDate(dateData);
+                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, color));
+                }
+
             }
         }
         else{
@@ -381,8 +498,14 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             int diasMes = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
             for(int i=1;i<=diasMes;i++){ //LLENA TODOS LOS DIAS DE UN MES DETERMINADO
                 dateData = new DateData(anioFin,mesFin,i);
-                disponibles.remove(dateData);
-                calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, color));
+                if(verificarMayorDiaActual(dateData)){
+                    if(disponibles.contains(dateData)){
+                        disponibles.remove(dateData);
+                    }
+                    calendario.unMarkDate(dateData);
+                    calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, color));
+                }
+
             }
         }
     }
@@ -402,7 +525,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         int mes = (Calendar.getInstance().get(Calendar.MONTH))+1; // Variable que contiene el mes actual
         int dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         reserva.setFechaOperacion(String.valueOf(dia)+"/"+String.valueOf(mes)+"/"+String.valueOf(anio));
-        FirebaseDatabase.getInstance().getReference("Reservas").child(idReserva).setValue(alojamiento).addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseDatabase.getInstance().getReference("Reservas").child(idReserva).setValue(reserva).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 //progressbar.setVisibility(View.GONE);
@@ -428,11 +551,12 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot!=null){
                     Usuario usr = dataSnapshot.getValue(Usuario.class);
-                    usr.agregarReserva(idReserva);
+                    usr.agregarReserva(idReserva,true);
                     mDataBase.child(mAuth.getCurrentUser().getUid()).setValue(usr);
                     agregarDatosAlojamientoReserva(idReserva);
                 }
                 else{
+                    nProgressDialog.dismiss();
                     Toast.makeText(HuespedReservarAlojamientoActivity.this, "No se encontro un usuario para asociar la reserva", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -453,8 +577,9 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot!=null){
                     Alojamiento  aloj= dataSnapshot.getValue(Alojamiento.class);
-                    aloj.agregarReserva(reserva);
+                    aloj.agregarReserva(reserva.getId());
                     mDataBase.child(alojamiento.getId()).setValue(aloj);
+                    nProgressDialog.dismiss();
                     Toast.makeText(HuespedReservarAlojamientoActivity.this, "Reserva realizada", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(HuespedReservarAlojamientoActivity.this,HuespedDetallesHistorialReservaActivity.class);
                     intent.putExtra("idReserva",idReserva);
@@ -463,6 +588,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
 
                 }
                 else{
+                    nProgressDialog.dismiss();
                     Toast.makeText(HuespedReservarAlojamientoActivity.this, "No se encontro un alojamiento para asociar la reserva", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -535,5 +661,73 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
     public long calcularPrecio(int dias){
         long precioAloj = alojamiento.getPrecio();
         return dias*precioAloj;
+    }
+    //Comparar el dia actual a lo que se va a marcar
+    public boolean verificarMayorDiaActual(DateData fechaVerif){
+        int anioActual = Calendar.getInstance().get(Calendar.YEAR); // Variable que contiene el anio actual
+        int mesActual = (Calendar.getInstance().get(Calendar.MONTH))+1; // Variable que contiene el mes actual
+        int diaActual = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        System.out.println("Fecha actual ------------------> "+diaActual+"/"+mesActual+"/"+anioActual);
+
+        if((anioActual<fechaVerif.getYear())){ //Anio actual es menor que el que llega
+            return true;
+        }else if(anioActual==fechaVerif.getYear()){
+            if(mesActual<fechaVerif.getMonth()){
+                return true;
+            }else if(mesActual==fechaVerif.getMonth()){
+                if(diaActual<=fechaVerif.getDay()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public List<DateData> proximoDiaDisponible(DateData fechaIn){
+        DateData diaIntermedio;
+        resultadosProximosDias = new ArrayList<>();
+        //Ciclo de años que va a llegar hasta el año 2100
+        for(int i=fechaIn.getYear();i<=2100;i++){
+            if(i==fechaIn.getYear()){
+                //Ciclo de meses, cuando se busca desde el primer anio
+                for(int j=fechaIn.getMonth();j<=12;j++){
+                    Calendar mycal = new GregorianCalendar(i,j,1);
+                    int diasMes = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
+                    if(j==fechaIn.getMonth()){
+                        for(int k=fechaIn.getDay();k<=diasMes;k++){
+                            diaIntermedio= new DateData(i,j,k);
+                            if(disponibles.contains(diaIntermedio)){
+                                resultadosProximosDias.add(diaIntermedio);
+                            }else{
+                                return resultadosProximosDias;
+                            }
+                        }
+                    }else{
+                        for (int k=1;k<=diasMes;k++){
+                            diaIntermedio= new DateData(i,j,k);
+                            if(disponibles.contains(diaIntermedio)){
+                                resultadosProximosDias.add(diaIntermedio);
+                            }else{
+                                return resultadosProximosDias;
+                            }
+                        }
+                    }
+                }
+            }else{
+                //Ciclo de meses para los demas anios
+                for(int j=1;j<=12;j++)  {
+                    Calendar mycal = new GregorianCalendar(i,j,1);
+                    int diasMes = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
+                    for(int k=1;k<=diasMes;k++){
+                        diaIntermedio= new DateData(i,j,k);
+                        if(disponibles.contains(diaIntermedio)){
+                            resultadosProximosDias.add(diaIntermedio);
+                        }else{
+                            return resultadosProximosDias;
+                        }
+                    }
+                }
+            }
+        }
+        return resultadosProximosDias;
     }
 }

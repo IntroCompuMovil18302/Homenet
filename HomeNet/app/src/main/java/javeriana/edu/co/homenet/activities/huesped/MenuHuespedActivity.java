@@ -48,6 +48,9 @@ public class MenuHuespedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuHuespedActivity.this,HuespedReservarAlojamientoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("idAloj","Alo1");
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
