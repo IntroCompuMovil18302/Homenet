@@ -225,7 +225,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                 //progressbar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
                     nProgressDialog.dismiss();
-                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Se ha publicado el servicio", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Se ha publicado el alojamiento", Toast.LENGTH_SHORT).show();
                     //infoActualUsuario(idServicio,ususerv);
                     agregarDatosUsuarioServicio(alojamiento.getId());
 
@@ -252,7 +252,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                     Usuario usuario = new Usuario(usr.getNombre(),usr.getUrlImg(),usr.getEdad(),usr.getTipoUsuario(),usr.getCorreo(),usr.getNacionalidad(),usr.getSexo());
                     if(usr.getAlojamientos().size()>0)
                         usuario.setAlojamientos(usr.getAlojamientos());
-                    usuario.agregarElemento(idAloja);
+                    usuario.agregarElemento(idAloja,true);
                     mDataBase.child(mAuth.getCurrentUser().getUid()).setValue(usuario);
                     Intent intent = new Intent(AnfitrionPublicarAlojamientoImgActivity.this,AnfitrionMenuActivity.class);
                     startActivity(intent);
