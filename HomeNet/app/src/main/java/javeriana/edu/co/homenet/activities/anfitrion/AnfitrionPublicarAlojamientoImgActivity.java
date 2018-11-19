@@ -250,7 +250,7 @@ public void subirAlojamiento(){
                     Usuario usuario = new Usuario(usr.getNombre(),usr.getUrlImg(),usr.getEdad(),usr.getTipoUsuario(),usr.getCorreo(),usr.getNacionalidad(),usr.getSexo());
                     if(usr.getAlojamientos().size()>0)
                         usuario.setAlojamientos(usr.getAlojamientos());
-                    usuario.agregarElemento(idAloja);
+                    usuario.agregarElemento(idAloja,true);
                     mDataBase.child(mAuth.getCurrentUser().getUid()).setValue(usuario);
                     Intent intent = new Intent(AnfitrionPublicarAlojamientoImgActivity.this,AnfitrionMenuActivity.class);
                     startActivity(intent);
