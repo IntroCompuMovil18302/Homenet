@@ -1,8 +1,9 @@
 package javeriana.edu.co.homenet.models;
 
 public class OpinionAlojamiento {
+    String id;
     String alojamiento;
-    int calificacion;
+    double calificacion;
     String comentario;
     String usuario;
 
@@ -10,7 +11,8 @@ public class OpinionAlojamiento {
 
     }
 
-    public OpinionAlojamiento(String alojamiento, int calificacion, String comentario, String usuario) {
+    public OpinionAlojamiento(String id,String alojamiento, double calificacion, String comentario, String usuario) {
+        this.id = id;
         this.alojamiento = alojamiento;
         this.calificacion = calificacion;
         this.comentario = comentario;
@@ -25,7 +27,7 @@ public class OpinionAlojamiento {
         this.alojamiento = alojamiento;
     }
 
-    public int getCalificacion() {
+    public double getCalificacion() {
         return calificacion;
     }
 

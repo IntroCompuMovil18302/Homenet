@@ -3,6 +3,7 @@ package javeriana.edu.co.homenet.models;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,7 +29,12 @@ public class Usuario {
     private Map<String,Boolean> opinionesGuia;
     private Map<String,Boolean> reservas;
 
-    public Usuario() {}
+    public Usuario() {
+        this.alojamientos = new HashMap<>();
+        this.opinionesAlojamiento = new HashMap<>();
+        this.opinionesGuia = new HashMap<>();
+        this.reservas = new HashMap<>();
+    }
 
     public Usuario(String nombre, String urlImg, int edad, String tipoUsuario, String correo,
                    String nacionalidad, String sexo) {

@@ -40,7 +40,6 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
     EditText comentario;
     RatingBar rating ;
     ViewPager viewPager;
-    Bundle bundle ;
     ImagenAnfitrionAdapter imgAnfAdapter;
 
     List<String> listaImagenes = new ArrayList<String>();
@@ -63,13 +62,12 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
         comentario = (EditText)findViewById(R.id.etComentarioHCA);
         rating = (RatingBar)findViewById(R.id.rbRatingHCA);
         viewPager = (ViewPager)findViewById(R.id.vpImagenesAlojHCA);
-        bundle= getIntent().getExtras();
-        findAloj(bundle.getString("idServ"));
+        findAloj(getIntent().getStringExtra("idAloj"));
         publicar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 String comentarioStr = comentario.getText().toString();
-                int numEstrellas = rating.getNumStars();
+                float numEstrellas = rating.getRating();
                 System.out.println("El numero de estrellas seleccionadas es -----------------------------------> "+numEstrellas);
                 if(!comentarioStr.equals("") && comentarioStr !=null && numEstrellas>0){
                     nProgressDialog.setMessage("Publicando la calificación...");
@@ -112,7 +110,7 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
         final String idOpinionAlojamiento = "OpinionAlojamiento "+String.valueOf(numRandom)+String.valueOf(System.currentTimeMillis());
         String uid = user.getUid();
         OpinionAlojamiento opinion;
-        opinion = new OpinionAlojamiento(bundle.getString("idServ"),rating.getNumStars(),comentario.getText().toString(),uid);
+        opinion = new OpinionAlojamiento(idOpinionAlojamiento,getIntent().getStringExtra("idAloj"),rating.getRating(),comentario.getText().toString(),uid);
         FirebaseDatabase.getInstance().getReference("OpinionesAlojamiento").child(idOpinionAlojamiento).setValue(opinion).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -139,7 +137,7 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot!=null){
                     Usuario usr = dataSnapshot.getValue(Usuario.class);
-                    usr.agregarOpinionAlojamiento(idOpinion);
+                    usr.agregarOpinionAlojamiento(idOpinion,true);
                     mDataBase.child(mAuth.getCurrentUser().getUid()).setValue(usr);
                     actualizarAlojamiento(idOpinion);
 
@@ -159,8 +157,8 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
     public void actualizarAlojamiento(final String idOpinion){
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
-        mDataBase = FirebaseDatabase.getInstance().getReference("Alojamiento");
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Alojamiento").child(alojamiento.getId());
+        mDataBase = FirebaseDatabase.getInstance().getReference("Alojamientos");
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Alojamientos").child(alojamiento.getId());
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
