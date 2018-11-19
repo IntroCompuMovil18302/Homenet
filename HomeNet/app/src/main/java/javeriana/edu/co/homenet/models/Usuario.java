@@ -2,7 +2,13 @@ package javeriana.edu.co.homenet.models;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Usuario {
     private String id;
@@ -14,7 +20,13 @@ public class Usuario {
     private String correo;
     private String nacionalidad;
     private String sexo;
-    private List<String> alojamientos=new ArrayList<String>();
+    private int telefono;
+    private Map<String,Boolean> alojamientos;
+
+    //Relaciones
+    private Map<String,Boolean>opinionesAlojamiento;
+    private Map<String,Boolean> opinionesGuia;
+    private Map<String,Boolean> reservas;
 
     public Usuario() {}
 
@@ -27,7 +39,6 @@ public class Usuario {
         this.correo = correo;
         this.nacionalidad = nacionalidad;
         this.sexo = sexo;
-        this.alojamientos= new ArrayList<String>();
     }
 
     public String getId() {
@@ -86,6 +97,14 @@ public class Usuario {
         this.nacionalidad = nacionalidad;
     }
 
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
     public String getSexo() {
         return sexo;
     }
@@ -94,14 +113,50 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public List<String> getAlojamientos() {
+    public Map<String,Boolean> getAlojamientos() {
         return alojamientos;
     }
 
-    public void setAlojamientos(List<String> alojamientos) {
+    public void setAlojamientos(Map<String,Boolean> alojamientos) {
         this.alojamientos = alojamientos;
     }
-    public void agregarElemento(String id){
-        this.alojamientos.add(id);
+    
+
+    public void agregarElemento(String aloj,Boolean id){
+        this.alojamientos.put(aloj,id);
+    }
+
+    public Map<String,Boolean> getOpinionesAlojamiento() {
+        return opinionesAlojamiento;
+    }
+
+    public void setOpinionesAlojamiento(Map<String,Boolean> opinionesAlojamiento) {
+        this.opinionesAlojamiento = opinionesAlojamiento;
+    }
+
+    public Map<String,Boolean> getOpinionesGuia() {
+        return opinionesGuia;
+    }
+
+    public void setOpinionesGuia(Map<String,Boolean> opinionesGuia) {
+        this.opinionesGuia = opinionesGuia;
+    }
+
+    public Map<String,Boolean> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(Map<String,Boolean> reservas) {
+        this.reservas = reservas;
+    }
+
+    public void agregarOpinionAlojamiento(String opinionAloja, Boolean b){
+        this.opinionesAlojamiento.put(opinionAloja,b);
+    }
+    public void agregarOpinionGuia(String opinionGuia, Boolean b){
+        this.opinionesGuia.put(opinionGuia, b);
+    }
+    public void agregarReserva(String reserva, Boolean b){
+        this.reservas.put(reserva,b);
     }
 }
