@@ -2,7 +2,13 @@ package javeriana.edu.co.homenet.models;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Usuario {
     private String id;
@@ -14,7 +20,8 @@ public class Usuario {
     private String correo;
     private String nacionalidad;
     private String sexo;
-    private List<Boolean> alojamientos=new ArrayList<Boolean>();
+    private int telefono;
+    private Map<String,Boolean> alojamientos;
 
     //Relaciones
     private List<String>opinionesAlojamiento;
@@ -32,7 +39,9 @@ public class Usuario {
         this.correo = correo;
         this.nacionalidad = nacionalidad;
         this.sexo = sexo;
-        this.alojamientos= new ArrayList<Boolean>();
+        this.opinionesAlojamiento = new ArrayList<String>();
+        this.opinionesGuia = new ArrayList<String>();
+        this.reservas = new ArrayList<String>();
     }
 
     public String getId() {
@@ -91,6 +100,14 @@ public class Usuario {
         this.nacionalidad = nacionalidad;
     }
 
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
     public String getSexo() {
         return sexo;
     }
@@ -99,17 +116,17 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public List<Boolean> getAlojamientos() {
+    public Map<String,Boolean> getAlojamientos() {
         return alojamientos;
     }
 
-    public void setAlojamientos(List<Boolean> alojamientos) {
+    public void setAlojamientos(Map<String,Boolean> alojamientos) {
         this.alojamientos = alojamientos;
     }
     
 
-    public void agregarElemento(Boolean id){
-        this.alojamientos.add(id);
+    public void agregarElemento(String aloj,Boolean id){
+        this.alojamientos.put(aloj,id);
     }
 
     public List<String> getOpinionesAlojamiento() {

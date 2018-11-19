@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                                Log.i("HOLI",singleSnapshot.toString());
                                 Usuario u = singleSnapshot.getValue(Usuario.class);
                                 uid = singleSnapshot.getKey();
                                 if (uid.equals(user.getUid())){
