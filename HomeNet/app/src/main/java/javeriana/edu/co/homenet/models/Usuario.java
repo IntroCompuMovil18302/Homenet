@@ -3,7 +3,6 @@ package javeriana.edu.co.homenet.models;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,12 +21,12 @@ public class Usuario {
     private String nacionalidad;
     private String sexo;
     private int telefono;
-    private Map<String,Boolean> alojamientos = new HashMap<String,Boolean>();
+    private Map<String,Boolean> alojamientos;
 
     //Relaciones
-    private List<String>opinionesAlojamiento;
-    private List<String>opinionesGuia;
-    private List<String>reservas;
+    private Map<String,Boolean>opinionesAlojamiento;
+    private Map<String,Boolean> opinionesGuia;
+    private Map<String,Boolean> reservas;
 
     public Usuario() {}
 
@@ -40,10 +39,6 @@ public class Usuario {
         this.correo = correo;
         this.nacionalidad = nacionalidad;
         this.sexo = sexo;
-        this.opinionesAlojamiento = new ArrayList<String>();
-        this.opinionesGuia = new ArrayList<String>();
-        this.reservas = new ArrayList<String>();
-        this.alojamientos = new HashMap<String,Boolean>();
     }
 
     public String getId() {
@@ -125,43 +120,43 @@ public class Usuario {
     public void setAlojamientos(Map<String,Boolean> alojamientos) {
         this.alojamientos = alojamientos;
     }
-
+    
 
     public void agregarElemento(String aloj,Boolean id){
         this.alojamientos.put(aloj,id);
     }
 
-    public List<String> getOpinionesAlojamiento() {
+    public Map<String,Boolean> getOpinionesAlojamiento() {
         return opinionesAlojamiento;
     }
 
-    public void setOpinionesAlojamiento(List<String> opinionesAlojamiento) {
+    public void setOpinionesAlojamiento(Map<String,Boolean> opinionesAlojamiento) {
         this.opinionesAlojamiento = opinionesAlojamiento;
     }
 
-    public List<String> getOpinionesGuia() {
+    public Map<String,Boolean> getOpinionesGuia() {
         return opinionesGuia;
     }
 
-    public void setOpinionesGuia(List<String> opinionesGuia) {
+    public void setOpinionesGuia(Map<String,Boolean> opinionesGuia) {
         this.opinionesGuia = opinionesGuia;
     }
 
-    public List<String> getReservas() {
+    public Map<String,Boolean> getReservas() {
         return reservas;
     }
 
-    public void setReservas(List<String> reservas) {
+    public void setReservas(Map<String,Boolean> reservas) {
         this.reservas = reservas;
     }
 
-    public void agregarOpinionAlojamiento(String opinionAloja){
-        this.opinionesAlojamiento.add(opinionAloja);
+    public void agregarOpinionAlojamiento(String opinionAloja, Boolean b){
+        this.opinionesAlojamiento.put(opinionAloja,b);
     }
-    public void agregarOpinionGuia(String opinionGuia){
-        this.opinionesGuia.add(opinionGuia);
+    public void agregarOpinionGuia(String opinionGuia, Boolean b){
+        this.opinionesGuia.put(opinionGuia, b);
     }
-    public void agregarReserva(String reserva){
-        this.reservas.add(reserva);
+    public void agregarReserva(String reserva, Boolean b){
+        this.reservas.put(reserva,b);
     }
 }
