@@ -55,10 +55,7 @@
             android:name=".activities.anfitrion.AnfitrionMenuActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.CrearPerfilGuiaAnfActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.huesped.CrearPerfilHuespedActivity"
+            android:name=".activities.CrearPerfilActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.guia.GuiasDisponiblesActivity"
