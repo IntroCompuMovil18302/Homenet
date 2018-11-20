@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
+import javeriana.edu.co.homenet.services.ReservasService;
 
 public class AnfitrionMenuActivity extends AppCompatActivity {
 
@@ -41,6 +42,8 @@ public class AnfitrionMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Intent intent = new Intent(AnfitrionMenuActivity.this,ReservasService.class);
+        startService(intent);
 
         alojamiento = findViewById(R.id.btnalo1);
 

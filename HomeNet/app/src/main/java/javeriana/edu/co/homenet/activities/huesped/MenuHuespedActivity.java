@@ -19,7 +19,6 @@ import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.activities.guia.GuiasDisponiblesActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedConsultarAlojamientoActivity;
-import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedDetallesHistorialReservaActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedHistorialReservaActivity;
 import javeriana.edu.co.homenet.activities.huesped.guias.HuespedHistorialRecorridosActivity;
 import javeriana.edu.co.homenet.services.AlarmReceiverService;
@@ -46,16 +45,27 @@ public class MenuHuespedActivity extends AppCompatActivity {
         verGuiasCercanos = findViewById(R.id.verGuiasCercanos);
         verHistorialRecorridos = findViewById(R.id.verHistorialRecorridos);
 
+        /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.SECOND,3);
+            //calendar.set(Calendar.HOUR_OF_DAY,7);
+            //calendar.set(Calendar.MINUTE,25);
+            Intent intent = new Intent(MenuHuespedActivity.this,ReservasService.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),CODE_INTENT, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+            startService(intent);
+        }*/
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.SECOND,3);
+            //calendar.set(Calendar.HOUR_OF_DAY,7);
+            //calendar.set(Calendar.MINUTE,25);
+            Intent intent = new Intent(MenuHuespedActivity.this,AlarmReceiverService.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),CODE_INTENT, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+            startService(intent);
 
-        Calendar calendar = Calendar.getInstance();
-        //calendar.set(Calendar.SECOND,3);
-        calendar.set(Calendar.HOUR_OF_DAY,7);
-        calendar.set(Calendar.MINUTE,25);
-        Intent intent = new Intent(MenuHuespedActivity.this,AlarmReceiverService.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),CODE_INTENT, intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-        startService(intent);
 
 
 
