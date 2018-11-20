@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        tools:context=".activities.guia.GuiaCrearAnuncioParadaActivity">
+
+        <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.anfitrion.AnfitrionPublicarDetalleActivity">
+
+        <TextView
+            android:id="@+id/textView54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="Datos especificos"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:text="Area"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/spAreaAFD"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/spAreaAFD" />
+
+            <TextView
+                android:id="@+id/tipo14"
+                android:layout_width="241dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Seleccione la cantidad de:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tipo"
+                app:layout_constraintTop_toBottomOf="@+id/spAreaAFD" />
+
+        <TextView
+            android:id="@+id/tipo15"
+            android:layout_width="280dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="8dp"
+            android:text="Marque los elementos con los que cuenta su alojamiento"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tipo14"
+            app:layout_constraintTop_toBottomOf="@+id/spParqueaderosAPD" />
+
+        <TextView
+            android:id="@+id/tipo13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Mt^2"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/spAreaAFD"
+            app:layout_constraintStart_toEndOf="@+id/spAreaAFD"
+            app:layout_constraintTop_toTopOf="@+id/spAreaAFD"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tipo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Baños"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/spBaniosAPD"
+            app:layout_constraintStart_toStartOf="@+id/tipo14"
+            app:layout_constraintTop_toTopOf="@+id/spBaniosAPD" />
+
+            <TextView
+            android:id="@+id/tipo4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Camas"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/spCamasAPD"
+            app:layout_constraintStart_toStartOf="@+id/tipo2"
+            app:layout_constraintTop_toTopOf="@+id/spCamasAPD" />
+
+        <TextView
+            android:id="@+id/tipo5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dormitorios"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/spDormitoriosAPD"
+            app:layout_constraintStart_toStartOf="@+id/tipo4"
+            app:layout_constraintTop_toTopOf="@+id/spDormitoriosAPD" />
+
+        <TextView
+            android:id="@+id/tipo6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Huespedes"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/spHuespedesAPD"
+            app:layout_constraintStart_toStartOf="@+id/tipo5"
+            app:layout_constraintTop_toTopOf="@+id/spHuespedesAPD" />
+
+            <TextView
+            android:id="@+id/tipo10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parqueaderos"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/spParqueaderosAPD"
+            app:layout_constraintStart_toStartOf="@+id/tipo6"
+            app:layout_constraintTop_toTopOf="@+id/spParqueaderosAPD" />
+
+            <Spinner
+                android:id="@+id/spAreaAFD"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tipo"
+                app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+            <Spinner
+                android:id="@+id/spBaniosAPD"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="90dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tipo2"
+                app:layout_constraintTop_toBottomOf="@+id/tipo14" />
+
+            <Spinner
+                android:id="@+id/spCamasAPD"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/spBaniosAPD"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/spBaniosAPD"
+                app:layout_constraintTop_toBottomOf="@+id/spBaniosAPD" />
+
+            <Spinner
+                android:id="@+id/spDormitoriosAPD"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/spCamasAPD"
+                app:layout_constraintStart_toStartOf="@+id/spCamasAPD"
+                app:layout_constraintTop_toBottomOf="@+id/spCamasAPD" />
+
+            <Spinner
+                android:id="@+id/spHuespedesAPD"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/spDormitoriosAPD"
+                app:layout_constraintStart_toStartOf="@+id/spDormitoriosAPD"
+                app:layout_constraintTop_toBottomOf="@+id/spDormitoriosAPD" />
+
+            <Spinner
+                android:id="@+id/spParqueaderosAPD"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/spHuespedesAPD"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/spHuespedesAPD"
+                app:layout_constraintTop_toBottomOf="@+id/spHuespedesAPD" />
+
+            <Button
+                android:id="@+id/btSiguienteAPD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="Siguente"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cbMascotasAPD" />
+
+            <CheckBox
+                android:id="@+id/cbCalefaccionAPD"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Calefacción"
+                app:layout_constraintStart_toStartOf="@+id/tipo15"
+                app:layout_constraintTop_toBottomOf="@+id/tipo15" />
+
+            <CheckBox
+                android:id="@+id/cbInternetAPD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Internet"
+                app:layout_constraintEnd_toEndOf="@+id/cbCalefaccionAPD"
+                app:layout_constraintStart_toStartOf="@+id/cbCalefaccionAPD"
+                app:layout_constraintTop_toBottomOf="@+id/cbCalefaccionAPD" />
+
+            <CheckBox
+                android:id="@+id/cbTelevisionAPD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Television"
+                app:layout_constraintEnd_toEndOf="@+id/cbInternetAPD"
+                app:layout_constraintStart_toStartOf="@+id/cbInternetAPD"
+                app:layout_constraintTop_toBottomOf="@+id/cbInternetAPD" />
+
+            <CheckBox
+                android:id="@+id/cbMascotasAPD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Mascotas"
+                app:layout_constraintEnd_toEndOf="@+id/cbTelevisionAPD"
+                app:layout_constraintStart_toStartOf="@+id/cbTelevisionAPD"
+                app:layout_constraintTop_toBottomOf="@+id/cbTelevisionAPD" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        tools:context=".activities.anfitrion.AnfitrionPublicarListasActivity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="Muebles y electrodomesticos"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tipo9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Muebles"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/tipo98"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tipo98"
+            app:layout_constraintTop_toBottomOf="@+id/rvElectrodomesticosAPL" />
+
+
+        <TextView
+            android:id="@+id/tipo98"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="8dp"
+            android:text="Electrodomesticos"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+        <EditText
+            android:id="@+id/tvElectrodomesticosAPL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="ingrese el item"
+            app:layout_constraintBottom_toBottomOf="@+id/btElectrodomesticosAPL"
+            app:layout_constraintEnd_toStartOf="@+id/btElectrodomesticosAPL"
+            app:layout_constraintStart_toStartOf="@+id/tipo98"
+            app:layout_constraintTop_toTopOf="@+id/btElectrodomesticosAPL" />
+
+        <EditText
+            android:id="@+id/tvMueblesAPL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Ingrese el item"
+            app:layout_constraintBottom_toBottomOf="@+id/btMueblesAPL"
+            app:layout_constraintEnd_toStartOf="@+id/btMueblesAPL"
+            app:layout_constraintStart_toStartOf="@+id/tipo9"
+            app:layout_constraintTop_toTopOf="@+id/btMueblesAPL" />
+
+        <Button
+            android:id="@+id/btElectrodomesticosAPL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tipo98" />
+
+        <Button
+            android:id="@+id/btMueblesAPL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tipo9" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvElectrodomesticosAPL"
+            android:layout_width="0dp"
+            android:layout_height="166dp"
+            android:layout_marginTop="8dp"
+            android:padding="4dp"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/tipo98"
+            app:layout_constraintStart_toStartOf="@+id/tvElectrodomesticosAPL"
+            app:layout_constraintTop_toBottomOf="@+id/btElectrodomesticosAPL" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvMueblesAPL"
+            android:layout_width="0dp"
+            android:layout_height="166dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/tipo9"
+            app:layout_constraintStart_toStartOf="@+id/tipo9"
+            app:layout_constraintTop_toBottomOf="@+id/btMueblesAPL" />
+
+        <Button
+            android:id="@+id/btSiguienteAPL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Siguente"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvMueblesAPL" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+

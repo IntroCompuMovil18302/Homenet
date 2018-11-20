@@ -70,7 +70,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anf_publicar_alojamiento);
+        setContentView(R.layout.activity_anf_pub_general);
 
 
 
@@ -97,7 +97,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipoAlojamiento, R.layout.item_anf_spinner);
         //adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
-
+        spinner.setOnItemSelectedListener(this);
 
         //imgAnfAdapter = new ImagenAnfitrionAdapter(AnfitrionPublicarAlojamientoActivity.this,listaImagenes);
 
@@ -111,11 +111,21 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
        tipoAlojamiento = adapterView.getItemAtPosition(i).toString();
        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
         alojamiento.setTipo(tipoAlojamiento);
+        Toast toast1 =
+                Toast.makeText(getApplicationContext(),
+                        "Cambio", Toast.LENGTH_SHORT);
+
+        toast1.show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
         alojamiento.setTipo("indeterminado");
+        Toast toast1 =
+                Toast.makeText(getApplicationContext(),
+                        "NULL", Toast.LENGTH_SHORT);
+
+        toast1.show();
     }
     // FIN Seccion spinner -----------------------------------------------
 
@@ -200,7 +210,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
                     alojamiento.setNombre(nombre.getText().toString());
 
 
-                    Intent intent = new Intent(view.getContext(), AnfitrionPublicarDisponibilidadActivity.class);
+                    Intent intent = new Intent(view.getContext(), AnfitrionPublicarDetalleActivity.class);
                     intent.putExtra("Data", alojamiento);
                     startActivity(intent);
                 }

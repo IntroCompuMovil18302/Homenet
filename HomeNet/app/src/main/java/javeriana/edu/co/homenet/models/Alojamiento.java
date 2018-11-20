@@ -31,7 +31,7 @@ public class Alojamiento implements Serializable{
     private int area;
     private int banios;
     private boolean calefaccion;
-    private boolean camas ;
+    private int camas ;
     private int dormitorios ;
     private List<String> electrodomesticos ;
     private int huespedes ;
@@ -178,11 +178,11 @@ public class Alojamiento implements Serializable{
         this.calefaccion = calefaccion;
     }
 
-    public boolean isCamas() {
+    public int getCamas() {
         return camas;
     }
 
-    public void setCamas(boolean camas) {
+    public void setCamas(int camas) {
         this.camas = camas;
     }
 

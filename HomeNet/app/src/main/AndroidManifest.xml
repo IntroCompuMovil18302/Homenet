@@ -152,7 +152,10 @@
 
         <service
             android:name=".services.TestService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".activities.anfitrion.AnfitrionPublicarDetalleActivity" />
+        <activity android:name=".activities.anfitrion.AnfitrionPublicarListasActivity"></activity>
     </application>
 
 </manifest>
