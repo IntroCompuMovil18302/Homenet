@@ -11,18 +11,32 @@
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="0dp"
+            android:layout_height="151dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreAnuncioHVMTA"
+            app:srcCompat="@drawable/sitio" />
+
         <EditText
             android:id="@+id/mtdescAnuncioHVMTA"
             android:layout_width="0dp"
-            android:layout_height="103dp"
+            android:layout_height="113dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Descripción"
             android:textColor="#d33838"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreAnuncioHVMTA" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvNombreAnuncioHVMTA"
@@ -42,26 +56,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/colorPrimaryDark"
             android:text="Ver Recorridos"
             android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="395dp"
-            android:layout_height="131dp"
+            android:layout_height="100sp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/btVerRecorridosHVTA"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mtdescAnuncioHVMTA">
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
                 android:id="@+id/llPrecio"
@@ -75,14 +89,14 @@
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    app:srcCompat="@drawable/coin" />
+                    app:srcCompat="@drawable/cash" />
 
                 <TextView
                     android:id="@+id/tarifaAnuncio"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:text="12345"
@@ -105,14 +119,14 @@
                 <ImageView
                     android:id="@+id/imageView5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    app:srcCompat="@drawable/stopwatch" />
+                    app:srcCompat="@drawable/clock" />
 
                 <TextView
                     android:id="@+id/textView80"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:text="2:00"
@@ -134,14 +148,14 @@
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     app:srcCompat="@drawable/duration" />
 
                 <TextView
                     android:id="@+id/textView64"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:text="2 horas"
@@ -154,19 +168,16 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout8"
             android:layout_width="395dp"
             android:layout_height="52dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="15dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btVerRecorridosHVTA"
-            app:layout_constraintVertical_bias="1.0">
+            tools:layout_editor_absoluteY="521dp">
 
             <EditText
                 android:id="@+id/fechaRecorrido"

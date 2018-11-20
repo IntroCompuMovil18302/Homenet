@@ -106,9 +106,6 @@
             android:name=".activities.huesped.guias.HuespedVerTourActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.huesped.guias.HuespedVerRecorridoDetalleActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.anfitrion.AnfitrionDetalleAlojamientoActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -156,7 +153,10 @@
 
         <activity
             android:name=".TestActivity"
-            android:label="@string/title_activity_test"></activity>
+            android:label="@string/title_activity_test" />
+        <activity
+            android:name=".activities.huesped.guias.HuespedVerRecorridoTourActivity"
+            android:label="@string/title_activity_huesped_ver_recorrido_tour"></activity>
     </application>
 
 </manifest>

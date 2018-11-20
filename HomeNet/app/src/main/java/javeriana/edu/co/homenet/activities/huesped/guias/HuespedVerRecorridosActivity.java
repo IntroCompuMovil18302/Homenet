@@ -21,11 +21,5 @@ public class HuespedVerRecorridosActivity extends AppCompatActivity {
 
         detalle = findViewById(R.id.btDetalleParadaGCAPA);
 
-        detalle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), HuespedVerRecorridoDetalleActivity.class));
-            }
-        });
     }
 }
