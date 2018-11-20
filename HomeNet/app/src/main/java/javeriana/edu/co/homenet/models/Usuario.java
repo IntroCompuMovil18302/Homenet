@@ -21,6 +21,7 @@ public class Usuario {
     private String nacionalidad;
     private String sexo;
     private int telefono;
+    private int calificacion;
     private Map<String,Boolean> alojamientos;
 
     //Relaciones
@@ -103,6 +104,14 @@ public class Usuario {
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
+    }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int c) {
+        this.calificacion = calificacion;
     }
 
     public String getSexo() {

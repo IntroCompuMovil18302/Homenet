@@ -34,10 +34,10 @@
             android:textColor="#d33838"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
+            app:layout_constraintTop_toBottomOf="@+id/mtdescAnuncioHVMTA" />
 
         <EditText
-            android:id="@+id/descAnuncio"
+            android:id="@+id/mtdescAnuncioHVMTA"
             android:layout_width="278dp"
             android:layout_height="103dp"
             android:layout_marginStart="8dp"
@@ -49,7 +49,7 @@
             android:textColor="#d33838"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAnuncio" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreAnuncioHVMTA" />
 
         <TextView
             android:id="@+id/textView78"
@@ -88,7 +88,7 @@
             android:textColor="#d33838"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
+            app:layout_constraintTop_toBottomOf="@+id/mtdescAnuncioHVMTA" />
 
         <TextView
             android:id="@+id/textView80"
@@ -101,7 +101,7 @@
             android:textColor="#d33838"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
+            app:layout_constraintTop_toBottomOf="@+id/mtdescAnuncioHVMTA" />
 
         <TextView
             android:id="@+id/textView81"
@@ -117,7 +117,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView80" />
 
         <TextView
-            android:id="@+id/tituloAnuncio"
+            android:id="@+id/tvNombreAnuncioHVMTA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -144,7 +144,7 @@
             android:textColor="#d33838"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
+            app:layout_constraintTop_toBottomOf="@+id/mtdescAnuncioHVMTA" />
 
         <TextView
             android:id="@+id/textView83"
