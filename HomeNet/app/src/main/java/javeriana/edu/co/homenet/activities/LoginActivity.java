@@ -20,7 +20,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import javeriana.edu.co.homenet.R;
@@ -28,6 +27,7 @@ import javeriana.edu.co.homenet.activities.anfitrion.AnfitrionMenuActivity;
 import javeriana.edu.co.homenet.activities.guia.GuiaPrincipalActivity;
 import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
 import javeriana.edu.co.homenet.models.Usuario;
+import javeriana.edu.co.homenet.services.AlarmReceiverService;
 
 public class LoginActivity extends AppCompatActivity {
 

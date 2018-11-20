@@ -150,9 +150,7 @@
         <activity android:name=".activities.anfitrion.AnfitrionPublicarDisponibilidadActivity" />
         <activity android:name=".activities.huesped.alojamientos.HuespedResultadosListActivity" />
 
-        <service
-            android:name=".services.TestService"
-            android:exported="false"></service>
+        <receiver android:name=".services.AlarmReceiverService"></receiver>
     </application>
 
 </manifest>

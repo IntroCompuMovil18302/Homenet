@@ -23,7 +23,7 @@ public class Alojamiento implements Serializable{
     private String anfitrion;
     private List<Disponibilidad> disponibilidades;
     private Ubicacion ubicacion;
-    private List<Reserva> reservas;
+    private List<String> reservas;
     private List<String>opiniones;
 
     //caracteristicas
@@ -31,7 +31,7 @@ public class Alojamiento implements Serializable{
     private int area;
     private int banios;
     private boolean calefaccion;
-    private boolean camas ;
+    private int camas ;
     private int dormitorios ;
     private List<String> electrodomesticos ;
     private int huespedes ;
@@ -44,10 +44,13 @@ public class Alojamiento implements Serializable{
 
     public Alojamiento()
     {
-        this.reservas = new ArrayList<Reserva>();
+        this.urlImgs= new ArrayList<>();
+        this.reservas = new ArrayList<String>();
         this.disponibilidades = new ArrayList<Disponibilidad>();
+        this.opiniones= new ArrayList<>();
         this.electrodomesticos = new ArrayList<>();
         this.muebles = new ArrayList<>();
+
     }
 
     public String getNombre() {
@@ -122,11 +125,11 @@ public class Alojamiento implements Serializable{
         this.tipo = tipo;
     }
 
-    public List<Reserva> getReservas() {
+    public List<String> getReservas() {
         return reservas;
     }
 
-    public void setReservas(List<Reserva> reservas) {
+    public void setReservas(List<String> reservas) {
         this.reservas = reservas;
     }
 
@@ -178,11 +181,11 @@ public class Alojamiento implements Serializable{
         this.calefaccion = calefaccion;
     }
 
-    public boolean isCamas() {
+    public int getCamas() {
         return camas;
     }
 
-    public void setCamas(boolean camas) {
+    public void setCamas(int camas) {
         this.camas = camas;
     }
 
@@ -294,6 +297,7 @@ public class Alojamiento implements Serializable{
             if((fi.after(fia) && ff.before(ffa)) || (fi.equals(fia) && ff.before(ffa))
                     || (fi.after(fia) && ff.equals(ffa)) || (fi.equals(fia) && ff.equals(ffa))){
                 disp = true;
+                /*
                 for (Reserva reserva: reservas) {
                     Date fir = DateFormater.stringToDate(reserva.getFechaInicio());
                     Date ffr = DateFormater.stringToDate(reserva.getFechaFin());
@@ -302,6 +306,7 @@ public class Alojamiento implements Serializable{
                         disp = false;
                     }
                 }
+                */
             }
         }
 
