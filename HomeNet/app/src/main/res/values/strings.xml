@@ -114,9 +114,6 @@
     <string name="hint_distance_hca">¿Qué tan lejos?</string>
     <string name="hint_place_hca">¿Dónde?</string>
 
-    <string name="tours_title">Mis Toures</string>
-    <string name="new_tour">Nuevo tour</string>
-
     <string name="per_hight">por noche.</string>
     <string name="km">Km.</string>
 
@@ -124,6 +121,16 @@
     <string name="new_search">Nueva búsqueda</string>
     <string name="search">Buscar</string>
     <string name="map">Ver mapa</string>
+
+    <string name="quantity">Usuarios inscritos:</string>
+    <string name="price">Precio:</string>
+    <string name="route">Ver recorrido</string>
+
+    <!-- Bottom tab bar -->
+    <string name="tours_title">Mis Toures</string>
+    <string name="new_tour">Crear tour</string>
+    <string name="history_tour">Historial toures</string>
+    <string name="config">Mi perfil</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -138,4 +145,8 @@
         completions."
     </string>
     <string name="title_activity_huesped_resultados_map">Map</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
