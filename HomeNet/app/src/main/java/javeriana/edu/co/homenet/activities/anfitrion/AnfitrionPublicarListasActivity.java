@@ -75,7 +75,8 @@ public class AnfitrionPublicarListasActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("XXXXXXXXXXXXXXXXXXXX");
-
+                alojamiento.setElectrodomesticos(electrodomesticos);
+                alojamiento.setMuebles(muebles);
                 Intent intent = new Intent(view.getContext(), AnfitrionPublicarDisponibilidadActivity.class);
                 intent.putExtra("Data", alojamiento);
                 startActivity(intent);

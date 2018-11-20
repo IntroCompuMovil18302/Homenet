@@ -8,18 +8,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.models.Disponibilidad;
 
-public class AnfPubAlojamientoAdapter
+public class AnfPubAlojamientoDispAdapter
         extends
-        RecyclerView.Adapter<AnfPubAlojamientoAdapter.MyViewHolder>{
+        RecyclerView.Adapter<AnfPubAlojamientoDispAdapter.MyViewHolder>{
 
     private ArrayList<Disponibilidad> disponibilidads ;
 
-    public AnfPubAlojamientoAdapter(ArrayList<Disponibilidad> disponibilidads) {
+    public AnfPubAlojamientoDispAdapter(ArrayList<Disponibilidad> disponibilidads) {
         this.disponibilidads = disponibilidads;
     }
 

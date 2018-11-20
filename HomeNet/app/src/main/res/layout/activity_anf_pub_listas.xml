@@ -62,7 +62,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="ingrese el item"
+            android:hint="ingrese el electrodomestico"
             app:layout_constraintBottom_toBottomOf="@+id/btElectrodomesticosAPL"
             app:layout_constraintEnd_toStartOf="@+id/btElectrodomesticosAPL"
             app:layout_constraintStart_toStartOf="@+id/tipo98"
@@ -73,7 +73,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="Ingrese el item"
+            android:hint="ingrese el mueble"
             app:layout_constraintBottom_toBottomOf="@+id/btMueblesAPL"
             app:layout_constraintEnd_toStartOf="@+id/btMueblesAPL"
             app:layout_constraintStart_toStartOf="@+id/tipo9"
@@ -81,21 +81,21 @@
 
         <Button
             android:id="@+id/btElectrodomesticosAPL"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Button"
+            android:background="@drawable/add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tipo98" />
 
         <Button
             android:id="@+id/btMueblesAPL"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Button"
+            android:background="@drawable/add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tipo9" />
 
@@ -127,9 +127,11 @@
             android:layout_marginStart="60dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="60dp"
+            android:layout_marginBottom="12dp"
             android:background="@color/colorPrimaryDark"
             android:text="Siguente"
             android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rvMueblesAPL" />

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Ubicacion  implements Serializable {
     private double latitude;
     private double longitude;
+    private String direccion;
 
     public  Ubicacion()
     {
@@ -25,5 +26,13 @@ public class Ubicacion  implements Serializable {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
 
-import javeriana.edu.co.homenet.adapters.AnfPubAlojamientoAdapter;
+import javeriana.edu.co.homenet.adapters.AnfPubAlojamientoDispAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Disponibilidad;
 import javeriana.edu.co.homenet.models.Ubicacion;
@@ -36,7 +36,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
 
     private final static int PLACE_PICKER_REQUEST = 999;
     ArrayList<Disponibilidad> disponibilidads;
-    AnfPubAlojamientoAdapter adapterDispo;
+    AnfPubAlojamientoDispAdapter adapterDispo;
 
     Alojamiento alojamiento;
     Spinner spinner;

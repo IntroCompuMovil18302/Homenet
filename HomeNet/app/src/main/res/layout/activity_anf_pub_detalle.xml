@@ -252,6 +252,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/cbTelevisionAPD"
                 app:layout_constraintStart_toStartOf="@+id/cbTelevisionAPD"
                 app:layout_constraintTop_toBottomOf="@+id/cbTelevisionAPD" />
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

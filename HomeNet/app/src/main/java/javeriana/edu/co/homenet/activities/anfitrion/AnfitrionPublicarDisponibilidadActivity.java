@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
-import javeriana.edu.co.homenet.adapters.AnfPubAlojamientoAdapter;
+import javeriana.edu.co.homenet.adapters.AnfPubAlojamientoDispAdapter;
 import javeriana.edu.co.homenet.fragment.AnfitrionDatePickerFragment;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Disponibilidad;
@@ -38,7 +38,7 @@ public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
 
     ArrayList<Disponibilidad> disponibilidads;
-    AnfPubAlojamientoAdapter adapterDispo;
+    AnfPubAlojamientoDispAdapter adapterDispo;
 
     Alojamiento alojamiento;
 
@@ -77,7 +77,7 @@ public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
 
         disponibilidads = new ArrayList<Disponibilidad>();
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapterDispo = new AnfPubAlojamientoAdapter(disponibilidads);
+        adapterDispo = new AnfPubAlojamientoDispAdapter(disponibilidads);
         rv.setAdapter(adapterDispo);
 
         accionBotones();
