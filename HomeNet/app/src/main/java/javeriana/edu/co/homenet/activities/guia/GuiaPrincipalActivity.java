@@ -13,16 +13,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
-import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
 
 public class GuiaPrincipalActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
-
-    Button buttonTourSample;
-    Button buttonAddAnuncioGuia;
-    Button buttonSolServGuia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,29 +25,6 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        buttonAddAnuncioGuia = (Button) findViewById(R.id.buttonAddAnuncioGuia);
-        buttonAddAnuncioGuia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), GuiaCrearAnuncioParadaActivity.class));
-            }
-        });
-
-        buttonTourSample = (Button) findViewById(R.id.buttonTourSample);
-        buttonTourSample.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),GuiaDetalleTourActivity.class));
-            }
-        });
-
-        buttonSolServGuia = (Button) findViewById(R.id.buttonSolServGuia);
-        buttonSolServGuia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),GuiaSolicitudesServiciosActivity.class));
-            }
-        });
     }
 
     @Override

@@ -22,7 +22,6 @@
     <string name="usersample">Usuario 1</string>
     <string name="hintresenah">Ingrese una reseña del usuario.</string>
     <string name="guardar">Guardar</string>
-    <string name="crearanuncio">Crear Anuncio</string>
     <string name="hintnombreanuncio">Ingrese el nombre de su anuncio.</string>
     <string name="hintdescrpanuncio">Describa su anuncio.</string>
     <string name="tarifa">Tarifa: </string>
@@ -46,7 +45,7 @@
     <string name="calificar">Calificar</string>
     <string name="solserv">Solicitudes Servicios</string>
     <string name="principal">Menú Principal</string>
-    <string name="anuncios">Mis Anuncios</string>
+
     <string name="comentario">Comentario...</string>
     <string name="hotel_budapest">Hotel Budapest</string>
     <string name="comentario_1">Fue una experiencia agradable</string>
@@ -123,6 +122,16 @@
     <string name="search">Buscar</string>
     <string name="map">Ver mapa</string>
 
+    <string name="quantity">Usuarios inscritos:</string>
+    <string name="price">Precio:</string>
+    <string name="route">Ver recorrido</string>
+
+    <!-- Bottom tab bar -->
+    <string name="tours_title">Mis Toures</string>
+    <string name="new_tour">Crear tour</string>
+    <string name="history_tour">Historial toures</string>
+    <string name="config">Mi perfil</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -136,4 +145,8 @@
         completions."
     </string>
     <string name="title_activity_huesped_resultados_map">Map</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

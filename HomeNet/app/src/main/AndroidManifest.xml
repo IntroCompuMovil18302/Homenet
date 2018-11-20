@@ -94,6 +94,9 @@
             android:name=".activities.huesped.alojamientos.HuespedDetallesHistorialReservaActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.huesped.guias.HuespedCalificarGuiaActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.anfitrion.AnfitrionPublicarAlojamientoActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -151,7 +154,9 @@
             android:name=".services.TestService"
             android:exported="false" />
 
-        <activity android:name=".activities.huesped.guias.HuespedCalificarGuiaActivity"></activity>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test"></activity>
     </application>
 
 </manifest>
