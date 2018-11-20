@@ -60,8 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         clave = findViewById(R.id.etContrasenaLA);
 
         nProgressDialog = new ProgressDialog(LoginActivity.this);
-        Intent intent = new Intent(LoginActivity.this,AlarmReceiverService.class);
-        startService(intent);
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
