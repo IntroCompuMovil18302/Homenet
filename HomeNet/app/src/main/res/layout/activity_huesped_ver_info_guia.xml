@@ -42,7 +42,7 @@
                 android:layout_width="115dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                app:srcCompat="@drawable/user"
+                app:srcCompat="@drawable/guia"
                 tools:layout_editor_absoluteX="75dp"
                 tools:layout_editor_absoluteY="16dp" />
 
