@@ -58,7 +58,7 @@
             android:name=".activities.CrearPerfilActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.guia.GuiasDisponiblesActivity"
+            android:name=".activities.huesped.guias.HuespedTouresDisponiblesActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.huesped.guias.HuespedVerInfoGuiaActivity"

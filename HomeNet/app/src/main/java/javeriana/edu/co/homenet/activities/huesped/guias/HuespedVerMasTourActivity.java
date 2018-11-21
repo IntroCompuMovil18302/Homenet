@@ -23,7 +23,7 @@ public class HuespedVerMasTourActivity extends AppCompatActivity {
         verRecorridos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),HuespedVerRecorridosActivity.class);
+                Intent intent = new Intent(v.getContext(),HuespedVerRecorridoTourActivity.class);
                 startActivity(intent);
             }
         });

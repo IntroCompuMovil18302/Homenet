@@ -1,8 +1,17 @@
 package javeriana.edu.co.homenet.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import javeriana.edu.co.homenet.utils.DistanceFunc;
+
 public class Tour {
+
+    private String id;
     private int capacidad;
     private String descripcion;
     private int duracion;
@@ -12,7 +21,7 @@ public class Tour {
     private int precio;
     private String titulo;
     private String urlImg;
-    private List<Ubicacion> recorrido;
+    private List<Ubicacion> recorrido = new ArrayList<>();
 
     public Tour(int capacidad, String descripcion, int duracion, String fecha, String hora,
                 String moneda, int precio, String titulo, String urlImg, List<Ubicacion> recorrido) {
@@ -26,6 +35,16 @@ public class Tour {
         this.titulo = titulo;
         this.urlImg = urlImg;
         this.recorrido = recorrido;
+    }
+
+    public Tour () {}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getCapacidad() {
@@ -106,5 +125,17 @@ public class Tour {
 
     public void setRecorrido(List<Ubicacion> recorrido) {
         this.recorrido = recorrido;
+    }
+
+    public boolean estaCerca(double lat1, double long1, double km){
+        Ubicacion ubicacion = this.getRecorrido().get(0);
+        if(ubicacion!=null){
+            double distance = DistanceFunc.distance(lat1,long1,ubicacion.getLatitude(),ubicacion.getLongitude());
+            if(distance<=km){
+                return true;
+            }
+            return false;
+        }
+        return  false;
     }
 }
