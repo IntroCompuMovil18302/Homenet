@@ -137,6 +137,7 @@ public class HuespedVerTourActivity extends AppCompatActivity {
 
     private void buscarRutas (){
         if (titulos.size() > 1){
+            UtilidadesMapa.routes.clear();
             for (int i = 0; i < titulos.size()-1 ;i++) {
                 Punto p1 = new Punto();
                 Punto p2 = new Punto();
