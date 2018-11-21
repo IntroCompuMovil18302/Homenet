@@ -187,29 +187,32 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
         subidos=0;
         for(int i=0;i<listaImagenes.size();i++) {
             uri = Uri.parse(listaImagenes.get(i));
-            StorageReference fileReference = mStorage.child(System.currentTimeMillis() + "." + extensionImagen(uri));
-            fileReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            final StorageReference fileReference = mStorage.child(System.currentTimeMillis() + "." + extensionImagen(uri));
+            UploadTask uT = fileReference.putFile(uri);
+            uT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    referenciaUrl = taskSnapshot.getUploadSessionUri().toString();
-                    imgUri.add(referenciaUrl);
-                    subidos++;
-                    if(subidos==listaImagenes.size()){
-                        subirAlojamiento();
-                    }
-
-                    System.out.println("ESTO ES TASK SNAPSHOT DONWLOAD URL ANTESSSSSSSSSSSS-------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + referenciaUrl);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    referenciaUrl = "";
-                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Falló la subida de una imagen", Toast.LENGTH_SHORT).show();
-                }
-            });
+                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        public void onSuccess(Uri uriSuccess) {
+                            referenciaUrl = uriSuccess.toString();
+                            imgUri.add(referenciaUrl);
+                            subidos++;
+                            if(subidos==listaImagenes.size()){
+                                subirAlojamiento();
+                            }
+                            System.out.println("ESTO ES TASK SNAPSHOT DONWLOAD URL ANTESSSSSSSSSSSS-------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + referenciaUrl);
+                        }
+                    });
+    }}).addOnFailureListener(new OnFailureListener() {
+@Override
+public void onFailure(@NonNull Exception e) {
+        referenciaUrl = "";
+        Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Falló la subida de una imagen", Toast.LENGTH_SHORT).show();
         }
-    }
-    public void subirAlojamiento(){
+        });
+        }
+        }
+public void subirAlojamiento(){
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
         alojamiento.setIdUsuario(uid);
@@ -228,13 +231,11 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                     Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Se ha publicado el alojamiento", Toast.LENGTH_SHORT).show();
                     //infoActualUsuario(idServicio,ususerv);
                     agregarDatosUsuarioServicio(alojamiento.getId());
-
                 }
                 else{
                     nProgressDialog.dismiss();
                     Toast.makeText( AnfitrionPublicarAlojamientoImgActivity.this,"Hubo un error al crear un servicio", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
         });
@@ -252,7 +253,7 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                     Usuario usuario = new Usuario(usr.getNombre(),usr.getUrlImg(),usr.getEdad(),usr.getTipoUsuario(),usr.getCorreo(),usr.getNacionalidad(),usr.getSexo());
                     if(usr.getAlojamientos().size()>0)
                         usuario.setAlojamientos(usr.getAlojamientos());
-                    usuario.agregarElemento(idAloja);
+                    usuario.agregarElemento(idAloja,true);
                     mDataBase.child(mAuth.getCurrentUser().getUid()).setValue(usuario);
                     Intent intent = new Intent(AnfitrionPublicarAlojamientoImgActivity.this,AnfitrionMenuActivity.class);
                     startActivity(intent);
