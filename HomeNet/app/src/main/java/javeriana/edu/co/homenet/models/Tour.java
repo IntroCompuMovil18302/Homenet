@@ -1,9 +1,7 @@
 package javeriana.edu.co.homenet.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javeriana.edu.co.homenet.utils.DistanceFunc;
 
@@ -12,6 +10,7 @@ public class Tour {
     private String id;
     private int capacidad;
     private String descripcion;
+    private int inscritos;
     private int duracion;
     private String fecha;
     private String idGuia;
@@ -21,20 +20,23 @@ public class Tour {
     private String titulo;
     private String urlImg;
     private List<Ubicacion> recorrido = new ArrayList<>();
-    private Map<String, Boolean> personas = new HashMap<>();
+    private List<String> historialTour = new ArrayList<>();
 
-    public Tour(int capacidad, String descripcion, int duracion, String fecha, String hora,
-                String moneda, int precio, String titulo, String urlImg, List<Ubicacion> recorrido) {
+    public Tour(String id, int capacidad, String descripcion, int duracion, String fecha, String idGuia, String hora, String moneda, int precio, String titulo, String urlImg, List<Ubicacion> recorrido, List<String> historialTour) {
+        this.id = id;
         this.capacidad = capacidad;
         this.descripcion = descripcion;
+        this.inscritos = 0;
         this.duracion = duracion;
         this.fecha = fecha;
+        this.idGuia = idGuia;
         this.hora = hora;
         this.moneda = moneda;
         this.precio = precio;
         this.titulo = titulo;
         this.urlImg = urlImg;
         this.recorrido = recorrido;
+        this.historialTour = historialTour;
     }
 
     public Tour () {}
@@ -53,6 +55,14 @@ public class Tour {
 
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
+    }
+
+    public int getInscritos() {
+        return inscritos;
+    }
+
+    public void setInscritos(int inscritos) {
+        this.inscritos = inscritos;
     }
 
     public String getDescripcion() {
@@ -135,16 +145,12 @@ public class Tour {
         this.recorrido = recorrido;
     }
 
-    public Map<String, Boolean> getPersonas() {
-        return personas;
+    public List<String> getHistorialTour() {
+        return historialTour;
     }
 
-    public void setPersonas(Map<String, Boolean> personas) {
-        this.personas = personas;
-    }
-
-    public void addPersona (String id, Boolean b) {
-        this.personas.put(id,b);
+    public void setHistorialTour(List<String> historialTour) {
+        this.historialTour = historialTour;
     }
 
     public boolean estaCerca(double lat1, double long1, double km){

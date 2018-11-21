@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +25,7 @@ public class TourGuiaAdapter extends ArrayAdapter<Tour> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Tour t = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tour_gp, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tour_gp_gut, parent, false);
         }
         ImageView imgTour = convertView.findViewById(R.id.imgTourIT);
         TextView nTour = convertView.findViewById(R.id.tvNombreITGP);

@@ -136,18 +136,19 @@ public class HuespedVerTourActivity extends AppCompatActivity {
     }
 
     private void buscarRutas (){
-
-        for (int i = 0; i < titulos.size()-1 ;i++) {
-            Punto p1 = new Punto();
-            Punto p2 = new Punto();
-            p1.setLatitudInicial(Double.valueOf(paradasLat.get(i)));
-            p1.setLatitudInicial(Double.valueOf(paradasLong.get(i)));
-            UtilidadesMapa.coordenadas.add(p1);
-            p2.setLatitudFinal(Double.valueOf(paradasLat.get(i+1)));
-            p2.setLongitudFinal(Double.valueOf(paradasLong.get(i+1)));
-            UtilidadesMapa.coordenadas.add(p2);
-            webServiceObtenerRuta(paradasLat.get(i), paradasLong.get(i),
-                    paradasLat.get(i + 1), paradasLong.get(i + 1));
+        if (titulos.size() > 1){
+            for (int i = 0; i < titulos.size()-1 ;i++) {
+                Punto p1 = new Punto();
+                Punto p2 = new Punto();
+                p1.setLatitudInicial(Double.valueOf(paradasLat.get(i)));
+                p1.setLatitudInicial(Double.valueOf(paradasLong.get(i)));
+                UtilidadesMapa.coordenadas.add(p1);
+                p2.setLatitudFinal(Double.valueOf(paradasLat.get(i+1)));
+                p2.setLongitudFinal(Double.valueOf(paradasLong.get(i+1)));
+                UtilidadesMapa.coordenadas.add(p2);
+                webServiceObtenerRuta(paradasLat.get(i), paradasLong.get(i),
+                        paradasLat.get(i + 1), paradasLong.get(i + 1));
+            }
         }
     }
 
