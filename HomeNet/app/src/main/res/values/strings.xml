@@ -125,6 +125,32 @@
     <string name="quantity">Usuarios inscritos:</string>
     <string name="price">Precio:</string>
     <string name="route">Ver recorrido</string>
+    <string name="renew">Renovar</string>
+    <string name="add_location">Añadir parada</string>
+    <string name="delete_location">Eliminar parada</string>
+    <string name="select_location">Seleccionar parada</string>
+
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="see">Ver</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="back">Volver</string>
+    <string name="upload_pic">Cargar foto</string>
+    <string name="date">Fecha:</string>
+    <string name="hour">Hora:</string>
+    <string name="delete_message">¿Está seguro de eliminar?</string>
+
+    <string name="hint_name_tour">Digite el título de su tour.</string>
+    <string name="hint_date_tour">Fecha (dd/mm/yyyy).</string>
+    <string name="hint_hour_tour">Hora (hh:ss).</string>
+    <string name="hint_duration_tour">Duración tour (horas).</string>
+    <string name="hint_description_tour">Describa su tour.</string>
+    <string name="hint_capacity_tour">¿Para cuántas personas?</string>
+    <string name="hint_precio_tour">Digite el precio de su tour.</string>
+    <string name="add_route">Agregar recorrido</string>
+    <string name="edit_route">Editar recorrido</string>
+
 
     <!-- Bottom tab bar -->
     <string name="tours_title">Mis Toures</string>
@@ -149,5 +175,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_guia_recorrido_tour">HomeNet</string>
+    <string name="title_activity_guia_recorrido_editable">Map</string>
     <string name="title_activity_huesped_ver_recorrido_tour">Map</string>
 </resources>

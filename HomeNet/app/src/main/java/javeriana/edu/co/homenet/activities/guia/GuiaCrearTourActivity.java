@@ -4,32 +4,29 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
-
-import com.google.firebase.auth.FirebaseAuth;
+import android.widget.Button;
 
 import javeriana.edu.co.homenet.R;
-import javeriana.edu.co.homenet.activities.LoginActivity;
 
-public class GuiaPrincipalActivity extends AppCompatActivity {
+public class GuiaCrearTourActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-
-    private BottomNavigationView navigation;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    BottomNavigationView navigation;
+    BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_tours:
+                    item.setIntent(new Intent(GuiaCrearTourActivity.this, GuiaPrincipalActivity.class));
                     return true;
                 case R.id.navigation_new_tour:
-                    item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaCrearTourActivity.class));
                     return true;
                 case R.id.navigation_history_tours:
                     return true;
@@ -39,34 +36,27 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
             return false;
         }
     };
+    Button guardar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guia_principal);
+        setContentView(R.layout.activity_guia_crear_tour);
 
-        mAuth = FirebaseAuth.getInstance();
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_new_tour);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        int itemClicked = item.getItemId();
-        if(itemClicked == R.id.menuLogOut){
-            mAuth.signOut();
-            Intent intent = new Intent(GuiaPrincipalActivity.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
+        guardar = findViewById(R.id.btGuardarGCT);
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new GuiaRenovarTourActivity();
+                newFragment.show(getSupportFragmentManager(), "missiles");
+            }
+        });
     }
 
     @Override
