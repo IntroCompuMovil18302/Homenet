@@ -9,14 +9,9 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
@@ -31,6 +26,14 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -42,117 +45,145 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javeriana.edu.co.homenet.R;
-import javeriana.edu.co.homenet.adapters.TourGuiaAdapter;
 import javeriana.edu.co.homenet.models.Tour;
-import javeriana.edu.co.homenet.utils.DateFormater;
+import javeriana.edu.co.homenet.models.Ubicacion;
 
-public class HuespedTouresDisponiblesActivity extends AppCompatActivity {
-
-    public static final String PATH_TOUR="Tours/";
+public class HuespedBuscarTourMapa extends FragmentActivity implements OnMapReadyCallback {
 
     final static int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     final static int REQUEST_CHECK_SETTINGS = 2;
 
-    EditText distancia;
-    Button porDist;
-    Button buscarMapa;
-    ListView lvGuiasDisp;
+    public static final String PATH_TOUR="Tours/";
 
-    private ArrayList<Tour> listToures = new ArrayList<>();
-    private Double radius;
+    private GoogleMap mMap;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
-    private Location location;
-    private boolean firstTime = true;
-
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
+    private MarkerOptions actualMarkerOptions;
+    private Marker actualMarker;
+    private MarkerOptions paradaMarker;
+    private MarkerOptions myMarkerOptions;
+
+    private Location location;
+    private boolean firstTime = true;
+    private ArrayList<Ubicacion> listToures = new ArrayList<>();
+    private ArrayList<String> listId = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_huesped_guias_disponibles);
-
-        distancia = findViewById(R.id.etDistanciaHTDA);
-        porDist = findViewById(R.id.btDistanciaHTDA);
-        buscarMapa = findViewById(R.id.btMapaHTDA);
-        lvGuiasDisp = findViewById(R.id.lvGuiasDispHGDA);
-
-        if (distancia.getText().toString().equals("") || distancia == null) {
-            radius = 2000.0;
-        }else{
-            radius = Double.parseDouble(distancia.getText().toString());
-        }
+        setContentView(R.layout.activity_huesped_buscar_tour_mapa);
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(PATH_TOUR);
 
-
         requestPermission(this, Manifest.permission.ACCESS_FINE_LOCATION,
                 "Se necesita acceder a los servicios de ubicacion", MY_PERMISSIONS_REQUEST_LOCATION);
 
         mLocationRequest = createLocationRequest();
+        actualMarkerOptions = new MarkerOptions();
+        actualMarkerOptions
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.person_marker))
+                .title("Mi ubicación");
+        paradaMarker = new MarkerOptions();
+        paradaMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.flag));
+        myMarkerOptions = new MarkerOptions();
+        myMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 location = locationResult.getLastLocation();
                 if(location != null) {
-                    porDist.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(firstTime == true) {
-                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        listToures.clear();
-                                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                                            Tour t = singleSnapshot.getValue(Tour.class);
-                                            if (matchTour(t)){
-                                                t.setId(singleSnapshot.getKey());
-                                                listToures.add(t);
-                                            }
-                                            TourGuiaAdapter adapterTour = new TourGuiaAdapter(HuespedTouresDisponiblesActivity.this, listToures);
-                                            lvGuiasDisp.setAdapter(adapterTour);
-                                            lvGuiasDisp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                                @Override
-                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                                    Bundle b = new Bundle();
-                                                    b.putString("idTour", listToures.get(position).getId());
-                                                    startActivity(new Intent(view.getContext(),HuespedVerTourActivity.class).putExtras(b));
-                                                }
-                                            });
-                                        }
+                    if(firstTime == true) {
+                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                listToures.clear();
+                                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                                    Tour t = singleSnapshot.getValue(Tour.class);
+                                    t.setId(singleSnapshot.getKey());
+                                    listToures.add(t.getRecorrido().get(0));
+                                    listId.add(singleSnapshot.getKey());
+                                }
+                                if (location != null && mMap != null) {
+                                    LatLng actualPosition = new LatLng(location.getLatitude(),location.getLongitude());
+                                    if (actualMarker != null){
+                                        actualMarker.setPosition(actualPosition);
+                                    }
+                                    else{
+                                        actualMarkerOptions.position(actualPosition);
+                                        actualMarker = mMap.addMarker(actualMarkerOptions);
+                                        mMap.moveCamera(CameraUpdateFactory.newLatLng(actualPosition));
+                                    }
+                                    for ( Ubicacion u : listToures){
+                                        LatLng parada = new LatLng(u.getLatitude(), u.getLongitude());
+                                        paradaMarker.position(parada);
+                                        paradaMarker.title(u.getTitulo());
+                                        mMap.addMarker(paradaMarker);
                                     }
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                                        Log.w("Firebase database", "error en la consulta", databaseError.toException());
-                                    }
-                                });
-                                firstTime = false;
+                                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                        @Override
+                                        public void onInfoWindowClick(Marker marker) {
+                                            for (int i = 0; i < listId.size(); i++) {
+                                                if (listToures.get(i).getTitulo().equals(marker.getTitle())){
+                                                    Bundle b = new Bundle();
+                                                    b.putString("idTour", listId.get(i));
+                                                    startActivity(new Intent(HuespedBuscarTourMapa.this,
+                                                            HuespedVerTourActivity.class).putExtras(b));
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
                             }
-                        }
-                    });
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+                            }
+                        });
+                        firstTime = false;
+                    }
                 }
             }
         };
+        turnLocation();
+    }
 
-        buscarMapa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), HuespedBuscarTourMapa.class));
-            }
-        });
 
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.getUiSettings().setScrollGesturesEnabled(true);
+        mMap.getUiSettings().setTiltGesturesEnabled(true);
+        mMap.getUiSettings().setRotateGesturesEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
         turnLocation();
     }
 
@@ -212,7 +243,7 @@ public class HuespedTouresDisponiblesActivity extends AppCompatActivity {
                         // Location settings are not satisfied, but this can be fixed by showing the user a dialog.
                         try {// Show the dialog by calling startResolutionForResult(), and check the result in onActivityResult().
                             ResolvableApiException resolvable = (ResolvableApiException) e;
-                            resolvable.startResolutionForResult(HuespedTouresDisponiblesActivity.this, REQUEST_CHECK_SETTINGS);
+                            resolvable.startResolutionForResult(HuespedBuscarTourMapa.this, REQUEST_CHECK_SETTINGS);
                         } catch (IntentSender.SendIntentException sendEx) {
                             // Ignore the error.
                         } break;
@@ -246,16 +277,5 @@ public class HuespedTouresDisponiblesActivity extends AppCompatActivity {
                 return;
             }
         }
-    }
-
-    private boolean matchTour (Tour t) {
-        boolean match = true;
-        Date d = DateFormater.today();
-        Date d2 = DateFormater.stringToDate(t.getFecha());
-        if(location!=null && d.after(d2)){
-            match = match && t.estaCerca(location.getLatitude(), location.getLongitude(),
-                    radius/1000);
-        }
-        return match;
     }
 }
