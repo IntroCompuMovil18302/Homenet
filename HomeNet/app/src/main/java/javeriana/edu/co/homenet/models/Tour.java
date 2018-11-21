@@ -1,11 +1,9 @@
 package javeriana.edu.co.homenet.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javeriana.edu.co.homenet.utils.DistanceFunc;
 
@@ -16,12 +14,14 @@ public class Tour {
     private String descripcion;
     private int duracion;
     private String fecha;
+    private String idGuia;
     private String hora;
     private String moneda;
     private int precio;
     private String titulo;
     private String urlImg;
     private List<Ubicacion> recorrido = new ArrayList<>();
+    private Map<String, Boolean> personas = new HashMap<>();
 
     public Tour(int capacidad, String descripcion, int duracion, String fecha, String hora,
                 String moneda, int precio, String titulo, String urlImg, List<Ubicacion> recorrido) {
@@ -79,6 +79,14 @@ public class Tour {
         this.fecha = fecha;
     }
 
+    public String getIdGuia() {
+        return idGuia;
+    }
+
+    public void setIdGuia(String idGuia) {
+        this.idGuia = idGuia;
+    }
+
     public String getHora() {
         return hora;
     }
@@ -125,6 +133,18 @@ public class Tour {
 
     public void setRecorrido(List<Ubicacion> recorrido) {
         this.recorrido = recorrido;
+    }
+
+    public Map<String, Boolean> getPersonas() {
+        return personas;
+    }
+
+    public void setPersonas(Map<String, Boolean> personas) {
+        this.personas = personas;
+    }
+
+    public void addPersona (String id, Boolean b) {
+        this.personas.put(id,b);
     }
 
     public boolean estaCerca(double lat1, double long1, double km){

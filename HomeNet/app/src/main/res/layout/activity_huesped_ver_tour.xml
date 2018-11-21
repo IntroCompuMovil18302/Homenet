@@ -11,12 +11,25 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
 
+        <ImageView
+            android:id="@+id/ivAnuncioHVTA"
+            android:layout_width="399dp"
+            android:layout_height="178dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:foregroundGravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreAnuncioHVTA"
+            app:srcCompat="@drawable/sitio" />
+
         <TextView
             android:id="@+id/mtdescAnuncioHVMTA"
             android:layout_width="0dp"
             android:layout_height="129dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="Descripción"
             android:textColor="#d33838"
@@ -38,25 +51,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btVerRecorridosHVTA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="Ver Recorridos"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="395dp"
-            android:layout_height="75dp"
+            android:layout_height="85dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
@@ -68,7 +66,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25"
+                android:layout_weight="0.2"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="203dp">
@@ -88,7 +86,7 @@
                     android:gravity="center"
                     android:text="12345"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     tools:layout_editor_absoluteX="20dp"
                     tools:layout_editor_absoluteY="272dp" />
 
@@ -97,7 +95,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25"
+                android:layout_weight="0.2"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteX="134dp"
                 tools:layout_editor_absoluteY="203dp">
@@ -117,7 +115,7 @@
                     android:gravity="center"
                     android:text="2:00 pm"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     tools:layout_editor_absoluteX="135dp"
                     tools:layout_editor_absoluteY="283dp" />
             </LinearLayout>
@@ -125,7 +123,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25"
+                android:layout_weight="0.2"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteX="243dp"
                 tools:layout_editor_absoluteY="203dp">
@@ -133,7 +131,7 @@
                 <ImageView
                     android:id="@+id/imageView8"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     app:srcCompat="@drawable/duration" />
 
@@ -145,7 +143,7 @@
                     android:gravity="center"
                     android:text="2 horas"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     tools:layout_editor_absoluteX="229dp"
                     tools:layout_editor_absoluteY="283dp" />
             </LinearLayout>
@@ -153,7 +151,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25"
+                android:layout_weight="0.2"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteX="310dp"
                 tools:layout_editor_absoluteY="203dp">
@@ -161,7 +159,7 @@
                 <ImageView
                     android:id="@+id/imageView9"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     app:srcCompat="@drawable/calendar_icon" />
 
@@ -173,23 +171,85 @@
                     android:gravity="center"
                     android:text="10/11/18"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     tools:layout_editor_absoluteX="318dp"
                     tools:layout_editor_absoluteY="277dp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="77dp"
+                tools:layout_editor_absoluteY="389dp">
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/user" />
+
+                <TextView
+                    android:id="@+id/tvCapacidadHVTA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="20 personas"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp" />
+            </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/ivAnuncioHVTA"
-            android:layout_width="399dp"
-            android:layout_height="178dp"
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:foregroundGravity="center"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreAnuncioHVTA"
-            app:srcCompat="@drawable/sitio" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <Button
+                android:id="@+id/btVerGuiaHVTA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_weight="0.5"
+                android:background="@color/colorPrimaryDark"
+                android:text="Ver Guía"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btVerRecorridosHVTA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="0.5"
+                android:background="@color/colorPrimaryDark"
+                android:text="Ver Recorridos"
+                android:textColor="@android:color/white"
+                tools:layout_editor_absoluteX="148dp"
+                tools:layout_editor_absoluteY="520dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btInscribirseHVTA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Inscribirse"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

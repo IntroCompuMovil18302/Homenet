@@ -1,19 +1,10 @@
 package javeriana.edu.co.homenet.models;
 
-import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class Usuario {
     private String id;
     private String nombre;
-    // private String contraseña;  // Opcional
     private String urlImg;
     private int edad;
     private String tipoUsuario;
