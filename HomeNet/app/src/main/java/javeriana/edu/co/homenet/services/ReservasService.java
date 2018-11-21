@@ -42,6 +42,7 @@ public class ReservasService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        mAuth = FirebaseAuth.getInstance();
         usuarioActual();
     }
 
@@ -76,18 +77,19 @@ public class ReservasService extends IntentService {
                 if (dataSnapshot != null) {
                     if (mAuth.getCurrentUser() != null) {
                         Reserva reserva = dataSnapshot.getValue(Reserva.class);
+                        System.out.println("Reserva fecha de Inicio------> "+reserva.getFechaInicio());
+                        System.out.println("Reserva fecha de Fin------> "+reserva.getFechaInicio());
                         Random random = new Random();
                         int numRandom = random.nextInt(10000)+1;
                         String CHANNEL_ID="";
                         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
                         Intent repeating_intent = new Intent(ReservasService.this,AnfitrionMenuActivity.class);
                         repeating_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        System.out.println("Se creooooooooooooooooooooooooooooooooooooo una reservaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -------------------------->");
                         if (usuario.getAlojamientos().get(reserva.getAlojamiento()) != null) {
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                                 numRandom = random.nextInt(10000)+1;
                                 CHANNEL_ID = "Reserva "+numRandom;
-                                System.out.println("Esta en una version mayor a Android 8");
-                                System.out.println("Entro ahora si al sistema OREO");
                                 CharSequence name = getString(R.string.desde);
                                 String description = getString(R.string.agregar);
                                 int importance = NotificationManager.IMPORTANCE_DEFAULT;

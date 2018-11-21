@@ -76,6 +76,26 @@ public class AlarmReceiverService extends BroadcastReceiver {
             }
         });
     }
+    private void encontrarTours(Context context, Intent intent){//TODO Hasta que se cree la clase de BistorialToures
+        mDataBase = FirebaseDatabase.getInstance().getReference("HistorialToures/");
+        mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    if(mAuth.getCurrentUser()!=null){
+
+                    }
+
+                }
+                //mostrarNotificaciones(context,intent);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+            }
+        });
+    }
     private void encontrarAlojamientos(final Context context, final Intent intent){
         mDataBase = FirebaseDatabase.getInstance().getReference("Alojamientos/");
         mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -132,7 +152,7 @@ public class AlarmReceiverService extends BroadcastReceiver {
                         channel.setDescription(description);
                         notificationManager.createNotificationChannel(channel);
                         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,CHANNEL_ID);
-                        mBuilder.setSmallIcon(R.drawable.boy);
+                        mBuilder.setSmallIcon(R.drawable.apartment);
                         mBuilder.setContentTitle("Reserva de alojamiento cercana");
                         mBuilder.setContentText("Faltan "+ diferenciaDias+" dias para la reserva del alojamiento "+listaAlojamientos.get(reservas.get(i).getAlojamiento()));
                         mBuilder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
@@ -159,7 +179,7 @@ public class AlarmReceiverService extends BroadcastReceiver {
                         PendingIntent pendingIntent = PendingIntent.getActivity(context,numRandom,repeating_intent,PendingIntent.FLAG_UPDATE_CURRENT);
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                                 .setContentIntent(pendingIntent)
-                                .setSmallIcon(R.drawable.boy)
+                                .setSmallIcon(R.drawable.apartment)
                                 .setContentTitle("Reserva de alojamiento cercana")
                                 .setContentText("Faltan "+ diferenciaDias+" dias para la reserva del alojamiento "+listaAlojamientos.get(reservas.get(i).getAlojamiento()))
                                 .setAutoCancel(true)
@@ -173,6 +193,7 @@ public class AlarmReceiverService extends BroadcastReceiver {
                 }
             }
         }
+        encontrarTours(context,intent);
     }
     public int calcularDias(int diaInicio, int diaFinal, int mesInicio, int mesFinal, int anioInicio, int anioFinal){
         int dias = 0;

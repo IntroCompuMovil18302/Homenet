@@ -187,20 +187,23 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
         subidos=0;
         for(int i=0;i<listaImagenes.size();i++) {
             uri = Uri.parse(listaImagenes.get(i));
-            StorageReference fileReference = mStorage.child(System.currentTimeMillis() + "." + extensionImagen(uri));
-            fileReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            final StorageReference fileReference = mStorage.child(System.currentTimeMillis() + "." + extensionImagen(uri));
+            UploadTask uT = fileReference.putFile(uri);
+            uT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    referenciaUrl = taskSnapshot.getUploadSessionUri().toString();
-                    imgUri.add(referenciaUrl);
-                    subidos++;
-                    if(subidos==listaImagenes.size()){
-                        subirAlojamiento();
-                    }
-
-                    System.out.println("ESTO ES TASK SNAPSHOT DONWLOAD URL ANTESSSSSSSSSSSS-------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + referenciaUrl);
-    }
-}).addOnFailureListener(new OnFailureListener() {
+                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        public void onSuccess(Uri uriSuccess) {
+                            referenciaUrl = uriSuccess.toString();
+                            imgUri.add(referenciaUrl);
+                            subidos++;
+                            if(subidos==listaImagenes.size()){
+                                subirAlojamiento();
+                            }
+                            System.out.println("ESTO ES TASK SNAPSHOT DONWLOAD URL ANTESSSSSSSSSSSS-------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + referenciaUrl);
+                        }
+                    });
+    }}).addOnFailureListener(new OnFailureListener() {
 @Override
 public void onFailure(@NonNull Exception e) {
         referenciaUrl = "";

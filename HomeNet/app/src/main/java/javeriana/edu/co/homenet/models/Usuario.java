@@ -45,6 +45,10 @@ public class Usuario {
         this.correo = correo;
         this.nacionalidad = nacionalidad;
         this.sexo = sexo;
+        this.alojamientos = new HashMap<>();
+        this.opinionesAlojamiento = new HashMap<>();
+        this.opinionesGuia = new HashMap<>();
+        this.reservas = new HashMap<>();
     }
 
     public String getId() {

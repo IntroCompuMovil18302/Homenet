@@ -42,7 +42,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
         <RelativeLayout
-            android:id="@+id/relativeLayout"
+            android:id="@+id/rlPantallaImgAPA"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="180dp"
@@ -73,7 +73,7 @@
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/rlPantallaImgAPA" />
 
         <View
             android:id="@+id/divider3"
