@@ -7,6 +7,7 @@ public class Reserva {
     private String fechaOperacion;
     private String huesped;
     private String alojamiento;
+    private String estado ;
 
     public Reserva() {
     }
@@ -57,5 +58,13 @@ public class Reserva {
 
     public void setAlojamiento(String alojamiento) {
         this.alojamiento = alojamiento;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

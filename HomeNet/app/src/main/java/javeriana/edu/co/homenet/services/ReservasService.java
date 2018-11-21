@@ -3,6 +3,7 @@ package javeriana.edu.co.homenet.services;
 import android.app.IntentService;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
@@ -35,6 +36,7 @@ public class ReservasService extends IntentService {
     DatabaseReference mDataBase;
     Usuario usuario;
     Map<String,String> listaAlojamientos = new HashMap<>();
+    boolean primero =false;
 
     public ReservasService() {
         super("ReservasService");
@@ -70,13 +72,21 @@ public class ReservasService extends IntentService {
     }
 
     public void listenerReserva() {
-        mDataBase = FirebaseDatabase.getInstance().getReference("Reservas/");
+        mDataBase = FirebaseDatabase.getInstance().getReference().child("Reservas/");
         mDataBase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
                     if (mAuth.getCurrentUser() != null) {
-                        Reserva reserva = dataSnapshot.getValue(Reserva.class);
+                        Reserva reserva= new Reserva();
+                        int i=0;
+                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                            if(i==2){
+                                reserva = singleSnapshot.getValue(Reserva.class);
+                            }
+                            i++;
+                            System.out.println("El id de la reserva "+reserva.getId());
+                        }
                         System.out.println("Reserva fecha de Inicio------> "+reserva.getFechaInicio());
                         System.out.println("Reserva fecha de Fin------> "+reserva.getFechaInicio());
                         Random random = new Random();
@@ -86,8 +96,9 @@ public class ReservasService extends IntentService {
                         Intent repeating_intent = new Intent(ReservasService.this,AnfitrionMenuActivity.class);
                         repeating_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         System.out.println("Se creooooooooooooooooooooooooooooooooooooo una reservaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -------------------------->");
-                        if (usuario.getAlojamientos().get(reserva.getAlojamiento()) != null) {
+                        if (usuario.getAlojamientos().get(reserva.getAlojamiento()) != null && primero) {
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                System.out.println("Entro android version mayor  a 8------------------------->");
                                 numRandom = random.nextInt(10000)+1;
                                 CHANNEL_ID = "Reserva "+numRandom;
                                 CharSequence name = getString(R.string.desde);
@@ -106,13 +117,29 @@ public class ReservasService extends IntentService {
                                 numRandom = random.nextInt(10000)+1;
                                 notificationManager.notify(numRandom,mBuilder.build());
                             }else{ //Android con version menor a la 8
-
+                                System.out.println("Entro android version menor a 8");
+                                numRandom = random.nextInt(10000)+1;
+                                PendingIntent pendingIntent = PendingIntent.getActivity(ReservasService.this,numRandom,repeating_intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(ReservasService.this)
+                                        .setContentIntent(pendingIntent)
+                                        .setSmallIcon(R.drawable.boy)
+                                        .setContentTitle("Nueva reserva en un alojamiento")
+                                        .setContentText("Realizaron una nueva reserva en tu alojamiento "+listaAlojamientos.get(reserva.getAlojamiento()))
+                                        .setAutoCancel(true)
+                                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                                        .setStyle(new NotificationCompat.BigTextStyle().
+                                                bigText("Realizaron una nueva reserva en tu alojamiento "+listaAlojamientos.get(reserva.getAlojamiento())))
+                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                                numRandom = random.nextInt(10000)+1;
+                                notificationManager.notify(numRandom,builder.build());
                             }
                         }
+                        primero=true;
                     }
                 } else {
                     Toast.makeText(ReservasService.this, "No se encontro un usuario para asociar el alojamiento", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
