@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import javeriana.edu.co.homenet.R;
 
-public class GuiaCrearAnuncioDetalleActivity extends AppCompatActivity {
+public class GuiaHistorialToures extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guia_crear_anuncio_detalle);
+        setContentView(R.layout.activity_guia_historial_toures);
     }
 }

@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import javeriana.edu.co.homenet.R;
-import javeriana.edu.co.homenet.activities.guia.GuiaCrearAnuncioDetalleActivity;
-import javeriana.edu.co.homenet.activities.guia.GuiaPrincipalActivity;
 
 public class HuespedVerRecorridosActivity extends AppCompatActivity {
 
