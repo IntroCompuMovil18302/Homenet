@@ -164,7 +164,7 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot!=null){
                     Alojamiento aloja = dataSnapshot.getValue(Alojamiento.class);
-                    aloja.agregarOpinion(idOpinion);
+                    aloja.agregarOpinion(idOpinion,true);
                     mDataBase.child(alojamiento.getId()).setValue(aloja);
                     nProgressDialog.dismiss();
                     Toast.makeText(HuespedCalificarAlojamientoActivity.this, "Se ha publicado la calificación del alojamiento", Toast.LENGTH_SHORT).show();

@@ -53,7 +53,6 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
     boolean fechaFinal=false;
     DateData fechaDesde ;
     DateData fechaHasta;
-    Bundle bundle;
     List<DateData> disponibles= new ArrayList<>();
     List<DateData> resultadosProximosDias = new ArrayList<>();
     Alojamiento alojamiento;
@@ -77,10 +76,8 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         calendario = (MCalendarView)findViewById(R.id.mcvReservarAlojHRA);
         reservar=(Button)findViewById(R.id.btReservarHRA);
 
-
-        bundle= getIntent().getExtras();
         //findAloj(bundle.getString("idAloj"));
-        findAloj(bundle.getString("idAloj"));
+        findAloj(getIntent().getStringExtra("idAloj"));
         ver_ruta.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
