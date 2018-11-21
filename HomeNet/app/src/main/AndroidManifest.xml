@@ -40,18 +40,6 @@
             android:name=".activities.guia.GuiaPrincipalActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.guia.GuiaHistorialServiciosActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.guia.GuiaCrearAnuncioParadaActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.guia.GuiaEditarAnuncioActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.guia.GuiaEditarAnuncioDetalleActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.anfitrion.AnfitrionMenuActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -126,8 +114,6 @@
         <activity
             android:name=".activities.huesped.alojamientos.HuespedConsultarPorFechaActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.guia.GuiaCrearAnuncioBasicInfoActivity" />
-        <activity android:name=".activities.guia.GuiaCrearAnuncioDetalleActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -151,12 +137,20 @@
             android:name=".services.TestService"
             android:exported="false" />
 
-        <activity
-            android:name=".TestActivity"
-            android:label="@string/title_activity_test" />
+        <activity android:name=".activities.guia.GuiaCrearTourActivity" />
+        <activity android:name=".activities.guia.GuiaEditarTourActivity" />
+        <activity android:name=".activities.guia.GuiaUsuariosTourActivity" />
+        <activity android:name=".activities.guia.GuiaCalificacionesActivity" />
+        <activity android:name=".activities.guia.GuiaHistorialToures" />
         <activity
             android:name=".activities.huesped.guias.HuespedVerRecorridoTourActivity"
-            android:label="@string/title_activity_huesped_ver_recorrido_tour"></activity>
+            android:label="@string/title_activity_huesped_ver_recorrido_tour"/>
+        <activity
+        android:name=".activities.guia.GuiaRecorridoTourActivity"
+            android:label="@string/title_activity_guia_recorrido_tour" />
+        <activity
+            android:name=".activities.guia.GuiaRecorridoEditableActivity"
+            android:label="@string/title_activity_guia_recorrido_editable"/>
     </application>
 
 </manifest>
