@@ -90,6 +90,7 @@ public class AnfitrionMenuActivity extends AppCompatActivity {
             adapter.notifyItemChanged(position);
 
         Intent intent = new Intent(this,AnfitrionDetalleAlojamientoActivity.class);
+        intent.putExtra("Data", alojamientos.get(position));
         startActivity(intent);
 
         Toast toast1 =

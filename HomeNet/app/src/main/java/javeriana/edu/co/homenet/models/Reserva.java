@@ -1,6 +1,8 @@
 package javeriana.edu.co.homenet.models;
 
-public class Reserva {
+import java.io.Serializable;
+
+public class Reserva implements Serializable {
     private String id;
     private String fechaInicio;
     private String fechaFin;

@@ -9,18 +9,31 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
+import javeriana.edu.co.homenet.models.Reserva;
 
 
 public class AnfitrionDetalleReservaActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-
+    Reserva reserva;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_detalle_reserva);
+
+        // Get the transferred data from source activity.
+        Intent intent = getIntent();
+        String idReserva = intent.getStringExtra("idReserva");
+        datosReserva(idReserva);
+
         mAuth = FirebaseAuth.getInstance();
     }
+    public void datosReserva(String idReserva){
+
+    }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);

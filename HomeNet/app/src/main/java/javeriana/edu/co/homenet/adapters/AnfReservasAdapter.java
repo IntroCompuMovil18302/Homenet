@@ -32,8 +32,8 @@ public class AnfReservasAdapter extends RecyclerView.Adapter<AnfReservasAdapter.
 
         public ReservasViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            huesped = itemView.findViewById(R.id.tvElemento);
-            fecha = itemView.findViewById(R.id.btDeleteAEA);
+            huesped = itemView.findViewById(R.id.tvUsuarioAR);
+            fecha = itemView.findViewById(R.id.tvFechaAR);
 
             // listener para todo el item
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -61,14 +61,15 @@ public class AnfReservasAdapter extends RecyclerView.Adapter<AnfReservasAdapter.
     @NonNull
     @Override
     public AnfReservasAdapter.ReservasViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_anf_elementos_aloj, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_anf_reservas, viewGroup, false);
         AnfReservasAdapter.ReservasViewHolder evh = new AnfReservasAdapter.ReservasViewHolder(v, listener);
         return evh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull AnfReservasAdapter.ReservasViewHolder reservasViewHolder, int i) {
-        //reservasViewHolder.elemento.setText(reservas.get(i));
+        reservasViewHolder.huesped.setText(reservas.get(i).getHuesped());
+        reservasViewHolder.fecha.setText(reservas.get(i).getFechaOperacion());
     }
 
     @Override

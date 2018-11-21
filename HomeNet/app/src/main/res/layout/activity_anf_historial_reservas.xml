@@ -10,11 +10,9 @@
         android:id="@+id/textView72"
         android:layout_width="285dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
         android:text="Lista de reservas del alojamiento"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
@@ -25,12 +23,14 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvReservasAlojAHR"
-        android:layout_width="395dp"
-        android:layout_height="511dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView72" />
 </android.support.constraint.ConstraintLayout>

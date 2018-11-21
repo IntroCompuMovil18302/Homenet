@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -25,6 +26,7 @@ import javeriana.edu.co.homenet.models.Alojamiento;
 public class AnfitrionPublicarDetalleActivity extends AppCompatActivity{
 
     private static final String TAG = "YYY" ;
+    int modo;
     Alojamiento alojamiento;
 
     // spinner
@@ -52,6 +54,17 @@ public class AnfitrionPublicarDetalleActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_pub_detalle);
         alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
+        Intent intent = getIntent();
+        Bundle bundle = getIntent().getExtras();
+        modo = bundle.getInt("modo");
+        if(modo == 2)
+        {
+            alojamiento = (Alojamiento) bundle.getSerializable("Data");
+            llenarDatos();
+        }else
+        {
+            alojamiento = (Alojamiento) bundle.getSerializable("Data");
+        }
 
         //inicializar variables
         area = findViewById(R.id.spAreaAFD);
@@ -89,6 +102,32 @@ public class AnfitrionPublicarDetalleActivity extends AppCompatActivity{
 
 
         accionBotones();
+    }
+
+    public void llenarDatos(){
+        siguiente.setText("Guardar");
+        // TODO get datos forebase
+        area.setSelection(buscarValor(area.getAdapter(),alojamiento.getArea()));
+        camas.setSelection(buscarValor(camas.getAdapter(),alojamiento.getCamas()));
+        dormitorios.setSelection(buscarValor(dormitorios.getAdapter(),alojamiento.getDormitorios()));
+        huespedes.setSelection(buscarValor(huespedes.getAdapter(),alojamiento.getHuespedes()));
+        parqueaderos.setSelection(buscarValor(parqueaderos.getAdapter(),alojamiento.getParqueaderos()));
+
+
+        calefaccion.setChecked(alojamiento.isCalefaccion());
+        internet.setChecked(alojamiento.isInternet());
+        television.setChecked(alojamiento.isTelevision());
+        mascotas.setChecked(alojamiento.isMascotas());
+
+    }
+
+    public int buscarValor(SpinnerAdapter adapter,int valor){
+        for(int i =0; i < adapter.getCount(); i++)
+        {
+            if(adapter.getItemId(i) == valor);
+                return i;
+        }
+        return 0;
     }
 
     public void checkBox(View v){
@@ -133,12 +172,26 @@ public class AnfitrionPublicarDetalleActivity extends AppCompatActivity{
 
             @Override
             public void onClick(View view) {
-                System.out.println("XXXXXXXXXXXXXXXXXXXX");
-               checkBox(view);
-               manejoSpinner();
-                Intent intent = new Intent(view.getContext(), AnfitrionPublicarListasActivity.class);
-                intent.putExtra("Data", alojamiento);
-                startActivity(intent);
+                if(modo == 1) {
+                    checkBox(view);
+                    manejoSpinner();
+                    Intent intent = new Intent(view.getContext(), AnfitrionPublicarListasActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("Data", alojamiento);
+                    bundle.putInt("modo",1);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else
+                {
+
+                    checkBox(view);
+                    manejoSpinner();
+
+                    // TODO guardar datos
+                    Intent intent = new Intent(view.getContext(), AnfitrionPublicarListasActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

@@ -12,8 +12,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
+import javeriana.edu.co.homenet.models.Alojamiento;
 
 public class AnfitrionDetalleAlojamientoActivity extends AppCompatActivity {
+
+    Alojamiento alojamiento;
 
     Button historial;
     Button borrar;
@@ -24,6 +27,7 @@ public class AnfitrionDetalleAlojamientoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_detalle_alojamiento);
+        alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -42,7 +46,8 @@ public class AnfitrionDetalleAlojamientoActivity extends AppCompatActivity {
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),AnfitrionPublicarAlojamientoActivity.class);
+                Intent intent = new Intent(v.getContext(),AnfMenuEditarActivity.class);
+                intent.putExtra("Data", alojamiento);
                 startActivity(intent);
             }
         });

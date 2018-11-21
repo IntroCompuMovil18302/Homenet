@@ -44,7 +44,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     public static final int FLAG_START_DATE = 0;
     public static final int FLAG_END_DATE = 1;
     int flag;
-
+    int modo;
     String tipoAlojamiento;
 
 
@@ -71,10 +71,20 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_pub_general);
+        Intent intent = getIntent();
+        Bundle bundle = getIntent().getExtras();
+        modo = bundle.getInt("modo");
+        if(modo == 2)
+        {
+            alojamiento = (Alojamiento) bundle.getSerializable("Data");
+            llenarDatos();
+        }else
+            {
+                alojamiento = new Alojamiento();
+            }
 
 
 
-        alojamiento = new Alojamiento();
         // inflar variables
         spinner = findViewById(R.id.spTipoAPA);
 
@@ -104,6 +114,15 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
         accionBotones();
     }
 
+     public void llenarDatos(){
+        siguiente.setText("guardar");
+        nombre.setText("");
+        descripcion.setText("");
+        valor.setText("");
+        direcciontv.setText("");
+        // TODO falta valor spinner
+    }
+
 
     // Seccion spinner -----------------------------------------------
     @Override
@@ -111,11 +130,6 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
        tipoAlojamiento = adapterView.getItemAtPosition(i).toString();
        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
         alojamiento.setTipo(tipoAlojamiento);
-        Toast toast1 =
-                Toast.makeText(getApplicationContext(),
-                        "Cambio", Toast.LENGTH_SHORT);
-
-        toast1.show();
     }
 
     @Override
@@ -204,18 +218,33 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
 
             @Override
             public void onClick(View view) {
-                if (validarCampos()) {
+                if(modo == 1) {
+                    if (validarCampos()) {
+                        alojamiento.setDescripcion(descripcion.getText().toString());
+                        alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
+                        alojamiento.setNombre(nombre.getText().toString());
+
+
+                        Intent intent = new Intent(view.getContext(), AnfitrionPublicarDetalleActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("Data", alojamiento);
+                        bundle.putInt("modo",1);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    } else {
+                        //TODO hacer toast
+                    }
+                }else{
+                    if (validarCampos()) {
                     alojamiento.setDescripcion(descripcion.getText().toString());
                     alojamiento.setPrecio(Long.parseLong(valor.getText().toString()));
                     alojamiento.setNombre(nombre.getText().toString());
 
+                    // TODO guardar datos firebase
 
-                    Intent intent = new Intent(view.getContext(), AnfitrionPublicarDetalleActivity.class);
-                    intent.putExtra("Data", alojamiento);
+                    Intent intent = new Intent(view.getContext(), AnfMenuEditarActivity.class);
                     startActivity(intent);
-                }
-                else {
-                    //TODO hacer toast
+                    }
                 }
 
 
