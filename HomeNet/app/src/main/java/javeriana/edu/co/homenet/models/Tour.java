@@ -24,7 +24,7 @@ public class Tour {
     private Map<String, Boolean> personas = new HashMap<>();
 
     public Tour(int capacidad, String descripcion, int duracion, String fecha, String hora,
-                String moneda, int precio, String titulo, String urlImg, List<Ubicacion> recorrido) {
+                     String moneda, int precio, String titulo, String urlImg, List<Ubicacion> recorrido, String idGuia) {
         this.capacidad = capacidad;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -35,6 +35,7 @@ public class Tour {
         this.titulo = titulo;
         this.urlImg = urlImg;
         this.recorrido = recorrido;
+        this.idGuia = idGuia;
     }
 
     public Tour () {}

@@ -26,7 +26,7 @@ public class TourGuiaAdapter extends ArrayAdapter<Tour> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Tour t = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tour_gp, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tour_gp_gut, parent, false);
         }
         ImageView imgTour = convertView.findViewById(R.id.imgTourIT);
         TextView nTour = convertView.findViewById(R.id.tvNombreITGP);
@@ -34,6 +34,7 @@ public class TourGuiaAdapter extends ArrayAdapter<Tour> {
         TextView precioTour = convertView.findViewById(R.id.tvPrecioITGP);
         TextView monedaTour = convertView.findViewById(R.id.tvMonedaITGP);
         TextView fechaTour = convertView.findViewById(R.id.tvDateITGP);
+        TextView horaTour = convertView.findViewById(R.id.tvHourITGP);
         nTour.setText(t.getTitulo());
         try{
             Picasso.get()
@@ -48,6 +49,7 @@ public class TourGuiaAdapter extends ArrayAdapter<Tour> {
         precioTour.setText(String.valueOf(t.getPrecio()));
         monedaTour.setText(t.getMoneda());
         fechaTour.setText(t.getFecha());
+        horaTour.setText(t.getHora());
         return convertView;
     }
 }
