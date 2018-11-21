@@ -14,6 +14,7 @@ import javeriana.edu.co.homenet.activities.LoginActivity;
 public class AnfitrionDetalleReservaActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

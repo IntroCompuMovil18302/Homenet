@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/ivImagenAlogAEA"
-            android:layout_width="104dp"
-            android:layout_height="107dp"
+            android:layout_width="139dp"
+            android:layout_height="139dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
@@ -33,6 +33,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="Tipo Ubicacion"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivImagenAlogAEA"
@@ -44,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Nombre"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/tvTipoAEA"
             app:layout_constraintStart_toStartOf="@+id/tvTipoAEA"
             app:layout_constraintTop_toBottomOf="@+id/tvTipoAEA" />
@@ -54,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Ubicacion"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/tvNombreAEA"
             app:layout_constraintStart_toStartOf="@+id/tvNombreAEA"
             app:layout_constraintTop_toBottomOf="@+id/tvNombreAEA" />
@@ -65,7 +67,7 @@
             android:layout_height="53dp"
             android:layout_marginTop="4dp"
             android:text="Descripcion 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
-            android:textSize="8sp"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/tvUbicacionAEA"
             app:layout_constraintStart_toStartOf="@+id/tvUbicacionAEA"
             app:layout_constraintTop_toBottomOf="@+id/tvUbicacionAEA" />
