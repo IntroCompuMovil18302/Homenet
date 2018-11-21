@@ -8,213 +8,248 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/textView63"
-            android:layout_width="wrap_content"
-            android:layout_height="26dp"
+        <ImageView
+            android:id="@+id/ivAnuncioHVTA"
+            android:layout_width="399dp"
+            android:layout_height="178dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="272dp"
-            android:text="pesos"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/tarifaAnuncio"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView64"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Tarifa"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
-
-        <EditText
-            android:id="@+id/descAnuncio"
-            android:layout_width="278dp"
-            android:layout_height="103dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:foregroundGravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreAnuncioHVTA"
+            app:srcCompat="@drawable/sitio" />
+
+        <TextView
+            android:id="@+id/mtdescAnuncioHVMTA"
+            android:layout_width="0dp"
+            android:layout_height="129dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Descripción"
             android:textColor="#d33838"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAnuncio" />
+            app:layout_constraintTop_toBottomOf="@+id/ivAnuncioHVTA" />
 
         <TextView
-            android:id="@+id/textView78"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="2"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView81"
-            app:layout_constraintTop_toBottomOf="@+id/textView80" />
-
-        <TextView
-            android:id="@+id/tarifaAnuncio"
-            android:layout_width="62dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="272dp"
-            android:text="12345"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView79"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="108dp"
-            android:layout_marginRight="108dp"
-            android:text="Hora fin"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
-
-        <TextView
-            android:id="@+id/textView80"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="52dp"
-            android:layout_marginRight="52dp"
-            android:text="Duración Aproximada"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
-
-        <TextView
-            android:id="@+id/textView81"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginRight="100dp"
-            android:text="horas"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView80" />
-
-        <TextView
-            android:id="@+id/tituloAnuncio"
+            android:id="@+id/tvNombreAnuncioHVTA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:text="Nombre del anuncio"
             android:textColor="#d33838"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView82"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="196dp"
-            android:layout_marginRight="196dp"
-            android:text="Hora inicio"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
-
-        <TextView
-            android:id="@+id/textView83"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="216dp"
-            android:layout_marginRight="216dp"
-            android:text="2:00 pm"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView79" />
-
-        <TextView
-            android:id="@+id/textView85"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginLeft="52dp"
-            android:layout_marginTop="36dp"
-            android:text="Fecha Solicitado"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btVerRecorridosHVTA" />
-
-        <TextView
-            android:id="@+id/textView86"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="395dp"
+            android:layout_height="85dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="76dp"
-            android:layout_marginRight="76dp"
-            android:text="10/11/18"
-            android:textColor="#d33838"
-            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.549"
-            app:layout_constraintStart_toEndOf="@+id/textView85"
-            app:layout_constraintTop_toBottomOf="@+id/btVerRecorridosHVTA" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mtdescAnuncioHVMTA">
 
-        <TextView
-            android:id="@+id/textView84"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="104dp"
-            android:layout_marginRight="104dp"
-            android:text="4:00 pm"
-            android:textColor="#d33838"
-            android:textSize="18sp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="203dp">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/cash" />
+
+                <TextView
+                    android:id="@+id/tvTarifaAnuncioHVTA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="12345"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    tools:layout_editor_absoluteX="20dp"
+                    tools:layout_editor_absoluteY="272dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="134dp"
+                tools:layout_editor_absoluteY="203dp">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/clock" />
+
+                <TextView
+                    android:id="@+id/tvHoraInicioHVTA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="2:00 pm"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    tools:layout_editor_absoluteX="135dp"
+                    tools:layout_editor_absoluteY="283dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="243dp"
+                tools:layout_editor_absoluteY="203dp">
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/duration" />
+
+                <TextView
+                    android:id="@+id/tvDuracionHVTA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="2 horas"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    tools:layout_editor_absoluteX="229dp"
+                    tools:layout_editor_absoluteY="283dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="310dp"
+                tools:layout_editor_absoluteY="203dp">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/calendar_icon" />
+
+                <TextView
+                    android:id="@+id/tvFechaHVTA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="10/11/18"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    tools:layout_editor_absoluteX="318dp"
+                    tools:layout_editor_absoluteY="277dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="77dp"
+                tools:layout_editor_absoluteY="389dp">
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/user" />
+
+                <TextView
+                    android:id="@+id/tvCapacidadHVTA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="20 personas"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView81" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <Button
+                android:id="@+id/btVerGuiaHVTA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_weight="0.5"
+                android:background="@color/colorPrimaryDark"
+                android:text="Ver Guía"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btVerRecorridosHVTA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="0.5"
+                android:background="@color/colorPrimaryDark"
+                android:text="Ver Recorridos"
+                android:textColor="@android:color/white"
+                tools:layout_editor_absoluteX="148dp"
+                tools:layout_editor_absoluteY="520dp" />
+        </LinearLayout>
 
         <Button
-            android:id="@+id/btVerRecorridosHVTA"
-            android:layout_width="wrap_content"
+            android:id="@+id/btInscribirseHVTA"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Ver Recorridos"
+            android:text="Inscribirse"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView82" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

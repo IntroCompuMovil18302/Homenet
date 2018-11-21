@@ -1,19 +1,10 @@
 package javeriana.edu.co.homenet.models;
 
-import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class Usuario {
     private String id;
     private String nombre;
-    // private String contraseña;  // Opcional
     private String urlImg;
     private int edad;
     private String tipoUsuario;
@@ -21,6 +12,7 @@ public class Usuario {
     private String nacionalidad;
     private String sexo;
     private int telefono;
+    private int calificacion;
     private Map<String,Boolean> alojamientos;
 
     //Relaciones
@@ -103,6 +95,14 @@ public class Usuario {
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
+    }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int c) {
+        this.calificacion = calificacion;
     }
 
     public String getSexo() {
