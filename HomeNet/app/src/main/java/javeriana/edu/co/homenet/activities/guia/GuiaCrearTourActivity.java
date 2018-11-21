@@ -58,6 +58,7 @@ import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.CrearPerfilActivity;
 import javeriana.edu.co.homenet.activities.anfitrion.AnfitrionMenuActivity;
 import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
+import javeriana.edu.co.homenet.models.HistoricoTour;
 import javeriana.edu.co.homenet.models.Tour;
 import javeriana.edu.co.homenet.models.Ubicacion;
 import javeriana.edu.co.homenet.models.Usuario;
@@ -289,17 +290,18 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         urlImage = uri;
                         List<Ubicacion> recorrido = new ArrayList<>();
-                        Tour nT = new Tour(Integer.parseInt(capacidad.getText().toString()),
+                        Tour nT = new Tour(
+                                Integer.parseInt(capacidad.getText().toString()),
                                 descripcion.getText().toString(),
                                 Integer.parseInt(duracion.getText().toString()),
                                 fecha.getText().toString(),
+                                user.getUid(),
                                 hora.getText().toString(),
                                 monedas.getSelectedItem().toString(),
                                 Integer.parseInt(precio.getText().toString()),
                                 titulo.getText().toString(),
                                 urlImage.toString(),
-                                recorrido,
-                                user.getUid());
+                                recorrido);
                         myRef.setValue(nT);
                         nProgressDialog.dismiss();
                         Toast.makeText(GuiaCrearTourActivity.this, "Tour creado correctamente", Toast.LENGTH_SHORT).show();

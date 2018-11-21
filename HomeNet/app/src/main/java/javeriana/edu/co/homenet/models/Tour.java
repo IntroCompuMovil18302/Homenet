@@ -22,7 +22,9 @@ public class Tour {
     private List<Ubicacion> recorrido = new ArrayList<>();
     private List<String> historialTour = new ArrayList<>();
 
-    public Tour(String id, int capacidad, String descripcion, int duracion, String fecha, String idGuia, String hora, String moneda, int precio, String titulo, String urlImg, List<Ubicacion> recorrido, List<String> historialTour) {
+    public Tour(String id, int capacidad, String descripcion, int duracion, String fecha,
+                String idGuia, String hora, String moneda, int precio, String titulo, String urlImg,
+                List<Ubicacion> recorrido, List<String> historialTour) {
         this.id = id;
         this.capacidad = capacidad;
         this.descripcion = descripcion;
@@ -38,6 +40,24 @@ public class Tour {
         this.recorrido = recorrido;
         this.historialTour = historialTour;
     }
+
+    public Tour(int capacidad, String descripcion, int duracion, String fecha,
+                String idGuia, String hora, String moneda, int precio, String titulo, String urlImg,
+                List<Ubicacion> recorrido) {
+        this.capacidad = capacidad;
+        this.descripcion = descripcion;
+        this.inscritos = 0;
+        this.duracion = duracion;
+        this.fecha = fecha;
+        this.idGuia = idGuia;
+        this.hora = hora;
+        this.moneda = moneda;
+        this.precio = precio;
+        this.titulo = titulo;
+        this.urlImg = urlImg;
+        this.recorrido = recorrido;
+    }
+
 
     public Tour () {}
 
