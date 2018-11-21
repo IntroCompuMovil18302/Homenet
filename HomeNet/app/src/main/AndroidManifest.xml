@@ -154,7 +154,8 @@
 
         <service
             android:name=".services.ReservasService"
-            android:exported="false"></service>
+            android:exported="false"
+             />
     </application>
 
 </manifest>

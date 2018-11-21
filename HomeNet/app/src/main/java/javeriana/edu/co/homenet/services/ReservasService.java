@@ -4,9 +4,11 @@ import android.app.IntentService;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -23,30 +25,50 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import androidx.annotation.Nullable;
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.anfitrion.AnfitrionMenuActivity;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Reserva;
 import javeriana.edu.co.homenet.models.Usuario;
 
-public class ReservasService extends IntentService {
+public class ReservasService extends Service {
     private static final String CHANNEL_ID = "notification_test";
     private static final int notification_id = 100;
     private FirebaseAuth mAuth;
     DatabaseReference mDataBase;
     Usuario usuario;
     Map<String,String> listaAlojamientos = new HashMap<>();
+    public static boolean isServiceRunning = false;
     boolean primero =false;
 
-    public ReservasService() {
-        super("ReservasService");
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mAuth = FirebaseAuth.getInstance();
+        usuarioActual();
     }
 
+    @Override
+    public void onDestroy() {
+        isServiceRunning = false;
+        super.onDestroy();
+    }
+
+    @Nullable
+    @android.support.annotation.Nullable
+    @Override
+
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    /*
     @Override
     protected void onHandleIntent(Intent intent) {
         mAuth = FirebaseAuth.getInstance();
         usuarioActual();
-    }
+    }*/
 
     public void usuarioActual() {
         if (mAuth.getCurrentUser() != null) {
@@ -167,5 +189,11 @@ public class ReservasService extends IntentService {
                 Log.w("Firebase database", "error en la consulta", databaseError.toException());
             }
         });
+    }
+
+    public void stopMyService(){
+        stopForeground(true);
+        stopSelf();
+        isServiceRunning=false;
     }
 }
