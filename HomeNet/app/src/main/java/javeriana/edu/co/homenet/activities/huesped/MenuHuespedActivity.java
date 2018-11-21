@@ -1,6 +1,8 @@
 package javeriana.edu.co.homenet.activities.huesped;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Calendar;
+
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.activities.guia.GuiasDisponiblesActivity;
@@ -19,6 +23,7 @@ import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedDetallesH
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedHistorialReservaActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedReservarAlojamientoActivity;
 import javeriana.edu.co.homenet.activities.huesped.guias.HuespedHistorialRecorridosActivity;
+import javeriana.edu.co.homenet.services.AlarmReceiverService;
 
 public class MenuHuespedActivity extends AppCompatActivity {
 
@@ -31,6 +36,7 @@ public class MenuHuespedActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    public static final int CODE_INTENT = 103;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +60,19 @@ public class MenuHuespedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        Calendar calendar = Calendar.getInstance();
+        //calendar.set(Calendar.SECOND,3);
+        calendar.set(Calendar.HOUR_OF_DAY,7);
+        calendar.set(Calendar.MINUTE,25);
+        Intent intent = new Intent(MenuHuespedActivity.this,AlarmReceiverService.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),CODE_INTENT, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+        startService(intent);
+
+
 
         consultarAlojamientos.setOnClickListener(new View.OnClickListener() {
             @Override

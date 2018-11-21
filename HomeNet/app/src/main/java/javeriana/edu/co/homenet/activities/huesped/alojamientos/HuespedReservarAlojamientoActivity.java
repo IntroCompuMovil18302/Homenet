@@ -577,7 +577,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot!=null){
                     Alojamiento  aloj= dataSnapshot.getValue(Alojamiento.class);
-                    aloj.agregarReserva(reserva.getId());
+                    aloj.agregarReserva(reserva.getId(),true);
                     mDataBase.child(alojamiento.getId()).setValue(aloj);
                     nProgressDialog.dismiss();
                     Toast.makeText(HuespedReservarAlojamientoActivity.this, "Reserva realizada", Toast.LENGTH_SHORT).show();
@@ -600,7 +600,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         });
     }
     public int calcularDias(int diaInicio, int diaFinal, int mesInicio, int mesFinal, int anioInicio, int anioFinal){
-        int dias = 0;
+        int dias = 1;
         Calendar mycal;
         int diasMes=0;
         if(anioFinal>anioInicio){
@@ -653,7 +653,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                     }
                 }
             }else{
-                dias= diaFinal-diaInicio;
+                dias= (diaFinal-diaInicio)+1;
             }
         }
         return dias;

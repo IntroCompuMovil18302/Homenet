@@ -22,14 +22,19 @@ public class Usuario {
     private String nacionalidad;
     private String sexo;
     private int telefono;
-    private Map<String,Boolean> alojamientos = new HashMap<>();
+    private Map<String,Boolean> alojamientos;
 
     //Relaciones
-    private Map<String,Boolean>opinionesAlojamiento = new HashMap<>();
-    private Map<String,Boolean> opinionesGuia= new HashMap<>();
-    private Map<String,Boolean> reservas= new HashMap<>();
+    private Map<String,Boolean>opinionesAlojamiento;
+    private Map<String,Boolean> opinionesGuia;
+    private Map<String,Boolean> reservas;
 
-    public Usuario() {}
+    public Usuario() {
+        this.alojamientos = new HashMap<>();
+        this.opinionesAlojamiento = new HashMap<>();
+        this.opinionesGuia = new HashMap<>();
+        this.reservas = new HashMap<>();
+    }
 
     public Usuario(String nombre, String urlImg, int edad, String tipoUsuario, String correo,
                    String nacionalidad, String sexo) {

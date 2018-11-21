@@ -20,7 +20,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import javeriana.edu.co.homenet.R;
@@ -28,10 +27,12 @@ import javeriana.edu.co.homenet.activities.anfitrion.AnfitrionMenuActivity;
 import javeriana.edu.co.homenet.activities.guia.GuiaPrincipalActivity;
 import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
 import javeriana.edu.co.homenet.models.Usuario;
+import javeriana.edu.co.homenet.services.AlarmReceiverService;
 
 public class LoginActivity extends AppCompatActivity {
 
     public static final String PATH_USERS="users/";
+    public static final String PATH_USERS_GUIAS="usersGuias/";
 
     Button registrarse;
     Button iniciarSesion;
@@ -44,7 +45,9 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    private DatabaseReference myRef2;
     String uid;
+    String uid2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
         nProgressDialog = new ProgressDialog(LoginActivity.this);
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -76,13 +79,30 @@ public class LoginActivity extends AppCompatActivity {
                                 if (uid.equals(user.getUid())){
                                     if (u.getTipoUsuario().equals("Huésped")) {
                                         startActivity(new Intent(LoginActivity.this, MenuHuespedActivity.class));
-                                    }else if (u.getTipoUsuario().equals("Guía")) {
-                                        startActivity(new Intent(LoginActivity.this,GuiaPrincipalActivity.class));
                                     }else {
                                         startActivity(new Intent(LoginActivity.this,AnfitrionMenuActivity.class));
                                     }
                                 }
                             }
+                            myRef2 = database.getReference(PATH_USERS_GUIAS);
+                            myRef2.orderByKey().endAt(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                                        Usuario u = singleSnapshot.getValue(Usuario.class);
+                                        uid2 = singleSnapshot.getKey();
+                                        Log.i("GUIA",user.getUid());
+                                        if (uid2.equals(user.getUid())){
+                                            startActivity(new Intent(LoginActivity.this,GuiaPrincipalActivity.class));
+                                        }
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    Log.w("Firebase database", "error en la consulta", databaseError.toException());
+                                }
+                            });
+
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {

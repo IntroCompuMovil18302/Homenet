@@ -3,8 +3,10 @@ package javeriana.edu.co.homenet.models;
 import android.util.Log;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Date;
+import java.util.Map;
 
 import javeriana.edu.co.homenet.utils.DateFormater;
 import javeriana.edu.co.homenet.utils.DistanceFunc;
@@ -23,8 +25,8 @@ public class Alojamiento implements Serializable{
     private String anfitrion;
     private List<Disponibilidad> disponibilidades;
     private Ubicacion ubicacion;
-    private List<String> reservas;
-    private List<String> opiniones;
+    private Map<String,Boolean> reservas;
+    private Map<String,Boolean> opiniones;
 
     //caracteristicas
     private boolean aireAcondicionado;
@@ -44,10 +46,13 @@ public class Alojamiento implements Serializable{
 
     public Alojamiento()
     {
-        this.reservas = new ArrayList<String>();
+        this.urlImgs= new ArrayList<>();
+        this.reservas = new HashMap<>();
         this.disponibilidades = new ArrayList<Disponibilidad>();
-        this.electrodomesticos = new ArrayList<String>();
-        this.muebles = new ArrayList<String>();
+        this.opiniones= new HashMap<>();
+        this.electrodomesticos = new ArrayList<>();
+        this.muebles = new ArrayList<>();
+
     }
 
     public String getNombre() {
@@ -122,16 +127,16 @@ public class Alojamiento implements Serializable{
         this.tipo = tipo;
     }
 
-    public List<String> getReservas() {
+    public Map<String,Boolean> getReservas() {
         return reservas;
     }
 
-    public void setReservas(List<String> reservas) {
+    public void setReservas(Map<String,Boolean> reservas) {
         this.reservas = reservas;
     }
 
-    public void agregarReserva(String reserva){
-        this.reservas.add(reserva);
+    public void agregarReserva(String reserva, boolean reservaBool){
+        this.reservas.put(reserva,reservaBool);
     }
 
     public double getDist() {
@@ -260,6 +265,18 @@ public class Alojamiento implements Serializable{
 
     public void setTelevision(boolean television) {
         this.television = television;
+    }
+
+    public Map<String,Boolean> getOpiniones() {
+        return opiniones;
+    }
+
+    public void setOpiniones(Map<String,Boolean> opiniones) {
+        this.opiniones = opiniones;
+    }
+
+    public void agregarOpinion(String opinion, boolean opinionBool){
+        this.opiniones.put(opinion,opinionBool);
     }
 
     public boolean estaDisponible(String fechaInicio, String fechaFin){
