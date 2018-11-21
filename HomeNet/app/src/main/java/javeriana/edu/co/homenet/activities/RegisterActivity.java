@@ -3,18 +3,13 @@ package javeriana.edu.co.homenet.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import javeriana.edu.co.homenet.R;
-import javeriana.edu.co.homenet.activities.huesped.CrearPerfilHuespedActivity;
-import javeriana.edu.co.homenet.models.Usuario;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -64,17 +59,9 @@ public class RegisterActivity extends AppCompatActivity {
                             b.putString("correo", correo.getText().toString());
                             b.putString("clave", clave.getText().toString());
                             b.putString("tipoUsuario",tipoUsuario);
-                            if (!tipoUsuario.equals("Huésped")) {
-                                Intent intent = new Intent(v.getContext(), CrearPerfilGuiaAnfActivity.class);
-                                intent.putExtras(b);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Intent intent = new Intent(v.getContext(), CrearPerfilHuespedActivity.class);
-                                intent.putExtras(b);
-                                startActivity(intent);
-                                finish();
-                            }
+                            Intent intent = new Intent(v.getContext(), CrearPerfilActivity.class);
+                            intent.putExtras(b);
+                            startActivity(intent);
                         } else {
                             confirmarClave.setText("");
                             confirmarClave.setError("Contraseñas no coinciden");

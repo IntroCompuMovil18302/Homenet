@@ -3,8 +3,10 @@ package javeriana.edu.co.homenet.models;
 import android.util.Log;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Date;
+import java.util.Map;
 
 import javeriana.edu.co.homenet.utils.DateFormater;
 import javeriana.edu.co.homenet.utils.DistanceFunc;
@@ -23,15 +25,15 @@ public class Alojamiento implements Serializable{
     private String anfitrion;
     private List<Disponibilidad> disponibilidades;
     private Ubicacion ubicacion;
-    private List<Reserva> reservas;
-    private List<String>opiniones;
+    private Map<String,Boolean> reservas;
+    private Map<String,Boolean> opiniones;
 
     //caracteristicas
     private boolean aireAcondicionado;
     private int area;
     private int banios;
     private boolean calefaccion;
-    private boolean camas ;
+    private int camas ;
     private int dormitorios ;
     private List<String> electrodomesticos ;
     private int huespedes ;
@@ -44,10 +46,13 @@ public class Alojamiento implements Serializable{
 
     public Alojamiento()
     {
-        this.reservas = new ArrayList<Reserva>();
+        this.urlImgs= new ArrayList<>();
+        this.reservas = new HashMap<>();
         this.disponibilidades = new ArrayList<Disponibilidad>();
+        this.opiniones= new HashMap<>();
         this.electrodomesticos = new ArrayList<>();
         this.muebles = new ArrayList<>();
+
     }
 
     public String getNombre() {
@@ -122,12 +127,16 @@ public class Alojamiento implements Serializable{
         this.tipo = tipo;
     }
 
-    public List<Reserva> getReservas() {
+    public Map<String,Boolean> getReservas() {
         return reservas;
     }
 
-    public void setReservas(List<Reserva> reservas) {
+    public void setReservas(Map<String,Boolean> reservas) {
         this.reservas = reservas;
+    }
+
+    public void agregarReserva(String reserva, boolean reservaBool){
+        this.reservas.put(reserva,reservaBool);
     }
 
     public double getDist() {
@@ -178,11 +187,11 @@ public class Alojamiento implements Serializable{
         this.calefaccion = calefaccion;
     }
 
-    public boolean isCamas() {
+    public int getCamas() {
         return camas;
     }
 
-    public void setCamas(boolean camas) {
+    public void setCamas(int camas) {
         this.camas = camas;
     }
 
@@ -258,16 +267,16 @@ public class Alojamiento implements Serializable{
         this.television = television;
     }
 
-    public List<String> getOpiniones() {
+    public Map<String,Boolean> getOpiniones() {
         return opiniones;
     }
 
-    public void setOpiniones(List<String> opiniones) {
+    public void setOpiniones(Map<String,Boolean> opiniones) {
         this.opiniones = opiniones;
     }
 
-    public void agregarOpinion(String opinion){
-        this.opiniones.add(opinion);
+    public void agregarOpinion(String opinion, boolean opinionBool){
+        this.opiniones.put(opinion,opinionBool);
     }
 
     public boolean estaDisponible(String fechaInicio, String fechaFin){
@@ -294,6 +303,7 @@ public class Alojamiento implements Serializable{
             if((fi.after(fia) && ff.before(ffa)) || (fi.equals(fia) && ff.before(ffa))
                     || (fi.after(fia) && ff.equals(ffa)) || (fi.equals(fia) && ff.equals(ffa))){
                 disp = true;
+                /*
                 for (Reserva reserva: reservas) {
                     Date fir = DateFormater.stringToDate(reserva.getFechaInicio());
                     Date ffr = DateFormater.stringToDate(reserva.getFechaFin());
@@ -302,6 +312,7 @@ public class Alojamiento implements Serializable{
                         disp = false;
                     }
                 }
+                */
             }
         }
 
