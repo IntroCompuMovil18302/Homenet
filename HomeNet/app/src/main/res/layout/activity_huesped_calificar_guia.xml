@@ -8,79 +8,74 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/enviarCalGuia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="96dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="#d33838"
-            android:text="@string/Enviar"
+            android:background="@color/colorPrimaryDark"
+            android:text="Enviar"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/resenaCalGuia" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         <ImageView
-            android:id="@+id/fotoCalGuia"
-            android:layout_width="116dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="132dp"
-            android:layout_marginLeft="132dp"
-            android:layout_marginTop="64dp"
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/user" />
+            app:srcCompat="@drawable/guia" />
 
         <RatingBar
-            android:id="@+id/ratingBarGuia"
+            android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fotoCalGuia" />
+            app:layout_constraintTop_toTopOf="@+id/textView20" />
 
         <EditText
-            android:id="@+id/resenaCalGuia"
-            android:layout_width="280dp"
-            android:layout_height="176dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Reseña"
-            android:textColor="#d33838"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBarGuia" />
-
-        <TextView
-            android:id="@+id/nombreCalGuia"
+            android:id="@+id/editText4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="132dp"
-            android:layout_marginRight="132dp"
-            android:text="Nombre Guia"
-            android:textColor="#d33838"
-            android:textSize="20sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fotoCalGuia" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Nombre guía"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     </android.support.constraint.ConstraintLayout>
-
 </ScrollView>

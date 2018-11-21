@@ -46,6 +46,9 @@
             android:name=".activities.CrearPerfilActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.huesped.guias.HuespedTouresDisponiblesActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.huesped.guias.HuespedVerInfoGuiaActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -89,9 +92,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.huesped.guias.HuespedVerTourActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.huesped.guias.HuespedVerRecorridoDetalleActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.anfitrion.AnfitrionDetalleAlojamientoActivity"
@@ -143,11 +143,14 @@
         <activity android:name=".activities.guia.GuiaCalificacionesActivity" />
         <activity android:name=".activities.guia.GuiaHistorialToures" />
         <activity
-            android:name=".activities.guia.GuiaRecorridoTourActivity"
+            android:name=".activities.huesped.guias.HuespedVerRecorridoTourActivity"
+            android:label="@string/title_activity_huesped_ver_recorrido_tour"/>
+        <activity
+        android:name=".activities.guia.GuiaRecorridoTourActivity"
             android:label="@string/title_activity_guia_recorrido_tour" />
         <activity
             android:name=".activities.guia.GuiaRecorridoEditableActivity"
-            android:label="@string/title_activity_guia_recorrido_editable"></activity>
+            android:label="@string/title_activity_guia_recorrido_editable"/>
     </application>
 
 </manifest>

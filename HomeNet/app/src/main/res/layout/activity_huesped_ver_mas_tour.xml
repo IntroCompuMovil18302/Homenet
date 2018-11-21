@@ -8,219 +8,203 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="0dp"
+            android:layout_height="151dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreAnuncioHVTA"
+            app:srcCompat="@drawable/sitio" />
 
         <EditText
-            android:id="@+id/descAnuncio"
-            android:layout_width="278dp"
-            android:layout_height="103dp"
+            android:id="@+id/mtdescAnuncioHVMTA"
+            android:layout_width="0dp"
+            android:layout_height="113dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Descripción"
             android:textColor="#d33838"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAnuncio" />
-
-        <Button
-            android:id="@+id/solicitarAnuncio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="@string/Solicitar"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.51"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fechaRecorrido" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/tituloAnuncio"
+            android:id="@+id/tvNombreAnuncioHVTA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:text="Nombre del anuncio"
             android:textColor="#d33838"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tarifaAnuncio"
-            android:layout_width="62dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="16dp"
-            android:text="12345"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-        <EditText
-            android:id="@+id/fechaRecorrido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:ems="10"
-            android:hint="Ingrese fecha deseada"
-            android:inputType="date"
-            android:textColor="#d33838"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.535"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btVerRecorridosHVTA" />
-
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Tarifa"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
-
-        <TextView
-            android:id="@+id/textView63"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="52dp"
-            android:layout_marginRight="52dp"
-            android:text="Duración Aproximada"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
-
-        <TextView
-            android:id="@+id/textView79"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="196dp"
-            android:layout_marginRight="196dp"
-            android:text="Hora inicio"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
-
-        <TextView
-            android:id="@+id/textView81"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="108dp"
-            android:layout_marginRight="108dp"
-            android:text="Hora fin"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descAnuncio" />
-
-        <TextView
-            android:id="@+id/textView80"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="216dp"
-            android:layout_marginRight="216dp"
-            android:text="2:00 pm"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView79" />
-
-        <TextView
-            android:id="@+id/textView82"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="108dp"
-            android:layout_marginRight="108dp"
-            android:text="4:00 pm"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView81" />
-
-        <TextView
-            android:id="@+id/textView78"
-            android:layout_width="wrap_content"
-            android:layout_height="26dp"
-            android:layout_marginTop="12dp"
-            android:text="pesos"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/tarifaAnuncio"
-            app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
         <Button
             android:id="@+id/btVerRecorridosHVTA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/colorPrimaryDark"
             android:text="Ver Recorridos"
             android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="395dp"
+            android:layout_height="100sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/btVerRecorridosHVTA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:id="@+id/llPrecio"
+                android:layout_width="91dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="177dp">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/cash" />
+
+                <TextView
+                    android:id="@+id/tarifaAnuncio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="12345"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="20dp"
+                    tools:layout_editor_absoluteY="277dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHoraInicio"
+                android:layout_width="87dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="107dp"
+                tools:layout_editor_absoluteY="177dp">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/clock" />
+
+                <TextView
+                    android:id="@+id/textView80"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="2:00"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="131dp"
+                    tools:layout_editor_absoluteY="305dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDuracion"
+                android:layout_width="89dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="202dp"
+                tools:layout_editor_absoluteY="177dp">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/duration" />
+
+                <TextView
+                    android:id="@+id/textView64"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="2 horas"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="248dp"
+                    tools:layout_editor_absoluteY="302dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="395dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView82" />
+            tools:layout_editor_absoluteY="521dp">
 
-        <TextView
-            android:id="@+id/textView64"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:text="2"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView83"
-            app:layout_constraintTop_toBottomOf="@+id/textView63" />
+            <EditText
+                android:id="@+id/fechaRecorrido"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0.8"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:ems="10"
+                android:hint="Ingrese fecha deseada"
+                android:inputType="date"
+                android:textColor="#d33838"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="404dp" />
 
-        <TextView
-            android:id="@+id/textView83"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="96dp"
-            android:layout_marginRight="96dp"
-            android:text="horas"
-            android:textColor="#d33838"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView63" />
+            <Button
+                android:id="@+id/solicitarAnuncio"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="0.2"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/Solicitar"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout_editor_absoluteY="448dp" />
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 

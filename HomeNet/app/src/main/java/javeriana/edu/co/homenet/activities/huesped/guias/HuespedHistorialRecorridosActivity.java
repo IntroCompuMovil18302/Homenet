@@ -1,42 +1,48 @@
 package javeriana.edu.co.homenet.activities.huesped.guias;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.support.v7.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 import javeriana.edu.co.homenet.R;
-import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
+import javeriana.edu.co.homenet.models.Tour;
+import javeriana.edu.co.homenet.utils.DateFormater;
 
 public class HuespedHistorialRecorridosActivity extends AppCompatActivity {
 
-    Button calGuia;
-    ImageButton home;
+    public static final String PATH_TOUR="Tours/";
+
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+
+    private ArrayList<Tour> listToures = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_huesped_historial_recorridos);
 
-        calGuia = findViewById(R.id.calGuia);
-        home = findViewById(R.id.volverHome);
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference(PATH_TOUR);
 
-        calGuia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),HuespedCalificarGuiaActivity.class);
-                startActivity(intent);
-            }
-        });
+    }
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),MenuHuespedActivity.class);
-                startActivity(intent);
-            }
-        });
+    private boolean matchTour (Tour t) {
+        boolean match = true;
+        Date d = DateFormater.today();
+        Date d2 = DateFormater.stringToDate(t.getFecha());
+        if(d.before(d2)){
+            match = match ;
+        }
+        return match;
     }
 }
