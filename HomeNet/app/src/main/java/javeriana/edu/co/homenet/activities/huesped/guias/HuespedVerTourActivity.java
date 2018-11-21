@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,14 +36,18 @@ public class HuespedVerTourActivity extends AppCompatActivity {
     TextView horaInicio;
     TextView duracion;
     TextView fecha;
+    TextView capacidad;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
     Button verRecorridos;
+    Button verGuia;
+    Button inscribirse;
     Bundle b;
     Tour t;
+    String idGuia;
     ArrayList<String> paradasLat = new ArrayList<>();
     ArrayList<String> paradasLong = new ArrayList<>();
     ArrayList<String> titulos = new ArrayList<>();
@@ -55,6 +60,8 @@ public class HuespedVerTourActivity extends AppCompatActivity {
         setContentView(R.layout.activity_huesped_ver_tour);
 
         verRecorridos = findViewById(R.id.btVerRecorridosHVTA);
+        verGuia = findViewById(R.id.btVerGuiaHVTA);
+        inscribirse = findViewById(R.id.btInscribirseHVTA);
         nombreAnuncio = findViewById(R.id.tvNombreAnuncioHVTA);
         posterAnuncio = findViewById(R.id.ivAnuncioHVTA);
         descripcionAnuncio = findViewById(R.id.mtdescAnuncioHVMTA);
@@ -62,6 +69,7 @@ public class HuespedVerTourActivity extends AppCompatActivity {
         horaInicio = findViewById(R.id.tvHoraInicioHVTA);
         duracion = findViewById(R.id.tvDuracionHVTA);
         fecha = findViewById(R.id.tvFechaHVTA);
+        capacidad = findViewById(R.id.tvCapacidadHVTA);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -81,6 +89,25 @@ public class HuespedVerTourActivity extends AppCompatActivity {
                 b.putStringArrayList("titulos", titulos);
                 b.putStringArrayList("descripciones", descripciones);
                 startActivity(intent.putExtras(b));
+            }
+        });
+
+        verGuia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), HuespedVerInfoGuiaActivity.class);
+                Bundle b = new Bundle();
+                b.putString("idGuia", t.getIdGuia());
+                startActivity(i.putExtras(b));
+            }
+        });
+
+        inscribirse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Actualizar capacidad
+                Toast.makeText(HuespedVerTourActivity.this,
+                        "Se ha registrado en el tour "+t.getTitulo(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -123,9 +150,11 @@ public class HuespedVerTourActivity extends AppCompatActivity {
             ex.printStackTrace();
         }
         descripcionAnuncio.setText(t.getDescripcion());
-        precioAnuncio.setText(Integer.toString(t.getPrecio()));
+        precioAnuncio.setText(Integer.toString(t.getPrecio())+t.getMoneda());
         horaInicio.setText(t.getHora());
-        duracion.setText(Integer.toString(t.getDuracion()));
+        duracion.setText(Integer.toString(t.getDuracion())+"h");
         fecha.setText(t.getFecha());
+        capacidad.setText(Integer.toString(t.getCapacidad()));
+        idGuia = t.getIdGuia();
     }
 }

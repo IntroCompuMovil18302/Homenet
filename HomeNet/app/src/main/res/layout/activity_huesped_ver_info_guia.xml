@@ -17,8 +17,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Recorridos"
-            android:textColor="#d33838"
+            android:text="Comentarios"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +27,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="395dp"
+            android:layout_marginTop="30dp"
             android:layout_height="158dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -41,15 +42,16 @@
                 android:id="@+id/ivFotoGuiaHVIGA"
                 android:layout_width="115dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_gravity="fill"
+                android:layout_weight="0"
                 app:srcCompat="@drawable/guia"
                 tools:layout_editor_absoluteX="75dp"
                 tools:layout_editor_absoluteY="16dp" />
 
             <LinearLayout
-                android:layout_width="211dp"
-                android:layout_height="96dp"
-                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp">
@@ -58,7 +60,7 @@
                     android:id="@+id/tvNombreGuiaHVIGA"
                     android:layout_width="wrap_content"
                     android:layout_height="26dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.25"
                     android:text="Nombre Guía"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
@@ -69,7 +71,7 @@
                     android:id="@+id/tvCorreoGuiaHVIGA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.25"
                     android:text="Correo Guia"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
@@ -78,23 +80,28 @@
                     android:id="@+id/tvTelGuiaHVIGA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.25"
                     android:text="Teléfono Guía"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
+
+                <RatingBar
+                    android:id="@+id/rbCalGuiaHVIGA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:isIndicator="true"
+                    android:theme="@style/RatingBar" />
             </LinearLayout>
 
         </LinearLayout>
 
         <ListView
-            android:id="@+id/lvListaTouresHVIGA"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />

@@ -1,28 +1,41 @@
 package javeriana.edu.co.homenet.activities.huesped.guias;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.util.Map;
 
 import javeriana.edu.co.homenet.R;
-import javeriana.edu.co.homenet.adapters.TourGuiaAdapter;
-import javeriana.edu.co.homenet.models.Tour;
+import javeriana.edu.co.homenet.models.Usuario;
 
 public class HuespedVerInfoGuiaActivity extends AppCompatActivity {
+
+    public static final String PATH_GUIAS="usersGuias/";
 
     ImageView fotoGuia;
     TextView nombreGuia;
     TextView correoGuia;
     TextView telGuia;
-    ListView listaToures;
-    List<Tour> toures;
+    RatingBar calificacion;
+    Map<String, Boolean> comentarios;
+    Usuario guia;
+    Bundle b;
+
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +46,51 @@ public class HuespedVerInfoGuiaActivity extends AppCompatActivity {
         nombreGuia = findViewById(R.id.tvNombreGuiaHVIGA);
         correoGuia = findViewById(R.id.tvCorreoGuiaHVIGA);
         telGuia = findViewById(R.id.tvTelGuiaHVIGA);
-        listaToures = findViewById(R.id.lvListaTouresHVIGA);
-        toures = new ArrayList<>();
+        calificacion = findViewById(R.id.rbCalGuiaHVIGA);
 
-        obtenerTouresGuia();
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference(PATH_GUIAS);
 
-        /*verMasTour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),HuespedVerMasTourActivity.class);
-                startActivity(intent);
-            }
-        });*/
+        b = getIntent().getExtras();
+
+        obtenerGuia(b.getString("idGuia"));
 
     }
 
-    private void obtenerTouresGuia () {
+    private void obtenerGuia (final String idGuia) {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    if (singleSnapshot.getKey().equals(idGuia)){
+                        guia = singleSnapshot.getValue(Usuario.class);
+                    }
+                }
+                setValues();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setValues (){
+        try{
+            Picasso.get()
+                    .load(guia.getUrlImg())
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(fotoGuia);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        nombreGuia.setText(guia.getNombre());
+        correoGuia.setText(guia.getCorreo());
+        telGuia.setText(Integer.toString(guia.getTelefono()));
+        calificacion.setRating((float) guia.getCalificacion());
+        comentarios = guia.getOpinionesGuia();
     }
 }

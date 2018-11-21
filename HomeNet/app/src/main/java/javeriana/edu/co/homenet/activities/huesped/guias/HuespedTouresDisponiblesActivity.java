@@ -40,10 +40,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.adapters.TourGuiaAdapter;
 import javeriana.edu.co.homenet.models.Tour;
+import javeriana.edu.co.homenet.utils.DateFormater;
 
 public class HuespedTouresDisponiblesActivity extends AppCompatActivity {
 
@@ -221,7 +223,9 @@ public class HuespedTouresDisponiblesActivity extends AppCompatActivity {
 
     private boolean matchTour (Tour t) {
         boolean match = true;
-        if(location!=null){
+        Date d = DateFormater.today();
+        Date d2 = DateFormater.stringToDate(t.getFecha());
+        if(location!=null && d.after(d2)){
             match = match && t.estaCerca(location.getLatitude(), location.getLongitude(),
                     radius/1000);
         }
