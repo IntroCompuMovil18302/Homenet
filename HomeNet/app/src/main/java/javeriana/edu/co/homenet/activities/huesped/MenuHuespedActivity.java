@@ -18,6 +18,7 @@ import java.util.Calendar;
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.activities.guia.GuiasDisponiblesActivity;
+import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedCalificarAlojamientoActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedConsultarAlojamientoActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedDetallesHistorialReservaActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedHistorialReservaActivity;
@@ -32,7 +33,6 @@ public class MenuHuespedActivity extends AppCompatActivity {
     Button verGuiasCercanos;
     Button verHistorialRecorridos;
 
-    Button pruebaReserva;
 
     private FirebaseAuth mAuth;
 
@@ -48,31 +48,16 @@ public class MenuHuespedActivity extends AppCompatActivity {
         verHistorialReservas = findViewById(R.id.verHistorialReservas);
         verGuiasCercanos = findViewById(R.id.verGuiasCercanos);
         verHistorialRecorridos = findViewById(R.id.verHistorialRecorridos);
-        pruebaReserva = (Button)findViewById(R.id.prueba_reserva);
-
-        pruebaReserva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuHuespedActivity.this,HuespedReservarAlojamientoActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("idAloj","Alo1");
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-
 
         Calendar calendar = Calendar.getInstance();
         //calendar.set(Calendar.SECOND,3);
         calendar.set(Calendar.HOUR_OF_DAY,7);
-        calendar.set(Calendar.MINUTE,25);
+        calendar.set(Calendar.MINUTE,1);
         Intent intent = new Intent(MenuHuespedActivity.this,AlarmReceiverService.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),CODE_INTENT, intent,PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
         startService(intent);
-
-
 
         consultarAlojamientos.setOnClickListener(new View.OnClickListener() {
             @Override
