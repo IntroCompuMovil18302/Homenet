@@ -14,9 +14,9 @@
         android:id="@+id/tvNombreHotelHIAA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/hotel_budapest"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
@@ -26,58 +26,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+    <sun.bob.mcalendarview.MCalendarView
+        android:id="@+id/mcvReservarAlojHRA"
+        android:layout_width="336dp"
+        android:layout_height="320dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="@string/hasta"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="76dp"
-        android:ems="10"
-        android:hint="@string/desde"
-        android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombreHotelHIAA" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreHotelHIAA"
+        tools:context=".activities.huesped.alojamientos.HuespedConsultarDisponibilidadActivity" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="221dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="144dp"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/tvHastaHRA"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/hasta"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mcvReservarAlojHRA" />
+
+    <TextView
+        android:id="@+id/tvDesdeHRA"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/desde"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mcvReservarAlojHRA" />
+
+    <TextView
+        android:id="@+id/tvPrecioHRA"
+        android:layout_width="221dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="54dp"
         android:text="@string/precio_2"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/reservar2"
+        android:id="@+id/btReservarHRA"
         android:layout_width="167dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="496dp"
+        android:layout_marginTop="506dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/reservar"
         android:textColor="@color/colorPrimary"
@@ -85,15 +96,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/ver_ruta2"
+        android:id="@+id/btRutaHRA"
         android:layout_width="167dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="506dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="496dp"
         android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorPrimary"
         android:text="@string/ver_ruta"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,17 +111,15 @@
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/label_precio"
         android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPrecioHRA"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
 </ScrollView>

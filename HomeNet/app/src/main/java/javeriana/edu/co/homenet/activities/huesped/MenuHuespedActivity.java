@@ -21,6 +21,7 @@ import javeriana.edu.co.homenet.activities.guia.GuiasDisponiblesActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedConsultarAlojamientoActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedDetallesHistorialReservaActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedHistorialReservaActivity;
+import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedReservarAlojamientoActivity;
 import javeriana.edu.co.homenet.activities.huesped.guias.HuespedHistorialRecorridosActivity;
 import javeriana.edu.co.homenet.services.AlarmReceiverService;
 
@@ -30,6 +31,8 @@ public class MenuHuespedActivity extends AppCompatActivity {
     Button verHistorialReservas;
     Button verGuiasCercanos;
     Button verHistorialRecorridos;
+
+    Button pruebaReserva;
 
     private FirebaseAuth mAuth;
 
@@ -45,6 +48,18 @@ public class MenuHuespedActivity extends AppCompatActivity {
         verHistorialReservas = findViewById(R.id.verHistorialReservas);
         verGuiasCercanos = findViewById(R.id.verGuiasCercanos);
         verHistorialRecorridos = findViewById(R.id.verHistorialRecorridos);
+        pruebaReserva = (Button)findViewById(R.id.prueba_reserva);
+
+        pruebaReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuHuespedActivity.this,HuespedReservarAlojamientoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("idAloj","Alo1");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
 
         Calendar calendar = Calendar.getInstance();

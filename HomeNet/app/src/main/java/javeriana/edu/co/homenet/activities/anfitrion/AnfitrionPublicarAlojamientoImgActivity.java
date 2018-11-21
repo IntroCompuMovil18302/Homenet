@@ -199,17 +199,17 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                     }
 
                     System.out.println("ESTO ES TASK SNAPSHOT DONWLOAD URL ANTESSSSSSSSSSSS-------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + referenciaUrl);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    referenciaUrl = "";
-                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Falló la subida de una imagen", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
     }
-    public void subirAlojamiento(){
+}).addOnFailureListener(new OnFailureListener() {
+@Override
+public void onFailure(@NonNull Exception e) {
+        referenciaUrl = "";
+        Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Falló la subida de una imagen", Toast.LENGTH_SHORT).show();
+        }
+        });
+        }
+        }
+public void subirAlojamiento(){
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
         alojamiento.setIdUsuario(uid);
@@ -228,13 +228,11 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
                     Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Se ha publicado el alojamiento", Toast.LENGTH_SHORT).show();
                     //infoActualUsuario(idServicio,ususerv);
                     agregarDatosUsuarioServicio(alojamiento.getId());
-
                 }
                 else{
                     nProgressDialog.dismiss();
                     Toast.makeText( AnfitrionPublicarAlojamientoImgActivity.this,"Hubo un error al crear un servicio", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
         });
