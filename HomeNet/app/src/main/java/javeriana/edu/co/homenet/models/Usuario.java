@@ -17,7 +17,6 @@ public class Usuario {
 
     //Relaciones
     private Map<String,Boolean>opinionesAlojamiento;
-    private Map<String,Boolean> opinionesGuia;
     private Map<String,Boolean> reservas;
 
     public Usuario() {}
@@ -102,7 +101,7 @@ public class Usuario {
     }
 
     public void setCalificacion(int c) {
-        this.calificacion = calificacion;
+        this.calificacion = c;
     }
 
     public String getSexo() {
@@ -134,14 +133,6 @@ public class Usuario {
         this.opinionesAlojamiento = opinionesAlojamiento;
     }
 
-    public Map<String,Boolean> getOpinionesGuia() {
-        return opinionesGuia;
-    }
-
-    public void setOpinionesGuia(Map<String,Boolean> opinionesGuia) {
-        this.opinionesGuia = opinionesGuia;
-    }
-
     public Map<String,Boolean> getReservas() {
         return reservas;
     }
@@ -152,9 +143,6 @@ public class Usuario {
 
     public void agregarOpinionAlojamiento(String opinionAloja, Boolean b){
         this.opinionesAlojamiento.put(opinionAloja,b);
-    }
-    public void agregarOpinionGuia(String opinionGuia, Boolean b){
-        this.opinionesGuia.put(opinionGuia, b);
     }
     public void agregarReserva(String reserva, Boolean b){
         this.reservas.put(reserva,b);

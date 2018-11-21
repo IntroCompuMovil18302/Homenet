@@ -144,13 +144,16 @@
         <activity android:name=".activities.guia.GuiaHistorialToures" />
         <activity
             android:name=".activities.huesped.guias.HuespedVerRecorridoTourActivity"
-            android:label="@string/title_activity_huesped_ver_recorrido_tour"/>
+            android:label="@string/title_activity_huesped_ver_recorrido_tour" />
         <activity
-        android:name=".activities.guia.GuiaRecorridoTourActivity"
+            android:name=".activities.guia.GuiaRecorridoTourActivity"
             android:label="@string/title_activity_guia_recorrido_tour" />
         <activity
             android:name=".activities.guia.GuiaRecorridoEditableActivity"
-            android:label="@string/title_activity_guia_recorrido_editable"/>
+            android:label="@string/title_activity_guia_recorrido_editable" />
+        <activity
+            android:name=".activities.huesped.guias.HuespedBuscarTourMapa"
+            android:label="@string/title_activity_huesped_buscar_tour_mapa"></activity>
     </application>
 
 </manifest>

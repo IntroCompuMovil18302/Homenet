@@ -52,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2"
+                android:gravity="center"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp">
@@ -87,18 +88,20 @@
 
                 <RatingBar
                     android:id="@+id/rbCalGuiaHVIGA"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:isIndicator="true"
+                    android:numStars="5"
                     android:theme="@style/RatingBar" />
             </LinearLayout>
 
         </LinearLayout>
 
         <ListView
+            android:id="@+id/lvComentariosGuiaHVIGA"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="332dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
