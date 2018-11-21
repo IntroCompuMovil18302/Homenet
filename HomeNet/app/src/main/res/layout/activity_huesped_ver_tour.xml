@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
 
-        <EditText
+        <TextView
             android:id="@+id/mtdescAnuncioHVMTA"
             android:layout_width="0dp"
             android:layout_height="129dp"
@@ -23,10 +23,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+            app:layout_constraintTop_toBottomOf="@+id/ivAnuncioHVTA" />
 
         <TextView
-            android:id="@+id/tvNombreAnuncioHVMTA"
+            android:id="@+id/tvNombreAnuncioHVTA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -81,7 +81,7 @@
                     app:srcCompat="@drawable/cash" />
 
                 <TextView
-                    android:id="@+id/tarifaAnuncio"
+                    android:id="@+id/tvTarifaAnuncioHVTA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -110,7 +110,7 @@
                     app:srcCompat="@drawable/clock" />
 
                 <TextView
-                    android:id="@+id/textView83"
+                    android:id="@+id/tvHoraInicioHVTA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -138,7 +138,7 @@
                     app:srcCompat="@drawable/duration" />
 
                 <TextView
-                    android:id="@+id/textView78"
+                    android:id="@+id/tvDuracionHVTA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -166,13 +166,13 @@
                     app:srcCompat="@drawable/calendar_icon" />
 
                 <TextView
-                    android:id="@+id/textView86"
+                    android:id="@+id/tvFechaHVTA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:text="10/11/18"
-                    android:textColor="#d33838"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="318dp"
                     tools:layout_editor_absoluteY="277dp" />
@@ -180,13 +180,16 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="0dp"
+            android:id="@+id/ivAnuncioHVTA"
+            android:layout_width="399dp"
             android:layout_height="178dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:foregroundGravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreAnuncioHVMTA"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreAnuncioHVTA"
             app:srcCompat="@drawable/sitio" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

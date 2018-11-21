@@ -12,31 +12,11 @@ import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
 
 public class HuespedHistorialRecorridosActivity extends AppCompatActivity {
 
-    Button calGuia;
-    ImageButton home;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_huesped_historial_recorridos);
-
-        calGuia = findViewById(R.id.calGuia);
-        home = findViewById(R.id.volverHome);
-
-        calGuia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),HuespedCalificarGuiaActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),MenuHuespedActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }
