@@ -407,7 +407,7 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
                     capacidad.setError("Debe ser positivo");
                 }
             }else{
-                capacidad.setEGuiaCrearTourActivity.javarror("Llenado obligatorio");
+                capacidad.setError("Llenado obligatorio");
             }
         } catch (Exception e) {
             capacidad.setError("Debe ser llenado");
@@ -458,7 +458,7 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
             if (d1.equals(d2)) {
 
                 if (!String.valueOf(hora.getText()).replaceAll(" ", "").equals("")) {
-                    d2 = DateFormater.stringToDateHour(String.valueOf(hora.getText()));
+                    d2 = DateFormater.stringToHour(String.valueOf(hora.getText()));
                     long hour1 = (d1.getTime() % 86400000) / 3600000;
                     long hour2 = (d2.getTime() % 86400000) / 3600000;
                     if (hour1 < hour2) {
