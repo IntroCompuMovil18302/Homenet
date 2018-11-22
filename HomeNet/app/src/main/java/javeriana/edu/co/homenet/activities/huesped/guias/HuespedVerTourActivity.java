@@ -33,6 +33,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.models.Tour;
@@ -128,11 +129,18 @@ public class HuespedVerTourActivity extends AppCompatActivity {
         inscribirse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Actualizar capacidad
+                inscribirse();
                 Toast.makeText(HuespedVerTourActivity.this,
                         "Se ha registrado en el tour "+t.getTitulo(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void inscribirse(){
+        myRef = database.getReference(PATH_TOUR+b.getString("idTour"));
+        Map<String, Object> tourUpdates = new HashMap<>();
+        tourUpdates.put("capacidad",t.getCapacidad()+1);
+
     }
 
     private void buscarRutas (){
