@@ -601,7 +601,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                     mDataBase.child(alojamiento.getId()).setValue(aloj);
                     nProgressDialog.dismiss();
                     Toast.makeText(HuespedReservarAlojamientoActivity.this, "Reserva realizada", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(HuespedReservarAlojamientoActivity.this,HuespedDetallesHistorialReservaActivity.class);
+                    Intent intent = new Intent(HuespedReservarAlojamientoActivity.this, MenuHuespedActivity.class);
                     intent.putExtra("idReserva",idReserva);
                     startActivity(intent);
                     finish();

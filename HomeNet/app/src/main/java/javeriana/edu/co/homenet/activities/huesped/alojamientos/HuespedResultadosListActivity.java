@@ -135,6 +135,7 @@ public class HuespedResultadosListActivity extends AppCompatActivity {
                                     Bundle b = new Bundle();
                                     b.putString("idAloj", listAlojamiento
                                             .get(position).getId());
+                                    b.putSerializable("aloj",listAlojamiento.get(position));
                                     startActivity(new Intent(view.getContext(),HuespedInformacionAlojamientoActivity.class).putExtras(b));
                                 }
                             });

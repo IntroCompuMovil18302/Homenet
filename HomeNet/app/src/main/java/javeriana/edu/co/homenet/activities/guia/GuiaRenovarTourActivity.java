@@ -59,7 +59,7 @@ public class GuiaRenovarTourActivity extends DialogFragment {
                         hora = view.findViewById(R.id.etHoraGRT);
                         myRef = database.getReference(PATH_TOURS+"/"+tourID);
                         Map<String, Object> tourUpdates = new HashMap<>();
-                        tourUpdates.put("fecha", hora.getText().toString());
+                        tourUpdates.put("fecha", fecha.getText().toString());
                         tourUpdates.put("hora", hora.getText().toString());
                         myRef.updateChildren(tourUpdates);
                         Bundle b = new Bundle();

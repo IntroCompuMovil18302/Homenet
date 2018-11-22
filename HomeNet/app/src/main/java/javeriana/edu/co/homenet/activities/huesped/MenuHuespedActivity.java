@@ -17,8 +17,6 @@ import java.util.Calendar;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
-import javeriana.edu.co.homenet.activities.guia.GuiasDisponiblesActivity;
-import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedCalificarAlojamientoActivity;
 import javeriana.edu.co.homenet.activities.huesped.guias.HuespedTouresDisponiblesActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedConsultarAlojamientoActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedHistorialReservaActivity;
@@ -32,7 +30,6 @@ public class MenuHuespedActivity extends AppCompatActivity {
     Button verHistorialReservas;
     Button verTouresCercanos;
     Button verHistorialRecorridos;
-    Button prueba_reserva ;
 
     private FirebaseAuth mAuth;
 
@@ -49,16 +46,6 @@ public class MenuHuespedActivity extends AppCompatActivity {
         verTouresCercanos = findViewById(R.id.btVerTouresCercanosMHA);
         verHistorialRecorridos = findViewById(R.id.verHistorialRecorridos);
 
-
-        prueba_reserva = findViewById(R.id.prueba_reserva);
-        prueba_reserva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intento = new Intent(MenuHuespedActivity.this,HuespedReservarAlojamientoActivity.class);
-                intento.putExtra("idAloj","Alo1");
-                startActivity(intento);
-            }
-        });
 
         Calendar calendar = Calendar.getInstance();
         //calendar.set(Calendar.SECOND,3);

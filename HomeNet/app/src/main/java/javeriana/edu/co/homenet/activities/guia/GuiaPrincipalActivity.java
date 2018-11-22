@@ -107,17 +107,6 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
         Intent intentCalificacion = new Intent(GuiaPrincipalActivity.this,CalificacionGuiaService.class);
         startService(intentCalificacion);
 */
-        buttonAddAnuncioGuia = (Button) findViewById(R.id.buttonAddAnuncioGuia);
-        buttonAddAnuncioGuia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Bundle b = new Bundle();
-                b.putString("idTour", listToures
-                        .get(position).getId());
-                startActivity(new Intent(view.getContext(),GuiaDetalleTourActivity.class).putExtras(b));
-            }
-        });
-
         toures.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

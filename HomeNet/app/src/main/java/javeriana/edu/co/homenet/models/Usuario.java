@@ -19,6 +19,7 @@ public class Usuario {
     private int telefono;
     private int calificacion;
     private Map<String,Boolean> alojamientos;
+    private Map<String,Boolean> opinionesGuia;
 
     //Relaciones
     private Map<String,Boolean>opinionesAlojamiento;

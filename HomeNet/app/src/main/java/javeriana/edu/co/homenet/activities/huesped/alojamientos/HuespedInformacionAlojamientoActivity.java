@@ -45,11 +45,14 @@ public class HuespedInformacionAlojamientoActivity extends AppCompatActivity {
     Button disponibilidad;
     Button ver_ruta;
     Button home;
+    Button reservar;
+    Button calificar;
     ViewPager slider;
     ImagenAnfitrionAdapter imgAnfAdapter;
 
     String idAloj;
     Alojamiento alojamiento;
+
     List<String> listaImagenes = new ArrayList<String>();;
 
 
@@ -71,7 +74,8 @@ public class HuespedInformacionAlojamientoActivity extends AppCompatActivity {
         ver_ruta=(Button)findViewById(R.id.ver_ruta3);
         home =(Button)findViewById(R.id.btHomeHIAA);
         slider = findViewById(R.id.vpSliderHIAA);
-
+        reservar = findViewById(R.id.btReservarHIA);
+        calificar = findViewById(R.id.btCalificarHIA2);
         Intent bA = getIntent();
         Bundle b = bA.getExtras();
         idAloj = b.getString("idAloj");
@@ -97,13 +101,31 @@ public class HuespedInformacionAlojamientoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(HuespedInformacionAlojamientoActivity.this,HuespedVerRutaDestinoActivity.class);
+                intent.putExtra("Aloj",alojamiento);
                 startActivity(intent);
             }
         });
+        reservar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(HuespedInformacionAlojamientoActivity.this,HuespedReservarAlojamientoActivity.class);
+                intent.putExtra("idAloj",idAloj);
+                startActivity(intent);
+            }
+        });
+
         home.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(HuespedInformacionAlojamientoActivity.this,MenuHuespedActivity.class);
+                startActivity(intent);
+            }
+        });
+        calificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HuespedInformacionAlojamientoActivity.this,HuespedCalificarAlojamientoActivity.class);
+                intent.putExtra("idAloj",idAloj);
                 startActivity(intent);
             }
         });

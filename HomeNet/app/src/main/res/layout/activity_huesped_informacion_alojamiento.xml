@@ -59,6 +59,32 @@
             app:layout_constraintTop_toBottomOf="@+id/btConsultarDispHIAA" />
 
         <Button
+            android:id="@+id/btReservarHIA"
+            android:layout_width="0dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Reservar"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/btCalificarHIA2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ver_ruta3" />
+
+        <Button
+            android:id="@+id/btCalificarHIA2"
+            android:layout_width="179dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Calificar"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ver_ruta3" />
+
+        <Button
             android:id="@+id/btConsultarDispHIAA"
             android:layout_width="0dp"
             android:layout_height="37dp"
@@ -157,18 +183,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:background="@color/colorPrimaryDark"
             android:text="Inicio"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ver_ruta3" />
+            app:layout_constraintTop_toBottomOf="@+id/btReservarHIA"
+            app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
