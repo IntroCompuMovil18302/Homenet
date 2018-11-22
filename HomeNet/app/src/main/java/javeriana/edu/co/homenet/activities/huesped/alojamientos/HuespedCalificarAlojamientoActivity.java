@@ -7,6 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ import java.util.List;
 import java.util.Random;
 
 import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.activities.anfitrion.AnfitrionPublicarAlojamientoImgActivity;
 import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
 import javeriana.edu.co.homenet.adapters.ImagenAnfitrionAdapter;
@@ -48,6 +51,8 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressDialog nProgressDialog;
     DatabaseReference mDataBase;
+
+    int indiceOpAloj=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +76,8 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
                 System.out.println("El numero de estrellas seleccionadas es -----------------------------------> "+numEstrellas);
                 if(!comentarioStr.equals("") && comentarioStr !=null && numEstrellas>0){
                     nProgressDialog.setMessage("Publicando la calificación...");
-                    subirCalificacion();
+                    //subirCalificacion();
+                    indiceCalificarAlojamiento();
                 }
                 else{
                     Toast.makeText(HuespedCalificarAlojamientoActivity.this, "Ingrese un comentario y seleccione una calificacion en estrella", Toast.LENGTH_SHORT).show();
@@ -85,6 +91,7 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
         viewPager.setAdapter(imgAnfAdapter);
     }
     private void findAloj (final String idAloj) {
+        mDataBase = FirebaseDatabase.getInstance().getReference("Alojamientos/");
         mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -103,11 +110,29 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
             }
         });
     }
+    public void indiceCalificarAlojamiento(){
+        mDataBase = FirebaseDatabase.getInstance().getReference("OpinionesAlojamiento/");
+        mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    OpinionAlojamiento opinionAlojamiento = singleSnapshot.getValue(OpinionAlojamiento.class);
+                    indiceOpAloj++;
+                }
+                subirCalificacion();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+            }
+        });
+    }
     public void subirCalificacion(){
         FirebaseUser user = mAuth.getCurrentUser();
         Random random = new Random();
         int numRandom = random.nextInt(1000)+1;
-        final String idOpinionAlojamiento = "OpinionAlojamiento "+String.valueOf(numRandom)+String.valueOf(System.currentTimeMillis());
+        final String idOpinionAlojamiento = "OpinionAlojamiento "+String.valueOf(indiceOpAloj);
         String uid = user.getUid();
         OpinionAlojamiento opinion;
         opinion = new OpinionAlojamiento(idOpinionAlojamiento,getIntent().getStringExtra("idAloj"),rating.getRating(),comentario.getText().toString(),uid);
@@ -183,5 +208,22 @@ public class HuespedCalificarAlojamientoActivity extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(HuespedCalificarAlojamientoActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

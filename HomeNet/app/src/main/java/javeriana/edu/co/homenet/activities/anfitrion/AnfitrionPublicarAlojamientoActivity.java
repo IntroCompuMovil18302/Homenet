@@ -30,6 +30,8 @@ import javeriana.edu.co.homenet.adapters.AnfPubAlojamientoAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Disponibilidad;
 import javeriana.edu.co.homenet.models.Ubicacion;
+import javeriana.edu.co.homenet.services.CalificacionAlojamientoService;
+import javeriana.edu.co.homenet.services.ReservasService;
 
 
 public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -238,6 +240,10 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
         int itemClicked = item.getItemId();
         if(itemClicked == R.id.menuLogOut){
             mAuth.signOut();
+            Intent intentStop = new Intent(AnfitrionPublicarAlojamientoActivity.this,ReservasService.class);
+            stopService(intentStop);
+            Intent intentOpinionStop =  new Intent (AnfitrionPublicarAlojamientoActivity.this,CalificacionAlojamientoService.class);
+            stopService(intentOpinionStop);
             Intent intent = new Intent(AnfitrionPublicarAlojamientoActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

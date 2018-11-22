@@ -27,6 +27,8 @@ import javeriana.edu.co.homenet.adapters.AnfPubAlojamientoAdapter;
 import javeriana.edu.co.homenet.fragment.AnfitrionDatePickerFragment;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Disponibilidad;
+import javeriana.edu.co.homenet.services.CalificacionAlojamientoService;
+import javeriana.edu.co.homenet.services.ReservasService;
 
 public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
     implements DatePickerDialog.OnDateSetListener{
@@ -220,6 +222,10 @@ public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
         int itemClicked = item.getItemId();
         if(itemClicked == R.id.menuLogOut){
             mAuth.signOut();
+            Intent intentStop = new Intent(AnfitrionPublicarDisponibilidadActivity.this,ReservasService.class);
+            stopService(intentStop);
+            Intent intentOpinionStop =  new Intent (AnfitrionPublicarDisponibilidadActivity.this,CalificacionAlojamientoService.class);
+            stopService(intentOpinionStop);
             Intent intent = new Intent(AnfitrionPublicarDisponibilidadActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

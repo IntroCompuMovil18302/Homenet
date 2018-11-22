@@ -57,6 +57,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
     List<DateData> resultadosProximosDias = new ArrayList<>();
     Alojamiento alojamiento;
     Reserva reserva;
+    int indiceReserva = 1;
     private FirebaseAuth mAuth;
     DatabaseReference mDataBase;
     private ProgressDialog nProgressDialog;
@@ -91,7 +92,8 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                 if(!desde.getText().toString().equals("") && !hasta.getText().toString().equals("")){
                     nProgressDialog.setMessage("Realizando la reserva...");
                     nProgressDialog.show();
-                    guardarReserva();
+                    indiceReserva();
+                    //guardarReserva();
                 }else{
                     Toast.makeText(HuespedReservarAlojamientoActivity.this, "Debe seleccionar una fecha de inicio y fin para realizar la reserva", Toast.LENGTH_SHORT).show();
                 }
@@ -250,6 +252,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     private void findAloj (final String idAloj) {
+        mDataBase = FirebaseDatabase.getInstance().getReference("Alojamientos/");
         mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -507,12 +510,30 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             }
         }
     }
+    public void indiceReserva(){
+        mDataBase = FirebaseDatabase.getInstance().getReference("Reservas/");
+        mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Reserva ireserva = singleSnapshot.getValue(Reserva.class);
+                    indiceReserva++;
+                }
+                guardarReserva();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+            }
+        });
+    }
     public void guardarReserva(){
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
         Random random = new Random();
         int numRandom = random.nextInt(10000)+1;
-        final String idReserva = "Reserva "+String.valueOf(numRandom)+String.valueOf(System.currentTimeMillis());
+        final String idReserva = "Reserva "+String.valueOf(indiceReserva);
         reserva = new Reserva();
         reserva.setId(idReserva);
         reserva.setAlojamiento(alojamiento.getId());
@@ -735,4 +756,5 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         }
         return resultadosProximosDias;
     }
+
 }

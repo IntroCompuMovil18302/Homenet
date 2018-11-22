@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
+import javeriana.edu.co.homenet.services.CalificacionAlojamientoService;
+import javeriana.edu.co.homenet.services.ReservasService;
 
 public class AnfitrionHistorialReservasActivity extends AppCompatActivity {
 
@@ -79,6 +81,10 @@ public class AnfitrionHistorialReservasActivity extends AppCompatActivity {
         int itemClicked = item.getItemId();
         if(itemClicked == R.id.menuLogOut){
             mAuth.signOut();
+            Intent intentStop = new Intent(AnfitrionHistorialReservasActivity.this,ReservasService.class);
+            stopService(intentStop);
+            Intent intentOpinionStop =  new Intent (AnfitrionHistorialReservasActivity.this,CalificacionAlojamientoService.class);
+            stopService(intentOpinionStop);
             Intent intent = new Intent(AnfitrionHistorialReservasActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
-import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
 
 public class GuiaPrincipalActivity extends AppCompatActivity {
 
@@ -31,6 +30,13 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        /*
+        Intent intentReserva = new Intent(GuiaPrincipalActivity.this,ReservaTourService.class);
+        startService(intentReserva);
+
+        Intent intentCalificacion = new Intent(GuiaPrincipalActivity.this,CalificacionGuiaService.class);
+        startService(intentCalificacion);
+*/
         buttonAddAnuncioGuia = (Button) findViewById(R.id.buttonAddAnuncioGuia);
         buttonAddAnuncioGuia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +72,11 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
         int itemClicked = item.getItemId();
         if(itemClicked == R.id.menuLogOut){
             mAuth.signOut();
+            /*
+            Intent intentStop = new Intent(GuiaPrincipalActivity.this,ReservaTourService.class);
+            stopService(intentStop);
+            Intent intentOpinionStop =  new Intent (GuiaPrincipalActivity.this,CalificacionGuiaService.class);
+            stopService(intentOpinionStop);*/
             Intent intent = new Intent(GuiaPrincipalActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

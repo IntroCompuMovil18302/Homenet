@@ -154,8 +154,15 @@
 
         <service
             android:name=".services.ReservasService"
-            android:exported="false"
-             />
+            android:exported="false" />
+        <service
+            android:name=".services.CalificacionAlojamientoService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.CalificacionGuiaService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
