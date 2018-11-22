@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class HistoricoTour {
 
+    private String idGuia;
     private String fecha;
     private String hora;
     private String moneda;
@@ -12,13 +13,22 @@ public class HistoricoTour {
     private String tour;
     private Map<String,Boolean> usuarios = new HashMap<>();
 
-    public HistoricoTour(String fecha, String hora, String moneda, int precio, String tour, Map<String, Boolean> usuarios) {
+    public HistoricoTour(String idGuia, String fecha, String hora, String moneda, int precio, String tour, Map<String, Boolean> usuarios) {
+        this.idGuia = idGuia;
         this.fecha = fecha;
         this.hora = hora;
         this.moneda = moneda;
         this.precio = precio;
         this.tour = tour;
         this.usuarios = usuarios;
+    }
+
+    public String getIdGuia() {
+        return idGuia;
+    }
+
+    public void setIdGuia(String idGuia) {
+        this.idGuia = idGuia;
     }
 
     public String getFecha() {
