@@ -54,6 +54,7 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
                     item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaCrearTourActivity.class));
                     return true;
                 case R.id.navigation_history_tours:
+                    item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaHistorialToures.class));
                     return true;
                 case R.id.navigation_config:
                     return true;
