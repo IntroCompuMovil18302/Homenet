@@ -76,13 +76,13 @@ public class HuespedVerRecorridoTourActivity extends FragmentActivity implements
         mMap.getUiSettings().setTiltGesturesEnabled(true);
         mMap.getUiSettings().setRotateGesturesEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-        if (titulos.size() > 1){
+        if (titulos.size() > 1) {
             marcarParadas();
         }else{
-            LatLng punto = new LatLng(Double.valueOf(lats.get(0)), Double.valueOf(longs.get(0)));
-            mMap.addMarker(new MarkerOptions().position(punto)
-                    .title(titulos.get(0)))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.flag));
+            LatLng p = new LatLng(Double.valueOf(lats.get(0)), Double.valueOf(longs.get(0)));
+            mMap.addMarker(new MarkerOptions().position(p).title(titulos.get(0)))
+            .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.flag));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(p));
         }
     }
 
