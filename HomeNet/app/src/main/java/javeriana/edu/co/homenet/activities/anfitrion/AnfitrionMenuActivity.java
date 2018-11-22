@@ -169,9 +169,25 @@ public class AnfitrionMenuActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    System.out.println("///////------------------"+uid);
                     Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
+                    System.out.println("///////----------ALO-------"+ialojamiento.getId());
+                    if(ialojamiento != null)
+                    {
+                        if(ialojamiento.getIdUsuario().equals(uid))
+                        {
+                            alojamientos.add(ialojamiento);
+                            System.out.println("///////----ENTRO");
+                            System.out.println("///////----ENTRO");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("///////----EEEE-");
+                    }
+
                 }
-                alojamientos = alojamientosUser;
+                adapter.notifyDataSetChanged();
             }
 
             @Override
