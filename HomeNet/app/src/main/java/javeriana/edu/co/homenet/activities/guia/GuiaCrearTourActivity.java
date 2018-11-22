@@ -18,6 +18,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -56,6 +57,7 @@ import java.util.List;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.CrearPerfilActivity;
+import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.activities.anfitrion.AnfitrionMenuActivity;
 import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
 import javeriana.edu.co.homenet.models.HistoricoTour;
@@ -84,8 +86,10 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
                 case R.id.navigation_new_tour:
                     return true;
                 case R.id.navigation_history_tours:
+                    item.setIntent(new Intent(GuiaCrearTourActivity.this, GuiaHistorialToures.class));
                     return true;
                 case R.id.navigation_config:
+                    item.setIntent(new Intent(GuiaCrearTourActivity.this, GuiaCalificacionesActivity.class));
                     return true;
             }
             return false;
@@ -166,14 +170,6 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
     private void currenciesREST() {
         RequestQueue queue = Volley.newRequestQueue(this);
         String query = "https://restcountries.eu/rest/v2/all?fields=currencies";
@@ -229,9 +225,16 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
                         final Uri imageUri = data.getData();
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                        BitmapDrawable bdrawable = new BitmapDrawable(GuiaCrearTourActivity.this.getResources(),selectedImage);
-                        addImage.setBackground(bdrawable);
-                        addImage.setText("");
+                        BitmapDrawable bdrawable;
+                        try{
+                            bdrawable = new BitmapDrawable(GuiaCrearTourActivity.this.getResources(),selectedImage);
+                            addImage.setBackground(bdrawable);
+                            addImage.setText("");
+                        }
+                        catch(Exception e){
+
+                        }
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -313,5 +316,30 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
 
     private boolean validateForm(){
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(GuiaCrearTourActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
