@@ -122,8 +122,8 @@ public class HuespedVerRutaDestinoActivity extends FragmentActivity implements O
                         if (mMap != null) {
                             MarkerOptions myMarkerOptions = new MarkerOptions();
                             myMarkerOptions.position(position);
-                            myMarkerOptions.title("Prueba");
-                            //myMarkerOptions.title(aloj.getNombre());
+                            //myMarkerOptions.title("Prueba");
+                            myMarkerOptions.title(aloj.getNombre());
                             //Toast.makeText(HuespedVerRutaDestinoActivity.this, "La distancia entre los dos puntos es "+String.valueOf(distance(
                             //      location.getLatitude(),location.getLongitude(), aloj.getUbicacion().getLatitude(), aloj.getUbicacion().getLongitude()))+" km", Toast.LENGTH_SHORT).show();
                             myMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
