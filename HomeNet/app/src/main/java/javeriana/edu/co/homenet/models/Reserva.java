@@ -58,4 +58,5 @@ public class Reserva {
     public void setAlojamiento(String alojamiento) {
         this.alojamiento = alojamiento;
     }
+
 }

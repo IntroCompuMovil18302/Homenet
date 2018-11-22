@@ -232,6 +232,24 @@ public class HuespedResultadosListActivity extends AppCompatActivity {
             match = match && alojamiento.estaDisponible(bundle.getString("fechaInicio"),
                     bundle.getString("fechaFin"));
         }
+        if(!bundle.getString("huespedes").equals("")){
+            match = match && alojamiento.numeroHuespedes(bundle.getString("huespedes"));
+        }
+        if(!bundle.getString("dormitorios").equals("")){
+            match = match && alojamiento.numeroHuespedes(bundle.getString("dormitorios"));
+        }
+        if(bundle.getBoolean("calefaccion")){
+            match = match && alojamiento.isCalefaccion();
+        }
+        if(bundle.getBoolean("internet")){
+            match = match && alojamiento.isInternet();
+        }
+        if(bundle.getBoolean("television")){
+            match = match && alojamiento.isTelevision();
+        }
+        if(bundle.getBoolean("mascotas")){
+            match = match && alojamiento.isMascotas();
+        }
         return match;
     }
 

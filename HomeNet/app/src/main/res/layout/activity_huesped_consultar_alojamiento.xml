@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp">
 
@@ -114,8 +114,7 @@
                 android:hint="@string/hint_distance_hca"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/tvKm"
@@ -132,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="110dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
@@ -141,7 +140,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etFechaFinHCA">
+            app:layout_constraintTop_toBottomOf="@+id/etDormitoriosHCA">
 
             <Button
                 android:id="@+id/btBuscarHCA"
@@ -184,6 +183,81 @@
             app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPalabraHCA" />
+
+        <EditText
+            android:id="@+id/etHuespedesHCA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="@string/hint_huespedes_hca"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/etFechaFinHCA" />
+        <EditText
+            android:id="@+id/etDormitoriosHCA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/hint_dormitorios_hca"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/etHuespedesHCA" />
+
+        <CheckBox
+            android:id="@+id/cbCalefaccionHCA"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/cb_calefaccion_hca"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etDormitoriosHCA" />
+
+        <CheckBox
+            android:id="@+id/cbInternetHCA"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/cb_internet_hca"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbCalefaccionHCA" />
+
+        <CheckBox
+            android:id="@+id/cbTelevisionHCA"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/cb_television_hca"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cbCalefaccionHCA"
+            app:layout_constraintTop_toBottomOf="@+id/etDormitoriosHCA" />
+
+        <CheckBox
+            android:id="@+id/cbMascotasHCA"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/cb_mascotas_hca"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cbInternetHCA"
+            app:layout_constraintTop_toBottomOf="@+id/cbTelevisionHCA" />
 
     </android.support.constraint.ConstraintLayout>
 

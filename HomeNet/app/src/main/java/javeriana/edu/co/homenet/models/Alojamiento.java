@@ -1,6 +1,9 @@
 package javeriana.edu.co.homenet.models;
 
 import android.util.Log;
+
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,7 +55,6 @@ public class Alojamiento implements Serializable{
         this.opiniones= new HashMap<>();
         this.electrodomesticos = new ArrayList<>();
         this.muebles = new ArrayList<>();
-
     }
 
     public String getNombre() {
@@ -311,8 +313,8 @@ public class Alojamiento implements Serializable{
                             || (fi.after(fir) && ff.equals(ffr)) || (fi.equals(fir) && ff.equals(ffr))){
                         disp = false;
                     }
-                }
-                */
+                }*/
+
             }
         }
 
@@ -350,6 +352,20 @@ public class Alojamiento implements Serializable{
     public void initDist(double lat1, double long1){
         if(ubicacion!=null)
             dist =  DistanceFunc.distance(lat1,long1,ubicacion.getLatitude(),ubicacion.getLongitude());
+    }
+    public boolean numeroHuespedes(String huespedes){
+        int hues = Integer.parseInt(huespedes);
+        if(this.huespedes>=hues){
+            return true;
+        }
+        return false;
+    }
+    public boolean numeroDormitorios(String dormitorios){
+        int dormit = Integer.parseInt(dormitorios);
+        if(this.dormitorios>=dormit){
+            return true;
+        }
+        return false;
     }
 
 }

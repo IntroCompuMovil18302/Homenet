@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -58,8 +60,14 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
     EditText fechaFin;
     EditText distancia;
     EditText lugar;
+    EditText huespedes;
+    EditText dormitorios;
     Button buttonBuscar;
     Button buttonMapa;
+    CheckBox calefaccion;
+    CheckBox internet;
+    CheckBox television;
+    CheckBox mascotas;
 
     private FirebaseAuth mAuth;
 
@@ -75,8 +83,14 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
         fechaFin = findViewById(R.id.etFechaFinHCA);
         distancia = findViewById(R.id.etDistanciaHCA);
         lugar = findViewById(R.id.etLugarHCA);
+        huespedes = findViewById(R.id.etHuespedesHCA);
+        dormitorios = findViewById(R.id.etDormitoriosHCA);
         buttonBuscar = findViewById(R.id.btBuscarHCA);
         buttonMapa = findViewById(R.id.btMapaHCA);
+        calefaccion = findViewById(R.id.cbCalefaccionHCA);
+        internet = findViewById(R.id.cbInternetHCA);
+        television = findViewById(R.id.cbTelevisionHCA);
+        mascotas = findViewById(R.id.cbMascotasHCA);
 
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +107,12 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                                 bundle.putString("fechaFin",fechaFin.getText().toString());
                                 bundle.putString("distancia",distancia.getText().toString());
                                 bundle.putString("lugar",lugar.getText().toString());
+                                bundle.putString("huespedes",huespedes.getText().toString());
+                                bundle.putString("dormitorios",dormitorios.getText().toString());
+                                bundle.putBoolean("calefaccion",calefaccion.isChecked());
+                                bundle.putBoolean("internet",internet.isChecked());
+                                bundle.putBoolean("television",television.isChecked());
+                                bundle.putBoolean("mascotas",mascotas.isChecked());
                                 intent.putExtra("bundle", bundle);
                                 startActivity(intent);
                             }
@@ -116,6 +136,12 @@ public class HuespedConsultarAlojamientoActivity extends AppCompatActivity {
                     bundle.putString("fechaFin",fechaFin.getText().toString());
                     bundle.putString("distancia",distancia.getText().toString());
                     bundle.putString("lugar",lugar.getText().toString());
+                    bundle.putString("huespedes",huespedes.getText().toString());
+                    bundle.putString("dormitorios",dormitorios.getText().toString());
+                    bundle.putBoolean("calefaccion",calefaccion.isChecked());
+                    bundle.putBoolean("internet",internet.isChecked());
+                    bundle.putBoolean("television",television.isChecked());
+                    bundle.putBoolean("mascotas",mascotas.isChecked());
                     intent.putExtra("bundle", bundle);
                     startActivity(intent);
                 }

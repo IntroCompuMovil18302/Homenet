@@ -114,6 +114,12 @@
     <string name="hint_end_date_hca">¿Hasta cuándo? (DD/MM/YYYY)</string>
     <string name="hint_distance_hca">¿Qué tan lejos?</string>
     <string name="hint_place_hca">¿Dónde?</string>
+    <string name="hint_huespedes_hca">¿Cuántos huespedes?</string>
+    <string name="hint_dormitorios_hca">¿Cuántos dormitorios?</string>
+    <string name="cb_calefaccion_hca">Calefacción</string>
+    <string name="cb_internet_hca">Internet</string>
+    <string name="cb_television_hca">Televisión</string>
+    <string name="cb_mascotas_hca">Mascotas</string>
 
     <string name="per_hight">por noche.</string>
     <string name="km">Km.</string>
