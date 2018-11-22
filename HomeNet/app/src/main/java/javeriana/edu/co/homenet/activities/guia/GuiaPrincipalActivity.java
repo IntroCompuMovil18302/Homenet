@@ -57,6 +57,7 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
                     item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaHistorialToures.class));
                     return true;
                 case R.id.navigation_config:
+                    item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaCalificacionesActivity.class));
                     return true;
             }
             return false;
@@ -91,12 +92,6 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
 
         consultarTouresGuia();
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        consultarTouresGuia();
     }
 
     @Override
