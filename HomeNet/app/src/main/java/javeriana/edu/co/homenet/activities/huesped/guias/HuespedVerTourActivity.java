@@ -177,8 +177,7 @@ public class HuespedVerTourActivity extends AppCompatActivity {
         usuario.put(mAuth.getUid(), true);
         if (t.getInscritos() == 0) {
             HistoricoTour hTour = new HistoricoTour(t.getIdGuia(), t.getFecha(), t.getHora(),
-                    t.getMoneda(), Integer.valueOf(t.getPrecio()), b.getString("idTour"),
-                    usuario);
+                    t.getMoneda(), t.getPrecio(), b.getString("idTour"), usuario);
             myRef2 = database.getReference(PATH_TOUR_HISTORIC+myRef2.push().getKey());
             myRef2.setValue(hTour);
         }else{

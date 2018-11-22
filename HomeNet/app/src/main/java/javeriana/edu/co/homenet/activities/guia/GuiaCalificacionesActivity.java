@@ -1,10 +1,10 @@
 package javeriana.edu.co.homenet.activities.guia;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,10 +27,8 @@ import java.util.ArrayList;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
-import javeriana.edu.co.homenet.activities.huesped.guias.HuespedVerInfoGuiaActivity;
 import javeriana.edu.co.homenet.adapters.ComentarioAdapter;
 import javeriana.edu.co.homenet.models.OpinionGuia;
-import javeriana.edu.co.homenet.models.Tour;
 import javeriana.edu.co.homenet.models.Usuario;
 
 public class GuiaCalificacionesActivity extends AppCompatActivity {
@@ -136,6 +134,11 @@ public class GuiaCalificacionesActivity extends AppCompatActivity {
                 }catch(Exception ex){
                     ex.printStackTrace();
                 }
+                float sum = 0;
+                for (OpinionGuia og: listComentarios){
+                    sum += og.getCalificacion();
+                }
+                calificacion.setRating(sum/listComentarios.size());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
