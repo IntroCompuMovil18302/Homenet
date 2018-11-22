@@ -248,7 +248,7 @@ public class GuiaDetalleTourActivity extends AppCompatActivity {
                 Punto p1 = new Punto();
                 Punto p2 = new Punto();
                 p1.setLatitudInicial(Double.valueOf(paradasLat.get(i)));
-                p1.setLatitudInicial(Double.valueOf(paradasLong.get(i)));
+                p1.setLongitudInicial(Double.valueOf(paradasLong.get(i)));
                 UtilidadesMapa.coordenadas.add(p1);
                 p2.setLatitudFinal(Double.valueOf(paradasLat.get(i+1)));
                 p2.setLongitudFinal(Double.valueOf(paradasLong.get(i+1)));

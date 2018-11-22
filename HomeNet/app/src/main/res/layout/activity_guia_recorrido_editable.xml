@@ -19,34 +19,11 @@
             android:layout_height="match_parent"
             tools:context=".activities.guia.GuiaRecorridoEditableActivity" />
 
-        <EditText
-            android:id="@+id/editLocation"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/roundcorner"
-            android:ems="10"
-            android:hint="Digite un lugar"
-            android:inputType="textPersonName"
-            android:textColorLink="@color/common_google_signin_btn_text_dark_focused" />
-
         <LinearLayout
             android:id="@+id/llButtonsGRE"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btDeleteGRE"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="@color/colorPrimaryDark"
-                android:padding="8dp"
-                android:text="@string/delete_location"
-                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/btAddGRE"
@@ -60,17 +37,6 @@
                 android:text="@string/add_location"
                 android:textColor="@color/colorPrimary" />
 
-            <Button
-                android:id="@+id/btSelectGRE"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="@color/colorPrimaryDark"
-                android:padding="8dp"
-                android:text="@string/select_location"
-                android:textColor="@color/colorPrimary" />
         </LinearLayout>
 
     </FrameLayout>

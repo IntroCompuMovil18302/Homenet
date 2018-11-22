@@ -126,6 +126,11 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     Calendar cCalendar;
 
+    Bundle b;
+    private ArrayList<String> titulos = new ArrayList<>();
+    private ArrayList<String> lats = new ArrayList<>();
+    private ArrayList<String> longs = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,6 +156,18 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
         capacidad = findViewById(R.id.etCapacidadGCT);
         precio = findViewById(R.id.etPrecioGCT);
         nProgressDialog = new ProgressDialog(GuiaCrearTourActivity.this);
+
+        try{
+            b = getIntent().getExtras();
+            titulos = b.getStringArrayList("titulos");
+            lats = b.getStringArrayList("lats");
+            longs = b.getStringArrayList("longs");
+        }
+        catch (Exception e){
+
+        }
+
+
 
         fecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,6 +229,13 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
                     crearTour();
                 }
 
+            }
+        });
+
+        addRecorrdo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GuiaCrearTourActivity.this, GuiaRecorridoEditableActivity.class));
             }
         });
 
@@ -348,6 +372,15 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         urlImage = uri;
                         List<Ubicacion> recorrido = new ArrayList<>();
+
+                        if (titulos != null && lats != null && longs != null){
+                            for (int i=0 ; i < titulos.size() ; i++){
+                                Ubicacion u = new Ubicacion(Double.valueOf(lats.get(i)),
+                                        Double.valueOf(longs.get(i)), titulos.get(i));
+                                recorrido.add(u);
+                            }
+                        }
+
                         Tour nT = new Tour(
                                 Integer.parseInt(capacidad.getText().toString()),
                                 descripcion.getText().toString(),

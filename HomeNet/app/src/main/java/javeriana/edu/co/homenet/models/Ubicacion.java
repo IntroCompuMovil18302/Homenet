@@ -18,6 +18,12 @@ public class Ubicacion  implements Serializable {
 
     }
 
+    public Ubicacion(double latitude, double longitude, String titulo) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.titulo = titulo;
+    }
+
     public String getId() {
         return id;
     }

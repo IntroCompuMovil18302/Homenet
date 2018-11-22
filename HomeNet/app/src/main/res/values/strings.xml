@@ -130,7 +130,7 @@
     <string name="price">Precio:</string>
     <string name="route">Ver recorrido</string>
     <string name="renew">Renovar</string>
-    <string name="add_location">Añadir parada</string>
+    <string name="add_location">Añadir paradas</string>
     <string name="delete_location">Eliminar parada</string>
     <string name="select_location">Seleccionar parada</string>
 

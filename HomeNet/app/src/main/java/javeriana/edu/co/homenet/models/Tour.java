@@ -5,7 +5,7 @@ import java.util.List;
 
 import javeriana.edu.co.homenet.utils.DistanceFunc;
 
-public class Tour {
+public class Tour  {
 
     private String id;
     private int capacidad;
