@@ -13,7 +13,11 @@ public class HistoricoTour {
     private String tour;
     private Map<String,Boolean> usuarios = new HashMap<>();
 
-    public HistoricoTour(String idGuia, String fecha, String hora, String moneda, int precio, String tour, Map<String, Boolean> usuarios) {
+    HistoricoTour(){
+
+    }
+
+    HistoricoTour(String idGuia, String fecha, String hora, String moneda, int precio, String tour, Map<String, Boolean> usuarios) {
         this.idGuia = idGuia;
         this.fecha = fecha;
         this.hora = hora;
@@ -22,6 +26,8 @@ public class HistoricoTour {
         this.tour = tour;
         this.usuarios = usuarios;
     }
+
+    public HistoricoTour(){}
 
     public String getIdGuia() {
         return idGuia;
