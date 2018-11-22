@@ -19,6 +19,8 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
+import java.util.ArrayList;
+
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.models.Alojamiento;
@@ -53,18 +55,7 @@ public class AnfitrionPublicarDetalleActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_pub_detalle);
-        alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
-        Intent intent = getIntent();
-        Bundle bundle = getIntent().getExtras();
-        modo = bundle.getInt("modo");
-        if(modo == 2)
-        {
-            alojamiento = (Alojamiento) bundle.getSerializable("Data");
-            llenarDatos();
-        }else
-        {
-            alojamiento = (Alojamiento) bundle.getSerializable("Data");
-        }
+
 
         //inicializar variables
         area = findViewById(R.id.spAreaAFD);
@@ -102,16 +93,24 @@ public class AnfitrionPublicarDetalleActivity extends AppCompatActivity{
 
 
         accionBotones();
+        Bundle bundle = getIntent().getExtras();
+        modo = bundle.getInt("modo");
+        alojamiento = (Alojamiento) bundle.getSerializable("Data");
+        if(modo == 2)
+        {
+            llenarDatos();
+        }
     }
 
     public void llenarDatos(){
         siguiente.setText("Guardar");
         // TODO get datos forebase
-        area.setSelection(buscarValor(area.getAdapter(),alojamiento.getArea()));
-        camas.setSelection(buscarValor(camas.getAdapter(),alojamiento.getCamas()));
-        dormitorios.setSelection(buscarValor(dormitorios.getAdapter(),alojamiento.getDormitorios()));
-        huespedes.setSelection(buscarValor(huespedes.getAdapter(),alojamiento.getHuespedes()));
-        parqueaderos.setSelection(buscarValor(parqueaderos.getAdapter(),alojamiento.getParqueaderos()));
+        area.setSelection((alojamiento.getArea()/10)-1);
+        banios.setSelection(alojamiento.getBanios()-1);
+        camas.setSelection(alojamiento.getCamas()-1);
+        dormitorios.setSelection(alojamiento.getDormitorios()-1);
+        huespedes.setSelection(alojamiento.getHuespedes()-1);
+        parqueaderos.setSelection(alojamiento.getParqueaderos()-1);
 
 
         calefaccion.setChecked(alojamiento.isCalefaccion());
@@ -122,12 +121,16 @@ public class AnfitrionPublicarDetalleActivity extends AppCompatActivity{
     }
 
     public int buscarValor(SpinnerAdapter adapter,int valor){
+        ArrayList<Integer> area = new ArrayList<Integer>();
+        ArrayList<Integer> valores = new ArrayList<Integer>();
+
         for(int i =0; i < adapter.getCount(); i++)
         {
+            System.out.println("Valor1111:"+adapter.getItemId(i)+"----"+valor);
             if(adapter.getItemId(i) == valor);
                 return i;
         }
-        return 0;
+        return 1;
     }
 
     public void checkBox(View v){
@@ -189,7 +192,7 @@ public class AnfitrionPublicarDetalleActivity extends AppCompatActivity{
                     manejoSpinner();
 
                     // TODO guardar datos
-                    Intent intent = new Intent(view.getContext(), AnfitrionPublicarListasActivity.class);
+                    Intent intent = new Intent(view.getContext(), AnfMenuEditarActivity.class);
                     startActivity(intent);
                 }
             }

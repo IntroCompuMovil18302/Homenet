@@ -1,6 +1,8 @@
 package javeriana.edu.co.homenet.activities.anfitrion;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -19,9 +21,14 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
@@ -46,7 +53,7 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     int flag;
     int modo;
     String tipoAlojamiento;
-
+    private ProgressDialog nProgressDialog;
 
     Button ubicacion;
     Button siguiente;
@@ -71,22 +78,14 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_pub_general);
-        Intent intent = getIntent();
-        Bundle bundle = getIntent().getExtras();
-        modo = bundle.getInt("modo");
-        if(modo == 2)
-        {
-            alojamiento = (Alojamiento) bundle.getSerializable("Data");
-            llenarDatos();
-        }else
-            {
-                alojamiento = new Alojamiento();
-            }
+
 
 
 
         // inflar variables
         spinner = findViewById(R.id.spTipoAPA);
+
+        nProgressDialog = new ProgressDialog(AnfitrionPublicarAlojamientoActivity.this);
 
         ubicacion = findViewById(R.id.btUbicacionAPA);
         siguiente = findViewById(R.id.btSiguienteAPA);
@@ -112,14 +111,25 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
         //imgAnfAdapter = new ImagenAnfitrionAdapter(AnfitrionPublicarAlojamientoActivity.this,listaImagenes);
 
         accionBotones();
+        Intent intent = getIntent();
+        Bundle bundle = getIntent().getExtras();
+        modo = bundle.getInt("modo");
+        if(modo == 2)
+        {
+            alojamiento = (Alojamiento) bundle.getSerializable("Data");
+            llenarDatos();
+        }else
+        {
+            alojamiento = new Alojamiento();
+        }
     }
 
      public void llenarDatos(){
         siguiente.setText("guardar");
-        nombre.setText("");
-        descripcion.setText("");
-        valor.setText("");
-        direcciontv.setText("");
+        nombre.setText(alojamiento.getNombre());
+        descripcion.setText(alojamiento.getDescripcion());
+        valor.setText( String.valueOf(alojamiento.getPrecio()));
+        direcciontv.setText(alojamiento.getUbicacion().getDireccion());
         // TODO falta valor spinner
     }
 
@@ -211,6 +221,36 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
         return bandera;
     }
 
+    public void subirAlojamiento(){
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+        alojamiento.setIdUsuario(uid);
+        //FirebaseUser user = mAuth.getCurrentUser();
+        Random random = new Random();
+        int numRandom = random.nextInt(10000)+1;
+        //final String idAlojamiento = "Alojamiento "+String.valueOf(numRandom)+String.valueOf(System.currentTimeMillis());
+        //alojamiento.setId(idAlojamiento);
+        FirebaseDatabase.getInstance().getReference("Alojamientos").child(alojamiento.getId()).setValue(alojamiento).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                //progressbar.setVisibility(View.GONE);
+                if(task.isSuccessful()){
+                    nProgressDialog.dismiss();
+                    Toast.makeText(AnfitrionPublicarAlojamientoActivity.this, "Se ha publicado el alojamiento", Toast.LENGTH_SHORT).show();
+                    //infoActualUsuario(idServicio,ususerv);
+                    //agregarDatosUsuarioServicio(alojamiento.getId());
+
+                }
+                else{
+                    nProgressDialog.dismiss();
+                    Toast.makeText( AnfitrionPublicarAlojamientoActivity.this,"Hubo un error al crear un servicio", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+        });
+    }
+
     // seccion botones ---------------------------------------------------------
     public void accionBotones() {
 
@@ -241,6 +281,9 @@ public class AnfitrionPublicarAlojamientoActivity extends AppCompatActivity impl
                     alojamiento.setNombre(nombre.getText().toString());
 
                     // TODO guardar datos firebase
+                        nProgressDialog.setMessage("Publicando el alojamiento...");
+                        nProgressDialog.show();
+                        subirAlojamiento();
 
                     Intent intent = new Intent(view.getContext(), AnfMenuEditarActivity.class);
                     startActivity(intent);

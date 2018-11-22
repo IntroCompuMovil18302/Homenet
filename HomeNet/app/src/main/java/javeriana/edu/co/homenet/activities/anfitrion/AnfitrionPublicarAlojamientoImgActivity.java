@@ -47,6 +47,7 @@ import javeriana.edu.co.homenet.models.Usuario;
 
 public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
 
+    int modo;
     private static final int RESULT_LOAD_IMAGE = 1;
     final static int REQUEST_GALLERY = 2;
 
@@ -75,12 +76,6 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
         nProgressDialog = new ProgressDialog(AnfitrionPublicarAlojamientoImgActivity.this);
         mDataBase = FirebaseDatabase.getInstance().getReference("Alojamientos");
         mStorage =FirebaseStorage.getInstance().getReference("ImagenesAlojamientos");
-        alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
-
-        System.out.println("************"+alojamiento.getNombre());
-        System.out.println("************"+alojamiento.getTipo());
-        System.out.println("************"+alojamiento.getPrecio());
-        System.out.println("************"+alojamiento.getDescripcion());
 
 
 
@@ -91,6 +86,13 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
         viewPager = (ViewPager)findViewById(R.id.vpImagenesAlojAPA);
 
         accionBotones();
+        Bundle bundle = getIntent().getExtras();
+        modo = bundle.getInt("modo");
+        alojamiento = (Alojamiento) bundle.getSerializable("Data");
+        if(modo == 2)
+        {
+            llenarDatos();
+        }
     }
     public void onActivityResult(int requestCode, int ResultCode, Intent data){
         if(requestCode == RESULT_LOAD_IMAGE && ResultCode== RESULT_OK){ // TODO Probar si funciona sin verificar el GALLERY INTENT
@@ -115,6 +117,13 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void llenarDatos(){
+        siguiente.setText("Guardar");
+        // TODO cargar imagenes
+
+    }
+
     public void accionBotones(){
         agregarImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,15 +135,24 @@ public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validarDatos()){
-                    //Bundle bundle = getIntent().getExtras();
+                if(modo==1)
+                {
+                    if(validarDatos()){
+                        //Bundle bundle = getIntent().getExtras();
+                        nProgressDialog.setMessage("Publicando el alojamiento...");
+                        nProgressDialog.show();
+                        subirImagenesStorage();
+                    }
+                    else{
+                        Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Tiene que seleccionar al menos cuatro imagenes de su galeria", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+
                     nProgressDialog.setMessage("Publicando el alojamiento...");
                     nProgressDialog.show();
                     subirImagenesStorage();
                 }
-                else{
-                    Toast.makeText(AnfitrionPublicarAlojamientoImgActivity.this, "Tiene que seleccionar al menos cuatro imagenes de su galeria", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
     }

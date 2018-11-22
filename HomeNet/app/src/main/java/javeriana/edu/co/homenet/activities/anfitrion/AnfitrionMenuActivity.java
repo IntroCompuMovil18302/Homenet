@@ -1,7 +1,9 @@
 package javeriana.edu.co.homenet.activities.anfitrion;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +16,13 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -22,12 +31,13 @@ import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.adapters.AnfAlojamientosAdapter;
 import javeriana.edu.co.homenet.adapters.AnfPubElementosAlojAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
+import javeriana.edu.co.homenet.models.Disponibilidad;
 import javeriana.edu.co.homenet.models.Ubicacion;
 
 public class AnfitrionMenuActivity extends AppCompatActivity {
 
     ArrayList<Alojamiento> alojamientos;
-
+    ArrayList<Alojamiento> alojamientosUser;
     ImageButton nuevap;
     RecyclerView rvAlojamientos;
 
@@ -35,6 +45,8 @@ public class AnfitrionMenuActivity extends AppCompatActivity {
     RecyclerView.LayoutManager managerAlojamientos;
 
     private FirebaseAuth mAuth;
+    private StorageReference mStorage;
+    private ProgressDialog nProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +60,8 @@ public class AnfitrionMenuActivity extends AppCompatActivity {
         nuevap = findViewById(R.id.nuevap);
         rvAlojamientos = findViewById(R.id.rvAlojamientosAM);
 
-        datosPrueba();
+        //datosPrueba();
+        getALojamientosUser();
         crearRecycler();
         accionBotones();
     }
@@ -103,11 +116,38 @@ public class AnfitrionMenuActivity extends AppCompatActivity {
     public void datosPrueba(){
         Alojamiento a = new Alojamiento();
         Ubicacion u = new Ubicacion();
-        u.setDireccion("direccion Alojamiento");
+        u.setDireccion("direccion Alojamiento funciona--");
         a.setUbicacion(u);
         a.setNombre("nombre Prueba");
-        a.setTipo("Casa prueba");
+        a.setTipo("Apartamento");
         a.setDescripcion("la descripcion del alojamiento");
+        // especificos
+        a.setArea(50);
+        a.setBanios(2);
+        a.setCamas(3);
+        a.setCalefaccion(true);
+        a.setInternet(true);
+        /// muebles
+        ArrayList<String> mue = new ArrayList<String>();
+        mue.add("aaaaa");
+        mue.add("bbbb");
+        mue.add("ccccc");
+        mue.add("ddddd");
+        mue.add("eeeee");
+        a.setMuebles(mue);
+        a.setElectrodomesticos(mue);
+        // Disponibilidad
+        Disponibilidad d = new Disponibilidad();
+        d.setFechaInicio("10/08/2018");
+        d.setFechaFin("17/02/2018");
+        ArrayList<Disponibilidad> dis = new ArrayList<Disponibilidad>();
+        dis.add(d);
+        dis.add(d);
+        dis.add(d);
+        dis.add(d);
+        a.setDisponibilidades(dis);
+
+
         alojamientos.add(a);
         alojamientos.add(a);
         alojamientos.add(a);
@@ -119,11 +159,36 @@ public class AnfitrionMenuActivity extends AppCompatActivity {
         alojamientos.add(a);
     }
 
+    public void getALojamientosUser(){
+        System.out.println("//////////////////////////");
+        alojamientosUser =  new ArrayList<Alojamiento>();
+        FirebaseUser user = mAuth.getCurrentUser();
+        final String uid = user.getUid();
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Alojamientos/");
+        db.addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
+                }
+                alojamientos = alojamientosUser;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void accionBotones() {
         nuevap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),AnfitrionPublicarAlojamientoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("modo",1);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

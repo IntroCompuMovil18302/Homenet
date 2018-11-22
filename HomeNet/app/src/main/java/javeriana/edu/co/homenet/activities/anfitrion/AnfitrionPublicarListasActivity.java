@@ -19,6 +19,8 @@ import javeriana.edu.co.homenet.models.Alojamiento;
 
 public class AnfitrionPublicarListasActivity extends AppCompatActivity {
 
+    int modo;
+
     Alojamiento alojamiento;
     ArrayList<String> muebles;
     ArrayList<String> electrodomesticos;
@@ -43,11 +45,11 @@ public class AnfitrionPublicarListasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_pub_listas);
-        alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
+
 
         muebles = new ArrayList<String>();
         electrodomesticos = new ArrayList<String>();
-        datosPrueba();
+        //datosPrueba();
 
         // inicializar
         siguiente = findViewById(R.id.btSiguienteAPL);
@@ -62,11 +64,23 @@ public class AnfitrionPublicarListasActivity extends AppCompatActivity {
         rvelectrodomesticos = findViewById(R.id.rvElectrodomesticosAPL);
         rvelectrodomesticos.setHasFixedSize(true);
 
-
+        Bundle bundle = getIntent().getExtras();
+        modo = bundle.getInt("modo");
+        alojamiento = (Alojamiento) bundle.getSerializable("Data");
+        if(modo == 2)
+        {
+            llenarDatos();
+        }
         crearRecycler();
         accionBotones();
+
     }
 
+    public void llenarDatos(){
+        siguiente.setText("Guardar");
+        muebles = (ArrayList<String>) alojamiento.getMuebles();
+        electrodomesticos = (ArrayList<String>) alojamiento.getElectrodomesticos();
+    }
 
     public void accionBotones() {
 
@@ -74,12 +88,27 @@ public class AnfitrionPublicarListasActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                System.out.println("XXXXXXXXXXXXXXXXXXXX");
-                alojamiento.setElectrodomesticos(electrodomesticos);
-                alojamiento.setMuebles(muebles);
-                Intent intent = new Intent(view.getContext(), AnfitrionPublicarDisponibilidadActivity.class);
-                intent.putExtra("Data", alojamiento);
-                startActivity(intent);
+                if(modo == 1)
+                {
+                    alojamiento.setElectrodomesticos(electrodomesticos);
+                    alojamiento.setMuebles(muebles);
+                    Intent intent = new Intent(view.getContext(), AnfitrionPublicarDisponibilidadActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("Data", alojamiento);
+                    bundle.putInt("modo",1);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else
+                {
+                    alojamiento.setElectrodomesticos(electrodomesticos);
+                    alojamiento.setMuebles(muebles);
+
+                    // TODO guardar datos firebase
+                    Intent intent = new Intent(view.getContext(), AnfMenuEditarActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

@@ -34,7 +34,7 @@ public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
     public static final int FLAG_START_DATE = 0;
     public static final int FLAG_END_DATE = 1;
     int flag;
-
+    int modo;
     private FirebaseAuth mAuth;
 
     ArrayList<Disponibilidad> disponibilidads;
@@ -56,16 +56,8 @@ public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_pub_disponibilidad);
-        alojamiento = (Alojamiento) getIntent().getSerializableExtra("Data");
 
         mAuth = FirebaseAuth.getInstance();
-
-        System.out.println("+++++++++"+alojamiento.getNombre());
-        System.out.println("+++++++++"+alojamiento.getTipo());
-        System.out.println("+++++++++"+alojamiento.getPrecio());
-        System.out.println("+++++++++"+alojamiento.getDescripcion());
-
-
 
         fechaIni = findViewById(R.id.btFechaIniAPA);
         fechaFin = findViewById(R.id.btFechaFinAPA);
@@ -76,11 +68,19 @@ public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
         rv = findViewById(R.id.rvDispFechasAPA);
 
         disponibilidads = new ArrayList<Disponibilidad>();
+        Bundle bundle = getIntent().getExtras();
+        modo = bundle.getInt("modo");
+        alojamiento = (Alojamiento) bundle.getSerializable("Data");
+        if(modo == 2)
+        {
+            llenarDatos();
+        }
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapterDispo = new AnfPubAlojamientoDispAdapter(disponibilidads);
         rv.setAdapter(adapterDispo);
 
         accionBotones();
+
     }
 
 
@@ -128,6 +128,11 @@ public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
         fInicio.setText("");
     }
 
+    public void llenarDatos(){
+        siguiente.setText("Guardar");
+        disponibilidads = (ArrayList<Disponibilidad>) alojamiento.getDisponibilidades();
+
+    }
     public void accionBotones() {
 
 
@@ -169,16 +174,31 @@ public class AnfitrionPublicarDisponibilidadActivity extends AppCompatActivity
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validarDisp())
+
+                if(modo == 1)
                 {
-                    alojamiento.setDisponibilidades(adapterDispo.getDisponibilidads());
-                   // Alojamiento a = new Alojamiento();
-                    //a.setDisponibilidades(adapterDispo.getDisponibilidads());
-                    System.out.println("CONTINUA");
-                    Intent intent = new Intent(view.getContext(),AnfitrionPublicarAlojamientoImgActivity.class);
-                    intent.putExtra("Data", alojamiento);
-                    startActivity(intent);
+                    if(validarDisp())
+                    {
+                        alojamiento.setDisponibilidades(adapterDispo.getDisponibilidads());
+                        Intent intent = new Intent(view.getContext(),AnfitrionPublicarAlojamientoImgActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("Data", alojamiento);
+                        bundle.putInt("modo",1);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
                 }
+                else
+                {
+                    if(validarDisp()) {
+                        alojamiento.setDisponibilidades(adapterDispo.getDisponibilidads());
+
+                        // TODO guardar datos firebase
+                        Intent intent = new Intent(view.getContext(), AnfMenuEditarActivity.class);
+                        startActivity(intent);
+                    }
+                }
+
 
 
             }
