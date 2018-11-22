@@ -252,7 +252,8 @@ public class HuespedTouresDisponiblesActivity extends AppCompatActivity {
         boolean match = true;
         Date d = DateFormater.today();
         Date d2 = DateFormater.stringToDate(t.getFecha());
-        if(location!=null && d.after(d2)){
+        Date h2 = DateFormater.stringToHour(t.getHora());
+        if(location!=null && d.before(d2) && d.before(h2) && t.getInscritos() <= t.getCapacidad()){
             match = match && t.estaCerca(location.getLatitude(), location.getLongitude(),
                     radius/1000);
         }

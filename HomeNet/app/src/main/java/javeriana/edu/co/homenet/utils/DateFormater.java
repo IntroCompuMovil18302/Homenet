@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
 public final class DateFormater {
     public static Date stringToDate(String s){
@@ -18,17 +17,15 @@ public final class DateFormater {
         }
         return null;
     }
-
-    public static Date stringToDateHour(String s){
-        DateFormat format = new SimpleDateFormat("hh:mm");
-        try {
+    public static Date stringToHour(String s){
+        DateFormat format = new SimpleDateFormat("HH:mm");
+        try{
             return format.parse(s);
-        } catch (ParseException e) {
+        }catch (ParseException e){
             e.printStackTrace();
         }
         return null;
     }
-
     public static int getHourOftheDay(){
         Date date = new Date();
         Calendar calendar = GregorianCalendar.getInstance();    // gets the current month

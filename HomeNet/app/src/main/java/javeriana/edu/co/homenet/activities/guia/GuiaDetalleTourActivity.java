@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Tour;
 
@@ -46,8 +48,10 @@ public class GuiaDetalleTourActivity extends AppCompatActivity {
                     item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaCrearTourActivity.class));
                     return true;
                 case R.id.navigation_history_tours:
+                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaHistorialToures.class));
                     return true;
                 case R.id.navigation_config:
+                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaCalificacionesActivity.class));
                     return true;
             }
             return false;
@@ -66,9 +70,11 @@ public class GuiaDetalleTourActivity extends AppCompatActivity {
     Button renovar;
     Button editar;
     Button eliminar;
+    Button usuarios;
 
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    private FirebaseAuth mAuth;
 
     private String idTour;
     private Tour tour;
@@ -79,6 +85,7 @@ public class GuiaDetalleTourActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guia_detalle_tour);
 
         database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -96,6 +103,7 @@ public class GuiaDetalleTourActivity extends AppCompatActivity {
         renovar = findViewById(R.id.btRenovarGDT);
         editar = findViewById(R.id.btEditarGDT);
         eliminar = findViewById(R.id.btEliminarGDT);
+        usuarios = findViewById(R.id.btVerGDT);
 
         Intent bA = getIntent();
         Bundle b = bA.getExtras();
@@ -115,6 +123,14 @@ public class GuiaDetalleTourActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DialogFragment newFragment = GuiaEliminarTourActivity.newInstance(idTour);
                 newFragment.show(getSupportFragmentManager(), "missiles");
+            }
+        });
+        usuarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle b = new Bundle();
+                b.putString("idTour", idTour);
+                startActivity(new Intent(v.getContext(),GuiaUsuariosTourActivity.class).putExtras(b));
             }
         });
 
@@ -159,5 +175,23 @@ public class GuiaDetalleTourActivity extends AppCompatActivity {
             ex.printStackTrace();
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(GuiaDetalleTourActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

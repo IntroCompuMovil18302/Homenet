@@ -12,11 +12,11 @@
         android:layout_gravity="center">
 
         <Button
-            android:id="@+id/enviarCalGuia"
+            android:id="@+id/btEnviarComenHCGA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="96dp"
+            android:layout_marginTop="152dp"
             android:layout_marginEnd="8dp"
             android:background="@color/colorPrimaryDark"
             android:text="Enviar"
@@ -24,10 +24,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+            app:layout_constraintTop_toBottomOf="@+id/rbCalGuiaHCGA" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ivFotoGuiaHCGA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -39,21 +39,23 @@
             app:srcCompat="@drawable/guia" />
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/rbCalGuiaHCGA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:theme="@style/RatingBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView20" />
+            app:layout_constraintTop_toTopOf="@+id/tvNombreGuiaHCGA" />
 
         <EditText
-            android:id="@+id/editText4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/etComentarioHCGA"
+            android:layout_width="0dp"
+            android:layout_height="115dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
@@ -61,10 +63,10 @@
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+            app:layout_constraintTop_toBottomOf="@+id/rbCalGuiaHCGA" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/tvNombreGuiaHCGA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -75,7 +77,7 @@
             android:textSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/ivFotoGuiaHCGA" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
