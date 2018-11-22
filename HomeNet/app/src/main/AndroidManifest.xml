@@ -70,9 +70,6 @@
             android:name=".activities.huesped.guias.HuespedSolicitudesAceptadasTourActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.huesped.alojamientos.HuespedVerRutaActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.huesped.alojamientos.HuespedCalificarAlojamientoActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -150,7 +147,11 @@
         <activity android:name=".activities.anfitrion.AnfitrionPublicarDisponibilidadActivity" />
         <activity android:name=".activities.huesped.alojamientos.HuespedResultadosListActivity" />
 
-        <receiver android:name=".services.AlarmReceiverService"></receiver>
+        <receiver android:name=".services.AlarmReceiverService" />
+
+        <activity
+            android:name=".activities.huesped.alojamientos.HuespedVerRutaDestinoActivity"
+            android:label="@string/title_activity_huesped_ver_ruta_destino"></activity>
     </application>
 
 </manifest>

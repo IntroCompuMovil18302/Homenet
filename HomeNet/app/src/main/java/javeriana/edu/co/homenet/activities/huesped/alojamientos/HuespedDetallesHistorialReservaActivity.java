@@ -39,7 +39,7 @@ public class HuespedDetallesHistorialReservaActivity extends AppCompatActivity {
         ver_ruta.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(HuespedDetallesHistorialReservaActivity.this,HuespedVerRutaActivity.class);
+                Intent intent = new Intent(HuespedDetallesHistorialReservaActivity.this,HuespedVerRutaDestinoActivity.class);
                 startActivity(intent);
             }
         });

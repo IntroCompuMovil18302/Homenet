@@ -136,4 +136,5 @@
         completions."
     </string>
     <string name="title_activity_huesped_resultados_map">Map</string>
+    <string name="title_activity_huesped_ver_ruta_destino">Map</string>
 </resources>
