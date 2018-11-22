@@ -216,4 +216,5 @@
     <string name="title_activity_guia_recorrido_editable">Map</string>
     <string name="title_activity_huesped_ver_recorrido_tour">Map</string>
     <string name="title_activity_huesped_buscar_tour_mapa">Map</string>
+    <string name="title_activity_huesped_ver_ruta_destino">Map</string>
 </resources>

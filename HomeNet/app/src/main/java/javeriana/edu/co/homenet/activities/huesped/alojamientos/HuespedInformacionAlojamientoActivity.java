@@ -96,7 +96,7 @@ public class HuespedInformacionAlojamientoActivity extends AppCompatActivity {
         ver_ruta.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(HuespedInformacionAlojamientoActivity.this,HuespedVerRutaActivity.class);
+                Intent intent = new Intent(HuespedInformacionAlojamientoActivity.this,HuespedVerRutaDestinoActivity.class);
                 startActivity(intent);
             }
         });

@@ -60,9 +60,6 @@
             android:name=".activities.huesped.guias.HuespedSolicitudesAceptadasTourActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.huesped.alojamientos.HuespedVerRutaActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.huesped.alojamientos.HuespedCalificarAlojamientoActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -176,6 +173,11 @@
             android:name=".services.CalificacionGuiaService"
             android:enabled="true"
             android:exported="true"></service>
+        <receiver android:name=".services.AlarmReceiverService" />
+
+        <activity
+            android:name=".activities.huesped.alojamientos.HuespedVerRutaDestinoActivity"
+            android:label="@string/title_activity_huesped_ver_ruta_destino"></activity>
     </application>
 
 </manifest>
