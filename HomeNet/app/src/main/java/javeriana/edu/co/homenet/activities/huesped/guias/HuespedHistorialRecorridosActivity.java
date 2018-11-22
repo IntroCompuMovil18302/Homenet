@@ -2,6 +2,7 @@ package javeriana.edu.co.homenet.activities.huesped.guias;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,7 @@ public class HuespedHistorialRecorridosActivity extends AppCompatActivity {
     private DatabaseReference myRef;
 
     private ArrayList<Tour> listToures = new ArrayList<>();
+    private ListView historial;
 
 
     @Override
@@ -34,15 +36,18 @@ public class HuespedHistorialRecorridosActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(PATH_TOUR);
 
+        historial = findViewById(R.id.lvHistorialRecorridosHHRA);
     }
 
     private boolean matchTour (Tour t) {
         boolean match = true;
         Date d = DateFormater.today();
         Date d2 = DateFormater.stringToDate(t.getFecha());
-        if(d.before(d2)){
-            match = match ;
+        Date h = DateFormater.today();
+        Date h2 = DateFormater.stringToHour(t.getHora());
+        if(d.before(d2) && h.after(h2)){
+            return match;
         }
-        return match;
+        return false;
     }
 }

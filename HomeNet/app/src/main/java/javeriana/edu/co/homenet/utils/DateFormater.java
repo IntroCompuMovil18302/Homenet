@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
 public final class DateFormater {
     public static Date stringToDate(String s){
@@ -14,6 +13,15 @@ public final class DateFormater {
         try {
             return format.parse(s);
         } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static Date stringToHour(String s){
+        DateFormat format = new SimpleDateFormat("HH:mm");
+        try{
+            return format.parse(s);
+        }catch (ParseException e){
             e.printStackTrace();
         }
         return null;
