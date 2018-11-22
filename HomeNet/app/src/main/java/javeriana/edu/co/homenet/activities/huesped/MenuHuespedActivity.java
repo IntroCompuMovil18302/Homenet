@@ -19,8 +19,8 @@ import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.activities.guia.GuiasDisponiblesActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedCalificarAlojamientoActivity;
+import javeriana.edu.co.homenet.activities.huesped.guias.HuespedTouresDisponiblesActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedConsultarAlojamientoActivity;
-import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedDetallesHistorialReservaActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedHistorialReservaActivity;
 import javeriana.edu.co.homenet.activities.huesped.alojamientos.HuespedReservarAlojamientoActivity;
 import javeriana.edu.co.homenet.activities.huesped.guias.HuespedHistorialRecorridosActivity;
@@ -30,7 +30,7 @@ public class MenuHuespedActivity extends AppCompatActivity {
 
     Button consultarAlojamientos;
     Button verHistorialReservas;
-    Button verGuiasCercanos;
+    Button verTouresCercanos;
     Button verHistorialRecorridos;
 
 
@@ -46,7 +46,7 @@ public class MenuHuespedActivity extends AppCompatActivity {
 
         consultarAlojamientos = findViewById(R.id.consultarAlojamientos);
         verHistorialReservas = findViewById(R.id.verHistorialReservas);
-        verGuiasCercanos = findViewById(R.id.verGuiasCercanos);
+        verTouresCercanos = findViewById(R.id.btVerTouresCercanosMHA);
         verHistorialRecorridos = findViewById(R.id.verHistorialRecorridos);
 
         Calendar calendar = Calendar.getInstance();
@@ -75,10 +75,10 @@ public class MenuHuespedActivity extends AppCompatActivity {
             }
         });
 
-        verGuiasCercanos.setOnClickListener(new View.OnClickListener() {
+        verTouresCercanos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),GuiasDisponiblesActivity.class);
+                Intent intent = new Intent(v.getContext(),HuespedTouresDisponiblesActivity.class);
                 startActivity(intent);
             }
         });
@@ -110,10 +110,11 @@ public class MenuHuespedActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressLint("MissingSuperCall")
     @Override
-    public void onBackPressed()
-    {
-        // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

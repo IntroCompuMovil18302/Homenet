@@ -21,17 +21,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView14"
             app:srcCompat="@drawable/guia" />
 
-        <ImageView
-            android:id="@+id/imageView20"
-            android:layout_width="50dp"
-            android:layout_height="54dp"
-            android:layout_marginLeft="44dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView18"
-            app:srcCompat="@drawable/guia" />
-
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
@@ -62,30 +51,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
         <TextView
-            android:id="@+id/textView49"
-            android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Email   Teléfono"
-            android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintStart_toEndOf="@+id/imageView20"
-            app:layout_constraintTop_toBottomOf="@+id/textView51" />
-
-        <TextView
-            android:id="@+id/textView51"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Guía 2 - Tour 2"
-            android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintStart_toEndOf="@+id/imageView20"
-            app:layout_constraintTop_toBottomOf="@+id/textView50" />
-
-        <TextView
             android:id="@+id/textView50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,56 +62,16 @@
             app:layout_constraintStart_toEndOf="@+id/imageView18"
             app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
-        <Button
-            android:id="@+id/verTour3"
-            android:layout_width="69dp"
-            android:layout_height="41dp"
+        <ListView
+            android:layout_width="0dp"
+            android:layout_height="61dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="@string/VerTour"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.911"
-            app:layout_constraintStart_toEndOf="@+id/imageView20"
-            app:layout_constraintTop_toBottomOf="@+id/verMasTour" />
-
-        <Button
-            android:id="@+id/verMasTour"
-            android:layout_width="69dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="@string/VerTour"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.911"
-            app:layout_constraintStart_toEndOf="@+id/imageView18"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-        <ImageButton
-            android:id="@+id/volverHome"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_marginTop="76dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="412dp"
-            android:background="@android:color/white"
-            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/homeicon" />
+            app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -1,120 +1,313 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ConstraintLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.guia.GuiaDetalleTourActivity">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".activities.guia.GuiaCrearTourActivity">
 
-    <TextView
-        android:id="@+id/textDetalleGuia"
-        android:layout_width="wrap_content"
+
+    <ScrollView
+        android:id="@+id/svGDT"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/clGDT"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvPrecioGDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="16dp"
+                android:text="1000 COP"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/tvPrecioLabelGDT"
+                app:layout_constraintTop_toBottomOf="@+id/llUserGDT" />
+
+
+            <TextView
+                android:id="@+id/tvPrecioLabelGDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/price"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imgCashGDT"
+                app:layout_constraintTop_toBottomOf="@+id/llUserGDT" />
+
+            <TextView
+                android:id="@+id/tvDescripcionITGP2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgTourGDT" />
+
+            <TextView
+                android:id="@+id/tvNombreGDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Tour 1"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgTourGDT"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgCashGDT"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llUserGDT"
+                app:srcCompat="@drawable/cash" />
+
+            <ImageView
+                android:id="@+id/imgCalendarGDT"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/imgTourGDT"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombreGDT"
+                app:srcCompat="@drawable/calendar_icon" />
+
+            <TextView
+                android:id="@+id/tvDateGDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:text="01/01/2018"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imgCalendarGDT"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombreGDT" />
+
+            <TextView
+                android:id="@+id/tvHourGDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:text="11:30"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imgClockGDT"
+                app:layout_constraintTop_toBottomOf="@+id/tvDateGDT" />
+
+            <TextView
+                android:id="@+id/tvDurationGDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:text="2 horas"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imgDurationGDT"
+                app:layout_constraintTop_toBottomOf="@+id/tvHourGDT" />
+
+
+            <ImageView
+                android:id="@+id/imgTourGDT"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mapsicon" />
+
+            <ImageView
+                android:id="@+id/imgClockGDT"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toEndOf="@+id/imgTourGDT"
+                app:layout_constraintTop_toBottomOf="@+id/imgCalendarGDT"
+                app:srcCompat="@drawable/clock" />
+
+            <ImageView
+                android:id="@+id/imgDurationGDT"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toEndOf="@+id/imgTourGDT"
+                app:layout_constraintTop_toBottomOf="@+id/imgClockGDT"
+                app:srcCompat="@drawable/duration" />
+
+            <LinearLayout
+                android:id="@+id/llButtons1GDT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPrecioGDT">
+
+                <Button
+                    android:id="@+id/btRecorridoGDT"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="8dp"
+                    android:text="@string/route"
+                    android:textColor="@color/colorPrimary"
+                    tools:layout_editor_absoluteX="43dp"
+                    tools:layout_editor_absoluteY="383dp" />
+
+                <Button
+                    android:id="@+id/btRenovarGDT"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="8dp"
+                    android:text="@string/renew"
+                    android:textColor="@color/colorPrimary"
+                    tools:layout_editor_absoluteX="226dp"
+                    tools:layout_editor_absoluteY="383dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llButtons2GDT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llButtons1GDT">
+
+                <Button
+                    android:id="@+id/btEditarGDT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="8dp"
+                    android:text="@string/edit"
+                    android:textColor="@color/colorPrimary"
+                    tools:layout_editor_absoluteX="34dp"
+                    tools:layout_editor_absoluteY="466dp" />
+
+                <Button
+                    android:id="@+id/btEliminarGDT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="8dp"
+                    android:text="@string/delete"
+                    android:textColor="@color/colorPrimary"
+                    tools:layout_editor_absoluteX="257dp"
+                    tools:layout_editor_absoluteY="466dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llUserGDT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescripcionITGP2">
+
+                <ImageView
+                    android:id="@+id/imgPersonsGDT"
+                    android:layout_width="27dp"
+                    android:layout_height="26dp"
+                    android:layout_margin="8dp"
+                    app:srcCompat="@drawable/user"
+                    tools:layout_editor_absoluteX="22dp"
+                    tools:layout_editor_absoluteY="353dp" />
+
+                <TextView
+                    android:id="@+id/tvCantidadLabelGDT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="@string/quantity"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/imgPersonsGDT"
+                    tools:layout_editor_absoluteY="327dp" />
+
+                <TextView
+                    android:id="@+id/tvCapacidadGDT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="10 de 30"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="182dp"
+                    tools:layout_editor_absoluteY="289dp" />
+
+                <Button
+                    android:id="@+id/btVerGDT"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="0dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="2dp"
+                    android:text="@string/see"
+                    android:textColor="@color/colorPrimary"
+                    tools:layout_editor_absoluteX="96dp"
+                    tools:layout_editor_absoluteY="261dp" />
+
+            </LinearLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clGDT"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/sampletour"
-        android:textColor="@color/colorAccent"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <ImageView
-        android:id="@+id/imageTourDetalle"
-        android:layout_width="60dp"
-        android:layout_height="60sp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/textDetalleGuia"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tourlogo" />
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/guia_navigation" />
+    </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView68"
-        android:layout_width="193dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/sampledescrptour"
-        android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDetalleGuia" />
-
-    <Button
-        android:id="@+id/buttonEditDetalle"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/editicon"
-        app:layout_constraintEnd_toStartOf="@+id/space"
-        app:layout_constraintTop_toBottomOf="@+id/textView68" />
-
-    <Button
-        android:id="@+id/buttonDelDetalle"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/deleteicon"
-        app:layout_constraintStart_toEndOf="@+id/space"
-        app:layout_constraintTop_toBottomOf="@+id/textView68" />
-
-    <Space
-        android:id="@+id/space"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView68" />
-
-    <Button
-        android:id="@+id/buttonHistServiciosGuia"
-        android:layout_width="156dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:accessibilityHeading="true"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/histserv"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
-
-    <Button
-        android:id="@+id/buttonVolverDetalleGuia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/volver"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonHistServiciosGuia" />
 </android.support.constraint.ConstraintLayout>

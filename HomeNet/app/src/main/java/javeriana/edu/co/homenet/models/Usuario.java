@@ -6,15 +6,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class Usuario {
     private String id;
     private String nombre;
-    // private String contraseña;  // Opcional
     private String urlImg;
     private int edad;
     private String tipoUsuario;
@@ -22,11 +17,11 @@ public class Usuario {
     private String nacionalidad;
     private String sexo;
     private int telefono;
+    private int calificacion;
     private Map<String,Boolean> alojamientos;
 
     //Relaciones
     private Map<String,Boolean>opinionesAlojamiento;
-    private Map<String,Boolean> opinionesGuia;
     private Map<String,Boolean> reservas;
 
     public Usuario() {
@@ -115,6 +110,14 @@ public class Usuario {
         this.telefono = telefono;
     }
 
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int c) {
+        this.calificacion = c;
+    }
+
     public String getSexo() {
         return sexo;
     }
@@ -144,14 +147,6 @@ public class Usuario {
         this.opinionesAlojamiento = opinionesAlojamiento;
     }
 
-    public Map<String,Boolean> getOpinionesGuia() {
-        return opinionesGuia;
-    }
-
-    public void setOpinionesGuia(Map<String,Boolean> opinionesGuia) {
-        this.opinionesGuia = opinionesGuia;
-    }
-
     public Map<String,Boolean> getReservas() {
         return reservas;
     }
@@ -162,9 +157,6 @@ public class Usuario {
 
     public void agregarOpinionAlojamiento(String opinionAloja, Boolean b){
         this.opinionesAlojamiento.put(opinionAloja,b);
-    }
-    public void agregarOpinionGuia(String opinionGuia, Boolean b){
-        this.opinionesGuia.put(opinionGuia, b);
     }
     public void agregarReserva(String reserva, Boolean b){
         this.reservas.put(reserva,b);

@@ -15,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -46,5 +47,6 @@ dependencies {
     implementation 'sun.bob:mcalendarview:1.0.0'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.android.support:support-compat:28.0.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.4+'
 }
 apply plugin: 'com.google.gms.google-services'
