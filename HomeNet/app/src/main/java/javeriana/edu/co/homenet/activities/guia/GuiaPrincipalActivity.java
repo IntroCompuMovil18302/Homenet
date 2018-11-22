@@ -93,6 +93,12 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        consultarTouresGuia();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
@@ -126,6 +132,7 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
                 listToures.clear();
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Tour itour = singleSnapshot.getValue(Tour.class);
+                    itour.setId(singleSnapshot.getKey());
                     if (itour.getIdGuia().equals(user.getUid())){
                         listToures.add(itour);
                     }
@@ -136,7 +143,7 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Bundle b = new Bundle();
-                        b.putString("idAloj", listToures
+                        b.putString("idTour", listToures
                                 .get(position).getId());
                         startActivity(new Intent(view.getContext(),GuiaDetalleTourActivity.class).putExtras(b));
                     }
