@@ -22,20 +22,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.adapters.TourGuiaAdapter;
 import javeriana.edu.co.homenet.models.HistoricoTour;
 import javeriana.edu.co.homenet.models.Tour;
+import javeriana.edu.co.homenet.utils.DateFormater;
 
 public class GuiaHistorialToures extends AppCompatActivity {
 
     public static final String PATH_TOURS="Tours/";
     public static final String PATH_HIST_TOURS="HistorialToures/";
 
-    private BottomNavigationView navigation;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    BottomNavigationView navigation;
+    BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -50,6 +52,7 @@ public class GuiaHistorialToures extends AppCompatActivity {
                 case R.id.navigation_history_tours:
                     return true;
                 case R.id.navigation_config:
+                    item.setIntent(new Intent(GuiaHistorialToures.this, GuiaCalificacionesActivity.class));
                     return true;
             }
             return false;
@@ -60,6 +63,7 @@ public class GuiaHistorialToures extends AppCompatActivity {
 
     private ArrayList<Tour> listToures = new ArrayList<>();
     private ArrayList<HistoricoTour> listHistorico = new ArrayList<>();
+    private Map<String, Tour> toures;
 
     private FirebaseDatabase database;
     private DatabaseReference myRef;
@@ -80,9 +84,64 @@ public class GuiaHistorialToures extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         historial = findViewById(R.id.lvHistorialGHT);
+        consultarHistorialGuia();
 
 
 
+    }
+
+    private void consultarHistorialGuia(){
+        final FirebaseUser user = mAuth.getCurrentUser();
+        myRef = database.getReference(PATH_HIST_TOURS);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listToures.clear();
+                listHistorico.clear();
+
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Log.d("Tour", singleSnapshot.getKey());
+                    HistoricoTour ihtour = singleSnapshot.getValue(HistoricoTour.class);
+                    Log.d("GUIAAAA", ihtour.getIdGuia());
+                    if (ihtour.getIdGuia().equals(user.getUid()) &&
+                            DateFormater.stringToDate(ihtour.getFecha()).before(DateFormater.today())){
+                        consultarTour(ihtour.getTour(), ihtour.getHora(), ihtour.getFecha(), ihtour.getMoneda(),
+                                ihtour.getPrecio());
+                        listHistorico.add(ihtour);
+                    }
+                }
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                TourGuiaAdapter adapter = new TourGuiaAdapter(GuiaHistorialToures.this, listToures);
+                historial.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+            }
+        });
+    }
+
+    private void consultarTour(String ht, final String hora, final String fecha, final String moneda, final int precio){
+        myRefHist = database.getReference(PATH_TOURS).child(ht);
+        myRefHist.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Tour t = dataSnapshot.getValue(Tour.class);
+                t.setHora(hora);
+                t.setFecha(fecha);
+                t.setPrecio(precio);
+                t.setMoneda(moneda);
+                listToures.add(t);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+            }
+        });
     }
 
     @Override
@@ -108,59 +167,5 @@ public class GuiaHistorialToures extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
-
-    private void consultarHistorialGuia(){
-        final FirebaseUser user = mAuth.getCurrentUser();
-        myRef = database.getReference(PATH_HIST_TOURS);
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                listToures.clear();
-                listHistorico.clear();
-                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                    HistoricoTour ihtour = singleSnapshot.getValue(HistoricoTour.class);
-                    if (ihtour.getIdGuia().equals(user.getUid())){
-                        consultarTour(ihtour.getTour());
-                        listToures.get(listToures.size()).setHora(ihtour.getHora());
-                        listToures.get(listToures.size()).setFecha(ihtour.getFecha());
-                        listToures.get(listToures.size()).setMoneda(ihtour.getMoneda());
-                        listToures.get(listToures.size()).setPrecio(ihtour.getPrecio());
-                    }
-                }
-                TourGuiaAdapter adapter = new TourGuiaAdapter(GuiaHistorialToures.this, listToures);
-                historial.setAdapter(adapter);
-                /*historial.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Bundle b = new Bundle();
-                        b.putString("idTour", listToures
-                                .get(position).getId());
-                        startActivity(new Intent(view.getContext(),GuiaDetalleTourActivity.class).putExtras(b));
-                    }
-                });*/
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w("Firebase database", "error en la consulta", databaseError.toException());
-            }
-        });
-    }
-
-    private void consultarTour(String ht){
-        myRefHist = database.getReference(PATH_TOURS).child(ht);
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                    Tour t = singleSnapshot.getValue(Tour.class);
-                    listToures.add(t);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w("Firebase database", "error en la consulta", databaseError.toException());
-            }
-        });
     }
 }
