@@ -7,14 +7,17 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +30,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.LoginActivity;
@@ -36,6 +42,7 @@ import javeriana.edu.co.homenet.adapters.AlojamientoAdapter;
 import javeriana.edu.co.homenet.adapters.TourGuiaAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Tour;
+import javeriana.edu.co.homenet.utils.DateFormater;
 
 public class GuiaPrincipalActivity extends AppCompatActivity {
 
@@ -89,8 +96,67 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
         keyword = findViewById(R.id.etKeywordGP);
         orden = findViewById(R.id.spOrdenGP);
 
-        consultarTouresGuia();
+        toures.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle b = new Bundle();
+                b.putString("idTour", listToures
+                        .get(position).getId());
+                startActivity(new Intent(view.getContext(),GuiaDetalleTourActivity.class).putExtras(b));
+            }
+        });
 
+        orden.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selected = String.valueOf(adapterView.getItemAtPosition(i));
+                if(selected.toUpperCase().contains("Titulo".toUpperCase())){
+                    Collections.sort(listToures, new Comparator<Tour>() {
+                        @Override
+                        public int compare(Tour a1, Tour a2) {
+                            return a1.getTitulo().compareToIgnoreCase(a2.getTitulo());
+
+                        }
+                    });
+                    TourGuiaAdapter adapter = new TourGuiaAdapter(GuiaPrincipalActivity.this, listToures);
+                    updateView(adapter);
+                }else if(selected.toUpperCase().contains("Fecha".toUpperCase())){
+                    Collections.sort(listToures, new Comparator<Tour>() {
+                        @Override
+                        public int compare(Tour a1, Tour a2) {
+                            Date d1 = DateFormater.stringToDate(a1.getFecha());
+                            Date d2 = DateFormater.stringToDate(a2.getFecha());
+                            return (d1.getTime() > d2.getTime() ? -1 : 1);
+                        }
+                    });
+                    TourGuiaAdapter adapter = new TourGuiaAdapter(GuiaPrincipalActivity.this, listToures);
+                    updateView(adapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //NOTHING
+            }
+        });
+
+        keyword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE){
+                    String keysearch = keyword.getText().toString();
+                    String keysearch_spaces = keysearch.replaceAll(" ", "");
+                    if (keysearch_spaces == "") {
+                        updateView(new TourGuiaAdapter(GuiaPrincipalActivity.this, listToures));
+                    }else{
+                        consultarTouresPorTitulo(keyword.getText().toString());
+                    }
+                }
+                return false;
+            }
+        });
+
+        consultarTouresGuia();
     }
 
     @Override
@@ -138,17 +204,16 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
                         listToures.add(itour);
                     }
                 }
-                TourGuiaAdapter adapter = new TourGuiaAdapter(GuiaPrincipalActivity.this, listToures);
-                toures.setAdapter(adapter);
-                toures.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                Collections.sort(listToures, new Comparator<Tour>() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Bundle b = new Bundle();
-                        b.putString("idTour", listToures
-                                .get(position).getId());
-                        startActivity(new Intent(view.getContext(),GuiaDetalleTourActivity.class).putExtras(b));
+                    public int compare(Tour a1, Tour a2) {
+                        return a1.getTitulo().compareToIgnoreCase(a2.getTitulo());
+
                     }
                 });
+                TourGuiaAdapter adapter = new TourGuiaAdapter(GuiaPrincipalActivity.this, listToures);
+                updateView(adapter);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -156,4 +221,30 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    /**
+     * Get tours with specific title
+     * @param titulo
+     */
+    private void consultarTouresPorTitulo(String titulo){
+        ArrayList<Tour> listTouresTemp = new ArrayList<>();
+        for(Tour tour:listToures){
+            if(tour.getTitulo().toLowerCase().contains(titulo.toLowerCase())){
+                listTouresTemp.add(tour);
+            }
+        }
+        TourGuiaAdapter adapter = new TourGuiaAdapter(GuiaPrincipalActivity.this, listTouresTemp);
+        updateView(adapter);
+    }
+
+    /**
+     * Update list view, using custom adapter.
+     * @param adapter
+     */
+    private void updateView(TourGuiaAdapter adapter){
+        toures.setAdapter(adapter);
+    }
+
+
 }

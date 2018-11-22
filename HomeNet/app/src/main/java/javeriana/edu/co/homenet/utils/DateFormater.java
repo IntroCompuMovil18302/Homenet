@@ -18,6 +18,17 @@ public final class DateFormater {
         }
         return null;
     }
+
+    public static Date stringToDateHour(String s){
+        DateFormat format = new SimpleDateFormat("hh:mm");
+        try {
+            return format.parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static int getHourOftheDay(){
         Date date = new Date();
         Calendar calendar = GregorianCalendar.getInstance();    // gets the current month

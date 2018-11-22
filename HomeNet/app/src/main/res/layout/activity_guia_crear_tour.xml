@@ -44,6 +44,7 @@
                 android:ems="10"
                 android:hint="@string/hint_date_tour"
                 android:inputType="date"
+                android:focusable="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btImageGCT"
                 app:layout_constraintTop_toBottomOf="@+id/etTituloGCT" />
@@ -58,6 +59,7 @@
                 android:ems="10"
                 android:hint="@string/hint_hour_tour"
                 android:inputType="time"
+                android:focusable="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btImageGCT"
                 app:layout_constraintTop_toBottomOf="@+id/etFechaGCT" />
