@@ -126,13 +126,6 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_new_tour);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-       /* guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment newFragment = new GuiaRenovarTourActivity();
-                newFragment.show(getSupportFragmentManager(), "missiles");
-            }
-        });*/
         guardar = findViewById(R.id.btGuardarGCT);
         addRecorrdo = findViewById(R.id.btRecorridoGCT);
         addImage = findViewById(R.id.btImageGCT);
