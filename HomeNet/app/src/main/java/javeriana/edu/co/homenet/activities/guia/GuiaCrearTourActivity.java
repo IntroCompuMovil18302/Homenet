@@ -1,7 +1,6 @@
 package javeriana.edu.co.homenet.activities.guia;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -12,13 +11,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,17 +61,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javeriana.edu.co.homenet.R;
-import javeriana.edu.co.homenet.activities.CrearPerfilActivity;
 import javeriana.edu.co.homenet.activities.LoginActivity;
-import javeriana.edu.co.homenet.activities.anfitrion.AnfitrionMenuActivity;
-import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
-import javeriana.edu.co.homenet.models.HistoricoTour;
 import javeriana.edu.co.homenet.models.Tour;
 import javeriana.edu.co.homenet.models.Ubicacion;
-import javeriana.edu.co.homenet.models.Usuario;
 import javeriana.edu.co.homenet.utils.DateFormater;
 
 public class GuiaCrearTourActivity extends AppCompatActivity {
@@ -407,7 +399,7 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
                     capacidad.setError("Debe ser positivo");
                 }
             }else{
-                capacidad.setEGuiaCrearTourActivity.javarror("Llenado obligatorio");
+                capacidad.setError("Llenado obligatorio");
             }
         } catch (Exception e) {
             capacidad.setError("Debe ser llenado");
@@ -458,7 +450,7 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
             if (d1.equals(d2)) {
 
                 if (!String.valueOf(hora.getText()).replaceAll(" ", "").equals("")) {
-                    d2 = DateFormater.stringToDateHour(String.valueOf(hora.getText()));
+                    d2 = DateFormater.stringToHour(String.valueOf(hora.getText()));
                     long hour1 = (d1.getTime() % 86400000) / 3600000;
                     long hour2 = (d2.getTime() % 86400000) / 3600000;
                     if (hour1 < hour2) {
