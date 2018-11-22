@@ -23,6 +23,8 @@ public class HistoricoTour {
         this.usuarios = usuarios;
     }
 
+    public HistoricoTour(){}
+
     public String getIdGuia() {
         return idGuia;
     }

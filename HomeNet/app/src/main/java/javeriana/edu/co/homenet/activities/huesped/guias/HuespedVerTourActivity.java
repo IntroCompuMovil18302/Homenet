@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 import javeriana.edu.co.homenet.R;
+import javeriana.edu.co.homenet.models.HistoricoTour;
 import javeriana.edu.co.homenet.models.Tour;
 import javeriana.edu.co.homenet.models.Ubicacion;
 import javeriana.edu.co.homenet.utils.Punto;
@@ -44,6 +45,7 @@ import javeriana.edu.co.homenet.utils.UtilidadesMapa;
 public class HuespedVerTourActivity extends AppCompatActivity {
 
     public static final String PATH_TOUR="Tours/";
+    public static final String PATH_TOUR_HISTORIC="HistorialToures/";
 
     TextView nombreAnuncio;
     ImageView posterAnuncio;
@@ -57,6 +59,7 @@ public class HuespedVerTourActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    private DatabaseReference myRef2;
 
     Button verRecorridos;
     Button verGuia;
@@ -68,6 +71,7 @@ public class HuespedVerTourActivity extends AppCompatActivity {
     ArrayList<String> paradasLong = new ArrayList<>();
     ArrayList<String> titulos = new ArrayList<>();
     ArrayList<String> descripciones = new ArrayList<>();
+    String idHistoricTour;
 
     JsonObjectRequest jsonObjectRequest;
     RequestQueue request;
@@ -93,6 +97,8 @@ public class HuespedVerTourActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(PATH_TOUR);
+        myRef2 = database.getReference(PATH_TOUR_HISTORIC);
+
 
         b = getIntent().getExtras();
 
@@ -129,9 +135,37 @@ public class HuespedVerTourActivity extends AppCompatActivity {
         inscribirse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inscribirse();
-                Toast.makeText(HuespedVerTourActivity.this,
-                        "Se ha registrado en el tour "+t.getTitulo(), Toast.LENGTH_SHORT).show();
+                buscarHisTour(b.getString("idTour"));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                myRef2 = database.getReference(PATH_TOUR_HISTORIC+idHistoricTour+"/usuarios/"+mAuth.getUid());
+                myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()){
+                            Toast.makeText(HuespedVerTourActivity.this,
+                                    "Ya se encuentra registrado en el tour"+t.getTitulo(), Toast.LENGTH_SHORT).show();
+                        }else {
+                            inscribirse();
+                            Toast.makeText(HuespedVerTourActivity.this,
+                                    "Se ha registrado en el tour "+t.getTitulo(), Toast.LENGTH_SHORT).show();
+                            Bundle x = new Bundle();
+                            x.putString("idTour", b.getString("idTour"));
+                            startActivity(new Intent(HuespedVerTourActivity.this, HuespedVerTourActivity.class)
+                            .putExtras(x));
+                            finish();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
     }
@@ -139,8 +173,46 @@ public class HuespedVerTourActivity extends AppCompatActivity {
     private void inscribirse(){
         myRef = database.getReference(PATH_TOUR+b.getString("idTour"));
         Map<String, Object> tourUpdates = new HashMap<>();
-        tourUpdates.put("capacidad",t.getCapacidad()+1);
+        Map<String,Boolean> usuario = new HashMap<>();
+        usuario.put(mAuth.getUid(), true);
+        if (t.getInscritos() == 0) {
+            HistoricoTour hTour = new HistoricoTour(t.getIdGuia(), t.getFecha(), t.getHora(),
+                    t.getMoneda(), Integer.valueOf(t.getPrecio()), b.getString("idTour"),
+                    usuario);
+            myRef2 = database.getReference(PATH_TOUR_HISTORIC+myRef2.push().getKey());
+            myRef2.setValue(hTour);
+        }else{
+            Map<String, Object> historicTourUpdates = new HashMap<>();
+            historicTourUpdates.put("usuarios", usuario);
+            myRef2 = database.getReference(PATH_TOUR_HISTORIC+idHistoricTour);
+            myRef2.updateChildren(historicTourUpdates);
+        }
+        tourUpdates.put("inscritos", t.getInscritos()+1);
+        List<String> histo = new ArrayList<>();
+        histo.add(idHistoricTour);
+        tourUpdates.put("historialTour", histo);
+        myRef.updateChildren(tourUpdates);
+    }
 
+    private void buscarHisTour (final String s) {
+        myRef2 = database.getReference(PATH_TOUR_HISTORIC);
+        myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    HistoricoTour hT = singleSnapshot.getValue(HistoricoTour.class);
+                    if (hT.getTour().equals(s)){
+                        idHistoricTour = singleSnapshot.getKey();
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void buscarRutas (){
@@ -300,7 +372,7 @@ public class HuespedVerTourActivity extends AppCompatActivity {
         horaInicio.setText(t.getHora());
         duracion.setText(Integer.toString(t.getDuracion())+"h");
         fecha.setText(t.getFecha());
-        capacidad.setText(Integer.toString(t.getCapacidad()));
+        capacidad.setText(Integer.toString(t.getInscritos())+" de "+Integer.toString(t.getCapacidad()));
         idGuia = t.getIdGuia();
     }
 }
