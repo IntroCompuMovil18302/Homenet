@@ -24,7 +24,7 @@
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView62" />
+            app:layout_constraintTop_toBottomOf="@+id/tvValorQ" />
 
         <Button
             android:id="@+id/verHistorialReservas"
@@ -77,7 +77,7 @@
             app:layout_constraintTop_toBottomOf="@+id/consultarAlojamientos" />
 
         <TextView
-            android:id="@+id/textView62"
+            android:id="@+id/tvValorQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

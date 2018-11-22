@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -21,6 +22,23 @@ public class AnfitrionDetalleAlojamientoActivity extends AppCompatActivity {
     Button historial;
     Button borrar;
     Button editar;
+    Button comentarios;
+
+    TextView tipo;
+    TextView ubicacion;
+    TextView valor;
+    TextView descriopcion;
+    TextView banios;
+    TextView camas;
+    TextView dormitorios;
+    TextView huespedes;
+    TextView parqueaderos;
+    TextView calefaccion;
+    TextView internet;
+    TextView television;
+    TextView mascotas;
+
+
 
     private FirebaseAuth mAuth;
     @Override
@@ -33,10 +51,31 @@ public class AnfitrionDetalleAlojamientoActivity extends AppCompatActivity {
 
         historial = findViewById(R.id.historial_alo);
 
+        tipo = findViewById(R.id.tvTipoQ);
+        ubicacion = findViewById(R.id.tvUbicacionQ);
+        valor = findViewById(R.id.tvValorQ);
+        descriopcion = findViewById(R.id.tvDescripcionQ);
+        banios = findViewById(R.id.tvBaniosQ);
+        camas = findViewById(R.id.tvCamasQ);
+        dormitorios = findViewById(R.id.tvDormitoriosQ);
+        huespedes = findViewById(R.id.tvHuespedesQ);
+        parqueaderos = findViewById(R.id.tvParqueaderosQ);
+        calefaccion = findViewById(R.id.tvCalefaccionQ);
+        internet = findViewById(R.id.tvInternetQ);
+        television = findViewById(R.id.tvTelevisionQ);
+        mascotas = findViewById(R.id.tvMascotasQ);
+
+
+
+
         historial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),AnfitrionHistorialReservasActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Data", alojamiento);
+                bundle.putInt("modo",2);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -61,7 +100,37 @@ public class AnfitrionDetalleAlojamientoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        comentarios = findViewById(R.id.btComentarioADA);
+        comentarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),AnfComentariosActivity.class);
+                intent.putExtra("Data", alojamiento);
+                startActivity(intent);
+            }
+        });
+        llenarDatos();
     }
+
+    public void llenarDatos(){
+        tipo.setText(alojamiento.getTipo());
+        ubicacion.setText(alojamiento.getUbicacion().getDireccion());
+        descriopcion.setText(alojamiento.getDescripcion());
+        valor.setText(String.valueOf(alojamiento.getPrecio()));
+        System.out.println("ZZZZZZ"+alojamiento.getBanios());
+        System.out.println(banios.getText().toString());
+        banios.setText(String.valueOf(alojamiento.getBanios()));
+        camas.setText(String.valueOf(alojamiento.getCamas()));
+        dormitorios.setText(String.valueOf(alojamiento.getDormitorios()));
+        huespedes.setText(String.valueOf(alojamiento.getHuespedes()));
+        parqueaderos.setText(String.valueOf(alojamiento.getParqueaderos()));
+        calefaccion.setText(String.valueOf(alojamiento.isCalefaccion()));
+        internet.setText(String.valueOf(alojamiento.isInternet()));
+        television.setText(String.valueOf(alojamiento.isTelevision()));
+        mascotas.setText(String.valueOf(alojamiento.isMascotas()));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);

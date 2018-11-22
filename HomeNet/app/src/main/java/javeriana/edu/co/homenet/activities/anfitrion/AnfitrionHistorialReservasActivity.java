@@ -1,6 +1,7 @@
 package javeriana.edu.co.homenet.activities.anfitrion;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -24,7 +31,8 @@ import javeriana.edu.co.homenet.models.Reserva;
 import javeriana.edu.co.homenet.models.Ubicacion;
 
 public class AnfitrionHistorialReservasActivity extends AppCompatActivity {
-
+    int modo;
+    Alojamiento alojamiento;
     ArrayList<Reserva> reservas;
     private FirebaseAuth mAuth;
     RecyclerView rvReservas;
@@ -36,11 +44,19 @@ public class AnfitrionHistorialReservasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anf_historial_reservas);
 
+
         mAuth = FirebaseAuth.getInstance();
         reservas = new ArrayList<Reserva>();
         rvReservas =  findViewById(R.id.rvReservasAlojAHR);
 
-        datosPrueba();
+        //datosPrueba();
+        Bundle bundle = getIntent().getExtras();
+        modo = bundle.getInt("modo");
+        alojamiento = (Alojamiento) bundle.getSerializable("Data");
+        if(modo == 2)
+        {
+            getReservasAloj();
+        }
         crearRecycler();
         accionBotones();
     }
@@ -103,6 +119,44 @@ public class AnfitrionHistorialReservasActivity extends AppCompatActivity {
         reservas.add(r);
         reservas.add(r);
         reservas.add(r);
+    }
+
+    public void getReservasAloj(){
+        System.out.println("//////////////////////////");
+        FirebaseUser user = mAuth.getCurrentUser();
+        final String uid = user.getUid();
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Reservas/");
+        db.addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    System.out.println("///////------------------"+uid);
+                    Reserva reserva = singleSnapshot.getValue(Reserva.class);
+                    System.out.println("///////----------ALO-------"+reserva.getId());
+                    if(reserva != null)
+                    {
+                        if(reserva.getAlojamiento().equals(alojamiento.getId()))
+                        {
+                            reservas.add(reserva);
+                            System.out.println("///////----ENTRO");
+                            System.out.println("///////----ENTRO");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("///////----EEEE-");
+                    }
+
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void accionBotones() {

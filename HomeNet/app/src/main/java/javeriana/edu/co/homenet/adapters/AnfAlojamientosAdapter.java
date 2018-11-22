@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import javeriana.edu.co.homenet.R;
@@ -84,6 +86,15 @@ public class AnfAlojamientosAdapter extends RecyclerView.Adapter<AnfAlojamientos
         alojamientosViewHolder.nombre.setText(a.getNombre());
         alojamientosViewHolder.ubicacion.setText(a.getUbicacion().getDireccion());
         alojamientosViewHolder.descripcion.setText(a.getDescripcion());
+        try {
+            Picasso.get()
+                    .load(a.getUrlImgs().get(0))
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(alojamientosViewHolder.imagen);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override

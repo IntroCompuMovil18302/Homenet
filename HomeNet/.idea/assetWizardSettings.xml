@@ -49,7 +49,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="d33838" />
+                                                <entry key="color" value="ffffff" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -60,7 +60,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/D:/Programas/Android/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_delete_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/D:/Android/plugins/android/lib/android.jar!/images/material_design_icons/communication/ic_comment_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -71,7 +71,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="outputName" value="delete" />
+                                      <entry key="outputName" value="comentario" />
                                     </map>
                                   </option>
                                 </PersistentState>

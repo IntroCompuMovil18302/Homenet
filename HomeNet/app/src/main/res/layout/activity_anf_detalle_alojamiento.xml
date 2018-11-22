@@ -42,7 +42,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView61" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDescripcionQ" />
 
         <TextView
             android:id="@+id/tipo"
@@ -52,9 +52,9 @@
             android:text="Tipo"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView59"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTipoQ"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView59" />
+            app:layout_constraintTop_toTopOf="@+id/tvTipoQ" />
 
         <TextView
             android:id="@+id/tipo3"
@@ -64,9 +64,9 @@
             android:text="Baños"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView25"
+            app:layout_constraintBottom_toBottomOf="@+id/tvBaniosQ"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView25" />
+            app:layout_constraintTop_toTopOf="@+id/tvBaniosQ" />
 
         <TextView
             android:id="@+id/tipo7"
@@ -75,9 +75,9 @@
             android:text="Camas"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView55"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCamasQ"
             app:layout_constraintStart_toStartOf="@+id/tipo3"
-            app:layout_constraintTop_toTopOf="@+id/textView55" />
+            app:layout_constraintTop_toTopOf="@+id/tvCamasQ" />
 
         <TextView
             android:id="@+id/tipo8"
@@ -86,9 +86,9 @@
             android:text="Dormitorios"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView56"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDormitoriosQ"
             app:layout_constraintStart_toStartOf="@+id/tipo7"
-            app:layout_constraintTop_toTopOf="@+id/textView56" />
+            app:layout_constraintTop_toTopOf="@+id/tvDormitoriosQ" />
 
         <TextView
             android:id="@+id/tipo11"
@@ -97,9 +97,9 @@
             android:text="Parqueaderos"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView87"
+            app:layout_constraintBottom_toBottomOf="@+id/tvParqueaderosQ"
             app:layout_constraintStart_toStartOf="@+id/tipo12"
-            app:layout_constraintTop_toTopOf="@+id/textView87" />
+            app:layout_constraintTop_toTopOf="@+id/tvParqueaderosQ" />
 
         <TextView
             android:id="@+id/tipo16"
@@ -108,9 +108,9 @@
             android:text="Calefaccion"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView88"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCalefaccionQ"
             app:layout_constraintStart_toStartOf="@+id/tipo11"
-            app:layout_constraintTop_toTopOf="@+id/textView88" />
+            app:layout_constraintTop_toTopOf="@+id/tvCalefaccionQ" />
 
         <TextView
             android:id="@+id/tipo17"
@@ -119,9 +119,9 @@
             android:text="Internet"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView89"
+            app:layout_constraintBottom_toBottomOf="@+id/tvInternetQ"
             app:layout_constraintStart_toStartOf="@+id/tipo16"
-            app:layout_constraintTop_toTopOf="@+id/textView89" />
+            app:layout_constraintTop_toTopOf="@+id/tvInternetQ" />
 
         <TextView
             android:id="@+id/tipo18"
@@ -130,9 +130,9 @@
             android:text="Television"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView90"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTelevisionQ"
             app:layout_constraintStart_toStartOf="@+id/tipo17"
-            app:layout_constraintTop_toTopOf="@+id/textView90" />
+            app:layout_constraintTop_toTopOf="@+id/tvTelevisionQ" />
 
         <TextView
             android:id="@+id/tipo19"
@@ -141,9 +141,9 @@
             android:text="Mascotas"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView91"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMascotasQ"
             app:layout_constraintStart_toStartOf="@+id/tipo18"
-            app:layout_constraintTop_toTopOf="@+id/textView91" />
+            app:layout_constraintTop_toTopOf="@+id/tvMascotasQ" />
 
         <TextView
             android:id="@+id/tipo12"
@@ -152,9 +152,9 @@
             android:text="Huespedes"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView57"
+            app:layout_constraintBottom_toBottomOf="@+id/tvHuespedesQ"
             app:layout_constraintStart_toStartOf="@+id/tipo8"
-            app:layout_constraintTop_toTopOf="@+id/textView57" />
+            app:layout_constraintTop_toTopOf="@+id/tvHuespedesQ" />
 
         <TextView
             android:id="@+id/textView50"
@@ -163,9 +163,9 @@
             android:text="Ubicación"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView58"
+            app:layout_constraintBottom_toBottomOf="@+id/tvUbicacionQ"
             app:layout_constraintStart_toStartOf="@+id/tipo"
-            app:layout_constraintTop_toTopOf="@+id/textView58" />
+            app:layout_constraintTop_toTopOf="@+id/tvUbicacionQ" />
 
         <TextView
             android:id="@+id/textView51"
@@ -174,9 +174,9 @@
             android:text="Valor"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView62"
+            app:layout_constraintBottom_toBottomOf="@+id/tvValorQ"
             app:layout_constraintStart_toStartOf="@+id/textView50"
-            app:layout_constraintTop_toTopOf="@+id/textView62" />
+            app:layout_constraintTop_toTopOf="@+id/tvValorQ" />
 
         <TextView
             android:id="@+id/textView48"
@@ -185,26 +185,26 @@
             android:text="Descripción"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView61"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDescripcionQ"
             app:layout_constraintStart_toStartOf="@+id/textView51"
-            app:layout_constraintTop_toTopOf="@+id/textView61"
+            app:layout_constraintTop_toTopOf="@+id/tvDescripcionQ"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView58"
+            android:id="@+id/tvUbicacionQ"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView59"
-            app:layout_constraintStart_toStartOf="@+id/textView59"
-            app:layout_constraintTop_toBottomOf="@+id/textView59" />
+            app:layout_constraintEnd_toEndOf="@+id/tvTipoQ"
+            app:layout_constraintStart_toStartOf="@+id/tvTipoQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvTipoQ" />
 
         <TextView
-            android:id="@+id/textView59"
-            android:layout_width="256dp"
+            android:id="@+id/tvTipoQ"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="80dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="Dato"
@@ -213,121 +213,120 @@
             app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
         <TextView
-            android:id="@+id/textView25"
-            android:layout_width="256dp"
+            android:id="@+id/tvBaniosQ"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="95dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="30dp"
             android:text="Dato"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tipo3"
+            app:layout_constraintEnd_toEndOf="@+id/tvDescripcionQ"
+            app:layout_constraintStart_toStartOf="@+id/tvDescripcionQ"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
         <TextView
-            android:id="@+id/textView55"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView25"
-            app:layout_constraintStart_toStartOf="@+id/textView25"
-            app:layout_constraintTop_toBottomOf="@+id/textView25" />
-
-        <TextView
-            android:id="@+id/textView56"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView55"
-            app:layout_constraintStart_toStartOf="@+id/textView55"
-            app:layout_constraintTop_toBottomOf="@+id/textView55" />
-
-        <TextView
-            android:id="@+id/textView57"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView56"
-            app:layout_constraintStart_toStartOf="@+id/textView56"
-            app:layout_constraintTop_toBottomOf="@+id/textView56" />
-
-        <TextView
-            android:id="@+id/textView87"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView57"
-            app:layout_constraintStart_toStartOf="@+id/textView57"
-            app:layout_constraintTop_toBottomOf="@+id/textView57" />
-
-        <TextView
-            android:id="@+id/textView88"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView87"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/textView87"
-            app:layout_constraintTop_toBottomOf="@+id/textView87" />
-
-        <TextView
-            android:id="@+id/textView89"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView88"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView88"
-            app:layout_constraintTop_toBottomOf="@+id/textView88" />
-
-        <TextView
-            android:id="@+id/textView90"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView89"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/textView89"
-            app:layout_constraintTop_toBottomOf="@+id/textView89" />
-
-        <TextView
-            android:id="@+id/textView91"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView90"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView90"
-            app:layout_constraintTop_toBottomOf="@+id/textView90" />
-
-        <TextView
-            android:id="@+id/textView61"
+            android:id="@+id/tvCamasQ"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView62"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView62"
-            app:layout_constraintTop_toBottomOf="@+id/textView62" />
+            app:layout_constraintEnd_toEndOf="@+id/tvBaniosQ"
+            app:layout_constraintStart_toStartOf="@+id/tvBaniosQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvBaniosQ" />
 
         <TextView
-            android:id="@+id/textView62"
+            android:id="@+id/tvDormitoriosQ"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Dato"
-            app:layout_constraintEnd_toEndOf="@+id/textView58"
-            app:layout_constraintStart_toStartOf="@+id/textView58"
-            app:layout_constraintTop_toBottomOf="@+id/textView58" />
+            app:layout_constraintEnd_toEndOf="@+id/tvCamasQ"
+            app:layout_constraintStart_toStartOf="@+id/tvCamasQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvCamasQ" />
+
+        <TextView
+            android:id="@+id/tvHuespedesQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dato"
+            app:layout_constraintEnd_toEndOf="@+id/tvDormitoriosQ"
+            app:layout_constraintStart_toStartOf="@+id/tvDormitoriosQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvDormitoriosQ" />
+
+        <TextView
+            android:id="@+id/tvParqueaderosQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dato"
+            app:layout_constraintEnd_toEndOf="@+id/tvHuespedesQ"
+            app:layout_constraintStart_toStartOf="@+id/tvHuespedesQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvHuespedesQ" />
+
+        <TextView
+            android:id="@+id/tvCalefaccionQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dato"
+            app:layout_constraintEnd_toEndOf="@+id/tvParqueaderosQ"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tvParqueaderosQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvParqueaderosQ" />
+
+        <TextView
+            android:id="@+id/tvInternetQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dato"
+            app:layout_constraintEnd_toEndOf="@+id/tvCalefaccionQ"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvCalefaccionQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvCalefaccionQ" />
+
+        <TextView
+            android:id="@+id/tvTelevisionQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dato"
+            app:layout_constraintEnd_toEndOf="@+id/tvInternetQ"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tvInternetQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvInternetQ" />
+
+        <TextView
+            android:id="@+id/tvMascotasQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dato"
+            app:layout_constraintEnd_toEndOf="@+id/tvTelevisionQ"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvTelevisionQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvTelevisionQ" />
+
+        <TextView
+            android:id="@+id/tvDescripcionQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dato"
+            app:layout_constraintEnd_toEndOf="@+id/tvValorQ"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvValorQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvValorQ" />
+
+        <TextView
+            android:id="@+id/tvValorQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dato"
+            app:layout_constraintEnd_toEndOf="@+id/tvUbicacionQ"
+            app:layout_constraintStart_toStartOf="@+id/tvUbicacionQ"
+            app:layout_constraintTop_toBottomOf="@+id/tvUbicacionQ" />
 
         <TextView
             android:id="@+id/textView60"
@@ -342,7 +341,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView91" />
+            app:layout_constraintTop_toBottomOf="@+id/tvMascotasQ" />
 
         <ImageView
             android:id="@+id/imageView33"
@@ -388,9 +387,9 @@
             android:layout_width="386dp"
             android:layout_height="162dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
@@ -404,6 +403,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView33" />
+
+        <Button
+            android:id="@+id/btComentarioADA"
+            android:layout_width="46dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="8dp"
+            android:background="@mipmap/comentario"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView33"
+            app:layout_constraintEnd_toStartOf="@+id/historial_alo" />
 
     </android.support.constraint.ConstraintLayout>
 
