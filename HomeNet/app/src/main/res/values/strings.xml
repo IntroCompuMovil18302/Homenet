@@ -96,7 +96,7 @@
     <string name="fecha_final_1">05-09-2018</string>
     <string name="fecha_final_2">12-06-2018</string>
     <string name="precio_1">3.000.000</string>
-    <string name="precio_2">5.000.000</string>
+    <string name="precio_2">0</string>
     <string name="reserva_1">Completa</string>
     <string name="reserva_2">Terminada</string>
     <string name="info_alojamiento">Información del alojamiento</string>

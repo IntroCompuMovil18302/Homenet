@@ -157,6 +157,7 @@
         <activity android:name=".activities.anfitrion.AnfitrionPublicarDetalleActivity" />
         <activity android:name=".activities.anfitrion.AnfitrionPublicarListasActivity" />
         <activity android:name=".activities.anfitrion.AnfMenuEditarActivity"></activity>
+        <receiver android:name=".services.AlarmReceiverService"></receiver>
     </application>
 
 </manifest>
