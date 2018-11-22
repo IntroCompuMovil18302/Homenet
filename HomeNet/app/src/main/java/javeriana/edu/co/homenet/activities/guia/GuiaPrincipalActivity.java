@@ -58,13 +58,16 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
                 case R.id.navigation_tours:
                     return true;
                 case R.id.navigation_new_tour:
-                    item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaCrearTourActivity.class));
+                    item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaCrearTourActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 case R.id.navigation_history_tours:
-                    item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaHistorialToures.class));
+                    item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaHistorialToures.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 case R.id.navigation_config:
-                    item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaCalificacionesActivity.class));
+                    item.setIntent(new Intent(GuiaPrincipalActivity.this, GuiaCalificacionesActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
             }
             return false;

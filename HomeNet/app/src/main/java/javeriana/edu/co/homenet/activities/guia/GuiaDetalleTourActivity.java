@@ -59,16 +59,20 @@ public class GuiaDetalleTourActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_tours:
-                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaPrincipalActivity.class));
+                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaPrincipalActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 case R.id.navigation_new_tour:
-                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaCrearTourActivity.class));
+                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaCrearTourActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 case R.id.navigation_history_tours:
-                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaHistorialToures.class));
+                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaHistorialToures.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 case R.id.navigation_config:
-                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaCalificacionesActivity.class));
+                    item.setIntent(new Intent(GuiaDetalleTourActivity.this, GuiaCalificacionesActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
             }
             return false;

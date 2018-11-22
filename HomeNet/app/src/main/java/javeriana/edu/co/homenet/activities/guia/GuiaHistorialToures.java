@@ -44,15 +44,18 @@ public class GuiaHistorialToures extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_tours:
-                    item.setIntent(new Intent(GuiaHistorialToures.this, GuiaPrincipalActivity.class));
+                    item.setIntent(new Intent(GuiaHistorialToures.this, GuiaPrincipalActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 case R.id.navigation_new_tour:
-                    item.setIntent(new Intent(GuiaHistorialToures.this, GuiaCrearTourActivity.class));
+                    item.setIntent(new Intent(GuiaHistorialToures.this, GuiaCrearTourActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 case R.id.navigation_history_tours:
                     return true;
                 case R.id.navigation_config:
-                    item.setIntent(new Intent(GuiaHistorialToures.this, GuiaCalificacionesActivity.class));
+                    item.setIntent(new Intent(GuiaHistorialToures.this, GuiaCalificacionesActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
             }
             return false;

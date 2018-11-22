@@ -377,6 +377,8 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
                             for (int i=0 ; i < titulos.size() ; i++){
                                 Ubicacion u = new Ubicacion(Double.valueOf(lats.get(i)),
                                         Double.valueOf(longs.get(i)), titulos.get(i));
+                                u.setDescripcion(u.getTitulo());
+                                u.setTitulo("Parada "+i);
                                 recorrido.add(u);
                             }
                         }
@@ -507,7 +509,7 @@ public class GuiaCrearTourActivity extends AppCompatActivity {
         }
 
 
-        return flag;
+        return true;
     }
 
     @Override
