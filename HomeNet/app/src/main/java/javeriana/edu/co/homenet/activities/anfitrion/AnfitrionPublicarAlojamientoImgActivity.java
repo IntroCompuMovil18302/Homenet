@@ -44,6 +44,8 @@ import javeriana.edu.co.homenet.activities.LoginActivity;
 import javeriana.edu.co.homenet.adapters.ImagenAnfitrionAdapter;
 import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Usuario;
+import javeriana.edu.co.homenet.services.CalificacionAlojamientoService;
+import javeriana.edu.co.homenet.services.ReservasService;
 
 public class AnfitrionPublicarAlojamientoImgActivity extends AppCompatActivity {
 
@@ -298,6 +300,10 @@ public void subirAlojamiento(){
         int itemClicked = item.getItemId();
         if(itemClicked == R.id.menuLogOut){
             mAuth.signOut();
+            Intent intentStop = new Intent(AnfitrionPublicarAlojamientoImgActivity.this,ReservasService.class);
+            stopService(intentStop);
+            Intent intentOpinionStop =  new Intent (AnfitrionPublicarAlojamientoImgActivity.this,CalificacionAlojamientoService.class);
+            stopService(intentOpinionStop);
             Intent intent = new Intent(AnfitrionPublicarAlojamientoImgActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

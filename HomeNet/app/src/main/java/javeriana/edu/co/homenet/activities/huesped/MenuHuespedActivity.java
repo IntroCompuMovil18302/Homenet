@@ -32,7 +32,7 @@ public class MenuHuespedActivity extends AppCompatActivity {
     Button verHistorialReservas;
     Button verTouresCercanos;
     Button verHistorialRecorridos;
-
+    Button prueba_reserva ;
 
     private FirebaseAuth mAuth;
 
@@ -48,6 +48,17 @@ public class MenuHuespedActivity extends AppCompatActivity {
         verHistorialReservas = findViewById(R.id.verHistorialReservas);
         verTouresCercanos = findViewById(R.id.btVerTouresCercanosMHA);
         verHistorialRecorridos = findViewById(R.id.verHistorialRecorridos);
+
+
+        prueba_reserva = findViewById(R.id.prueba_reserva);
+        prueba_reserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intento = new Intent(MenuHuespedActivity.this,HuespedReservarAlojamientoActivity.class);
+                intento.putExtra("idAloj","Alo1");
+                startActivity(intento);
+            }
+        });
 
         Calendar calendar = Calendar.getInstance();
         //calendar.set(Calendar.SECOND,3);

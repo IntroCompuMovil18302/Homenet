@@ -19,6 +19,18 @@ public class OpinionAlojamiento {
         this.usuario = usuario;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setCalificacion(double calificacion) {
+        this.calificacion = calificacion;
+    }
+
     public String getAlojamiento() {
         return alojamiento;
     }
@@ -29,10 +41,6 @@ public class OpinionAlojamiento {
 
     public double getCalificacion() {
         return calificacion;
-    }
-
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
     }
 
     public String getComentario() {

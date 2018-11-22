@@ -8,6 +8,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.Context;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
@@ -25,13 +27,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 import androidx.annotation.Nullable;
 import javeriana.edu.co.homenet.R;
 import javeriana.edu.co.homenet.activities.huesped.MenuHuespedActivity;
+import javeriana.edu.co.homenet.models.Alojamiento;
 import javeriana.edu.co.homenet.models.Reserva;
 
 public class AlarmReceiverService extends BroadcastReceiver {
@@ -41,6 +46,7 @@ public class AlarmReceiverService extends BroadcastReceiver {
     DatabaseReference mDataBase;
 
     List<Reserva>reservas= new ArrayList<>();
+    Map<String,String> listaAlojamientos = new HashMap<>();
     @Override
     public void onReceive(Context context, Intent intent) {
         mAuth = FirebaseAuth.getInstance();
@@ -52,14 +58,58 @@ public class AlarmReceiverService extends BroadcastReceiver {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                    Reserva ireserva = singleSnapshot.getValue(Reserva.class);
-                    if (ireserva.getHuesped().equals(mAuth.getCurrentUser().getUid())) {
-                        reservas.add(ireserva);
+                    if(mAuth.getCurrentUser()!=null){
+                        Reserva ireserva = singleSnapshot.getValue(Reserva.class);
+                        if (ireserva.getHuesped().equals(mAuth.getCurrentUser().getUid())) {
+                            reservas.add(ireserva);
+                        }
                     }
+
                 }
-                mostrarNotificaciones(context,intent);
+                encontrarAlojamientos(context,intent);
+                //mostrarNotificaciones(context,intent);
             }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+            }
+        });
+    }
+    private void encontrarTours(Context context, Intent intent){//TODO Hasta que se cree la clase de BistorialToures
+        mDataBase = FirebaseDatabase.getInstance().getReference("HistorialToures/");
+        mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    if(mAuth.getCurrentUser()!=null){
+
+                    }
+
+                }
+                //mostrarNotificaciones(context,intent);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+            }
+        });
+    }
+    private void encontrarAlojamientos(final Context context, final Intent intent){
+        mDataBase = FirebaseDatabase.getInstance().getReference("Alojamientos/");
+        mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(mAuth.getCurrentUser()!=null){
+                    for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                        Alojamiento ialojamiento = singleSnapshot.getValue(Alojamiento.class);
+                        listaAlojamientos.put(ialojamiento.getId(),ialojamiento.getNombre());
+                        System.out.println("El nombre del alojamiento "+ialojamiento.getNombre());
+                    }
+                    mostrarNotificaciones(context,intent);
+                }
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.w("Firebase database", "error en la consulta", databaseError.toException());
@@ -77,6 +127,7 @@ public class AlarmReceiverService extends BroadcastReceiver {
         int diaAct;
         int mesAct;
         int anioAct;
+        String CHANNEL_ID="";
         for(int i=0;i<reservas.size();i++){
             System.out.println("Entro a el for de reservas ------------------------------------>");
             diaAct = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
@@ -88,7 +139,28 @@ public class AlarmReceiverService extends BroadcastReceiver {
             int diferenciaDias = calcularDias(diaAct,Integer.parseInt(fechaInicio[0]), mesAct,Integer.parseInt(fechaInicio[1]), anioAct,Integer.parseInt(fechaInicio[2]));
             System.out.println("Esta es la diferencia de dias ---------> "+diferenciaDias);
             if(diferenciaDias<=5){
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                if(mAuth.getCurrentUser()!=null){
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                        numRandom = random.nextInt(10000)+1;
+                        CHANNEL_ID = "Reserva "+numRandom;
+                        System.out.println("Esta en una version mayor a Android 8");
+                        System.out.println("Entro ahora si al sistema OREO");
+                        CharSequence name = context.getString(R.string.desde);
+                        String description = context.getString(R.string.agregar);
+                        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                        NotificationChannel channel = new NotificationChannel(CHANNEL_ID,name,importance);
+                        channel.setDescription(description);
+                        notificationManager.createNotificationChannel(channel);
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,CHANNEL_ID);
+                        mBuilder.setSmallIcon(R.drawable.apartment);
+                        mBuilder.setContentTitle("Reserva de alojamiento cercana");
+                        mBuilder.setContentText("Faltan "+ diferenciaDias+" dias para la reserva del alojamiento "+listaAlojamientos.get(reservas.get(i).getAlojamiento()));
+                        mBuilder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                        mBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText("Faltan "+ diferenciaDias+" dias para la reserva del alojamiento "+listaAlojamientos.get(reservas.get(i).getAlojamiento())));
+                        mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+                        numRandom = random.nextInt(10000)+1;
+                        notificationManager.notify(numRandom,mBuilder.build());
+                    /*
                     numRandom = random.nextInt(10000)+1;
                     CharSequence name= "Reserva"+String.valueOf(numRandom);
                     String description = "Reserva descripcion "+String.valueOf(numRandom);
@@ -101,24 +173,27 @@ public class AlarmReceiverService extends BroadcastReceiver {
                             .setSmallIcon(R.drawable.boy)
                             .setChannelId("CHANNEL "+String.valueOf(numRandom))
                             .build();
-                }else{
-                    numRandom = random.nextInt(10000)+1;
-                    PendingIntent pendingIntent = PendingIntent.getActivity(context,numRandom,repeating_intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                            .setContentIntent(pendingIntent)
-                            .setSmallIcon(R.drawable.boy)
-                            .setContentTitle("Reserva de alojamiento cercana")
-                            .setContentText("Faltan "+ diferenciaDias+" dias para la reserva del alojamiento +"+reservas.get(i).getAlojamiento())
-                            .setAutoCancel(true)
-                            .setStyle(new NotificationCompat.BigTextStyle().
-                                    bigText("Faltan "+ diferenciaDias+" dias para la reserva del alojamiento +"+reservas.get(i).getAlojamiento()))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-                    numRandom = random.nextInt(10000)+1;
-                    notificationManager.notify(numRandom,builder.build());
+                            */
+                    }else{
+                        numRandom = random.nextInt(10000)+1;
+                        PendingIntent pendingIntent = PendingIntent.getActivity(context,numRandom,repeating_intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                                .setContentIntent(pendingIntent)
+                                .setSmallIcon(R.drawable.apartment)
+                                .setContentTitle("Reserva de alojamiento cercana")
+                                .setContentText("Faltan "+ diferenciaDias+" dias para la reserva del alojamiento "+listaAlojamientos.get(reservas.get(i).getAlojamiento()))
+                                .setAutoCancel(true)
+                                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                                .setStyle(new NotificationCompat.BigTextStyle().
+                                        bigText("Faltan "+ diferenciaDias+" dias para la reserva del alojamiento "+listaAlojamientos.get(reservas.get(i).getAlojamiento())))
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                        numRandom = random.nextInt(10000)+1;
+                        notificationManager.notify(numRandom,builder.build());
+                    }
                 }
-
             }
         }
+        encontrarTours(context,intent);
     }
     public int calcularDias(int diaInicio, int diaFinal, int mesInicio, int mesFinal, int anioInicio, int anioFinal){
         int dias = 0;

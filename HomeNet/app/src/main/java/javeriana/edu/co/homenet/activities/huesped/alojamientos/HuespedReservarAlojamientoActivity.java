@@ -57,6 +57,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
     List<DateData> resultadosProximosDias = new ArrayList<>();
     Alojamiento alojamiento;
     Reserva reserva;
+    int indiceReserva = 1;
     private FirebaseAuth mAuth;
     DatabaseReference mDataBase;
     private ProgressDialog nProgressDialog;
@@ -91,7 +92,8 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                 if(!desde.getText().toString().equals("") && !hasta.getText().toString().equals("")){
                     nProgressDialog.setMessage("Realizando la reserva...");
                     nProgressDialog.show();
-                    guardarReserva();
+                    indiceReserva();
+                    //guardarReserva();
                 }else{
                     Toast.makeText(HuespedReservarAlojamientoActivity.this, "Debe seleccionar una fecha de inicio y fin para realizar la reserva", Toast.LENGTH_SHORT).show();
                 }
@@ -250,6 +252,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     private void findAloj (final String idAloj) {
+        mDataBase = FirebaseDatabase.getInstance().getReference("Alojamientos/");
         mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -365,6 +368,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                     System.out.println("Esto es i ------------------------------> "+i);
                     dateData = new DateData(anioInicio,mesInicio,i);
                     if(verificarMayorDiaActual(dateData)){
+                        System.out.println("Agrego ------------------------> "+dateData.getDay()+"/"+dateData.getMonth()+"/"+dateData.getYear());
                         disponibles.add(dateData);
                         calendario.unMarkDate(dateData);
                         calendario.markDate(dateData.setMarkStyle(MarkStyle.BACKGROUND, Color.GREEN));
@@ -506,18 +510,37 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             }
         }
     }
+    public void indiceReserva(){
+        mDataBase = FirebaseDatabase.getInstance().getReference("Reservas/");
+        mDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Reserva ireserva = singleSnapshot.getValue(Reserva.class);
+                    indiceReserva++;
+                }
+                guardarReserva();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Firebase database", "error en la consulta", databaseError.toException());
+            }
+        });
+    }
     public void guardarReserva(){
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
         Random random = new Random();
         int numRandom = random.nextInt(10000)+1;
-        final String idReserva = "Reserva "+String.valueOf(numRandom)+String.valueOf(System.currentTimeMillis());
+        final String idReserva = "Reserva "+String.valueOf(indiceReserva);
         reserva = new Reserva();
         reserva.setId(idReserva);
         reserva.setAlojamiento(alojamiento.getId());
         reserva.setFechaInicio(desde.getText().toString());
         reserva.setFechaFin(hasta.getText().toString());
         reserva.setHuesped(uid);
+        reserva.setEstado("ACTIVO");
         int anio = Calendar.getInstance().get(Calendar.YEAR); // Variable que contiene el aÃ±o actual
         int mes = (Calendar.getInstance().get(Calendar.MONTH))+1; // Variable que contiene el mes actual
         int dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
@@ -664,7 +687,7 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         int anioActual = Calendar.getInstance().get(Calendar.YEAR); // Variable que contiene el anio actual
         int mesActual = (Calendar.getInstance().get(Calendar.MONTH))+1; // Variable que contiene el mes actual
         int diaActual = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-        System.out.println("Fecha actual ------------------> "+diaActual+"/"+mesActual+"/"+anioActual);
+        //System.out.println("Fecha actual ------------------> "+diaActual+"/"+mesActual+"/"+anioActual);
 
         if((anioActual<fechaVerif.getYear())){ //Anio actual es menor que el que llega
             return true;
@@ -687,14 +710,16 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             if(i==fechaIn.getYear()){
                 //Ciclo de meses, cuando se busca desde el primer anio
                 for(int j=fechaIn.getMonth();j<=12;j++){
-                    Calendar mycal = new GregorianCalendar(i,j,1);
+                    Calendar mycal = new GregorianCalendar(i,j-1,1);
                     int diasMes = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
                     if(j==fechaIn.getMonth()){
                         for(int k=fechaIn.getDay();k<=diasMes;k++){
                             diaIntermedio= new DateData(i,j,k);
                             if(disponibles.contains(diaIntermedio)){
+                                //System.out.println("Dia intermedio entre los disponibles -----------> "+diaIntermedio.getDay()+"/"+diaIntermedio.getMonth()+"/"+diaIntermedio.getYear());
                                 resultadosProximosDias.add(diaIntermedio);
                             }else{
+                                //System.out.println("11111111111111111111No esta el ----------> Dia intermedio entre los disponibles -----------> "+diaIntermedio.getDay()+"/"+diaIntermedio.getMonth()+"/"+diaIntermedio.getYear());
                                 return resultadosProximosDias;
                             }
                         }
@@ -702,8 +727,10 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
                         for (int k=1;k<=diasMes;k++){
                             diaIntermedio= new DateData(i,j,k);
                             if(disponibles.contains(diaIntermedio)){
+                                //System.out.println("Dia intermedio entre los disponibles -----------> "+diaIntermedio.getDay()+"/"+diaIntermedio.getMonth()+"/"+diaIntermedio.getYear());
                                 resultadosProximosDias.add(diaIntermedio);
                             }else{
+                                //System.out.println("2222222222222222222No esta el ----------> Dia intermedio entre los disponibles -----------> "+diaIntermedio.getDay()+"/"+diaIntermedio.getMonth()+"/"+diaIntermedio.getYear());
                                 return resultadosProximosDias;
                             }
                         }
@@ -712,13 +739,15 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
             }else{
                 //Ciclo de meses para los demas anios
                 for(int j=1;j<=12;j++)  {
-                    Calendar mycal = new GregorianCalendar(i,j,1);
+                    Calendar mycal = new GregorianCalendar(i,j-1,1);
                     int diasMes = mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
                     for(int k=1;k<=diasMes;k++){
                         diaIntermedio= new DateData(i,j,k);
                         if(disponibles.contains(diaIntermedio)){
+                            System.out.println("Dia intermedio entre los disponibles -----------> "+diaIntermedio.getDay()+"/"+diaIntermedio.getMonth()+"/"+diaIntermedio.getYear());
                             resultadosProximosDias.add(diaIntermedio);
                         }else{
+                            System.out.println("3333333333333333333333No esta el ----------> Dia intermedio entre los disponibles -----------> "+diaIntermedio.getDay()+"/"+diaIntermedio.getMonth()+"/"+diaIntermedio.getYear());
                             return resultadosProximosDias;
                         }
                     }
@@ -727,4 +756,5 @@ public class HuespedReservarAlojamientoActivity extends AppCompatActivity {
         }
         return resultadosProximosDias;
     }
+
 }

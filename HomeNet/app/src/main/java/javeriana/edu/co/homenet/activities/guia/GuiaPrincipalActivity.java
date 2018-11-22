@@ -100,6 +100,24 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
         keyword = findViewById(R.id.etKeywordGP);
         orden = findViewById(R.id.spOrdenGP);
 
+        /*
+        Intent intentReserva = new Intent(GuiaPrincipalActivity.this,ReservaTourService.class);
+        startService(intentReserva);
+
+        Intent intentCalificacion = new Intent(GuiaPrincipalActivity.this,CalificacionGuiaService.class);
+        startService(intentCalificacion);
+*/
+        buttonAddAnuncioGuia = (Button) findViewById(R.id.buttonAddAnuncioGuia);
+        buttonAddAnuncioGuia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle b = new Bundle();
+                b.putString("idTour", listToures
+                        .get(position).getId());
+                startActivity(new Intent(view.getContext(),GuiaDetalleTourActivity.class).putExtras(b));
+            }
+        });
+
         toures.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -173,6 +191,11 @@ public class GuiaPrincipalActivity extends AppCompatActivity {
         int itemClicked = item.getItemId();
         if(itemClicked == R.id.menuLogOut){
             mAuth.signOut();
+            /*
+            Intent intentStop = new Intent(GuiaPrincipalActivity.this,ReservaTourService.class);
+            stopService(intentStop);
+            Intent intentOpinionStop =  new Intent (GuiaPrincipalActivity.this,CalificacionGuiaService.class);
+            stopService(intentOpinionStop);*/
             Intent intent = new Intent(GuiaPrincipalActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
